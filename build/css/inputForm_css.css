@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+
+.dataTable{
+	
+	align : center;
+}
+.dataTable tr{
+	margin-bottom: 60;
+}
+
+.text_box{
+	padding : 20;
+	width: 300;
+	height: 40;
+	 font-size: 15px;
+	 text-align: left;
+}
+
+.text_box_2{
+	padding : 20;
+	width: 200;
+	height: 40;
+	 font-size: 15px;
+	 text-align: left;
+}
+
+.button{
+	width:93;
+	height : 40;
+	font-size : 15px;
+	
+}
+
+/*
+input[type=text]{
+	
+	padding : 20;
+	width: 300;
+	height: 40;
+	 font-size: 15px;
+	 text-align: left;
+}
+*/
+
+input[type=submit]{
+	width : 300px;
+	height : 40;
+	background-color: #9B111E;
+	border-radius: 5px;
+	border : 0px;
+	margin-bottom: 5px;
+	color : white;
+	align : center;
+	
+}
+
+.submit_id{
+	
+	
+ 	padding-top : 20px;
+	
+}
+
+input[type=reset]{
+	width : 300px;
+	height : 40;
+	border-radius: 5px;
+	border : 0px;
+	margin-bottom: 5px;
+	align : center;
+}
+
+input[type=password] {
+	
+	padding : 20;
+	width: 300;
+	height: 40;
+	 font-size: 15px;
+	 text-align: left;
+}
+
+.button_noInput{
+		width : 300px;
+	height : 40;
+	border-radius: 5px;
+	border : 0px;
+	
+}

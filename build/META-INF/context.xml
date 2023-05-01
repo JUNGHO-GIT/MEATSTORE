@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--192.168.0.126-->
+<Context docBase="MeatStore" path="/MeatStore" reloadable="true">
+	<Resource  
+	name="jdbc/mysql"
+	auth="Container"
+	type="javax.sql.DataSource"
+	driverClassName="com.mysql.cj.jdbc.Driver"
+	url="jdbc:mysql://192.168.0.126:3306/meatdb?autoReconnect=true"
+	username="root"
+	password="12345"
+	testOnBorrow="true"
+	factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+	closeMethod="close"
+	/>
+</Context>

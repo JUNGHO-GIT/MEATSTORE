@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+h2{
+	text-align: center;
+}
+
+table{
+	margin: auto;
+
+}
+
+table.wid{
+	width: 70%;
+}
+a:link,a:visited,a:active{
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration:underline;
+	color:blue;
+}

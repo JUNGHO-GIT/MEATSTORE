@@ -1,0 +1,238 @@
+/*-- [content.jsp] -------------------------------------------------------------------------------*/
+.content_table {
+	width : 50%;
+	border : 2px solid black;
+	border-collapse : collapse;
+	border-spacing : 0;	
+}
+.content_title {
+	width : 50%;
+	height : 50px;
+	padding : 5px;
+	color : white;
+	background-color : #9B111E;
+	font-weight : 300;
+	font-size : 30px;
+	text-align : center;
+	border : 2px solid black;
+	border-collapse : collapse;
+	border-spacing : 0;	
+}
+.content_column_one {
+	width : 100px;
+	height : 30px;
+	padding : 5px;
+	color : white;
+	background-color : #9B111E;
+	font-weight : 300;
+	text-align : center;
+}
+.content_column_two {
+	width : 700px;
+	height : 30px;
+	padding : 5px;
+	color : black;
+	text-align : left;
+}
+.content_column_textarea {
+	width : 700px;
+	height : 200px;
+	padding: 5px;
+	color : black;
+	text-align : left;
+	resize : none;		
+}
+.content_column_image {
+	width : 700px;
+	height : 200px;
+	padding: 5px;
+	color : black;	
+}
+
+/*-- [deleteForm.jsp] ----------------------------------------------------------------------------*/
+.delete_table {
+	width : 50%;
+	border-collapse : collapse;
+	border-spacing : 0;
+	border : 2px solid black;
+}
+.delete_title {
+	width : 50%;
+	border-collapse : collapse;
+	border-spacing : 0;
+	border : 2px solid black;
+	height : 50px;
+	background-color : #9B111E;
+	padding : 5px;
+	text-align : center;
+	font-weight : 300;
+	font-size : 30px;
+	color : white;
+}
+.delete_column_one {
+	width : 300px;
+	height : 30px;
+	padding : 5px;
+	color : white;
+	background-color : #9B111E;
+	font-weight : 300;
+	text-align : center;
+}
+
+.delete_column_two {
+	width : 500px;
+	height : 30px;
+	padding : 5px;
+	color : black;
+	text-align : left;	
+}
+
+/*-- [updateForm.jsp] ----------------------------------------------------------------------------*/
+.update_table {
+	width : 50%;
+	border : 2px solid black;
+	border-collapse : collapse;
+	border-spacing : 0;		
+}
+.update_title {
+	width : 50%;
+	height : 50px;
+	padding : 5px;
+	color : white;
+	background-color : #9B111E;
+	font-weight : 300;
+	font-size : 30px;
+	text-align : center;
+	border : 2px solid black;
+	border-collapse : collapse;
+	border-spacing : 0;		
+}
+.update_column_one {
+	width : 100px;
+	height : 30px;
+	padding : 5px;
+	color : white;
+	background-color : #9B111E;
+	font-weight : 300;
+	text-align : center;	
+}
+.update_column_two {
+	width : 700px;
+	height : 30px;
+	padding : 5px;
+	color : black;
+	text-align : left;	
+}
+.update_column_textarea {
+	width : 700px;
+	height : 200px;
+	padding: 5px;
+	color : black;
+	text-align : left;
+	resize : none;		
+}
+.update_column_image {
+	width : 700px;
+	height : 200px;
+	padding: 5px;
+	color : black;	
+}
+
+/*-- [writeForm.jsp] -----------------------------------------------------------------------------*/
+.write_table {
+	width : 50%;
+	border-collapse : collapse;
+	border-spacing : 0;
+	border : 2px solid black;
+}
+.write_title {
+	width : 50%;
+	height : 50px;
+	padding : 5px;
+	color : white;
+	background-color : #9B111E;
+	font-weight : 300;
+	font-size : 30px;
+	text-align : center;
+	border : 2px solid black;
+	border-collapse : collapse;
+	border-spacing : 0;
+}
+.write_column_one {
+	width : 100px;
+	height : 30px;
+	padding : 5px;
+	color : white;
+	background-color : #9B111E;
+	font-weight : 300;
+	text-align : center;
+}
+.write_column_two {
+	width : 700px;
+	height : 30px;
+	padding : 5px;
+	color : black;
+	text-align : left;
+}
+.write_column_textarea {
+	width : 1000px;
+	height : 200px;
+	padding: 5px;
+	color : black;
+	text-align : left;
+	resize : none;
+}
+.write_column_image {
+	width : 700px;
+	height : 200px;
+	padding: 5px;
+	color : black;
+}
+
+/*-- [list.jsp] ----------------------------------------------------------------------------------*/
+.list_table {
+	width : 50%;
+	border-collapse : collapse;
+	border-spacing : 0;
+	border : 2px solid black;
+}
+.list_title {
+	width : 50%;
+	border-collapse : collapse;
+	border-spacing : 0;
+	border : 2px solid black;
+	height : 50px;
+	background-color : #9B111E;
+	padding : 5px;
+	text-align : center;
+	font-weight : 300;
+	font-size : 30px;
+	color : white;
+}
+.list_row_one {
+	height : 40px;
+	background-color : #9B111E;
+	color : white;
+	text-align : center;
+	font-weight : 300;
+}
+.list_row_two {
+	color : black;
+	background-color : white;
+	text-align : center;
+	font-weight : 300;
+	height : 40px;
+}
+
+/*-- [button] ------------------------------------------------------------------------------------*/
+.bottom_table {
+	width : 50%;	
+	height : 80px;
+}
+.bottom_button {
+	color : white;
+	background-color : #9B111E;
+	font-weight : 100;
+	border : 1px solid white;
+	
+}

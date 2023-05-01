@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+
+#center_list{
+	align : center;
+	
+}
+
+#list_center{
+	text-align: left;
+}
+
+.detail_css td{
+	padding : 5px;
+	line-height:10px;
+
+	box-sizing : border-box;
+	
+}
+
+#submit_button{
+	
+	padding : 15px;
+	margin-top:20px;
+	line-height:20px;
+	
+}
+
+#button_detail{
+	width : 150px;
+	height : 40;
+	border-radius: 5px;
+	border : 0px;
+	
+}
+
+#submit_detail  {
+	width : 150px;
+	height : 40;
+	background-color: #9B111E;
+	border-radius: 5px;
+	border : 0px;
+	margin-bottom: 5px;
+	color : white;
+	
+}

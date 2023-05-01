@@ -1,0 +1,62 @@
+
+.dataTable {
+  display: block;
+  width:1000px;
+  height:200px;
+}
+
+
+.dataTable td {
+
+  padding: 10px;
+  line-height: 20px;
+  border-bottom: 1px dashed #ccc;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/*
+ nth-child(색 넣고 싶은 조건 작성)
+*/
+.dataTable tr:nth-child(odd) {
+	background: #fbfbfb
+}
+
+  .dataTable {
+    display: table;
+  } 
+  
+  
+  
+  .dataTable body tr {
+    display: table-row;
+  }
+  
+  .dataTable body td {
+    display: table-cell; 
+    
+  }
+  
+	
+	#list_main_td{
+			text-align: center;
+	  		background-color: #9B111E;
+			font-weight: 300;
+			color : white;
+			} 
+			
+			
+	#list_td{
+			text-align: center;
+			width : 100px;
+	}
+	
+	#list_subject{
+		width : 500px;
+	}
+	
+	.search_page{
+		
+		margin-top : 40px;
+	}

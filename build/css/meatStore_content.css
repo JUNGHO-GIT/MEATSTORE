@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+
+.contentTable{
+	
+	width:1000px;
+	
+	
+}
+
+
+.contentTable td{
+
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:10px;
+  
+  line-height: 20px;
+  border-bottom: 1px dotted #c4c4c4;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+#content_content{
+	padding-right:30px;
+	padding-left:10px;
+	
+	
+}
+
+#content_row{
+	width:100px;
+	text-align:center;
+}

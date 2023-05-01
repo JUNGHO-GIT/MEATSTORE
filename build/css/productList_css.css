@@ -1,0 +1,44 @@
+
+.dataTable {
+  display: block;
+  width:1000px;
+  height:200px;
+}
+
+
+.dataTable td {
+
+  padding: 10px;
+  line-height: 20px;
+  border-bottom: 1px dashed #c4c4c4;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#list{
+	background-color: #9B111E;
+	color : white;
+	text-align: center;
+}
+
+  .dataTable {
+    display: table;
+  } 
+  
+  
+  
+  .dataTable body tr {
+    display: table-row;
+  }
+  
+  .dataTable body td {
+    display: table-cell; 
+    
+  }
+  
+	
+ .count_block{
+ 	padding-top : 40px;
+ }
+ 
