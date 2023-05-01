@@ -15,6 +15,7 @@
 	"indent_inner_html": true,
 	"comma_first": false,
 	"e4x": false,
+
 	"indent_empty_lines": true,
 	"indent_body_inner_html": true,
 	"indent_handlebars": false,
@@ -23,6 +24,7 @@
 
 	"keep_function_indentation": true,
 	"newline_between_rules": true,
+
 	"selector_separator_newline": true,
 	"space_after_anon_function": false,
 	"space_after_named_function": false,
@@ -30,6 +32,7 @@
 	"space_around_selector_separator": false,
 	"space_in_empty_paren": false,
 	"space_in_paren": false,
+
 	"unindent_chained_methods": false,
 	"wrap_attributes": "auto",
 	"indent_scripts": "normal",

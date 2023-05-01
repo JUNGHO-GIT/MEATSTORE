@@ -1,51 +1,43 @@
 package action.qna;
 
+import command.CommandAction;
+import dao.QnaDAO;
+import dto.QnaDTO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import command.CommandAction;
-import qna.QnaDAO;
-import qna.QnaDTO;
-
 public class WriteFormAction implements CommandAction {
 
-	@Override
-	public String requestPro(HttpServletRequest request,
-			HttpServletResponse response) throws Throwable {
+  @Override
+  public String requestPro(
+    HttpServletRequest request,
+    HttpServletResponse response
+  ) throws Throwable {
 
-		int num = 0;
-		int ref = 1;
-		int re_step = 0;
-		int re_indent = 0;
+    int num = 0;
+    int ref = 1;
+    int re_step = 0;
+    int re_indent = 0;
 
-		if(request.getParameter("num") != null){
-			//만일, 받아온 값에 뭐라도 있다고 한다면
+    if (request.getParameter("num") != null) {
+      num = Integer.parseInt(request.getParameter("num"));
+      ref = Integer.parseInt(request.getParameter("ref"));
+      re_step = Integer.parseInt(request.getParameter("re_step"));
+      re_indent = Integer.parseInt(request.getParameter("re_indent"));
+    }
 
-			num = Integer.parseInt(request.getParameter("num"));
-			ref = Integer.parseInt(request.getParameter("ref"));
-			re_step = Integer.parseInt(request.getParameter("re_step"));
-			re_indent = Integer.parseInt(request.getParameter("re_indent"));
-			//값들을 받아온다.
-		}
+    QnaDAO dao = QnaDAO.getInstance();
+    QnaDTO dto = dao.getQna(num);
 
-//		System.out.println(num);
-		QnaDAO dao = QnaDAO.getInstance();
-		QnaDTO dto = dao.getQna(num);
+    if (dto != null) {
+      request.setAttribute("content", dto.getContent());
+    }
 
-		if(dto != null) {
-			//db에서 값이 있을때만 content를 받아와서 넘겨준다
-			request.setAttribute("content", dto.getContent());
-		}
+    request.setAttribute("num", num);
+    request.setAttribute("ref", ref);
+    request.setAttribute("re_step", re_step);
+    request.setAttribute("re_indent", re_indent);
 
-
-		//jsp로 받아온 값들 보내줍니다.
-		request.setAttribute("num", num);
-		request.setAttribute("ref", ref);
-		request.setAttribute("re_step", re_step);
-		request.setAttribute("re_indent", re_indent);
-
-
-		return "/qna/writeForm.jsp";
-	}
-
+    return "/qna/writeForm.jsp";
+  }
 }

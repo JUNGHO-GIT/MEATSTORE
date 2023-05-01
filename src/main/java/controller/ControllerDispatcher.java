@@ -1,84 +1,80 @@
 package controller;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import com.oreilly.servlet.*;
-import com.oreilly.servlet.multipart.*;
-import java.io.*;
-import java.util.*;
 
 import command.CommandAction;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
+import javax.servlet.*;
+import javax.servlet.http.*;
 
-//��Ʈ�ѷ�(����+java����)
-public class ControllerDispatcher extends HttpServlet{
-	private Map map=new HashMap();
-	//init():�ʱ�ȭ �۾�
-	public void init(ServletConfig config) throws ServletException{
-		String path=config.getServletContext().getRealPath("");//���� ��� ���
+public class ControllerDispatcher extends HttpServlet {
 
-		//WEB_INF/command.properties
-		String pros=path+config.getInitParameter("proFile");
-		Properties pp=new Properties();
-		FileInputStream ff=null;
+  private Map map = new HashMap<>();
 
-		try{
-			ff=new FileInputStream(pros);
-			pp.load(ff);
-		}catch(Exception ex){
-			System.out.println("���� �б� ����:"+ex);
-		}
+  public void init(ServletConfig config) throws ServletException {
+    String path = config.getServletContext().getRealPath("");
 
-		Iterator keyIter=pp.keySet().iterator();
-		while(keyIter.hasNext()){
-			String key=(String)keyIter.next();
-			String className=pp.getProperty(key);
+    String pros = path + config.getInitParameter("proFile");
+    Properties pp = new Properties();
+    FileInputStream ff = null;
 
-			//	    (key)					(vlaue)=className
-			// /board/wirteForm.do=action.board.WriteFormAction
+    try {
+      ff = new FileInputStream(pros);
+      pp.load(ff);
+    }
+    catch (Exception ex) {}
 
-			try{
-				Class commandClass=Class.forName(className);//Ŭ������ �����
-				Object commandObject=commandClass.newInstance();//Ŭ���� ��ü ����
-				map.put(key, commandObject);
+    Iterator keyIter = pp.keySet().iterator();
+    while (keyIter.hasNext()) {
+      String key = (String) keyIter.next();
+      String className = pp.getProperty(key);
 
-			}catch(Exception ex){
-				System.out.println("properties���� ������ Ŭ������ ����� �� ���ܹ߻�"+ex);
-			}
-		}
-	}
-	//�� ������ ��û��. get,post
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException{
-		reqPro(request,response);//�޼��� ȣ��
-	}
+      try {
+        Class commandClass = Class.forName(className);
+        Object commandObject = commandClass.newInstance();
+        map.put(key, commandObject);
+      }
+      catch (Exception ex) {
 
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException{
-		reqPro(request,response);//�޼��� ȣ��
-	}
+      }
+    }
+  }
 
-	//����� ���� �޼���
-	private void reqPro(HttpServletRequest request,HttpServletResponse response)
-			throws IOException,ServletException{
-		String view="";
-		CommandAction commandAction=null;//���� Ŭ���� ������ ���� ��ü ó��
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws IOException, ServletException {
+    reqPro(request, response);
+  }
 
-		try{
-			String uri=request.getRequestURI();//   /context�н�=������Ʈ �̸�
-			//��ûURI:/02_jsp/ch04_innerObject/03_request.jsp
-			//ContextPath:/02_jsp
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+    throws IOException, ServletException {
+    reqPro(request, response);
+  }
 
-			if(uri.indexOf(request.getContextPath())==0){
-				uri=uri.substring(request.getContextPath().length());
-			}
+  private void reqPro(HttpServletRequest request, HttpServletResponse response)
+    throws IOException, ServletException {
+    String view = "";
+    CommandAction commandAction = null;
 
-			//commandAction=(CommandAction)map.get(key);
-			commandAction=(CommandAction)map.get(uri);
-			view=commandAction.requestPro(request, response);// /board/list.jsp
+    try {
+      String uri = request.getRequestURI();
 
-		}catch(Throwable ex){
-			throw new ServletException(ex);
-		}
-		request.setAttribute("CONTENT", view);
+      if (uri.indexOf(request.getContextPath()) == 0) {
+        uri = uri.substring(request.getContextPath().length());
+      }
 
-		RequestDispatcher rd=request.getRequestDispatcher("/template/template.jsp");
-		rd.forward(request, response);//JSP�� ������
-	}
+      commandAction = (CommandAction) map.get(uri);
+      view = commandAction.requestPro(request, response);
+    }
+    catch (Throwable ex) {
+      throw new ServletException(ex);
+    }
+    request.setAttribute("CONTENT", view);
+
+    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/template/template.jsp");
+    requestDispatcher.forward(request, response);
+  }
+
 }
