@@ -15,8 +15,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 자유게시판 </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [글 내용 보기] </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">자유게시판</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[글 내용 보기]</h2>
 				</div>
 			</div>
 		</section>
@@ -64,7 +64,7 @@
 					<div class="row">
 						<div class="col-sm-5 col-md-6">
 							<div class="inner-jungho">
-								<h2> &nbsp; &nbsp; &nbsp; ${dto.subject} </h2>
+								<h2> &nbsp; &nbsp; &nbsp; ${dto.subject}</h2>
 								<h3> ${dto.regdate} <span> &nbsp; &nbsp; ${dto.writer} </span>
 								</h3>
 							</div>

@@ -13,8 +13,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> QNA </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [ 글 삭제 ] </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">QNA</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[ 글 삭제 ]</h2>
 				</div>
 			</div>
 		</section>
@@ -37,7 +37,7 @@
 					<tr>
 						<td colspan="2" align="center">
 							<input type="submit" value="글 삭제" />
-							<input type="button" value="리스트" onClick="location='/qna/list.do?pageNum=${pageNum}'" />
+							<input type="button" value="리스트" onClick="location='${ctxpath}/qna/list.do?pageNum=${pageNum}'" />
 						</td>
 					</tr>
 				</table>

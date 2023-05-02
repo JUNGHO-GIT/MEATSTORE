@@ -15,9 +15,9 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 자유게시판 </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [등록된 글이 없습니다] </h2>
-					<h2><button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/writeForm.do'" data-aos="fade-up" data-aos-delay="300"> 글쓰기 </button></h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">자유게시판</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[등록된 글이 없습니다]</h1>
+					<h2><button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/writeForm.do'" data-aos="fade-up" data-aos-delay="300">글쓰기 </button></h2>
 				</div>
 			</div>
 		</section>
@@ -31,16 +31,6 @@
 			<section class="blog">
 				<div class="container">
 					<!-- row -->
-					<div class="row">
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 text-left" data-aos="fade-right" data-aos-delay="300">
-							<h3> 당신을 표현해주세요! </h3>
-						</div>
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 text-right" data-aos="fade-left" data-aos-delay="300">
-							<button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/writeForm.do'" type="submit"> 글쓰기 </button>
-						</div>
-					</div>
-					<br />
-					<!-- row -->
 					<div class="row d-flex">
 						<c:forEach var="dto" items="${list}">
 							<!-- image -->
@@ -50,7 +40,7 @@
 										<img src="/${imgspath}/${dto.fileupload}" width="300" height="300" class="figure-img img-fluid" />
 									</c:if>
 									<c:if test="${dto.fileupload == null}">
-										<img src="${ctxpath}/imgs/logo.png" width="300" height="300" class="figure-img img-fluid" />
+										<img src="${ctxpath}/res/imgs/logo.png" width="300" height="300" class="figure-img img-fluid" />
 									</c:if>
 								</figure>
 							</div>

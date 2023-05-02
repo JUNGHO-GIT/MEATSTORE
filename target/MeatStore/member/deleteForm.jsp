@@ -13,8 +13,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 회원탈퇴 </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [ID : ${sessionScope.id}] 회원님 </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">회원탈퇴</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[ID : ${sessionScope.id}] 회원님</h2>
 				</div>
 			</div>
 		</section>
@@ -32,7 +32,7 @@
 					<tr>
 						<td colspan="2" align="center">
 							<input type="submit" value="회원탈퇴" />
-							<input type="button" value="취소" onClick="location='/template.jsp'" />
+							<input type="button" value="취소" onClick="location='${ctxpath}/home/template.jsp'" />
 						</td>
 					</tr>
 				</form>

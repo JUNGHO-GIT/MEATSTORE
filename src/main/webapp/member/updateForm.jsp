@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("utf-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -13,8 +14,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 회원 정보 수정 </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [ID : ${sessionScope.id}] </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">회원 정보 수정</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[ID : ${sessionScope.id}]</h2>
 				</div>
 			</div>
 		</section>
@@ -82,7 +83,7 @@
 						<td colspan="2" align="center">
 							<input type="submit" value="내정보수정" />
 							<input type="reset" value="다시입력" />
-							<input type="button" value="취소" onClick="location.href='${ctxpath}/template.jsp'" />
+							<input type="button" value="취소" onClick="location.href='${ctxpath}/home/template.jsp'" />
 						</td>
 					</tr>
 				</form>

@@ -5,4 +5,4 @@
 <c:set var="imgspath" value="/board/upload" />
 <% session.invalidate(); %>
 
-<meta http-equiv="Refresh" content="0;url=/template.jsp" />
+<meta http-equiv="Refresh" content="0;url=${ctxpath}/home/template.jsp" />

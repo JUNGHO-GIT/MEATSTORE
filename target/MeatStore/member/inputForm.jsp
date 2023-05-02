@@ -10,89 +10,111 @@
 <html lang="en, ko">
 
 	<body>
+
 		<!-- header -->
 		<section class="section">
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 회원가입 </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [회원가입을 환영합니다] </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">회원가입</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[회원가입을 환영합니다]</h2>
 				</div>
 			</div>
 		</section>
+
 		<!-- section -->
 		<section>
-			<table class="dataTable">
-				<form name="inputForm" method="post" action="${ctxpath}/member/inputPro.do" onSubmit="return check2()">
-					<tr>
-						<td>ID</td>
-						<td>
-							<input class="text_box_2" type="text" name="id" id="id" size="20" placeholder="id입력" />
-							<input type="hidden" name="idck" id="idck" value="false" />
-							<input class="button" type="button" value="ID중복체크" onClick="idCheck()" />
-						</td>
-					</tr>
-					<tr>
-						<td>암호</td>
-						<td>
-							<input type="password" name="pw" id="pw" size="12" onFocus="aa()" />
-						</td>
-					</tr>
-					<tr>
-						<td>암호확인</td>
-						<td>
-							<input type="password" name="pw2" id="pw2" size="12" />
-						</td>
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td>
-							<input class="text_box" type="text" name="name" id="name" size="30" placeholder="입력" />
-						</td>
-					</tr>
-					<tr>
-						<td>이메일</td>
-						<td>
-							<input class="text_box" type="text" name="email" id="email" size="30" placeholder="OOO@naver.com" />
-						</td>
-					</tr>
-					<tr>
-						<td>전화</td>
-						<td>
-							<input class="text_box" type="text" name="tel" id="tel" size="14" placeholder="전화번호입력" />
-						</td>
-					</tr>
-					<tr>
-						<td>우편번호</td>
-						<td>
-							<input class="text_box_2" type="text" name="zipcode" id="zipcode" size="7" />
-							<input class="button" type="button" value="주소찾기" onClick="findAddr()" />
-						</td>
-					</tr>
-					<tr>
-						<td>주소</td>
-						<td>
-							<input class="text_box" type="text" name="addr" id="addr" size="50" readonly />
-						</td>
-					</tr>
-					<tr>
-						<td>상세주소</td>
-						<td>
-							<input class="text_box" type="text" name="addr2" id="addr2" size="20" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center" class="submit_id">
-							<input type="submit" value="회원가입" />
-							<br />
-							<input type="reset" value="다시입력" />
-							<br />
-							<input class="button_noInput" type="button" value="가입안함" onClick="location='/template.jsp'" />
-						</td>
-					</tr>
-				</form>
-			</table>
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+					<form name="inputForm" class="m-4" method="post" action="${ctxpath}/member/inputPro.do" onSubmit="return check2()">
+						<div class="form-group">
+							<div class="input-group">
+								<input class="form-control" type="text" name="id" id="id" size="20" placeholder="아이디를 입력해주세요" />
+								<input type="hidden" name="idck" id="idck" value="false" />
+								<button class="btn btn-jungho" type="button" onClick="idCheck()">ID중복체크</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="password" name="pw" id="pw" size="12" onFocus="aa()" placeholder="비밀번호를 입력해주세요" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="password" name="pw2" id="pw2" size="12" placeholder="비밀번호를 한번 더 입력해주세요" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="name" id="name" size="30" placeholder="이름을 입력해주세요" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="email" id="email" size="30" placeholder="이메일을 입력해주세요" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="tel" id="tel" size="14" placeholder="전화번호를 입력해주세요" />
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<input class="form-control" type="text" name="addr" id="addr" size="50" readonly placeholder="주소를 입력해주세요" />
+								<button class="btn btn-jungho" type="button" onClick="findAddr()">주소찾기</button>
+							</div>
+							<input class="form-control" type="text" name="addr2" id="addr2" size="20" placeholder="상세주소를 입력해주세요" />
+							<input class="form-control" type="text" name="zipcode" id="zipcode" size="7" readonly placeholder="우편번호" />
+						</div>
+						<div class="btn btn-group">
+							<button class="btn btn-jungho mt-2" type="submit">가입하기</button>&nbsp;&nbsp;
+							<button class="btn btn-jungho mt-2" type="reset">재입력</button>&nbsp;&nbsp;
+							<button class="btn btn-jungho mt-2" type="button" onClick="location='${ctxpath}/home/template.jsp'">가입안함</button>&nbsp;&nbsp;
+						</div>
+					</form>
+				</div>
+			</div>
 		</section>
+
+    <!-- script -->
+    <script>
+    	function findAddr() {
+
+    		new daum.Postcode({
+    			oncomplete: function(data) {
+    				document.getElementById('zipcode').value = data.zonecode;
+    				document.getElementById('addr').value = data.address;
+    			}
+    		}).open();
+    	}
+
+    	function idCheck() {
+    		if ($('#id').val() == '') {
+    			alert("id를 입력 하세요");
+    			$('#id').focus();
+    			return false;
+    		}
+    		else {
+    			$.ajax({
+    				type: "POST",
+    				url: "confirmID.jsp",
+    				data: "id=" + $('#id').val(),
+    				dataType: "JSON",
+    				success: function(data) {
+    					if (data.x == 1) {
+    						alert("사용 중인 id입니다");
+    						$('#id').val('').focus();
+    					}
+    					else {
+    						alert("사용 가능한id입니다");
+    						$('#idck').val('true');
+    						$('#pw').focus();
+    					}
+    				}
+    			})
+
+    		}
+    	}
+
+    	function aa() {
+    		if ($('#idck').val() == 'false') {
+    			alert("id중복 체크 하세요");
+    			$('#id').focus();
+    			return false;
+    		}
+    	}
+    </script>
 
 	</body>
 </html>

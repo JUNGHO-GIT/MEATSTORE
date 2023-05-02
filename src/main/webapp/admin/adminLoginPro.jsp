@@ -3,10 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("utf-8"); %>
 
 <c:if test="${x==1}">
 	<% session.setAttribute("adminid", (String)request.getAttribute("adminid")); session.setAttribute("adminpw",(String)request.getAttribute("adminpw")); %>
-	<meta http-equiv="Refresh" content="0;url=/template.jsp" />
+	<meta http-equiv="Refresh" content="0;url=${ctxpath}/home/template.jsp" />
 </c:if>
 
 <c:if test="${x==-1}">

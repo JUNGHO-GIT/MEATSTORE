@@ -14,8 +14,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 자유게시판 </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [글 삭제하기] </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">자유게시판</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[글 삭제하기]</h2>
 				</div>
 			</div>
 		</section>

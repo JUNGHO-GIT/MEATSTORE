@@ -9,7 +9,7 @@
 
 	<body>
 		<c:if test="${x==1}">
-			<meta http-equiv="Refresh" content="0;url=/notice/list.do" />
+			<meta http-equiv="Refresh" content="0;url=${ctxpath}/notice/list.do" />
 		</c:if>
 		<c:if test="${x==-1}">
 			<script>

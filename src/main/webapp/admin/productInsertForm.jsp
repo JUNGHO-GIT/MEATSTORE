@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("utf-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -13,64 +14,47 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 상품등록 </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [관리자] </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">상품등록 </h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[관리자]</h2>
 				</div>
 			</div>
 		</section>
+		<!-- section -->
 		<section>
-			<table border="1" align="center">
-				<form method="post" action="${ctxpath}/admin/productInsertPro.do?flag=insert" enctype="multipart/form-data" onSubmit="return productCheck()">
-					<tr>
-						<td>상품이름</td>
-						<td>
-							<input type="text" name="name" id="name" size="20" />
-						</td>
-					</tr>
-					<tr>
-						<td>상품코드</td>
-						<td>
-							<input type="text" name="code" id="code" size="20" />
-						</td>
-					</tr>
-					<tr>
-						<td>상품가격</td>
-						<td>
-							<input type="text" name="price" id="price" size="20" />
-						</td>
-					</tr>
-					<tr>
-						<td>설명</td>
-						<td>
-							<textarea name="detail" id="detail" rows="10" cols="45"></textarea>
-						</td>
-					</tr>
-					<tr>
-						<td>상품수량 입고</td>
-						<td>
-							<input type="text" name="stock" id="stock" size="10" />
-						</td>
-					</tr>
-					<tr>
-						<td>상품이미지</td>
-						<td>
-							<input type="file" name="image" />
-						</td>
-					</tr>
-					<tr>
-						<td>회사</td>
-						<td>
-							<input type="text" name="comp" id="comp" size="20" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center">
-							<input type="submit" value="상품등록" />
-							<input type="reset" value="다시 입력" />
-						</td>
-					</tr>
-				</form>
-			</table>
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+					<form method="post" action="${ctxpath}/admin/productInsertPro.do?flag=insert" enctype="multipart/form-data" onSubmit="return productCheck()">
+						<div class="form-group">
+							<input class="form-control" type="text" name="name" id="name" placeholder="상품명" required>
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="code" id="code" placeholder="상품코드" required>
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="price" id="price" placeholder="상품가격" required>
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" name="detail" id="detail" rows="10" cols="45" placeholder="설명"></textarea>
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="stock" id="stock" placeholder="상품수량 입고" required>
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="comp" id="comp" placeholder="회사" required>
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="file" name="image" required>
+						</div>
+						<div class="btn btn-group">
+							<button class="btn btn-jungho" type="submit">상품등록</button>
+							&nbsp;&nbsp;
+							<button class="btn btn-jungho" type="reset">다시 입력</button>
+							&nbsp;&nbsp;
+						</div>
+					</form>
+					</table>
+        </div>
+      </div>
 		</section>
 
 	</body>

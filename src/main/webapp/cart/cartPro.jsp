@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("utf-8"); %>
 
 <jsp:useBean id="cartMgr" class="shop.CartMgr" scope="session"></jsp:useBean>
 
@@ -18,7 +19,7 @@
 %>
 
 <c:if test="${empty sessionScope.id}">
-  <meta http-equiv="Refresh" content="0;url=/member/loginForm.do" />
+  <meta http-equiv="Refresh" content="0;url=${ctxpath}/member/loginForm.do" />
 </c:if>
 
 <c:if test="${!empty sessionScope.id}">
@@ -30,7 +31,7 @@
     alert("장바구니에 담았습니다");
   </script>
 
-  <meta http-equiv="Refresh" content="0;url=/cart/cartList.do" />
+  <meta http-equiv="Refresh" content="0;url=${ctxpath}/cart/cartList.do" />
 
   <%
     }
@@ -43,7 +44,7 @@
     alert("장바구니 내용이 수정 되었습니다");
   </script>
 
-  <meta http-equiv="Refresh" content="0;url=/cart/cartList.do" />
+  <meta http-equiv="Refresh" content="0;url=${ctxpath}/cart/cartList.do" />
 
   <%
     }
@@ -55,7 +56,7 @@
     alert("장바구니 목록이 삭제되었습니다");
   </script>
 
-  <meta http-equiv="Refresh" content="0;url=/cart/cartList.do" />
+  <meta http-equiv="Refresh" content="0;url=${ctxpath}/cart/cartList.do" />
 
   <%
     }

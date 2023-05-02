@@ -14,8 +14,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 주문 정보 </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [ID : ${sessionScope.id}] </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">주문 정보</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[ID : ${sessionScope.id}]</h2>
 				</div>
 			</div>
 		</section>
@@ -26,7 +26,7 @@
         <table width="30%" cellpadding="3" class="detail_css" id="center_list">
           <tr>
             <td colspan="2" align="center">
-              <img src="${ctxpath}/imgs/${dto.image}" width="500px" height="500px" />
+              <img src="${ctxpath}/res/imgs/${dto.image}" width="500px" height="500px" />
             </td>
           </tr>
         </table>
@@ -85,7 +85,7 @@
             <td colspan="2" align="center" id="submit_button">
               <input type="submit" id="submit_detail" value="장바구니 담기" />
               <input type="button" id="button_detail" value="취소"
-                onClick="location='/product/productList.do'" />
+                onClick="location='${ctxpath}/product/productList.do'" />
               <input type="hidden" name="pro_no" id="pro_no" value="${dto.pro_no}" />
               <input type="hidden" name="id" id="id" value="${sessionScope.id}" />
               <input type="hidden" name="state" value="1" />

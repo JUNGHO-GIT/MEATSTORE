@@ -3,10 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("utf-8"); %>
 
 <c:if test="${x==1}">
 	<h3>회원 탈퇴 되었습니다</h3>
-	<meta http-equiv="Refresh" content="2;url=/template.jsp" />
+	<meta http-equiv="Refresh" content="2;url=/home/template.jsp" />
 	<% session.invalidate(); %>
 </c:if>
 

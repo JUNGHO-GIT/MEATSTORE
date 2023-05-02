@@ -1,18 +1,19 @@
-<%@ page language = "java" contentType = "text/html; charset=UTF-8" pageEncoding = "UTF-8" %>
-<%@ page import = "shop.*" %>
-<%@ page import = "dao.*" %>
-<%@ page import = "dto.*" %>
-<%@ page import = "java.util.*" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="<% = request.getContextPath() %>" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="shop.*" %>
+<%@ page import="dao.*" %>
+<%@ page import="dto.*" %>
+<%@ page import="java.util.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
 <%
+  String ctxpath = request.getContextPath();
   ProductDAO productDAO = ProductDAO.getInstance();
   OrderDAO orderDAO = new OrderDAO();
   String id = (String) session.getAttribute("id");
   if (id == null) {
-    response.sendRedirect(request.getContextPath() + "/member/loginForm.do");
+    response.sendRedirect(ctxpath + "/member/loginForm.do");
   }
   Vector vec = orderDAO.getOrder(id);
 %>
@@ -26,19 +27,19 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 주문 내역 </h1>
+					<h1 data-aos="fade-right" data-aos-delay="300">주문 내역</h2>
 					<c:if test="${id == null}">
-						<h2 data-aos="fade-left" data-aos-delay="300"> 로그인 후 이용 가능합니다. </h2>
+						<h2 data-aos="fade-left" data-aos-delay="300">[로그인 후 이용 가능합니다.]</h2>
 					</c:if>
 					<c:if test="${id != null}">
-						<h2 data-aos="fade-left" data-aos-delay="300"> ${id} 님의 주문 내역입니다. </h2>
+						<h2 data-aos="fade-left" data-aos-delay="300">[${id} 님의 주문 내역입니다.]</h2>
 					</c:if>
 				</div>
 			</div>
 		</section>
 		<!-- login x -->
 		<c:if test="${id == null}">
-			<section class="emlty-section"></section>
+			<section class="empty-section"></section>
 		</c:if>
 		<!-- login o -->
 		<c:if test="${id != null}">
@@ -58,18 +59,18 @@
 					</c:if>
 					<c:if test="${vec.size() > 0}">
 						<% for (int i = 0; i < vec.size(); i++) {
-          OrderDTO orderDTO = (OrderDTO) vec.get(i);
-          int pro_no = orderDTO.getPro_no();
-          ProductDTO productDTO = productDAO.getProduct(pro_no);
-          %>
+              OrderDTO orderDTO = (OrderDTO) vec.get(i);
+              int pro_no = orderDTO.getPro_no();
+              ProductDTO productDTO = productDAO.getProduct(pro_no);
+            %>
 						<tr>
-							<td><% = orderDTO.getOrdno() %></td>
+							<td><%= orderDTO.getOrdno() %></td>
 							<td>
-								<a href="javascript:productDetail('<% = productDTO.getCode()%>')">
-									<% = productDTO.getName() %></a>
+								<a href="javascript:productDetail('<%= productDTO.getCode()%>')">
+									<%= productDTO.getName() %></a>
 							</td>
-							<td><% = orderDTO.getQuantity() %></td>
-							<td><% = orderDTO.getOrddate() %></td>
+							<td><%= orderDTO.getQuantity() %></td>
+							<td><%= orderDTO.getOrddate() %></td>
 							<td>
 								<%
               switch (Integer.parseInt(orderDTO.getState())) {
@@ -97,7 +98,7 @@
 						</tr>
 						<% } %>
 					</c:if>
-					<form name="detail" action="${request.getContextPath()}product/productDetail.do">
+					<form name="detail" action="${ctxpath}/product/productDetail.do">
 						<input type="hidden" name="code" />
 					</form>
 				</table>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("utf-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -14,8 +15,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> QNA </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [전체글 : ${count}]</h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">QNA</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[전체글 : ${count}]</h1>
 					<h2><button class="btn btn-jungho" data-aos="fade-up" data-aos-delay="300" onclick="location.href='${ctxpath}/qna/writeForm.do'">글쓰기</button></h2>
 				</div>
 			</div>
@@ -59,16 +60,16 @@
 							</td>
 							<td id="list_subject">
 								<c:if test="${dto.re_step>0}">
-									<img src="${ctxpath}/imgs/level.gif" width="${5*dto.re_step}" height="16" />
-									<img src="${ctxpath}/imgs/re.gif" />
+									<img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_step}" height="16" />
+									<img src="${ctxpath}/res/imgs/re.gif" />
 								</c:if>
 								<c:if test="${dto.re_step==0}">
-									<img src="${ctxpath}/imgs/level.gif" width="${5*dto.re_step}" height="16" />
+									<img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_step}" height="16" />
 								</c:if>
 								<a href="${ctxpath}/qna/content.do?num=${dto.num}&pageNum=${currentPage}">
 									${dto.subject}</a>
 								<c:if test="${dto.views}=10">
-									<img src="${ctxpath}/imgs/hot.gif" />
+									<img src="${ctxpath}/res/imgs/hot.gif" />
 								</c:if>
 							</td>
 							<td id="list_td">${dto.writer}</td>

@@ -31,7 +31,7 @@
 		align-items: center;
 		position: relative;
 		padding-top: 20px;
-		padding-bottom: 100px;
+		padding-bottom: 40px;
 		width: 100% -webkit-fill-available;
 		object-fit: contain;
 		overflow-x: hidden;
@@ -56,6 +56,11 @@
 	}
 
 	.empty-section {
-		height: 150px;
+		height: 200px;
+	}
+
+	.log {
+		font-size: 25px;
+		font-weight: 800;
 	}
 }

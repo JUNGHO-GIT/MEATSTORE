@@ -13,8 +13,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> QNA </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [여러분들의 의견을 들려주세요]</h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">QNA</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[여러분들의 의견을 들려주세요]</h2>
 				</div>
 			</div>
 		</section>

@@ -13,8 +13,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> 회원 정보 </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [ID : ${sessionScope.id}] </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">회원 정보</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[ID : ${sessionScope.id}]</h2>
 				</div>
 			</div>
 		</section>

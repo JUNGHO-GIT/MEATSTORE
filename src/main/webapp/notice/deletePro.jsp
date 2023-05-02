@@ -3,13 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("utf-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
 
 	<body>
 		<c:if test="${x==1}">
-			<meta http-equiv="Refresh" content="0;url=/notice/list.do" />
+			<meta http-equiv="Refresh" content="0;url=${ctxpath}/notice/list.do" />
 		</c:if>
 		<c:if test="${x==-1}">
 			<script>

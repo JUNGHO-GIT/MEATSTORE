@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("utf-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -13,8 +14,8 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300"> QNA </h1>
-					<h2 data-aos="fade-left" data-aos-delay="300"> [글 수정] </h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">QNA</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[글 수정]</h2>
 				</div>
 			</div>
 		</section>
@@ -53,7 +54,7 @@
 						<td colspan="2" align="center">
 							<input type="submit" value="글수정" />
 							<input type="reset" value="다시쓰기" />
-							<input type="button" value="리스트" onClick="location='/qna/list.do?pageNum=${pageNum}'" />
+							<input type="button" value="리스트" onClick="location='${ctxpath}/qna/list.do?pageNum=${pageNum}'" />
 						</td>
 					</tr>
 				</form>

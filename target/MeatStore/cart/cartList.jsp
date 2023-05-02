@@ -25,7 +25,7 @@
 
     <!-- 상품 x -->
 		<c:if test="${empty sessionScope.id }">
-			<meta http-equiv="Refresh" content="0;url=/member/loginForm.do">
+			<meta http-equiv="Refresh" content="0;url=${ctxpath}/member/loginForm.do">
 		</c:if>
 
     <!-- 상품 o -->
@@ -35,8 +35,8 @@
       	<div class="jumbotron d-flex align-items-center">
       		<div class="gradient"></div>
       		<div class="container-fluid content">
-      			<h1 data-aos="fade-right" data-aos-delay="300"> 장바구니 </h1>
-      			<h2 data-aos="fade-left" data-aos-delay="300"> [전체상품 : ${hcart.size()} ] </h2>
+      			<h1 data-aos="fade-right" data-aos-delay="300">장바구니</h2>
+      			<h2 data-aos="fade-left" data-aos-delay="300">[전체상품 : ${hcart.size()} ]</h2>
       		</div>
       	</div>
       </section>

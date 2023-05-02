@@ -6,7 +6,7 @@
 
 <c:if test="${x==1}">
 	<% session.setAttribute("id", (String)request.getAttribute("id")); %>
-	<meta http-equiv="Refresh" content="0;url=/template.jsp" />
+	<meta http-equiv="Refresh" content="0;url=${ctxpath}/home/template.jsp" />
 </c:if>
 
 <c:if test="${x==0}">
