@@ -9,7 +9,7 @@
   <script>
   	alert("수정이 완료되었습니다")
 		setTimeout(function() {
-		window.location.href = "${ctxpath}/board/list.do";
+		window.location.href = "/board/list.do";
 		}, 500);
   </script>
 </c:if>

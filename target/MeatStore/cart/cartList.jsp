@@ -10,15 +10,9 @@
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
 <jsp:useBean id="cartMgr" class="shop.CartMgr" scope="session" />
-<html>
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>장바구니</title>
-		<script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
-		<script src="${ctxpath}/res/js/script.js"></script>
-		<link rel="stylesheet" href="${ctxpath}/res/css/productList.css">
-	</head>
+<!DOCTYPE html>
+<html lang="en, ko">
 
 	<body>
 		<%
@@ -28,10 +22,24 @@
 			Hashtable<String, OrderDTO> hcart = null;
 			productDAO = ProductDAO.getInstance();
 		%>
+
+    <!-- 상품 x -->
 		<c:if test="${empty sessionScope.id }">
 			<meta http-equiv="Refresh" content="0;url=${ctxpath}/member/loginForm.do">
 		</c:if>
+
+    <!-- 상품 o -->
 		<c:if test="${!empty sessionScope.id }">
+      <!-- header -->
+      <section class="section">
+      	<div class="jumbotron d-flex align-items-center">
+      		<div class="gradient"></div>
+      		<div class="container-fluid content">
+      			<h1 data-aos="fade-right" data-aos-delay="300"> 장바구니 </h1>
+      			<h2 data-aos="fade-left" data-aos-delay="300"> [전체상품 : ${hcart.size()} ] </h2>
+      		</div>
+      	</div>
+      </section>
 			<table align="center" class="dataTable">
 				<tr>
 					<td align="center">

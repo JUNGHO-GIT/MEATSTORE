@@ -7,43 +7,45 @@
 <!doctype html>
 <html lang="en, ko">
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Insert title here</title>
-		<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="${ctxpath}/res/js/member.js"></script>
-		<link rel="stylesheet" href="${ctxpath}/res/css/loginForm.css" />
-	</head>
-
 	<body>
-		<h2>로그인</h2>
-		<form name="loginForm" method="post" action="${ctxpath}/member/loginPro.do"
-			onSubmit="return loginCheck()">
+		<!-- header -->
+		<section class="section">
+			<div class="jumbotron d-flex align-items-center">
+				<div class="gradient"></div>
+				<div class="container-fluid content">
+					<h1 data-aos="fade-right" data-aos-delay="300"> 로그인 </h1>
+					<h2 data-aos="fade-left" data-aos-delay="300"> [ID와 비밀번호를 입력해주세요] </h2>
+				</div>
+			</div>
+		</section>
+		<!-- section -->
+		<section class="section">
 			<table class="dataTable">
-				<tr>
-					<td>ID</td>
-					<td>
-						<input type="text" name="id" id="id" size="20" placeholder="ID를 입력해주세요." />
-					</td>
-				</tr>
-				<tr>
-					<td>암호</td>
-					<td>
-						<input type="password" name="pw" id="pw" size="20" placeholder="비밀번호를 입력해주세요." />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center" class="submit_id">
-						<input type="submit" id="submit_button" value="로그인" />
-						<br />
-						<input type="reset" value="다시입력" />
-						<br />
-						<input type="button" value="관리자 로그인"
-							onClick="location='${ctxpath}/admin/adminLoginForm.do'" />
-					</td>
-				</tr>
+				<form name="loginForm" method="post" action="${ctxpath}/member/loginPro.do" onSubmit="return loginCheck()">
+					<tr>
+						<td>ID</td>
+						<td>
+							<input type="text" name="id" id="id" size="20" placeholder="ID를 입력해주세요." />
+						</td>
+					</tr>
+					<tr>
+						<td>암호</td>
+						<td>
+							<input type="password" name="pw" id="pw" size="20" placeholder="비밀번호를 입력해주세요." />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="submit_id">
+							<input type="submit" id="submit_button" value="로그인" />
+							<br />
+							<input type="reset" value="다시입력" />
+							<br />
+							<input type="button" value="관리자 로그인" onClick="location='${ctxpath}/admin/adminLoginForm.do'" />
+						</td>
+					</tr>
+				</form>
 			</table>
-		</form>
+		</section>
 
 	</body>
 </html>

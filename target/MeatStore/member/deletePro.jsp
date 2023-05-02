@@ -6,7 +6,7 @@
 
 <c:if test="${x==1}">
 	<h3>회원 탈퇴 되었습니다</h3>
-	<meta http-equiv="Refresh" content="2;url=${ctxpath}/template/template.jsp" />
+	<meta http-equiv="Refresh" content="2;url=${ctxpath}/module/template.jsp" />
 	<% session.invalidate(); %>
 </c:if>
 

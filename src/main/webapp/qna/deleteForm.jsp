@@ -7,49 +7,42 @@
 <!doctype html>
 <html lang="en, ko">
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Insert title here</title>
-		<script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
-		<script src="${ctxpath}/res/js/check.js"></script>
-		<script>
-			function UIcheck() {
-				if (document.delForm.pw.value == "") {
-					alert("암호 필수 입력.");
-					document.delForm.pw.focus();
-					return false;
-				}
-				return true;
-			}
-		</script>
-	</head>
-
 	<body>
-		<h2>게시글 삭제</h2>
-		<form name="delForm" method="post" action="${ctxpath}/qna/deletePro.do?pageNum=${pageNum}"
-			onSubmit="return UIcheck()">
-			<table border="1" width="350">
-				<tr>
-					<td colspan="2">
-						<h4>암호를 입력하세요.</h4>
-					</td>
-				</tr>
-				<tr>
-					<td>암호</td>
-					<td>
-						<input type="text" name="pw" id="pw" size="12" />
-						<input type="hidden" name="num" value="${num}" />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="글 삭제" />
-						<input type="button" value="리스트"
-							onClick="location='${ctxpath}/qna/list.do?pageNum=${pageNum}'" />
-					</td>
-				</tr>
-			</table>
-		</form>
+		<!-- header -->
+		<section class="section">
+			<div class="jumbotron d-flex align-items-center">
+				<div class="gradient"></div>
+				<div class="container-fluid content">
+					<h1 data-aos="fade-right" data-aos-delay="300"> QNA </h1>
+					<h2 data-aos="fade-left" data-aos-delay="300"> [ 글 삭제 ] </h2>
+				</div>
+			</div>
+		</section>
+		<!-- section -->
+		<section>
+			<form name="delForm" method="post" action="/qna/deletePro.do?pageNum=${pageNum}" onSubmit="return UIcheck()">
+				<table border="1" width="350">
+					<tr>
+						<td colspan="2">
+							<h4>암호를 입력하세요.</h4>
+						</td>
+					</tr>
+					<tr>
+						<td>암호</td>
+						<td>
+							<input type="text" name="pw" id="pw" size="12" />
+							<input type="hidden" name="num" value="${num}" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<input type="submit" value="글 삭제" />
+							<input type="button" value="리스트" onClick="location='/qna/list.do?pageNum=${pageNum}'" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</section>
 
 	</body>
 </html>

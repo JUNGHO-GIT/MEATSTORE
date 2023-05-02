@@ -4,4 +4,4 @@
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
 
-<meta http-equiv="Refresh" content="0;${ctxpath}/notice/list.do" />
+<meta http-equiv="Refresh" content="0;/notice/list.do" />

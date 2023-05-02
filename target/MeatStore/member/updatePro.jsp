@@ -5,4 +5,4 @@
 <c:set var="imgspath" value="/board/upload" />
 
 <h2>수정완료</h2>
-<meta http-equiv="Refresh" content="2;url=${ctxpath}/template/template.jsp" />
+<meta http-equiv="Refresh" content="2;url=${ctxpath}/module/template.jsp" />

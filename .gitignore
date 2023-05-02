@@ -1,0 +1,13 @@
+#node_modules
+node_modules/
+.git/
+.settings/
+
+# Output directory
+_dist
+
+# Project build
+target/
+
+*.classpath
+*.project

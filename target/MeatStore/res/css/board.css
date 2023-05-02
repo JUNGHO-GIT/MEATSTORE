@@ -56,20 +56,6 @@ ul>li {
 	box-shadow: none;
 }
 
-/*======
-    Nav-bar
-    ======*/
-
-header {
-	padding: 45px 0;
-	color: #000000;
-	background-color: #ffffff;
-}
-
-header h6 {
-	font-size: 14px;
-	letter-spacing: 4px;
-}
 
 .btn-success:not(:disabled):not(.disabled):active:focus,
 .btn-success.focus,
@@ -83,11 +69,6 @@ nav {
 	-webkit-box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1607843137254902);
 	-moz-box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1607843137254902);
 	box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1607843137254902);
-}
-
-header .fa {
-	font-size: 20px;
-	margin-left: 15px;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -741,76 +722,6 @@ header .fa {
 	font-family: 'Montserrat', sans-serif;
 }
 
-/*==============================
-      //footer Styles //
-==============================*/
-
-.page-footer {
-	border-top: 1px solid #cccccc;
-}
-
-.page-footer .box-1 {
-	border-right: 1px solid #cccccc;
-	padding-top: 75px;
-	padding-bottom: 80px;
-}
-
-.page-footer .box-2,
-.page-footer .box-3,
-.page-footer .box-4 {
-	padding-top: 20px;
-}
-
-.footer-copyright {
-	position: relative;
-	background-image: url("../imgs/footer-bg.jpg");
-	background-repeat: no-repeat;
-	background-position: top;
-	background-size: cover;
-}
-
-.footer-copyright p {
-	font-size: 16px;
-	font-weight: 300;
-	color: #ffffff;
-	position: relative;
-	text-transform: uppercase;
-	padding: 40px 0;
-	margin-bottom: 0;
-}
-
-.footer-copyright p a {
-	color: #9B111E;
-}
-
-.page-footer img {
-	margin-bottom: 30px;
-}
-
-.page-footer h5 {
-	font-size: 16px;
-	font-weight: 600;
-	text-transform: uppercase;
-	margin-bottom: 1.5rem !important;
-}
-
-.page-footer p {
-	font-size: 16px;
-	font-weight: 300;
-	padding-right: 40px;
-}
-
-.page-footer ul>li a {
-	color: #707070;
-	font-size: 12px;
-	font-weight: 400;
-	text-transform: uppercase;
-}
-
-.page-footer ul>li a:hover {
-	color: #9B111E;
-	font-weight: border;
-}
 
 /*=============================
     Blog Styles
@@ -1368,23 +1279,12 @@ header .fa {
 }
 
 @media(max-width:1024px) {
-	header {
-		padding: 30px 0;
-	}
+
 
 	.navbar-dark .navbar-nav .nav-link,
 	.navbar-dark .navbar-nav .active>.nav-link {
 		font-size: 12px;
 		padding: 10px 10px;
-	}
-
-	header .navbar-brand img {
-		width: 75%;
-	}
-
-	header .fa {
-		font-size: 18px;
-		margin-left: 10px;
 	}
 
 	.jumbotron {
@@ -1572,29 +1472,6 @@ header .fa {
 	.section-6 .main {
 		padding: 20px 0;
 	}
-
-	.page-footer .box-1 {
-		padding-top: 50px;
-		padding-bottom: 50px;
-	}
-
-	.page-footer .box-2,
-	.page-footer .box-3,
-	.page-footer .box-4 {
-		padding-top: 10px;
-	}
-
-	.page-footer h5 {
-		font-size: 13px;
-	}
-
-	.page-footer p {
-		font-size: 12px;
-		letter-spacing: 0.5px;
-		font-weight: 400;
-		padding-right: 30px;
-	}
-
 
 
 	#about-us {
@@ -1951,26 +1828,7 @@ header .fa {
 		padding: 30px 0;
 	}
 
-	.page-footer .box-1 {
-		padding-top: 1px;
-		padding-bottom: 10px;
-		border-right: 0;
-	}
 
-	.page-footer .box-2,
-	.page-footer .box-3,
-	.page-footer .box-4 {
-		padding-top: 0;
-	}
-
-	.page-footer h5 {
-		font-size: 14px;
-		margin-bottom: 0.5rem !important;
-	}
-
-	.page-footer p {
-		padding-right: 0;
-	}
 
 	#about-us .image {
 		width: 100%;
@@ -2339,9 +2197,6 @@ header .fa {
 		padding-bottom: 0;
 	}
 
-	.page-footer img {
-		width: 30%;
-	}
 
 	.section-3 h2 span {
 		display: block;
@@ -2367,10 +2222,6 @@ header .fa {
 		font-size: 12px;
 	}
 
-	.footer-copyright p {
-		padding: 14px 0;
-		font-size: 11px;
-	}
 
 	#contact .btn-primary {
 		padding: 10px 30px;
@@ -2432,13 +2283,6 @@ header .fa {
 	.section-6 .heading h3 {
 		font-size: 18px;
 	}
-
-	.page-footer ul>li a {
-		color: #707070;
-		font-size: 10px;
-		font-weight: 600;
-	}
-
 	#about-us h3 {
 		font-size: 21px;
 	}

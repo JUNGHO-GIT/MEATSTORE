@@ -7,84 +7,26 @@
 
 <!doctype html>
 <html lang="ko, en">
-	<!--[Head]--------------------------------------------------------------------------------------->
-
-	<head>
-		<!-- meta -->
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<!-- css -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800">
-		<link rel="stylesheet" href="${ctxpath}/res/css/board.css" />
-		<!-- js -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
-		</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-		<script src="${ctxpath}/res/js/board.js"></script>
-		<script>
-			document.getElementById("buttons-jungho").addEventListener("click", function() {});
-		</script>
-		<script>
-			$(document).ready(function() {
-				if (screen.width > 1024) {
-					AOS.init({
-						easing: 'ease-in-out-sine',
-						once: true,
-					});
-				}
-			});
-			(new IntersectionObserver(function(e, o) {
-				if (e[0].intersectionRatio > 0) {
-					document.documentElement.removeAttribute('class');
-				}
-				else {
-					document.documentElement.setAttribute('class', 'stuck');
-				};
-			})).observe(document.querySelector('.trigger'));
-		</script>
-	</head>
 	<!-- body --------------------------------------------------------------------------------------->
 
 	<body>
-		<!-- 글 존재 X -------------------------------------------------------------------------------->
-		<c:if test="${count == 0}">
-			<section class="section-1">
-				<div class="jumbotron d-flex align-items-center">
-					<div class="gradient"> </div>
-					<div class="container-fluid content">
-						<h1 data-aos="fade-right" data-aos-delay="300"> 자유게시판 </h1>
-						<h2 data-aos="fade-left" data-aos-delay="300"> 등록된 글이 없습니다!! </h2>
-					</div>
-				</div>
-			</section>
-			<!-- 글쓰기 버튼 -->
-			<div class="component-jungho1">
-				<div class="col-sm-12">
-					<ul>
-						<h6>
-							<button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/writeForm.do'" type="submit"> 글쓰기 </button>
-						</h6>
-					</ul>
+		<!-- header -->
+		<section class="section-1">
+			<div class="jumbotron d-flex align-items-center">
+				<div class="gradient"></div>
+				<div class="container-fluid content">
+					<h1 data-aos="fade-right" data-aos-delay="300"> 자유게시판 </h1>
+					<h2 data-aos="fade-left" data-aos-delay="300"> [등록된 글이 없습니다] </h2>
+					<h2><button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/writeForm.do'" data-aos="fade-up" data-aos-delay="300"> 글쓰기 </button></h2>
 				</div>
 			</div>
+		</section>
+		<!-- 글 존재 X -------------------------------------------------------------------------------->
+		<c:if test="${count == 0}">
+			<section class="empty-section"></section>
 		</c:if>
 		<!-- 글 존재 O -------------------------------------------------------------------------------->
 		<c:if test="${count > 0}">
-			<!-- section -->
-			<section class="section">
-				<div class="jumbotron d-flex align-items-center">
-					<div class="gradient"> </div>
-					<div class="container-fluid content">
-						<h1 data-aos="fade-right" data-aos-delay="300"> 자유게시판 </h1>
-						<h2 data-aos="fade-left" data-aos-delay="300"> [전체글 : ${count}] </h2>
-					</div>
-				</div>
-			</section>
 			<!-- section -->
 			<section class="blog">
 				<div class="container">
@@ -174,7 +116,6 @@
 							</h6>
 						</div>
 					</div>
-
 				</div>
 			</section>
 		</c:if>

@@ -5,7 +5,7 @@
 <c:set var="imgspath" value="/board/upload" />
 
 <c:if test="${x==1}">
-	<meta http-equiv="Refresh" content="0;${ctxpath}/qna/list.do" />
+	<meta http-equiv="Refresh" content="0;/qna/list.do" />
 </c:if>
 
 <c:if test="${x==-1}">
@@ -14,3 +14,12 @@
 		history.back();
 	</script>
 </c:if>
+
+
+
+
+
+
+
+
+

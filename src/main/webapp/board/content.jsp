@@ -8,47 +8,6 @@
 <!doctype html>
 <html lang="ko, en">
 
-	<!--[Head]--------------------------------------------------------------------------------------->
-	<head>
-		<!-- meta -->
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<!-- css -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800">
-		<link rel="stylesheet" href="${ctxpath}/res/css/board.css" />
-		<!-- js -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
-		</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-		<script src="${ctxpath}/res/js/board.js"></script>
-		<script>
-			document.getElementById("buttons-jungho").addEventListener("click", function() {});
-		</script>
-		<script>
-			$(document).ready(function() {
-				if (screen.width > 1024) {
-					AOS.init({
-						easing: 'ease-in-out-sine',
-						once: true,
-					});
-				}
-			});
-			(new IntersectionObserver(function(e, o) {
-				if (e[0].intersectionRatio > 0) {
-					document.documentElement.removeAttribute('class');
-				}
-				else {
-					document.documentElement.setAttribute('class', 'stuck');
-				};
-			})).observe(document.querySelector('.trigger'));
-		</script>
-	</head>
-
 	<!--[Body]--------------------------------------------------------------------------------------->
 	<body>
 
@@ -78,10 +37,10 @@
 						<div class="col-sm-12">
 							<ul>
 								<h6>
-									<input type="button" onclick="window.location.href='${ctxpath}/board/updateForm.do?num=${num}&pageNum=${pageNum}'" value="수정" class="btn btn-jungho" /> &nbsp;
-									<input type="button" onclick="window.location.href='${ctxpath}/board/deleteForm.do?num=${num}&pageNum=${pageNum}'" value="삭제" class="btn btn-jungho" /> &nbsp;
-									<input type="button" onclick="window.location.href='${ctxpath}/board/writeForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_step=${dto.re_step}&re_level=${dto.re_level}'" value="답글쓰기" class="btn btn-jungho"> &nbsp;
-									<input type="button" onclick="window.location.href='${ctxpath}/board/list.do'" value="목록보기" class="btn btn-jungho" />
+									<input type="button" onclick="window.location.href='/board/updateForm.do?num=${num}&pageNum=${pageNum}'" value="수정" class="btn btn-jungho" /> &nbsp;
+									<input type="button" onclick="window.location.href='/board/deleteForm.do?num=${num}&pageNum=${pageNum}'" value="삭제" class="btn btn-jungho" /> &nbsp;
+									<input type="button" onclick="window.location.href='/board/writeForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_step=${dto.re_step}&re_level=${dto.re_level}'" value="답글쓰기" class="btn btn-jungho"> &nbsp;
+									<input type="button" onclick="window.location.href='/board/list.do'" value="목록보기" class="btn btn-jungho" />
 								</h6>
 							</ul>
 						</div>
@@ -92,7 +51,7 @@
 					<div class="row" data-aos="fade-up" data-aos-duration="700">
 						<div class="col-sm-12">
 							<c:if test="${dto.fileupload != null}">
-								<img src="${ctxpath}/${imgspath}/${dto.fileupload}" width="auto" height="auto" class="img-thumbnail image" />
+								<img src="/${imgspath}/${dto.fileupload}" width="auto" height="auto" class="img-thumbnail image" />
 							</c:if>
 							<c:if test="${dto.fileupload == null}">
 								<img src="images/nofile.jpg" class="figure-img img-fluid" />

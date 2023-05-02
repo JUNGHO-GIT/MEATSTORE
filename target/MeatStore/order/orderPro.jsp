@@ -12,7 +12,7 @@
 <c:set var="loopFinished" value="false" />
 <jsp:useBean id="cartMgr" class="shop.CartMgr" scope="session" />
 
-
+<!-- 1. 장바구니 o -->
 <c:if test="${not empty hcart}">
 	<c:forEach var="orderDTO" items="${hcart}" varStatus="loopStatus">
 		<c:if test="${!loopFinished}">
@@ -31,21 +31,23 @@
 </c:if>
 
 
-<!-- 1. 장바구니가 비어있을때 -->
+<!-- 2. 장바구니 x -->
 <c:if test="${empty hcart}">
 	<script>
 		alert("장바구니가 비어있습니다.");
     window.history.back();
 	</script>
 </c:if>
-<!-- 2. 수량부족 -->
+
+<!-- 3. 수량부족 -->
 <c:if test="${orderResult == 'noAmount'}">
 	<script>
 		alert("수량이 부족합니다.");
     window.history.back();
 	</script>
 </c:if>
-<!-- 3. 주문성공 -->
+
+<!-- 4. 주문성공 -->
 <c:if test="${orderResult != 'noAmount' and not empty hcart}">
 	<script>
 		alert("주문이 완료되었습니다.");
