@@ -26,7 +26,7 @@
 		<section class="blog">
 			<div class="container">
 				<!-- form --------------------------------------------------------------------------------->
-				<form name="updateForm" method="post" enctype="multipart/form-data" action="/board/updatePro.do?pageNum=${pageNum}" onsubmit="return uppwcheck()">
+				<form name="updateForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/updatePro.do?pageNum=${pageNum}" onsubmit="return uppwcheck()">
 					<input type="hidden" name="pw" id="pw" value="${dto.pw}" />
 					<input type="hidden" name="num" value="${dto.num}" />
 					<div class="row">
@@ -34,7 +34,7 @@
 							<h3> 당신을 표현해주세요! </h3>
 						</div>
 						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 text-right" data-aos="fade-left" data-aos-delay="300">
-							<button type="button" id="buttons-jungho" class="btn btn-jungho" onclick="window.location.href='/board/list.do'"> 목록보기 </button>
+							<button type="button" id="buttons-jungho" class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/list.do'"> 목록보기 </button>
 						</div>
 					</div>
 					<br>

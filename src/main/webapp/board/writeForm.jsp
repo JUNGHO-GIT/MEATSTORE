@@ -31,7 +31,7 @@
 		<section class="blog">
 			<div class="container">
 				<!-- form --------------------------------------------------------------------------------->
-				<form name="writeForm" method="post" enctype="multipart/form-data" action="/board/writePro.do" onsubmit="return boardCheck()">
+				<form name="writeForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/writePro.do" onsubmit="return boardCheck()">
 					<input type="hidden" name="num" value="${num}" />
 					<input type="hidden" name="ref" value="${ref}" />
 					<input type="hidden" name="re_step" value="${re_step}" />
@@ -42,7 +42,7 @@
 							<h3> 당신을 표현해주세요! </h3>
 						</div>
 						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 text-right" data-aos="fade-left" data-aos-delay="300">
-							<button type="button" id="buttons-jungho" class="btn btn-jungho" onclick="window.location.href='/board/list.do'"> 목록보기 </button>
+							<button type="button" id="buttons-jungho" class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/list.do'"> 목록보기 </button>
 						</div>
 					</div>
 					<!-- row -->

@@ -32,7 +32,7 @@
 					<tr>
 						<td colspan="2" align="center">
 							<input type="submit" value="회원탈퇴" />
-							<input type="button" value="취소" onClick="location='${ctxpath}/module/template.jsp'" />
+							<input type="button" value="취소" onClick="location='/template.jsp'" />
 						</td>
 					</tr>
 				</form>

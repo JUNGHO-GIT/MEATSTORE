@@ -51,7 +51,7 @@
 								<a href="${ctxpath}/notice/content.do?num=${dto.num}&pageNum=${currentPage}">
 									${dto.title}</a>
 								<c:if test="${dto.readcount>=10}">
-									<img src="${ctxpath}/res/imgs/hot.gif" />
+									<img src="${ctxpath}/imgs/hot.gif" />
 								</c:if>
 							</td>
 							<td id="list_td">${dto.writer}</td>

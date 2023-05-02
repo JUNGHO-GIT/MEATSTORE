@@ -21,7 +21,7 @@
 		<!-- section -->
 		<section>
 			<table border="1" width="350">
-				<form name="delForm" method="post" action="/member/deletePro.do" onSubmit="return pwcheck()">
+				<form name="delForm" method="post" action="${ctxpath}/member/deletePro.do" onSubmit="return pwcheck()">
 					<tr>
 						<td>암호</td>
 						<td>
@@ -32,7 +32,7 @@
 					<tr>
 						<td colspan="2" align="center">
 							<input type="submit" value="회원탈퇴" />
-							<input type="button" value="취소" onClick="location='/module/template.jsp'" />
+							<input type="button" value="취소" onClick="location='/template.jsp'" />
 						</td>
 					</tr>
 				</form>

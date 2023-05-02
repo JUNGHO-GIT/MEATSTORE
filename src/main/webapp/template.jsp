@@ -16,20 +16,20 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800">
-		<link rel="stylesheet" href="/res/css/main.css" />
-		<link rel="stylesheet" href="/res/css/style.css" />
+		<link rel="stylesheet" href="${ctxpath}/res/css/main.css" />
+		<link rel="stylesheet" href="${ctxpath}/res/css/style.css" />
 		<!-- js -->
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
 		</script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-		<script src="/res/js/board.js"></script>
-		<script src="/res/js/script.js"></script>
-		<script src="/res/js/admin.js"></script>
-		<script src="/res/js/check.js"></script>
-		<script src="/res/js/member.js"></script>
-		<script src="/res/js/notice.js"></script>
+		<script src="${ctxpath}/js/board.js"></script>
+		<script src="${ctxpath}/js/script.js"></script>
+		<script src="${ctxpath}/js/admin.js"></script>
+		<script src="${ctxpath}/js/check.js"></script>
+		<script src="${ctxpath}/js/member.js"></script>
+		<script src="${ctxpath}/js/notice.js"></script>
 		<!-- custom -->
 		<script>
 			document.getElementById("buttons-jungho").addEventListener("click", function() {});
@@ -69,58 +69,58 @@
 			<div class="container">
 				<div class="row menu">
 					<div class="col-xl-1 col-lg-1 col-md-1 d-none d-sm-block d-xs-block d-md-block d-lg-block">
-						<a href="/module/template.jsp">
-							<img src="/res/imgs/logo.png" width="150px" height="150px" />
+						<a href="${ctxpath}/template.jsp">
+							<img src="./res/imgs/logo.png" width="150px" height="150px" />
 						</a>
 					</div>
 					<div class="col-xl-11 col-lg-11 col-md-11 col-sm-12 col-xs-12 col-12">
-						<a href="/product/productList.do">
-							<img src="/res/imgs/productList.png" />
+						<a href="${ctxpath}/product/productList.do">
+							<img src="./res/imgs/productList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="/cart/cartList.do">
-							<img src="/res/imgs/cartList.png" />
+						<a href="${ctxpath}/cart/cartList.do">
+							<img src="./res/imgs/cartList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="/order/orderList.do">
-							<img src="/res/imgs/orderList.png" />
+						<a href="${ctxpath}/order/orderList.do">
+							<img src="./res/imgs/orderList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="/notice/list.do">
-							<img src="/res/imgs/notice.png" />
+						<a href="${ctxpath}/notice/list.do">
+							<img src="./res/imgs/notice.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="/board/list.do">
-							<img src="/res/imgs/board.png" />
+						<a href="${ctxpath}/board/list.do">
+							<img src="./res/imgs/board.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="/qna/list.do">
-							<img src="/res/imgs/qna.png" />
+						<a href="${ctxpath}/qna/list.do">
+							<img src="./res/imgs/qna.png" />
 						</a>
 						&nbsp;&nbsp;
 						<c:if test="${empty sessionScope.id && empty sessionScope.adminid}">
-							<a href="/member/loginForm.do">
-								<img src="/res/imgs/Login.png" />
+							<a href="${ctxpath}/member/loginForm.do">
+								<img src="./res/imgs/Login.png" />
 							</a>
 							&nbsp;
-							<a href="/member/inputForm.do">
-								<img src="/res/imgs/input.png" />
+							<a href="${ctxpath}/member/inputForm.do">
+								<img src="./res/imgs//input.png" />
 							</a>
 						</c:if>
 						&nbsp;&nbsp;
 						<!-- login o (일반 회원) -->
 						<c:if test="${!empty sessionScope.id}">
 							${sessionScope.id}님 방문을 환영합니다.&nbsp;&nbsp;
-							<form method="post" action="/member/logOut.do">
+							<form method="post" action="${ctxpath}/member/logOut.do">
 								<input type="submit" value="로그아웃" />
-								<input type="button" value="내정보수정" onClick="location.href='/member/modify.do'" />
+								<input type="button" value="내정보수정" onClick="location.href='${ctxpath}/member/modify.do'" />
 							</form>
 						</c:if>
 						&nbsp;&nbsp;
 						<!-- login o (관리자) -->
 						<c:if test="${!empty sessionScope.adminid}">
 							${sessionScope.adminid}님 방문을 환영합니다&nbsp;&nbsp;
-							<form method="post" action="/member/logOut.do">
+							<form method="post" action="${ctxpath}/member/logOut.do">
 								<input type="submit" value="로그아웃" />
 							</form>
 						</c:if>
@@ -130,7 +130,7 @@
 		</header>
 		<!-- main -->
 		<main class="main" id="main">
-			<c:if test="${CONTENT!=null && CONTENT!='/module/template.jsp'}">
+			<c:if test="${CONTENT!=null && CONTENT!='/template.jsp'}">
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 						<jsp:include page="${CONTENT}" />
@@ -141,7 +141,7 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 						<video autoplay loop muted style="width: -webkit-fill-available;">
-							<source src="/res/imgs/meat_video.mp4" type="video/mp4" />
+							<source src="./res/imgs/meat_video.mp4" type="video/mp4" />
 						</video>
 					</div>
 				</div>

@@ -87,7 +87,7 @@
 							<br />
 							<input type="reset" value="다시입력" />
 							<br />
-							<input class="button_noInput" type="button" value="가입안함" onClick="location='${ctxpath}/module/template.jsp'" />
+							<input class="button_noInput" type="button" value="가입안함" onClick="location='/template.jsp'" />
 						</td>
 					</tr>
 				</form>

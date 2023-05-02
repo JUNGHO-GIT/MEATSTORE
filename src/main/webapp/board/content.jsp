@@ -37,10 +37,10 @@
 						<div class="col-sm-12">
 							<ul>
 								<h6>
-									<input type="button" onclick="window.location.href='/board/updateForm.do?num=${num}&pageNum=${pageNum}'" value="수정" class="btn btn-jungho" /> &nbsp;
-									<input type="button" onclick="window.location.href='/board/deleteForm.do?num=${num}&pageNum=${pageNum}'" value="삭제" class="btn btn-jungho" /> &nbsp;
-									<input type="button" onclick="window.location.href='/board/writeForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_step=${dto.re_step}&re_level=${dto.re_level}'" value="답글쓰기" class="btn btn-jungho"> &nbsp;
-									<input type="button" onclick="window.location.href='/board/list.do'" value="목록보기" class="btn btn-jungho" />
+									<input type="button" onclick="window.location.href='${ctxpath}/board/updateForm.do?num=${num}&pageNum=${pageNum}'" value="수정" class="btn btn-jungho" /> &nbsp;
+									<input type="button" onclick="window.location.href='${ctxpath}/board/deleteForm.do?num=${num}&pageNum=${pageNum}'" value="삭제" class="btn btn-jungho" /> &nbsp;
+									<input type="button" onclick="window.location.href='${ctxpath}/board/writeForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_step=${dto.re_step}&re_level=${dto.re_level}'" value="답글쓰기" class="btn btn-jungho"> &nbsp;
+									<input type="button" onclick="window.location.href='${ctxpath}/board/list.do'" value="목록보기" class="btn btn-jungho" />
 								</h6>
 							</ul>
 						</div>

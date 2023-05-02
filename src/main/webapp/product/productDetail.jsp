@@ -22,11 +22,11 @@
 
     <!-- section -->
     <section>
-      <form method="post" action="/cart/cartPro.do">
+      <form method="post" action="${ctxpath}/cart/cartPro.do">
         <table width="30%" cellpadding="3" class="detail_css" id="center_list">
           <tr>
             <td colspan="2" align="center">
-              <img src="/res/imgs/${dto.image}" width="500px" height="500px" />
+              <img src="${ctxpath}/imgs/${dto.image}" width="500px" height="500px" />
             </td>
           </tr>
         </table>
@@ -102,10 +102,10 @@
             </td>
           </tr>
         </table>
-        <form name="updateForm" method="post" action="/admin/productUpdateForm.do">
+        <form name="updateForm" method="post" action="${ctxpath}/admin/productUpdateForm.do">
           <input type="hidden" name="pro_no" />
         </form>
-        <form name="delForm" method="post" action="/admin/productDelete.do?flag=delete">
+        <form name="delForm" method="post" action="${ctxpath}/admin/productDelete.do?flag=delete">
           <input type="hidden" name="pro_no" value="${dto.pro_no}" />
         </form>
       </c:if>

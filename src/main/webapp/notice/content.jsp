@@ -48,10 +48,10 @@
         <tr>
           <td colspan="4" align="right">
             <c:if test="${!empty sessionScope.adminid}">
-              <a href="/notice/updateForm.do?num=${num}&pageNum=${pageNum}">글 수정</a>
-              <a href="/notice/deleteForm.do?num=${num}&pageNum=${pageNum}">글 삭제</a>
+              <a href="${ctxpath}/notice/updateForm.do?num=${num}&pageNum=${pageNum}">글 수정</a>
+              <a href="${ctxpath}/notice/deleteForm.do?num=${num}&pageNum=${pageNum}">글 삭제</a>
             </c:if>
-            <a href="/notice/list.do?pageNum=${pageNum}">[리스트]</a>
+            <a href="${ctxpath}/notice/list.do?pageNum=${pageNum}">[리스트]</a>
           </td>
         </tr>
       </table>

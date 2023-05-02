@@ -47,10 +47,10 @@
 							<div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5" data-aos="fade-left" data-aos-delay="300">
 								<figure class="figure">
 									<c:if test="${dto.fileupload != null}">
-										<img src="${ctxpath}/${imgspath}/${dto.fileupload}" width="300" height="300" class="figure-img img-fluid" />
+										<img src="/${imgspath}/${dto.fileupload}" width="300" height="300" class="figure-img img-fluid" />
 									</c:if>
 									<c:if test="${dto.fileupload == null}">
-										<img src="${ctxpath}/res/imgs/logo.png" width="300" height="300" class="figure-img img-fluid" />
+										<img src="${ctxpath}/imgs/logo.png" width="300" height="300" class="figure-img img-fluid" />
 									</c:if>
 								</figure>
 							</div>

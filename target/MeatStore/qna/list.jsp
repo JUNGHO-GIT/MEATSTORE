@@ -8,6 +8,7 @@
 <html lang="en, ko">
 
 	<body>
+
 		<!-- header -->
 		<section class="section">
 			<div class="jumbotron d-flex align-items-center">
@@ -58,16 +59,16 @@
 							</td>
 							<td id="list_subject">
 								<c:if test="${dto.re_step>0}">
-									<img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_step}" height="16" />
-									<img src="${ctxpath}/res/imgs/re.gif" />
+									<img src="${ctxpath}/imgs/level.gif" width="${5*dto.re_step}" height="16" />
+									<img src="${ctxpath}/imgs/re.gif" />
 								</c:if>
 								<c:if test="${dto.re_step==0}">
-									<img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_step}" height="16" />
+									<img src="${ctxpath}/imgs/level.gif" width="${5*dto.re_step}" height="16" />
 								</c:if>
 								<a href="${ctxpath}/qna/content.do?num=${dto.num}&pageNum=${currentPage}">
 									${dto.subject}</a>
 								<c:if test="${dto.views}=10">
-									<img src="${ctxpath}/res/imgs/hot.gif" />
+									<img src="${ctxpath}/imgs/hot.gif" />
 								</c:if>
 							</td>
 							<td id="list_td">${dto.writer}</td>
@@ -101,6 +102,10 @@
 				</td>
 			</tr>
 		</table>
+    <!-- footer -->
+
+
+
 
 	</body>
 </html>

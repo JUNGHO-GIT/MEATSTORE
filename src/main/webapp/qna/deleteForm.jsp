@@ -20,7 +20,7 @@
 		</section>
 		<!-- section -->
 		<section>
-			<form name="delForm" method="post" action="/qna/deletePro.do?pageNum=${pageNum}" onSubmit="return UIcheck()">
+			<form name="delForm" method="post" action="${ctxpath}/qna/deletePro.do?pageNum=${pageNum}" onSubmit="return UIcheck()">
 				<table border="1" width="350">
 					<tr>
 						<td colspan="2">

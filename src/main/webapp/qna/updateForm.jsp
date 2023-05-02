@@ -21,7 +21,7 @@
 		<!-- section -->
 		<section>
 			<table>
-				<form name="updateForm" method="post" action="/qna/updatePro.do?pageNum=${pageNum}" onSubmit="return UIcheck()">
+				<form name="updateForm" method="post" action="${ctxpath}/qna/updatePro.do?pageNum=${pageNum}" onSubmit="return UIcheck()">
 					<tr>
 						<td>이름</td>
 						<td>

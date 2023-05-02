@@ -21,7 +21,7 @@
 		<!-- section -->
 		<section class="section">
 			<table border="1" width="350">
-				<form name="delForm" method="post" action="/notice/deletePro.do?pageNum=${pageNum}" onSubmit="return pwcheck()">
+				<form name="delForm" method="post" action="${ctxpath}/notice/deletePro.do?pageNum=${pageNum}" onSubmit="return pwcheck()">
 					<tr>
 						<td colspan="2">
 							<h4>암호를 입력 하세요.</h4>

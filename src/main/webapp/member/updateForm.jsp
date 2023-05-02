@@ -21,7 +21,7 @@
 		<!-- section -->
 		<section>
 			<table border="1">
-				<form method="post" action="/member/updatePro.do" onSubmit="return updateCheck()">
+				<form method="post" action="${ctxpath}/member/updatePro.do" onSubmit="return updateCheck()">
 					<tr>
 						<td>ID</td>
 						<td>
@@ -82,7 +82,7 @@
 						<td colspan="2" align="center">
 							<input type="submit" value="내정보수정" />
 							<input type="reset" value="다시입력" />
-							<input type="button" value="취소" onClick="location.href='/module/template.jsp'" />
+							<input type="button" value="취소" onClick="location.href='${ctxpath}/template.jsp'" />
 						</td>
 					</tr>
 				</form>

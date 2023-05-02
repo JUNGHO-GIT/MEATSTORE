@@ -45,18 +45,18 @@
 				</tr>
 				<tr>
 					<td colspan="4" align="right">
-						<a href="/qna/updateForm.do?num=${num}&pageNum=${pageNum}">
+						<a href="${ctxpath}/qna/updateForm.do?num=${num}&pageNum=${pageNum}">
 							글수정
 						</a>
-						<a href="/qna/deleteForm.do?num=${num}&pageNum=${pageNum}">
+						<a href="${ctxpath}/qna/deleteForm.do?num=${num}&pageNum=${pageNum}">
 							글삭제
 						</a>
 						<c:if test="${!empty sessionScope.adminid}">
-							<a href="/qna/writeForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_step=${dto.re_step}&re_indent=${dto.re_indent}">
+							<a href="${ctxpath}/qna/writeForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_step=${dto.re_step}&re_indent=${dto.re_indent}">
 								답글 작성
 							</a>
 						</c:if>
-						<a href="/qna/list.do?pageNum=${pageNum}">리스트</a>
+						<a href="${ctxpath}/qna/list.do?pageNum=${pageNum}">리스트</a>
 					</td>
 				</tr>
 			</table>

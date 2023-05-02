@@ -25,7 +25,7 @@
 
     <!-- 상품 x -->
 		<c:if test="${empty sessionScope.id }">
-			<meta http-equiv="Refresh" content="0;url=${ctxpath}/member/loginForm.do">
+			<meta http-equiv="Refresh" content="0;url=/member/loginForm.do">
 		</c:if>
 
     <!-- 상품 o -->

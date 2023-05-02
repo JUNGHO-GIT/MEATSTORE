@@ -42,7 +42,7 @@
     %>
       <script>
         alert("주문 상태여서 삭제 못함");
-        window.location.href = "${ctxpath}/product/productList.do";
+        window.location.href = "/product/productList.do";
       </script>
     <%
     }

@@ -20,7 +20,7 @@
 		</section>
 		<section>
 			<table border="1">
-				<form name="adminloginForm" method="post" action="/admin/adminLoginPro.do">
+				<form name="adminloginForm" method="post" action="${ctxpath}/admin/adminLoginPro.do">
 					<tr>
 						<td>관리자ID</td>
 						<td>
@@ -36,7 +36,7 @@
 					<tr>
 						<td colspan="2" align="center">
 							<input type="button" value="로그인" onClick="adminCheck()" />
-							<input type="button" value="취소" onClick="location='/module/template.jsp'" />
+							<input type="button" value="취소" onClick="location='/template.jsp'" />
 						</td>
 					</tr>
 				</form>

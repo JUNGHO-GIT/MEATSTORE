@@ -23,7 +23,7 @@
 		<!-- section -->
 		<section>
 			<table class="dataTable">
-				<form name="inputForm" method="post" action="/member/inputPro.do" onSubmit="return check2()">
+				<form name="inputForm" method="post" action="${ctxpath}/member/inputPro.do" onSubmit="return check2()">
 					<tr>
 						<td>ID</td>
 						<td>
@@ -87,7 +87,7 @@
 							<br />
 							<input type="reset" value="다시입력" />
 							<br />
-							<input class="button_noInput" type="button" value="가입안함" onClick="location='/module/template.jsp'" />
+							<input class="button_noInput" type="button" value="가입안함" onClick="location='/template.jsp'" />
 						</td>
 					</tr>
 				</form>

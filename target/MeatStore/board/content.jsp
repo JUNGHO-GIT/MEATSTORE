@@ -51,7 +51,7 @@
 					<div class="row" data-aos="fade-up" data-aos-duration="700">
 						<div class="col-sm-12">
 							<c:if test="${dto.fileupload != null}">
-								<img src="${ctxpath}/${imgspath}/${dto.fileupload}" width="auto" height="auto" class="img-thumbnail image" />
+								<img src="/${imgspath}/${dto.fileupload}" width="auto" height="auto" class="img-thumbnail image" />
 							</c:if>
 							<c:if test="${dto.fileupload == null}">
 								<img src="images/nofile.jpg" class="figure-img img-fluid" />

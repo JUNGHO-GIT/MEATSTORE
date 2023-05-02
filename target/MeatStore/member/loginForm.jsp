@@ -40,7 +40,7 @@
 							<br />
 							<input type="reset" value="다시입력" />
 							<br />
-							<input type="button" value="관리자 로그인" onClick="location='${ctxpath}/admin/adminLoginForm.do'" />
+							<input type="button" value="관리자 로그인" onClick="location='/admin/adminLoginForm.do'" />
 						</td>
 					</tr>
 				</form>

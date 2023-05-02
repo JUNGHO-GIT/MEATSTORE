@@ -23,13 +23,13 @@
 			<table>
 				<tr>
 					<td>
-						<form name="update" method="post" action="/member/updateForm.do">
+						<form name="update" method="post" action="${ctxpath}/member/updateForm.do">
 							<input type="hidden" name="id" value="${sessionScope.id}" />
 							<input type="submit" value="내정보수정" />
 						</form>
 					</td>
 					<td>
-						<form name="delForm" method="post" action="/member/deleteForm.do">
+						<form name="delForm" method="post" action="${ctxpath}/member/deleteForm.do">
 							<input type="hidden" name="id" value="${sessionScope.id}" />
 							<input type="submit" value="회원탈퇴" />
 						</form>

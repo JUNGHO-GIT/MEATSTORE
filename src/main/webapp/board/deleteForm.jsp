@@ -20,7 +20,7 @@
 			</div>
 		</section>
 		<div class="component-jungho3">
-			<form name="delForm" method="post" enctype="multipart/form-data" action="/board/deletePro.do?pageNum=${pageNum}" onsubmit="return delpwcheck()">
+			<form name="delForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/deletePro.do?pageNum=${pageNum}" onsubmit="return delpwcheck()">
 				<input type="hidden" name="num" value="${num}" />
 				<input type="hidden" name="pw" id="pw" value="${dto.pw}" />
 				<div class="col-sm-12">
@@ -29,8 +29,8 @@
 							<input type="password" name="pw" id="pw" placeholder="암호를 입력하세요" />
 							<input type="submit" value="삭제" class="btn btn-jungho" />
 							<input type="reset" value="다시쓰기" onclick="window.location.reload()" class="btn btn-jungho" />
-							<input type="button" value="취소" onclick="window.location.href='/board/list.do?pageNum=${pageNum}'" class="btn btn-jungho" />
-							<input type="button" onclick="window.location.href='/board/list.do'" value="목록보기" class="btn btn-jungho" />
+							<input type="button" value="취소" onclick="window.location.href='${ctxpath}/board/list.do?pageNum=${pageNum}'" class="btn btn-jungho" />
+							<input type="button" onclick="window.location.href='${ctxpath}/board/list.do'" value="목록보기" class="btn btn-jungho" />
 						</h6>
 					</ul>
 				</div>

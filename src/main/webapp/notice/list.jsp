@@ -15,7 +15,7 @@
 				<div class="container-fluid content">
 					<h1 data-aos="fade-right" data-aos-delay="300"> 공지 사항 </h1>
 					<h2 data-aos="fade-left" data-aos-delay="300"> [등록된 글이 없습니다.] </h2>
-					<h2><button class="btn btn-jungho" onclick="window.location.href='/notice/writeForm.do'" data-aos="fade-up" data-aos-delay="300">글쓰기</button></h2>
+					<h2><button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/notice/writeForm.do'" data-aos="fade-up" data-aos-delay="300">글쓰기</button></h2>
 				</div>
 			</div>
 		</section>
@@ -30,7 +30,7 @@
 					<c:if test="${!empty sessionScope.adminid}">
 						<tr>
 							<td colspan="6" align="right">
-								<a href="/notice/writeForm.do">글쓰기</a>
+								<a href="${ctxpath}/notice/writeForm.do">글쓰기</a>
 							</td>
 						</tr>
 					</c:if>
@@ -48,10 +48,10 @@
 								<c:set var="number" value="${number-1}" />
 							</td>
 							<td id="list_subject">
-								<a href="/notice/content.do?num=${dto.num}&pageNum=${currentPage}">
+								<a href="${ctxpath}/notice/content.do?num=${dto.num}&pageNum=${currentPage}">
 									${dto.title}</a>
 								<c:if test="${dto.readcount>=10}">
-									<img src="/res/imgs/hot.gif" />
+									<img src="${ctxpath}/imgs/hot.gif" />
 								</c:if>
 							</td>
 							<td id="list_td">${dto.writer}</td>
@@ -65,7 +65,7 @@
 				<table class="search_page">
 					<tr>
 						<td>
-							<form method="post" name="search_list" action="/notice/searchList.do">
+							<form method="post" name="search_list" action="${ctxpath}/notice/searchList.do">
 								<select name="keyword">
 									<option value="title">제목</option>
 									<option value="writer">작성자</option>
@@ -84,13 +84,13 @@
 									<c:set var="endPage" value="${pageCount}" />
 								</c:if>
 								<c:if test="${startPage>10}">
-									<a href="/notice/list.do?pageNum=${startPage-10}">[이전블럭]</a>
+									<a href="${ctxpath}/notice/list.do?pageNum=${startPage-10}">[이전블럭]</a>
 								</c:if>
 								<c:forEach var="i" begin="${startPage}" end="${endPage}">
-									<a href="/notice/list.do?pageNum=${i}">[${i}]</a>
+									<a href="${ctxpath}/notice/list.do?pageNum=${i}">[${i}]</a>
 								</c:forEach>
 								<c:if test="${endPage<pageCount}">
-									<a href="/notice/list.do?pageNum=${startPage+10}">[다음블럭]</a>
+									<a href="${ctxpath}/notice/list.do?pageNum=${startPage+10}">[다음블럭]</a>
 								</c:if>
 							</c:if>
 						</td>

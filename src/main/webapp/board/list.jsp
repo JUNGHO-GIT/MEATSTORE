@@ -17,7 +17,7 @@
 				<div class="container-fluid content">
 					<h1 data-aos="fade-right" data-aos-delay="300"> 자유게시판 </h1>
 					<h2 data-aos="fade-left" data-aos-delay="300"> [등록된 글이 없습니다] </h2>
-					<h2><button class="btn btn-jungho" onclick="window.location.href='/board/writeForm.do'" data-aos="fade-up" data-aos-delay="300"> 글쓰기 </button></h2>
+					<h2><button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/writeForm.do'" data-aos="fade-up" data-aos-delay="300"> 글쓰기 </button></h2>
 				</div>
 			</div>
 		</section>
@@ -36,7 +36,7 @@
 							<h3> 당신을 표현해주세요! </h3>
 						</div>
 						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 text-right" data-aos="fade-left" data-aos-delay="300">
-							<button class="btn btn-jungho" onclick="window.location.href='/board/writeForm.do'" type="submit"> 글쓰기 </button>
+							<button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/writeForm.do'" type="submit"> 글쓰기 </button>
 						</div>
 					</div>
 					<br />
@@ -50,7 +50,7 @@
 										<img src="/${imgspath}/${dto.fileupload}" width="300" height="300" class="figure-img img-fluid" />
 									</c:if>
 									<c:if test="${dto.fileupload == null}">
-										<img src="/res/imgs/logo.png" width="300" height="300" class="figure-img img-fluid" />
+										<img src="${ctxpath}/imgs/logo.png" width="300" height="300" class="figure-img img-fluid" />
 									</c:if>
 								</figure>
 							</div>
@@ -59,7 +59,7 @@
 								<div class="row">
 									<div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5">
 										<h4>
-											<a href="/board/content.do?num=${dto.num}&pageNum=${currentPage}"> ${dto.subject}</a>
+											<a href="${ctxpath}/board/content.do?num=${dto.num}&pageNum=${currentPage}"> ${dto.subject}</a>
 										</h4>
 										<h5>${dto.content}</h5>
 									</div>
@@ -84,7 +84,7 @@
 									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2">
 										<h6>
 											<!-- button -->
-											<a class="btn btn-success" href="/board/content.do?num=${dto.num}&pageNum=${currentPage}"> + 더보기 </a>
+											<a class="btn btn-success" href="${ctxpath}/board/content.do?num=${dto.num}&pageNum=${currentPage}"> + 더보기 </a>
 										</h6>
 									</div>
 								</div>
@@ -100,15 +100,15 @@
 										<c:set var="endPage" value="${pageCount}" />
 									</c:if>
 									<c:if test="${startPage > 5}">
-										<button class="btn btn-success" onclick="window.location.href='/board/list.do?pageNum=${startPage - 5}'">
+										<button class="btn btn-success" onclick="window.location.href='${ctxpath}/board/list.do?pageNum=${startPage - 5}'">
 											<i class="fa fa-angle-left" aria-hidden="true"></i>
 										</button>
 									</c:if>
 									<c:forEach var="i" begin="${startPage}" end="${endPage}">
-										<button class="btn btn-success" onclick="window.location.href='/board/list.do?pageNum=${i}'"> &nbsp; ${i} &nbsp; </button>
+										<button class="btn btn-success" onclick="window.location.href='${ctxpath}/board/list.do?pageNum=${i}'"> &nbsp; ${i} &nbsp; </button>
 									</c:forEach>
 									<c:if test="${endPage < pageCount}">
-										<button class="btn btn-success" onclick="window.location.href='/board/list.do?pageNum=${startPage + 5}'">
+										<button class="btn btn-success" onclick="window.location.href='${ctxpath}/board/list.do?pageNum=${startPage + 5}'">
 											<i class="fa fa-angle-right" aria-hidden="true"></i>
 										</button>
 									</c:if>

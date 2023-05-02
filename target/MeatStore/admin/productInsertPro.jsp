@@ -8,4 +8,4 @@
 <c:set var="imgspath" value="/board/upload" />
 
 <b>성공</b>
-<meta http-equiv="Refresh" content="1;url=${ctxpath}/product/productList.do" />
+<meta http-equiv="Refresh" content="1;url=/product/productList.do" />

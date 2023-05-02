@@ -15,7 +15,7 @@
 					<div class="container-fluid content">
 						<h1 data-aos="fade-right" data-aos-delay="300"> 상품목록 </h1>
 						<h2 data-aos="fade-left" data-aos-delay="300"> [상품을 준비중입니다] </h2>
-						<button class="btn btn-junghp" onClick="location='${ctxpath}/admin/productInsertForm.do'">상품등록</button>
+						<button class="btn btn-junghp" onClick="location='/admin/productInsertForm.do'">상품등록</button>
 					</div>
 				</c:if>
 				<c:if test="${empty sessionScope.adminid}">
@@ -51,13 +51,13 @@
           <c:forEach var="dto" items="${list2}">
             <tr align="center">
               <td>
-                <img src="${ctxpath}/res/imgs/${dto.image}" width="120px" height="110px" />
+                <img src="${ctxpath}/imgs/${dto.image}" width="120px" height="110px" />
               </td>
               <td>${dto.name}</td>
               <td>${dto.price}</td>
               <td>${dto.stock}</td>
               <td align="center">
-                <input type="button" value="정보보기" onClick="location='${ctxpath}/product/productDetail.do?code=${dto.code}'" />
+                <input type="button" value="정보보기" onClick="location='/product/productDetail.do?code=${dto.code}'" />
               </td>
             </tr>
           </c:forEach>

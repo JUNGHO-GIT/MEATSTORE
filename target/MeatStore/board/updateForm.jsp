@@ -43,7 +43,7 @@
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 							<div id="image_container" oninput="setThumbnail(event);" style="margin-bottom: 20px;">
 								<c:if test="${dto.fileupload != null}">
-									<img src="${ctxpath}/${imgspath}/${dto.fileupload}" />
+									<img src="/${imgspath}/${dto.fileupload}" />
 								</c:if>
 							</div>
 						</div>

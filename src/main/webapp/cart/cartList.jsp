@@ -105,7 +105,7 @@
 											총 금액: <%=totalPriceStr%>
 										</td>
 										<td align="center">
-											<a href="/order/orderPro.do">주문하기</a>
+											<a href="${ctxpath}/order/orderPro.do">주문하기</a>
 										</td>
 									</tr>
 								</c:otherwise>
@@ -114,7 +114,7 @@
 					</td>
 				</tr>
 			</table>
-			<form name="detail" method="post" action="/product/productDetail.do">
+			<form name="detail" method="post" action="${ctxpath}/product/productDetail.do">
 				<input type="hidden" name="code">
 			</form>
 		</c:if>

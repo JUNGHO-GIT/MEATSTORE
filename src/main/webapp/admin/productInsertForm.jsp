@@ -20,7 +20,7 @@
 		</section>
 		<section>
 			<table border="1" align="center">
-				<form method="post" action="/admin/productInsertPro.do?flag=insert" enctype="multipart/form-data" onSubmit="return productCheck()">
+				<form method="post" action="${ctxpath}/admin/productInsertPro.do?flag=insert" enctype="multipart/form-data" onSubmit="return productCheck()">
 					<tr>
 						<td>상품이름</td>
 						<td>

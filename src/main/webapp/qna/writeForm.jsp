@@ -22,14 +22,14 @@
     <!-- section -->
 		<section class="section">
 			<table>
-				<form name="writeForm" method="post" action="/qna/writePro.do" onSubmit="return check()">
+				<form name="writeForm" method="post" action="${ctxpath}/qna/writePro.do" onSubmit="return check()">
 					<input type="hidden" name="num" value="${num}" />
 					<input type="hidden" name="ref" value="${ref}" />
 					<input type="hidden" name="re_step" value="${re_step}" />
 					<input type="hidden" name="re_indent" value="${re_indent}" />
 					<tr>
 						<td colspan="2" align="right">
-							<a href="/qna/list.do">리스트</a>
+							<a href="${ctxpath}/qna/list.do">리스트</a>
 						</td>
 					</tr>
 					<tr>

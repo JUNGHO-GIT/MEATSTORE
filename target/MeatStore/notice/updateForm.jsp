@@ -53,7 +53,7 @@
 						<td colspan="2" align="center">
 							<input type="submit" value="글 수정" />
 							<input type="reset" value="다시쓰기" />
-							<input type="button" value="리스트" onClick="location='${ctxpath}/notice/list.do?pageNum=${pageNum}'" />
+							<input type="button" value="리스트" onClick="location='/notice/list.do?pageNum=${pageNum}'" />
 						</td>
 					</tr>
 				</form>

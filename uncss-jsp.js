@@ -1,13 +1,15 @@
 const uncss = require('uncss');
 const glob = require('glob');
 const fs = require('fs');
-const path = require('path');
+
 
 const cssFile = 'src/main/webapp/res/css/main.css';
 const outputCssFile = 'src/main/webapp/res/css/optimized.css';
-
 const ctxpathRegex = /\$\{ctxpath\}/g;
-const replacementPath = 'file://' + path.join(__dirname, 'src/main/webapp');
+const projectRoot = 'C:/JUNGHO/2.IDE/2.Vscode/Workspace/1.Project/MeatStore';
+const replacementPath = projectRoot + '/src/main/webapp/res';
+
+
 glob('src/main/webapp/**/*.jsp', {}, (err, files) => {
 	if (err) {
 		console.error('Error finding JSP files:', err);

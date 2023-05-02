@@ -21,7 +21,7 @@
 		<!-- section -->
 		<section class="section">
 			<table class="dataTable">
-				<form name="loginForm" method="post" action="/member/loginPro.do" onSubmit="return loginCheck()">
+				<form name="loginForm" method="post" action="${ctxpath}/member/loginPro.do" onSubmit="return loginCheck()">
 					<tr>
 						<td>ID</td>
 						<td>

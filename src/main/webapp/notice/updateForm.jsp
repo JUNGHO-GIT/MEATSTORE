@@ -21,7 +21,7 @@
 		<!-- section -->
 		<section class="section">
 			<table class="wid">
-				<form name="updateForm" method="post" action="/notice/updatePro.do?pageNum=${pageNum}" onSubmit="return pwcheck()">
+				<form name="updateForm" method="post" action="${ctxpath}/notice/updatePro.do?pageNum=${pageNum}" onSubmit="return pwcheck()">
 					<tr>
 						<td>작성자</td>
 						<td>

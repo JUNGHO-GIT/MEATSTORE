@@ -21,11 +21,11 @@
 		<!-- section -->
 		<section class="section">
 			<table>
-				<form name="writeForm" method="post" action="/notice/writePro.do" onSubmit="return check()">
+				<form name="writeForm" method="post" action="${ctxpath}/notice/writePro.do" onSubmit="return check()">
 					<input type="hidden" name="num" value="${num}" />
 					<tr>
 						<td colspan="2" align="right">
-							<a href="/notice/list.do">리스트</a>
+							<a href="${ctxpath}/notice/list.do">리스트</a>
 						</td>
 					</tr>
 					<tr>

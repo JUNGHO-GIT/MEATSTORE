@@ -16,7 +16,7 @@
 				<div class="container-fluid content">
 					<h1 data-aos="fade-right" data-aos-delay="300"> QNA </h1>
 					<h2 data-aos="fade-left" data-aos-delay="300"> [전체글 : ${count}]</h2>
-					<h2><button class="btn btn-jungho" data-aos="fade-up" data-aos-delay="300" onclick="location.href='/qna/writeForm.do'">글쓰기</button></h2>
+					<h2><button class="btn btn-jungho" data-aos="fade-up" data-aos-delay="300" onclick="location.href='${ctxpath}/qna/writeForm.do'">글쓰기</button></h2>
 				</div>
 			</div>
 		</section>
@@ -31,7 +31,7 @@
 				<table class="search_page">
 					<tr>
 						<td>
-							<form method="post" name="search_list" action="/qna/searchList.do">
+							<form method="post" name="search_list" action="${ctxpath}/qna/searchList.do">
 								<select name="keyword">
 									<option value="subject">제목</option>
 									<option value="writer">작성자</option>
@@ -59,16 +59,16 @@
 							</td>
 							<td id="list_subject">
 								<c:if test="${dto.re_step>0}">
-									<img src="/res/imgs/level.gif" width="${5*dto.re_step}" height="16" />
-									<img src="/res/imgs/re.gif" />
+									<img src="${ctxpath}/imgs/level.gif" width="${5*dto.re_step}" height="16" />
+									<img src="${ctxpath}/imgs/re.gif" />
 								</c:if>
 								<c:if test="${dto.re_step==0}">
-									<img src="/res/imgs/level.gif" width="${5*dto.re_step}" height="16" />
+									<img src="${ctxpath}/imgs/level.gif" width="${5*dto.re_step}" height="16" />
 								</c:if>
-								<a href="/qna/content.do?num=${dto.num}&pageNum=${currentPage}">
+								<a href="${ctxpath}/qna/content.do?num=${dto.num}&pageNum=${currentPage}">
 									${dto.subject}</a>
 								<c:if test="${dto.views}=10">
-									<img src="/res/imgs/hot.gif" />
+									<img src="${ctxpath}/imgs/hot.gif" />
 								</c:if>
 							</td>
 							<td id="list_td">${dto.writer}</td>
@@ -90,13 +90,13 @@
 							<c:set var="endPage" value="${pageCount}" />
 						</c:if>
 						<c:if test="${startPage>10}">
-							<a href="/qna/list.do?pageNum=${startPage-10}">[이전 블럭]</a>
+							<a href="${ctxpath}/qna/list.do?pageNum=${startPage-10}">[이전 블럭]</a>
 						</c:if>
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
-							<a href="/qna/list.do?pageNum=${i}">[${i}]</a>
+							<a href="${ctxpath}/qna/list.do?pageNum=${i}">[${i}]</a>
 						</c:forEach>
 						<c:if test="${endPage<pageCount}">
-							<a href="/qna/list.do?pageNum=${startPage+10}">[다음 블럭]</a>
+							<a href="${ctxpath}/qna/list.do?pageNum=${startPage+10}">[다음 블럭]</a>
 						</c:if>
 					</c:if>
 				</td>

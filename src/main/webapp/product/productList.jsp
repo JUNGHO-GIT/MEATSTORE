@@ -37,7 +37,7 @@
           <c:if test="${!empty sessionScope.adminid}">
             <tr>
               <td colspan="6" align="right">
-                <a href="/admin/productInsertForm.do">상품등록</a>
+                <a href="${ctxpath}/admin/productInsertForm.do">상품등록</a>
               </td>
             </tr>
           </c:if>
@@ -51,7 +51,7 @@
           <c:forEach var="dto" items="${list2}">
             <tr align="center">
               <td>
-                <img src="/res/imgs/${dto.image}" width="120px" height="110px" />
+                <img src="${ctxpath}/imgs/${dto.image}" width="120px" height="110px" />
               </td>
               <td>${dto.name}</td>
               <td>${dto.price}</td>
@@ -70,13 +70,13 @@
                   <c:set var="endPage" value="${pageCount}" />
                 </c:if>
                 <c:if test="${startPage>10}">
-                  <a href="/product/productList.do?pageNum=${startPage-10}">[이전블럭]</a>
+                  <a href="${ctxpath}/product/productList.do?pageNum=${startPage-10}">[이전블럭]</a>
                 </c:if>
                 <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                  <a href="/product/productList.do?pageNum=${i}">[${i}]</a>
+                  <a href="${ctxpath}/product/productList.do?pageNum=${i}">[${i}]</a>
                 </c:forEach>
                 <c:if test="${endPage<pageCount}">
-                  <a href="/product/productList.do?pageNum=${startPage+10}">[다음블럭]</a>
+                  <a href="${ctxpath}/product/productList.do?pageNum=${startPage+10}">[다음블럭]</a>
                 </c:if>
               </c:if>
             </td>
