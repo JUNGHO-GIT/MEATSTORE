@@ -2,26 +2,18 @@
 <%@ page import="dao.*" %>
 <%@ page import="dto.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="java.util.concurrent.ConcurrentHashMap" %>
-
+<%@ page import="java.util.Hashtable" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
-<c:set var="imgspath" value="/board/upload" />
+<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="cartDAO" class="dao.CartDAO" scope="session" />
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en, ko">
 
 	<body>
-		<%
-            OrderListDTO orderListDTO = null;
-            ProductDTO productDTO = null;
-            ProductDAO productDAO = null;
-            ConcurrentHashMap<Integer, OrderListDTO> hcart = (ConcurrentHashMap<Integer, OrderListDTO>) session.getAttribute("hcart");
-            productDAO = ProductDAO.getInstance();
-        %>
 		<!-- header -->
 		<section class="section">
 			<div class="jumbotron d-flex align-items-center">
@@ -58,26 +50,24 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:set var="totalPrice" value="0" />
-								<c:forEach items="${cartDAO.getCartList()}" var="cartItem">
-									<c:set var="productDTO" value="${productDAO.getProduct(cartItem.value.pro_no)}" />
-									<c:set var="price" value="${productDTO.price}" />
-									<c:set var="quantity" value="${cartItem.value.getIntQuantity()}" />
-									<c:set var="subTotal" value="${price * quantity}" />
-									<c:set var="totalPrice" value="${totalPrice + subTotal}" />
-									<form method="post" action="detail.do">
+								<c:forEach var="entry" items="${hcart}">
+									<c:set var="orderListDTO" value="${entry.value}" />
+                  <c:set var="productDTO" value="${productDAO.getProduct(orderListDTO.pro_no)}" />
+									<c:set var="productDTO" value="${productDAO.getProduct(orderListDTO.pro_no)}" />
+									<c:set var="subTotal" value="${productDTO.price * orderListDTO.quantity}" />
+									<form method="POST" action="${ctxpath}/order/detail.do">
 										<input type="hidden" name="pro_no" value="${productDTO.pro_no}">
 										<input type="hidden" name="flag">
 										<input type="hidden" name="state" value="1">
 										<tr>
 											<td>${productDTO.name}</td>
 											<td>
-												<input type="text" name="quantity" id="quantity" value="${cartItem.value.quantity}" size="5">
+												<input type="text" name="quantity" id="quantity" value="${orderListDTO.quantity}" size="5">
 											</td>
 											<td>${subTotal}</td>
 											<td>
-												<input type="button" class="btn btn-primary" value="장바구니 수정" onClick="javaScript:cartUpdate(this.form)">
-												<input type="button" class="btn btn-danger" value="장바구니 삭제" onClick="javaScript:cartDelete(this.form)">
+												<input type="button" value="장바구니 수정" onClick="javaScript:cartUpdate(this.form)">
+												<input type="button" value="장바구니 삭제" onClick="javaScript:cartDelete(this.form)">
 											</td>
 											<td>
 												<a href="javaScript:productDetail('${productDTO.code}')">상세보기</a>
@@ -87,14 +77,17 @@
 								</c:forEach>
 								<tr>
 									<td colspan="4" align="right">
-										총 금액: ${totalPrice}
+										총 금액:
 									</td>
 									<td align="center">
-										<button class="btn btn-jungho" onclick="location.href='${ctxpath}/shop/detail.do'">주문하기</button>
+										<a href="${ctxpath}/order/detail.do">주문하기</a>
 									</td>
 								</tr>
 							</tbody>
 						</table>
+						<form name="detail" method="post" action="${ctxpath}/product/detail.do">
+							<input type="hidden" name="code">
+						</form>
 					</div>
 				</div>
 			</section>

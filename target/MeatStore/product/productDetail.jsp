@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
-<c:set var="imgspath" value="/board/upload" />
+<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
@@ -22,10 +22,10 @@
 		</section>
 		<!-- section -->
 		<section class="container">
-			<form method="GET" action="${ctxpath}/cart/detail.do">
+			<form method="post" action="${ctxpath}/cart/detail.do">
 				<div class="row justify-content-center">
 					<div class="col-md-4 text-center">
-						<img src="https://storage.googleapis.com/jungho-bucket/MEATSTORE/${dto.image}" class="img-fluid" />
+						<img src="https://storage.googleapis.com/jungho-bucket/MEATSTORE/product/${dto.image}" class="img-fluid" />
 					</div>
 				</div>
 				<hr class="my-4" style="border-top: 2px solid #9B111E;" />

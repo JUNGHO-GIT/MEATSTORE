@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
-<c:set var="imgspath" value="/board/upload" />
+<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
@@ -51,7 +51,7 @@
 								<c:forEach var="dto" items="${list2}">
 									<tr>
 										<th>
-											<img src="https://storage.googleapis.com/jungho-bucket/MEATSTORE/${dto.image}" width="200px" height="200px" />
+											<img src="${cloudPath}/product/${dto.image}" width="200px" height="200px" style="border: 1px solid #dddddd;" />
 										</th>
 										<th>${dto.name}</th>
 										<th>

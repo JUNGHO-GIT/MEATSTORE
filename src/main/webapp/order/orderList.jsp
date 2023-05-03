@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
-<c:set var="imgspath" value="/board/upload" />
+<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
   String ctxpath = request.getContextPath();
@@ -29,12 +29,12 @@
 				<div class="gradient"></div>
 				<div class="container-fluid content">
 					<h1 data-aos="fade-right" data-aos-delay="300">주문 내역</h2>
-					<c:if test="${id == null}">
-						<h2 data-aos="fade-left" data-aos-delay="300">[로그인 후 이용 가능합니다.]</h2>
-					</c:if>
-					<c:if test="${id != null}">
-						<h2 data-aos="fade-left" data-aos-delay="300">[${id} 님의 주문 내역입니다.]</h2>
-					</c:if>
+						<c:if test="${id == null}">
+							<h2 data-aos="fade-left" data-aos-delay="300">[로그인 후 이용 가능합니다.]</h2>
+						</c:if>
+						<c:if test="${id != null}">
+							<h2 data-aos="fade-left" data-aos-delay="300">[${id} 님의 주문 내역입니다.]</h2>
+						</c:if>
 				</div>
 			</div>
 		</section>

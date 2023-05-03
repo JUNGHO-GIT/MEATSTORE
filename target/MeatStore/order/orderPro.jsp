@@ -6,7 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
-<c:set var="imgspath" value="/board/upload" />
 <c:set var="hcart" value="${cartDAO.cartList}" />
 <c:set var="orderResult" value="" />
 <c:set var="loopFinished" value="false" />
@@ -29,7 +28,6 @@
 		</c:if>
 	</c:forEach>
 </c:if>
-
 
 <!-- 2. 장바구니 x -->
 <c:if test="${empty hcart}">

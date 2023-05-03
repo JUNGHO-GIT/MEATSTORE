@@ -1,24 +1,25 @@
 package dao;
 
 import dto.OrderListDTO;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Hashtable;
 
 public class CartDAO {
 
-  private ConcurrentHashMap<Integer, OrderListDTO> hcart = new ConcurrentHashMap<>();
+  private Hashtable hcart = new Hashtable();
 
   public CartDAO() {}
 
   public void addCart(OrderListDTO orderListDTO) {
     int pro_no = orderListDTO.getPro_no();
-    int quantity = orderListDTO.getIntQuantity();
+    String q = orderListDTO.getQuantity();
+    int quantity = Integer.parseInt(q);
 
     if (quantity > 0) {
       if (hcart.containsKey(pro_no)) {
-        OrderListDTO tempDTO = hcart.get(pro_no);
-        quantity += tempDTO.getIntQuantity();
+        OrderListDTO tempDTO = (OrderListDTO) hcart.get(pro_no);
+        quantity += Integer.parseInt(tempDTO.getQuantity());
 
-        tempDTO.setQuantity(Integer.toString(quantity));
+        tempDTO.setQuantity(quantity + "");
         hcart.put(pro_no, tempDTO);
       } else {
         hcart.put(pro_no, orderListDTO);
@@ -26,7 +27,7 @@ public class CartDAO {
     }
   }
 
-  public ConcurrentHashMap<Integer, OrderListDTO> getCartList() {
+  public Hashtable getCartList() {
     return hcart;
   }
 

@@ -2,15 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
-<c:set var="imgspath" value="upload" />
-
+<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <!--[Html]----------------------------------------------------------------------------------------->
+
 <!doctype html>
 <html lang="ko, en">
-
 	<!--[Body]--------------------------------------------------------------------------------------->
-	<body>
 
+	<body>
 		<section class="section-1">
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
@@ -20,67 +19,54 @@
 				</div>
 			</div>
 		</section>
-
-		<section class="blog">
-			<div class="container">
-				<div class="row">
-					<!-- 공백 추가 -->
-					<div class="blank-jungho0"></div>
-					<!-- 머릿말 -->
-					<div class="float-left">
-						<h3> 당신을 표현해주세요! </h3>
-					</div>
-					<!-- 공백 추가 -->
-					<div class="blank-jungho8"></div>
-					<!-- 글쓰기 버튼 -->
-					<div class="component-jungho1">
-						<div class="col-sm-12">
-							<ul>
-								<h6>
-									<input type="button" onclick="window.location.href='${ctxpath}/board/updateForm.do?num=${num}&pageNum=${pageNum}'" value="수정" class="btn btn-jungho" /> &nbsp;
-									<input type="button" onclick="window.location.href='${ctxpath}/board/deleteForm.do?num=${num}&pageNum=${pageNum}'" value="삭제" class="btn btn-jungho" /> &nbsp;
-									<input type="button" onclick="window.location.href='${ctxpath}/board/writeForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_step=${dto.re_step}&re_level=${dto.re_level}'" value="답글쓰기" class="btn btn-jungho"> &nbsp;
-									<input type="button" onclick="window.location.href='${ctxpath}/board/list.do'" value="목록보기" class="btn btn-jungho" />
-								</h6>
-							</ul>
-						</div>
-					</div>
+		<section class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-4 text-center">
+					<img src="${cloudPath}/board/${dto.fileupload}" class="img-fluid" alt="게시글 이미지" />
 				</div>
-				<br>
-				<div class="container">
-					<div class="row" data-aos="fade-up" data-aos-duration="700">
-						<div class="col-sm-12">
-							<c:if test="${dto.fileupload != null}">
-								<img src="/${imgspath}/${dto.fileupload}" width="auto" height="auto" class="img-thumbnail image" />
-							</c:if>
-							<c:if test="${dto.fileupload == null}">
-								<img src="images/nofile.jpg" class="figure-img img-fluid" />
-							</c:if>
-						</div>
-					</div>
+			</div>
+			<hr class="my-4" style="border-top: 2px solid #9B111E;" />
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<table class="table table-borderless">
+						<tr>
+							<td colspan="2" class="text-center">
+								<h2>${dto.subject}</h2>
+							</td>
+						</tr>
+						<tr>
+							<td>작성자</td>
+							<td>
+								<input type="text" name="writer" id="writer" class="form-control-plaintext" value="${dto.writer}" readonly />
+							</td>
+						</tr>
+						<tr>
+							<td>작성일</td>
+							<td>
+								<input type="text" name="regdate" id="regdate" class="form-control-plaintext" value="${dto.regdate}" readonly />
+							</td>
+						</tr>
+            <tr>
+              <th>글내용</th>
+              <th>
+              	<textarea class="form-control" name="content" readonly="readonly" style="height: 300px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
+              </th>
+            </tr>
+						<tr>
+							<td colspan="2" class="text-center">
+								<button type="button" onclick="window.location.href='${ctxpath}/board/updateForm.do?num=${num}&pageNum=${pageNum}'" class="btn btn-jungho">수정</button>
+								&nbsp;&nbsp;
+								<button type="button" onclick="window.location.href='${ctxpath}/board/deleteForm.do?num=${num}&pageNum=${pageNum}'" class="btn btn-jungho">삭제</button>
+								&nbsp;&nbsp;
+								<button type="button" onclick="window.location.href='${ctxpath}/board/writeForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_step=${dto.re_step}&re_level=${dto.re_level}'" class="btn btn-jungho">답글쓰기</button>
+								&nbsp;&nbsp;
+								<button type="button" onclick="window.location.href='${ctxpath}/board/list.do?pageNum=${pageNum}'" class="btn btn-jungho">목록보기</button>
+							</td>
+						</tr>
+					</table>
 				</div>
-				<br>
-				<div class="social-buttons" data-aos="fade-up" data-aos-duration="700">
-					<div class="row">
-						<div class="col-sm-5 col-md-6">
-							<div class="inner-jungho">
-								<h2> &nbsp; &nbsp; &nbsp; ${dto.subject}</h2>
-								<h3> ${dto.regdate} <span> &nbsp; &nbsp; ${dto.writer} </span>
-								</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="jungho-jungho">
-					<div class="row" data-aos="fade-up" data-aos-duration="700">
-						<div class="col-sm-12 col-lg-12 box">
-							<p aria-readonly="true"> ${dto.content} </p>
-						</div>
-					</div>
-				</div>
-				<br>
 			</div>
 		</section>
 
-	</body>
+  </body>
 </html>

@@ -4,8 +4,7 @@
 <%@ page import="dto.*" %>
 <%@ page import="java.util.*" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
-<c:set var="imgspath" value="/board/upload" />
-
+<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
   String id = request.getParameter("id");
