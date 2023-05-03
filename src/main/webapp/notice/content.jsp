@@ -19,58 +19,63 @@
 				</div>
 			</div>
 		</section>
-    <!-- section -->
-    <section>
-    	<div class="row">
-    		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-    			<form class="m-2">
-    				<!-- 글번호 -->
-    				<div class="form-group form-inline">
-    					<label class="form-group-text" style="font-size: 18px; font-weight: bolder;">글번호:&nbsp;&nbsp;</label>
-    					<input class="form-control" type="text" name="num" value="${dto.num}" readonly="readonly" />
-    				</div>
-    				<!-- 제목 -->
-    				<div class="form-group form-inline">
-    					<label class="form-group-text" style="font-size: 18px; font-weight: bolder;">글제목:&nbsp;&nbsp;</label>
-    					<input class="form-control" type="text" name="title" value="${dto.title}" readonly="readonly" />
-    				</div>
-    				<!-- 작성자 -->
-    				<div class="form-group form-inline">
-    					<label class="form-group-text" style="font-size: 18px; font-weight: bolder;">작성자:&nbsp;&nbsp;</label>
-    					<input class="form-control" type="text" name="writer" value="${dto.writer}" readonly="readonly" />
-    				</div>
-    				<!-- 작성일 -->
-    				<div class="form-group form-inline">
-    					<label class="form-group-text" style="font-size: 18px; font-weight: bolder;">작성일:&nbsp;&nbsp;</label>
-    					<input class="form-control" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" />
-    				</div>
-    				<!-- 조회수 -->
-    				<div class="form-group form-inline">
-    					<label class="form-group-text" style="font-size: 18px; font-weight: bolder;">조회수:&nbsp;&nbsp;</label>
-    					<input class="form-control" type="text" name="readcount" value="${dto.readcount}" readonly="readonly" />
-    				</div>
-    				<!-- 내용 -->
-    				<div class="form-group form-inline">
-    					<label class="form-group-text" style="font-size: 18px; font-weight: bolder;">글내용:&nbsp;&nbsp;</label>
-    					<textarea class="form-control" name="content" readonly="readonly" style="height: 300px; resize: none;">${dto.content}</textarea>
-    				</div>
-    			</form>
-    		</div>
-    	</div>
-    	<br />
-    	<br />
-    	<div class="row">
-    		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-    			<div class="btn btn-group d-flex justify-content-center align-items-center ms-4">
-    				<button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/updateForm.do?num=${num}&pageNum=${pageNum}'">글 수정</button>
-    				&nbsp;&nbsp;
-    				<button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/deleteForm.do?num=${num}&pageNum=${pageNum}'">글 삭제</button>
-    				&nbsp;&nbsp;
-    				<button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/list.do?pageNum=${pageNum}'">리스트</button>
-    			</div>
-    		</div>
-    	</div>
-    </section>
+		<!-- section -->
+		<section>
+			<div class="row d-flex justify-content-center align-items-center">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+					<table class="table table-borderless">
+						<tr>
+							<th colspan="2" class="text-center">
+								<h2>${dto.title}</h2>
+							</th>
+						</tr>
+						<tr>
+							<th>글번호</th>
+							<th>
+								<input class="form-control-plaintext" type="text" name="num" value="${dto.num}" readonly="readonly" />
+							</th>
+						</tr>
+						<tr>
+							<th>작성자</th>
+							<th>
+								<input class="form-control-plaintext" type="text" name="writer" value="${dto.writer}" readonly="readonly" />
+							</th>
+						</tr>
+						<tr>
+							<th>작성일</th>
+							<th>
+								<input class="form-control-plaintext" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" />
+							</th>
+						</tr>
+						<tr>
+							<th>조회수</th>
+							<th>
+								<input class="form-control-plaintext" type="text" name="readcount" value="${dto.readcount}" readonly="readonly" />
+							</th>
+						</tr>
+						<tr>
+							<th>글내용</th>
+							<th>
+								<textarea class="form-control" name="content" readonly="readonly" style="height: 300px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
+							</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<br />
+			<br />
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+					<div class="btn btn-group d-flex justify-content-center align-items-center ms-4">
+						<button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/updateForm.do?num=${num}&pageNum=${pageNum}'">글 수정</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/deleteForm.do?num=${num}&pageNum=${pageNum}'">글 삭제</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/list.do?pageNum=${pageNum}'">리스트</button>
+					</div>
+				</div>
+			</div>
+		</section>
 
 	</body>
 </html>

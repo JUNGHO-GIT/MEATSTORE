@@ -53,7 +53,7 @@
           <div class="btn btn-group">
           	<button class="btn btn-jungho mt-2" type="submit">수정하기</button>&nbsp;&nbsp;
           	<button class="btn btn-jungho mt-2" type="reset">재입력</button>&nbsp;&nbsp;
-          	<button class="btn btn-jungho mt-2" type="button" onClick="location='${ctxpath}/home/template.jsp'">취소하기</button>
+          	<button class="btn btn-secondary mt-2" type="button" onClick="location='${ctxpath}/module/template.jsp'">취소</button>
           </div>
         </form>
         </div>

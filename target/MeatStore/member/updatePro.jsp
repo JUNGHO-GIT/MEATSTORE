@@ -5,5 +5,16 @@
 <c:set var="imgspath" value="/board/upload" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
-<h2>수정완료</h2>
-<meta http-equiv="Refresh" content="2;url=/home/template.jsp" />
+<!doctype html>
+<html lang="en, ko">
+
+	<body>
+		<script>
+			alert("수정완료 되었습니다");
+			setTimeout(function() {
+				window.location.href = "${ctxpath}/module/template.jsp";
+			}, 100);
+		</script>
+
+	</body>
+</html>

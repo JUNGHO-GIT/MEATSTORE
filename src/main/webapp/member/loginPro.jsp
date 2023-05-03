@@ -14,7 +14,7 @@
 			<script>
 				alert("로그인 되었습니다.");
 				setTimeout(function() {
-					window.location.href="${ctxpath}/home/template.jsp";
+					window.location.href="${ctxpath}/module/template.jsp";
 				}, 100);
 			</script>
 		</c:if>

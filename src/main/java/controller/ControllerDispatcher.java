@@ -79,7 +79,7 @@ public class ControllerDispatcher extends HttpServlet {
     request.setAttribute("CONTENT", view);
 
     RequestDispatcher rd = request.getRequestDispatcher (
-      "/home/template.jsp"
+      "/module/template.jsp"
     );
     rd.forward(request, response);
   }

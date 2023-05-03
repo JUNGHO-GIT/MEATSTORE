@@ -15,102 +15,84 @@
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
 				<div class="container-fluid content">
-					<h1 data-aos="fade-right" data-aos-delay="300">주문 정보</h1>
-					<h2 data-aos="fade-left" data-aos-delay="300">[ID : ${sessionScope.id}]</h2>
+					<h1 data-aos="fade-right" data-aos-delay="300">상품 정보</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[최고급 고기를 즐겨보세요.]</h2>
 				</div>
 			</div>
 		</section>
-
-    <!-- section -->
-    <section>
-      <form method="post" action="${ctxpath}/cart/cartPro.do">
-        <table width="30%" cellpadding="3" class="detail_css" id="center_list">
-          <tr>
-            <td colspan="2" align="center">
-              <img src="${ctxpath}/res/imgs/${dto.image}" width="500px" height="500px" />
-            </td>
-          </tr>
-        </table>
-        <hr width="500" color="#9B111E" noshade />
-        <table width="500" cellpadding="3" class="detail_css" id="center_list">
-          <tr>
-            <td colspan="2" align="center">
-              <font size="+2">${dto.name}</font>
-            </td>
-          </tr>
-          <tr>
-            <td id="list_center">상품코드</td>
-            <td>
-              <input type="text" name="code" id="code" style="border: 0 solid black"
-                value="${dto.code}" readonly />
-            </td>
-          </tr>
-          <tr>
-            <td id="list_center" id="line_deco">상품가격</td>
-            <td>
-              <input type="text" name="price" id="price" style="border: 0 solid black"
-                value="${dto.price}원" readonly />
-            </td>
-          </tr>
-          <tr>
-            <td id="list_center">제품수량</td>
-            <td>
-              <input type="text" name="stock" id="stock" style="border: 0 solid black"
-                value="${dto.stock}" readonly />
-            </td>
-          </tr>
-          <tr>
-            <td id="list_center">등록날짜</td>
-            <td>${dto.regdate}</td>
-          </tr>
-          <tr>
-            <td id="list_center">제조회사</td>
-            <td>
-              <input type="text" name="comp" id="comp" style="border: 0 solid black"
-                value="${dto.comp}" readonly />
-            </td>
-          </tr>
-          <tr>
-            <td id="list_center">주문수량</td>
-            <td>
-              <select name="quantity">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" align="center" id="submit_button">
-              <input type="submit" id="submit_detail" value="장바구니 담기" />
-              <input type="button" id="button_detail" value="취소"
-                onClick="location='${ctxpath}/product/productList.do'" />
-              <input type="hidden" name="pro_no" id="pro_no" value="${dto.pro_no}" />
-              <input type="hidden" name="id" id="id" value="${sessionScope.id}" />
-              <input type="hidden" name="state" value="1" />
-            </td>
-          </tr>
-        </table>
-      </form>
-      <c:if test="${!empty sessionScope.adminid}">
-        <table>
-          <tr>
-            <td colspan="3" align="center">
-              <a href="javaScript:productUpdate(${dto.pro_no})">수정하기</a>
-              <a href="javaScript:productDelete(${dto.pro_no})">삭제하기</a>
-            </td>
-          </tr>
-        </table>
-        <form name="updateForm" method="post" action="${ctxpath}/admin/productUpdateForm.do">
-          <input type="hidden" name="pro_no" />
-        </form>
-        <form name="delForm" method="post" action="${ctxpath}/admin/productDelete.do?flag=delete">
-          <input type="hidden" name="pro_no" value="${dto.pro_no}" />
-        </form>
-      </c:if>
-    </section>
+		<!-- section -->
+		<section class="container">
+			<form method="GET" action="${ctxpath}/cart/detail.do">
+				<div class="row justify-content-center">
+					<div class="col-md-4 text-center">
+						<img src="https://storage.googleapis.com/jungho-bucket/MEATSTORE/${dto.image}" class="img-fluid" />
+					</div>
+				</div>
+				<hr class="my-4" style="border-top: 2px solid #9B111E;" />
+				<div class="row justify-content-center">
+					<div class="col-md-6">
+						<table class="table table-borderless">
+							<tr>
+								<td colspan="2" class="text-center">
+									<h2>${dto.name}</h2>
+								</td>
+							</tr>
+							<tr>
+								<td>상품코드</td>
+								<td>
+									<input type="text" name="code" id="code" class="form-control-plaintext" value="${dto.code}" readonly />
+								</td>
+							</tr>
+							<tr>
+								<td>상품가격</td>
+								<td>
+									<input type="text" name="price" id="price" class="form-control-plaintext" value="${dto.price}원" readonly />
+								</td>
+							</tr>
+							<tr>
+								<td>제품수량</td>
+								<td>
+									<input type="text" name="stock" id="stock" class="form-control-plaintext" value="${dto.stock}개" readonly />
+								</td>
+							</tr>
+							<tr>
+								<td>등록날짜</td>
+								<td>
+                  <input type="text" name="regdate" id="regdate" class="form-control-plaintext" value="${dto.regdate}" readonly />
+                </td>
+							</tr>
+							<tr>
+								<td>제조회사</td>
+								<td>
+									<input type="text" name="comp" id="comp" class="form-control-plaintext" value="(주)${dto.comp}" readonly />
+								</td>
+							</tr>
+							<tr>
+								<td>주문수량</td>
+								<td>
+									<select name="quantity" class="custom-select">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="text-center">
+									<button type="submit" id="submit_detail" class="btn btn-jungho">장바구니 담기</button>
+									<button type="button" id="button_detail" class="btn btn-secondary" onClick="location='${ctxpath}/product/list.do'">취소</button>
+									<input type="hidden" name="pro_no" id="pro_no" value="${dto.pro_no}" />
+									<input type="hidden" name="id" id="id" value="${sessionScope.id}" />
+									<input type="hidden" name="state" value="1" />
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+		</section>
 
 	</body>
 </html>

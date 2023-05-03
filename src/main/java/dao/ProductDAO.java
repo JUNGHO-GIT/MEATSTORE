@@ -2,7 +2,7 @@ package dao;
 
 import com.oreilly.servlet.*;
 import com.oreilly.servlet.multipart.*;
-import dto.OrderDTO;
+import dto.OrderListDTO;
 import dto.ProductDTO;
 import java.io.File;
 import java.sql.*;
@@ -88,7 +88,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getCount()占쏙옙占쏙옙:" + ex);
+      System.out.println("getCount() error : " + ex);
     }
     finally {
       try {
@@ -137,7 +137,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("productList 占쏙옙占쏙옙" + ex);
+      System.out.println("getProductList() error : " + ex);
     }
     finally {
       try {
@@ -180,7 +180,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getDetail占쏙옙占쏙옙" + ex);
+      System.out.println("getDetail() error : " + ex);
     }
     finally {
       try {
@@ -225,7 +225,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getProduct() 占쏙옙占쏙옙:" + ex);
+      System.out.println("getProduct() error : " + ex);
     }
     finally {
       try {
@@ -244,7 +244,7 @@ public class ProductDAO {
     return dto;
   }
 
-  public void reduceProduct(OrderDTO dto) {
+  public void reduceProduct(OrderListDTO dto) {
     int quantity2 = Integer.parseInt(dto.getQuantity());
     try {
       con = getCon();
@@ -259,7 +259,7 @@ public class ProductDAO {
       pstmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("reduece占쏙옙占쏙옙" + ex);
+      System.out.println("reduceProduct() error : " + ex);
     }
     finally {
       try {
@@ -315,7 +315,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("insertProduct() 占쏙옙占쏙옙:" + ex);
+      System.out.println("insertProduct() error : " + ex);
     }
     finally {
       try {

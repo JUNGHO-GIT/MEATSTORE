@@ -15,14 +15,14 @@
 				<c:if test="${!empty sessionScope.adminid}">
 					<div class="container-fluid content">
 						<h1 data-aos="fade-right" data-aos-delay="300">상품목록</h2>
-						<h2 data-aos="fade-left" data-aos-delay="300">[상품을 준비중입니다]</h2>
-						<button class="btn btn-junghp" onClick="location='${ctxpath}/admin/productInsertForm.do'">상품등록</button>
+							<h2 data-aos="fade-left" data-aos-delay="300">[관리자]</h2>
+							<button class="btn btn-junghp" onClick="location='${ctxpath}/admin/productInsertForm.do'">상품등록</button>
 					</div>
 				</c:if>
 				<c:if test="${empty sessionScope.adminid}">
 					<div class="container-fluid content">
 						<h1 data-aos="fade-right" data-aos-delay="300">상품목록</h2>
-						<h2 data-aos="fade-left" data-aos-delay="300">[상품을 준비중입니다]</h2>
+							<h2 data-aos="fade-left" data-aos-delay="300">[최고급 고기를 즐겨보세요.]</h2>
 					</div>
 				</c:if>
 			</div>
@@ -33,57 +33,63 @@
 		</c:if>
 		<!-- product o -------------------------------------------------------------------------------->
 		<c:if test="${!empty list}">
+			<!-- section -->
 			<section class="section">
-        <table class="dataTable">
-          <c:if test="${!empty sessionScope.adminid}">
-            <tr>
-              <td colspan="6" align="right">
-                <a href="${ctxpath}/admin/productInsertForm.do">상품등록</a>
-              </td>
-            </tr>
-          </c:if>
-          <tr id="list">
-            <th>상품이미지</th>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>제품수량</th>
-            <th>제품정보</th>
-          </tr>
-          <c:forEach var="dto" items="${list2}">
-            <tr align="center">
-              <td>
-                <img src="${ctxpath}/res/imgs/${dto.image}" width="120px" height="110px" />
-              </td>
-              <td>${dto.name}</td>
-              <td>${dto.price}</td>
-              <td>${dto.stock}</td>
-              <td align="center">
-                <input type="button" value="정보보기" onClick="location='${ctxpath}/product/productDetail.do?code=${dto.code}'" />
-              </td>
-            </tr>
-          </c:forEach>
-        </table>
-        <table class="count_block">
-          <tr>
-            <td align="center">
-              <c:if test="${count>0}">
-                <c:if test="${endPage>pageCount}">
-                  <c:set var="endPage" value="${pageCount}" />
-                </c:if>
-                <c:if test="${startPage>10}">
-                  <a href="${ctxpath}/product/productList.do?pageNum=${startPage-10}">[이전블럭]</a>
-                </c:if>
-                <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                  <a href="${ctxpath}/product/productList.do?pageNum=${i}">[${i}]</a>
-                </c:forEach>
-                <c:if test="${endPage<pageCount}">
-                  <a href="${ctxpath}/product/productList.do?pageNum=${startPage+10}">[다음블럭]</a>
-                </c:if>
-              </c:if>
-            </td>
-          </tr>
-        </table>
-      </section>
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+						<table class="table table-striped dataTable table-hover" style="border: 1px solid #dddddd;">
+							<thead>
+								<tr>
+									<th scope="col">상품이미지</th>
+									<th scope="col">상품명</th>
+									<th scope="col">상품가격</th>
+									<th scope="col">상품재고</th>
+									<th scope="col">상품상세보기</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="dto" items="${list2}">
+									<tr>
+										<th>
+											<img src="https://storage.googleapis.com/jungho-bucket/MEATSTORE/${dto.image}" width="200px" height="200px" />
+										</th>
+										<th>${dto.name}</th>
+										<th>
+											<fmt:formatNumber value="${dto.price}" type="currency" currencyCode="KRW" maxFractionDigits="0" />
+										</th>
+										<th>${dto.stock}</th>
+										<th>
+											<button class="btn" style="background-color: #760d17; color: #ffffff;" onClick="location='${ctxpath}/product/detail.do?code=${dto.code}'">정보보기</button>
+										</th>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+						<c:if test="${count>0}">
+							<c:if test="${endPage>pageCount}">
+								<c:set var="endPage" value="${pageCount}" />
+							</c:if>
+							<div class="d-flex justify-content-center align-items-center">
+								<c:if test="${startPage>10}">
+									<button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/product/list.do?pageNum=${startPage-10}'">이전블럭</button>
+								</c:if>
+								&nbsp;&nbsp;
+								<c:forEach var="i" begin="${startPage}" end="${endPage}">
+									<button class="btn btn-jungho mr-2" onclick="window.location.href='${ctxpath}/product/list.do?pageNum=${i}'">${i}</button>
+								</c:forEach>
+								&nbsp;&nbsp;
+								<c:if test="${endPage<pageCount}">
+									<button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/product/list.do?pageNum=${endPage+1}'">다음블럭</button>
+								</c:if>
+							</div>
+						</c:if>
+					</div>
+				</div>
+			</section>
 		</c:if>
 
 	</body>

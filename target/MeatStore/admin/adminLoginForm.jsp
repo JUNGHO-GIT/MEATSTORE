@@ -81,7 +81,7 @@
             </div>
             <div class="btn btn-group">
             	<button class="btn btn-jungho mt-2" type="submit">로그인</button>
-              <button class="btn btn-jungho mt-2" type="reset">취소</button>
+              <button class="btn btn-secondary mt-2" type="reset">취소</button>
             </div>
 				  </form>
         </div>

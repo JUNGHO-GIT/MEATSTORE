@@ -42,7 +42,7 @@
 							&nbsp;&nbsp;
 							<button class="btn btn-jungho" type="reset">다시쓰기</button>
 							&nbsp;&nbsp;
-							<button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/qna/list.do?pageNum=${pageNum}'">취소하기</button>
+							<button class="btn btn-secondary" type="button" onclick="window.location.href='${ctxpath}/qna/list.do?pageNum=${pageNum}'">취소</button>
 						</div>
 					</form>
 				</div>

@@ -2,7 +2,6 @@ action\member\LoginFormAction.class
 action\order\OrderListAction.class
 command\CommandAction.class
 action\product\ProductUpdateFormAction.class
-dao\OrderDAO.class
 dto\BoardDTO.class
 action\main\MainAction.class
 action\member\InputFormAction.class
@@ -42,8 +41,6 @@ action\board\UpdateProAction.class
 action\notice\ListAction.class
 action\notice\DeleteProAction.class
 dao\BoardDAO.class
-shop\CartMgr.class
-dto\OrderDTO.class
 action\board\DeleteProAction.class
 action\member\UpdateFormAction.class
 action\qna\SearchListAction.class

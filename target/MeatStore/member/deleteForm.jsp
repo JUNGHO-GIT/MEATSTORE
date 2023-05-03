@@ -21,23 +21,21 @@
 		</section>
 		<!-- section -->
 		<section>
-			<table border="1" width="350">
-				<form name="delForm" method="post" action="${ctxpath}/member/deletePro.do" onSubmit="return pwCheck()">
-					<tr>
-						<td>암호</td>
-						<td>
-							<input type="password" name="pw" id="pw" size="20" />
-							<input type="hidden" name="id" value="${sessionScope.id}" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center">
-							<input type="submit" value="회원탈퇴" />
-							<input type="button" value="취소" onClick="location='${ctxpath}/home/template.jsp'" />
-						</td>
-					</tr>
-				</form>
-			</table>
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+					<form class="m-4" name="delForm" method="post" action="${ctxpath}/member/deletePro.do" onSubmit="return pwCheck()">
+						<div class="form-group">
+							<input type="password" name="pw" id="pw" size="20" placeholder="비밀번호" class="form-control" required="required" />
+							<input type="hidden" name="id" value="${sessionScope.id}" class="form-control" />
+						</div>
+						<div class="btn btn-group d-flex justify-content-center align-items-center">
+							<button class="btn btn-jungho" type="submit">회원탈퇴</button>
+              &nbsp;&nbsp;
+							<button class="btn btn-secondary" type="button" onClick="location='${ctxpath}/module/template.jsp'">취소</button>
+						</div>
+					</form>
+        </div>
+      </div>
 		</section>
 
 	</body>

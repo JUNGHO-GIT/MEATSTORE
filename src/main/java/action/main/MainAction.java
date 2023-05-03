@@ -11,6 +11,6 @@ public class MainAction implements CommandAction {
     HttpServletRequest request,
     HttpServletResponse response
   ) throws Exception {
-    return "/home/template.jsp";
+    return "/module/template.jsp";
   }
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="shop.*" %>
+<%@ page import="dao.*" %>
 <%@ page import="dao.*" %>
 <%@ page import="dto.*" %>
 <%@ page import="java.util.*" %>
@@ -10,25 +10,25 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
   ProductDAO productDAO = ProductDAO.getInstance();
-  OrderDAO orderDAO = new OrderDAO();
+  OrderListDAO orderListDAO = new OrderListDAO();
 
   String flag = request.getParameter("flag");
   boolean result = false;
   int iti = 0;
 
   if (flag.equals("delete")) {
-    Vector vec = orderDAO.getOrderList();
+    Vector vec = orderListDAO.getOrderList();
     if (vec.size() == 0) {
       int im_pro_no = Integer.parseInt(request.getParameter("pro_no"));
       result = productDAO.deleteProduct(request, im_pro_no);
     }
-    response.sendRedirect(request.getContextPath() + "/product/productList.do");
+    response.sendRedirect(request.getContextPath() + "/product/list.do");
   }
   else {
-    Vector vec = orderDAO.getOrderList();
+    Vector vec = orderListDAO.getOrderList();
     for (int i = 0; i < vec.size(); i++) {
-      OrderDTO orderDTO = (OrderDTO) vec.get(i);
-      int pro_no = orderDTO.getPro_no();
+      OrderListDTO orderListDTO = (OrderListDTO) vec.get(i);
+      int pro_no = orderListDTO.getPro_no();
       if (pro_no == Integer.parseInt(request.getParameter("pro_no"))) {
         iti++;
       }
@@ -36,14 +36,14 @@
     if (iti == 0) {
       int im_pro_no = Integer.parseInt(request.getParameter("pro_no"));
       result = productDAO.deleteProduct(request, im_pro_no);
-      response.sendRedirect(request.getContextPath() + "/product/productList.do");
+      response.sendRedirect(request.getContextPath() + "/product/list.do");
     }
     else {
       result = false;
     %>
       <script>
         alert("주문 상태여서 삭제 못함");
-        window.location.href = "/product/productList.do";
+        window.location.href = "/product/list.do";
       </script>
     <%
     }

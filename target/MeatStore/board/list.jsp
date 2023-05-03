@@ -16,7 +16,7 @@
 				<div class="gradient"></div>
 				<div class="container-fluid content">
 					<h1 data-aos="fade-right" data-aos-delay="300">자유게시판</h1>
-					<h2 data-aos="fade-left" data-aos-delay="300">[등록된 글이 없습니다]</h1>
+					<h2 data-aos="fade-left" data-aos-delay="300">[전체글: ${count}]</h2>
 					<h2><button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/writeForm.do'" data-aos="fade-up" data-aos-delay="300">글쓰기 </button></h2>
 				</div>
 			</div>

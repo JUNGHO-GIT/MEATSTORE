@@ -11,7 +11,7 @@
 	<body>
     <script>
     	setTimeout(function() {
-    		window.location.href = "${ctxpath}/home/template.jsp";
+    		window.location.href = "${ctxpath}/module/template.jsp";
     	}, 100);
     </script>
   </body>

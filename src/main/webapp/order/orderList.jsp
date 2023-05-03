@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="shop.*" %>
+<%@ page import="dao.*" %>
 <%@ page import="dao.*" %>
 <%@ page import="dto.*" %>
 <%@ page import="java.util.*" %>
@@ -11,12 +11,12 @@
 <%
   String ctxpath = request.getContextPath();
   ProductDAO productDAO = ProductDAO.getInstance();
-  OrderDAO orderDAO = new OrderDAO();
+  OrderListDAO orderListDAO = new OrderListDAO();
   String id = (String) session.getAttribute("id");
   if (id == null) {
     response.sendRedirect(ctxpath + "/member/loginForm.do");
   }
-  Vector vec = orderDAO.getOrder(id);
+  Vector vec = orderListDAO.getOrder(id);
 %>
 
 <!doctype html>
@@ -60,21 +60,21 @@
 					</c:if>
 					<c:if test="${vec.size() > 0}">
 						<% for (int i = 0; i < vec.size(); i++) {
-              OrderDTO orderDTO = (OrderDTO) vec.get(i);
-              int pro_no = orderDTO.getPro_no();
+              OrderListDTO orderListDTO = (OrderListDTO) vec.get(i);
+              int pro_no = orderListDTO.getPro_no();
               ProductDTO productDTO = productDAO.getProduct(pro_no);
             %>
 						<tr>
-							<td><%= orderDTO.getOrdno() %></td>
+							<td><%= orderListDTO.getOrdno() %></td>
 							<td>
 								<a href="javascript:productDetail('<%= productDTO.getCode()%>')">
 									<%= productDTO.getName() %></a>
 							</td>
-							<td><%= orderDTO.getQuantity() %></td>
-							<td><%= orderDTO.getOrddate() %></td>
+							<td><%= orderListDTO.getQuantity() %></td>
+							<td><%= orderListDTO.getOrddate() %></td>
 							<td>
 								<%
-              switch (Integer.parseInt(orderDTO.getState())) {
+              switch (Integer.parseInt(orderListDTO.getState())) {
               case 1:
                 out.println("접수중");
                 break;
@@ -99,7 +99,7 @@
 						</tr>
 						<% } %>
 					</c:if>
-					<form name="detail" action="${ctxpath}/product/productDetail.do">
+					<form name="detail" action="${ctxpath}/product/detail.do">
 						<input type="hidden" name="code" />
 					</form>
 				</table>

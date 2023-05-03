@@ -21,74 +21,44 @@
 		</section>
 		<!-- section -->
 		<section>
-			<table border="1">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
 				<form method="post" action="${ctxpath}/member/updatePro.do" onSubmit="return updateCheck()">
-					<tr>
-						<td>ID</td>
-						<td>
-							${dto.id}
-							<input type="hidden" name="id" id="id" value="${dto.id}" />
-						</td>
-					</tr>
-					<tr>
-						<td>암호</td>
-						<td>
-							<input type="password" name="pw" id="pw" size="20" />
-						</td>
-					</tr>
-					<tr>
-						<td>암호확인</td>
-						<td>
-							<input type="password" name="pw2" id="pw2" size="20" />
-						</td>
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td>
-							<input type="text" name="name" id="name" size="40" value="${dto.name}" />
-						</td>
-					</tr>
-					<tr>
-						<td>이메일</td>
-						<td>
-							<input type="text" name="email" id="email" size="40" value="${dto.email}" />
-						</td>
-					</tr>
-					<tr>
-						<td>전화번호</td>
-						<td>
-							<input type="text" name="tel" id="tel" size="40" value="${dto.tel}" />
-						</td>
-					</tr>
-					<tr>
-						<td>우편번호</td>
-						<td>
-							<input type="text" name="zipcode" id="zipcode" size="7" value="${dto.zipcode}" readonly />
-							<input type="button" value="주소찾기" onClick="findAddr()" />
-						</td>
-					</tr>
-					<tr>
-						<td>주소</td>
-						<td>
-							<input type="text" name="addr" id="addr" size="50" value="${dto.addr}" readonly />
-						</td>
-					</tr>
-					<tr>
-						<td>상세주소</td>
-						<td>
-							<input type="text" name="addr2" id="addr2" size="20" value="${dto.addr2}" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center">
-							<input type="submit" value="내정보수정" />
-							<input type="reset" value="다시입력" />
-							<input type="button" value="취소" onClick="window.location.href='${ctxpath}/home/template.jsp'" />
-						</td>
-					</tr>
-				</form>
-			</table>
-		</section>
+          <div class="form-group">
+            <input class="form-control" type="text" name="id" id="id" value="${dto.id}"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="pw" id="pw" size="20" placeholder="암호를 입력하세요" />
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="pw2" id="pw2" size="20" placeholder="암호를 다시 입력하세요" />
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="name" id="name" size="40" value="${dto.name}" />
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="email" id="email" size="40" value="${dto.email}" />
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="tel" id="tel" size="40" value="${dto.tel}" />
+          </div>
+          <div class="form-group">
+          	<div class="input-group">
+          		<input class="form-control" type="text" name="addr" id="addr" size="50" value="${dto.addr}" readonly />
+          		<button class="btn btn-jungho" type="button" onClick="findAddr()">주소찾기</button>
+          	</div>
+          	<input class="form-control" type="text" name="addr2" id="addr2" size="20" value="${dto.addr2}" />
+          	<input class="form-control" type="text" name="zipcode" id="zipcode" size="7" value="${dto.zipcode}" readonly />
+          </div>
+          <div class="btn btn-group">
+          	<button class="btn btn-jungho mt-2" type="submit">수정하기</button>&nbsp;&nbsp;
+          	<button class="btn btn-jungho mt-2" type="reset">재입력</button>&nbsp;&nbsp;
+          	<button class="btn btn-secondary mt-2" type="button" onClick="location='${ctxpath}/module/template.jsp'">취소</button>
+          </div>
+        </form>
+        </div>
+      </div>
 
-	</body>
+    </section>
+  </body>
 </html>

@@ -5,4 +5,15 @@
 <c:set var="imgspath" value="/board/upload" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
-<meta http-equiv="Refresh" content="0;url=${ctxpath}/home/template.jsp" />
+<!doctype html>
+<html lang="en, ko">
+
+	<body>
+    <script>
+    	setTimeout(function() {
+    		window.location.href = "${ctxpath}/module/template.jsp";
+    	}, 100);
+    </script>
+  </body>
+
+</html>

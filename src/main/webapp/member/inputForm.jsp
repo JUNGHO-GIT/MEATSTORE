@@ -61,7 +61,7 @@
 						<div class="btn btn-group">
 							<button class="btn btn-jungho mt-2" type="submit">가입하기</button>&nbsp;&nbsp;
 							<button class="btn btn-jungho mt-2" type="reset">재입력</button>&nbsp;&nbsp;
-							<button class="btn btn-jungho mt-2" type="button" onClick="location='${ctxpath}/home/template.jsp'">가입안함</button>&nbsp;&nbsp;
+							<button class="btn btn-jungho mt-2" type="button" onClick="location='${ctxpath}/module/template.jsp'">가입안함</button>&nbsp;&nbsp;
 						</div>
 					</form>
 				</div>
