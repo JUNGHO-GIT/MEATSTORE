@@ -2,6 +2,7 @@ package action.qna;
 
 import command.CommandAction;
 import dao.QnaDAO;
+import dto.QnaDTO;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,8 @@ public class SearchListAction implements CommandAction {
     HttpServletResponse response
   ) throws Throwable {
 
-    request.setCharacterEncoding("utf-8");
+
+    request.setCharacterEncoding("UTF-8");
     String pageNum = request.getParameter("pageNum");
     if (pageNum == null) {
       pageNum = "1";
@@ -30,7 +32,7 @@ public class SearchListAction implements CommandAction {
     int number = 0;
     int pageBlock = 10;
 
-    List list = null;
+    List<QnaDTO> list = null;
 
     QnaDAO dao = QnaDAO.getInstance();
     count = dao.getCount();
@@ -44,24 +46,22 @@ public class SearchListAction implements CommandAction {
       count = dao.getCount(keyword, search);
     }
 
-    if (keyword.equals("subject")) {
+    if (keyword != null && keyword.equals("subject")) {
       subject = search;
-    }
-        else {
+    } else {
       writer = search;
     }
 
     if (count > 0) {
       list = dao.searchList(startRow, pageSize, subject, writer);
-    }
-        else {
-      list = Collections.EMPTY_LIST;
+    } else {
+      list = Collections.emptyList();
     }
 
     number = count - (currentPage - 1) * pageSize;
     int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 
-    int startPage = (int) (currentPage / pageBlock) * 10 + 1;
+    int startPage = (currentPage / pageBlock) * 10 + 1;
 
     pageBlock = 10;
     if (currentPage % pageBlock == 0 && currentPage >= pageBlock) {
@@ -70,8 +70,8 @@ public class SearchListAction implements CommandAction {
 
     int endPage = startPage + pageBlock - 1;
 
-    request.setAttribute("startPage", new Integer(startPage));
-    request.setAttribute("endPage", new Integer(endPage));
+    request.setAttribute("startPage", startPage);
+    request.setAttribute("endPage", endPage);
     request.setAttribute("currentPage", currentPage);
 
     request.setAttribute("startRow", startRow);

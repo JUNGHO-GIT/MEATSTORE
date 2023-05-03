@@ -9,6 +9,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="cartMgr" class="shop.CartMgr" scope="session" />
 
 <!DOCTYPE html>
@@ -24,12 +25,12 @@
 		%>
 
     <!-- 상품 x -->
-		<c:if test="${empty sessionScope.id }">
+		<c:if test="${empty sessionScope.id}" >
 			<meta http-equiv="Refresh" content="0;url=${ctxpath}/member/loginForm.do">
 		</c:if>
 
     <!-- 상품 o -->
-		<c:if test="${!empty sessionScope.id }">
+		<c:if test="${!empty sessionScope.id}" >
       <!-- header -->
       <section class="section">
       	<div class="jumbotron d-flex align-items-center">

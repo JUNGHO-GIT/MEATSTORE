@@ -1,11 +1,12 @@
 package action.notice;
 
-import command.CommandAction;
-import dao.NoticeDAO;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import command.CommandAction;
+import dao.NoticeDAO;
+import dto.NoticeDTO;
 
 public class ListAction implements CommandAction {
 
@@ -28,7 +29,7 @@ public class ListAction implements CommandAction {
     int number = 0;
     int pageBlock = 10;
 
-    List list = null;
+    List<NoticeDTO> list = null;
 
     NoticeDAO dao = NoticeDAO.getInstance();
     count = dao.getCount();
@@ -37,14 +38,14 @@ public class ListAction implements CommandAction {
       list = dao.getList(startRow, pageSize);
     }
     else {
-      list = Collections.EMPTY_LIST;
+      list = Collections.emptyList();
     }
 
     number = count - (currentPage - 1) * pageSize;
 
     int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 
-    int startPage = (int) (currentPage / pageBlock) * 10 + 1;
+    int startPage = (currentPage / pageBlock) * 10 + 1;
 
     pageBlock = 10;
     if (currentPage % pageBlock == 0 && currentPage >= pageBlock) {
@@ -53,8 +54,8 @@ public class ListAction implements CommandAction {
 
     int endPage = startPage + pageBlock - 1;
 
-    request.setAttribute("startPage", new Integer(startPage));
-    request.setAttribute("endPage", new Integer(endPage));
+    request.setAttribute("startPage", startPage);
+    request.setAttribute("endPage", endPage);
     request.setAttribute("currentPage", currentPage);
 
     request.setAttribute("startRow", startRow);

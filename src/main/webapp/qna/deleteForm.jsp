@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -19,31 +19,25 @@
 				</div>
 			</div>
 		</section>
-		<!-- section -->
-		<section>
-			<form name="delForm" method="post" action="${ctxpath}/qna/deletePro.do?pageNum=${pageNum}" onSubmit="return UIcheck()">
-				<table border="1" width="350">
-					<tr>
-						<td colspan="2">
-							<h4>암호를 입력하세요.</h4>
-						</td>
-					</tr>
-					<tr>
-						<td>암호</td>
-						<td>
-							<input type="text" name="pw" id="pw" size="12" />
-							<input type="hidden" name="num" value="${num}" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center">
-							<input type="submit" value="글 삭제" />
-							<input type="button" value="리스트" onClick="location='${ctxpath}/qna/list.do?pageNum=${pageNum}'" />
-						</td>
-					</tr>
-				</table>
-			</form>
-		</section>
+    <!-- section -->
+    <section>
+    	<div class="row">
+    		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+    			<form name="delForm" method="post" action="${ctxpath}/qna/deletePro.do?pageNum=${pageNum}" onSubmit="return pwCheck()">
+    				<div class="form-group">
+    					<input class="form-control" type="password" name="pw" id="pw" size="12" placeholder="암호" />
+    					<input type="hidden" name="num" value="${num}" />
+    				</div>
+    				<div class="btn btn-group d-flex justify-content-center align-items-center">
+    					<button class="btn btn-jungho" type="submit">글 삭제</button>
+    					&nbsp;&nbsp;
+    					<button class="btn btn-jungho" type="button" onClick="location='${ctxpath}/qna/list.do?pageNum=${pageNum}'">리스트</button>
+    					&nbsp;&nbsp;
+    				</div>
+    			</form>
+    		</div>
+    	</div>
+    </section>
 
 	</body>
 </html>

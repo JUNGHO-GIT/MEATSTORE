@@ -166,7 +166,7 @@ public class MemberDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("pwcheck예외" + pw);
+      System.out.println("pwCheck예외" + pw);
     }
     finally {
       try {

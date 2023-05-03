@@ -15,7 +15,7 @@ public class WriteProAction implements CommandAction {
     HttpServletResponse response
   ) throws Throwable {
 
-    request.setCharacterEncoding("utf-8");
+    request.setCharacterEncoding("UTF-8");
 
     NoticeDTO dto = new NoticeDTO();
 

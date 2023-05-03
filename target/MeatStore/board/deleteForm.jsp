@@ -20,7 +20,7 @@
 			</div>
 		</section>
 		<div class="component-jungho3">
-			<form name="delForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/deletePro.do?pageNum=${pageNum}" onsubmit="return delpwcheck()">
+			<form name="delForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/deletePro.do?pageNum=${pageNum}" onsubmit="return delpwCheck()">
 				<input type="hidden" name="num" value="${num}" />
 				<input type="hidden" name="pw" id="pw" value="${dto.pw}" />
 				<div class="col-sm-12">

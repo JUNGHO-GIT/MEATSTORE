@@ -10,7 +10,7 @@
 		alert("글삭제가 완료되었습니다")
 		setTimeout(function() {
 		window.location.href = "/board/list.do";
-		}, 500);
+		}, 100);
 	</script>
 </c:if>
 

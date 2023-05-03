@@ -5,7 +5,7 @@
 <%@ page import="java.util.*" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
   String id = request.getParameter("id");
   MemberDAO dao = MemberDAO.getInstance();

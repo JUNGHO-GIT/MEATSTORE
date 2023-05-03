@@ -12,7 +12,7 @@ public class AdminLoginProAction implements CommandAction {
     HttpServletRequest request,
     HttpServletResponse response
   ) throws Throwable {
-    request.setCharacterEncoding("utf-8");
+    request.setCharacterEncoding("UTF-8");
     //admin.jsp에서 데이터 받기
     String adminid = request.getParameter("adminid");
     String adminpw = request.getParameter("adminpw");

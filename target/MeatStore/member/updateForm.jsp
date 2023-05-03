@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -82,7 +83,7 @@
 						<td colspan="2" align="center">
 							<input type="submit" value="내정보수정" />
 							<input type="reset" value="다시입력" />
-							<input type="button" value="취소" onClick="location.href='${ctxpath}/home/template.jsp'" />
+							<input type="button" value="취소" onClick="window.location.href='${ctxpath}/home/template.jsp'" />
 						</td>
 					</tr>
 				</form>

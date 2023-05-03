@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
   ProductDAO productDAO = ProductDAO.getInstance();
   OrderDAO orderDAO = new OrderDAO();

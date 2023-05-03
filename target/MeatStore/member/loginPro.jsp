@@ -3,8 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
-<c:if test="${x==1}">
+<c:if test="${x == 1}">
 	<% session.setAttribute("id", (String)request.getAttribute("id")); %>
 	<meta http-equiv="Refresh" content="0;url=${ctxpath}/home/template.jsp" />
 </c:if>
@@ -16,7 +17,7 @@
 	</script>
 </c:if>
 
-<c:if test="${x==-1}">
+<c:if test="${x == -1}">
 	<script>
 		alert("없는 ID 입니다");
 		history.back();

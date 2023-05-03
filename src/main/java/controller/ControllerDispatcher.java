@@ -7,15 +7,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ControllerDispatcher extends HttpServlet {
 
-  private Map map = new HashMap<>();
+  private Map map = new HashMap();
 
   public void init(ServletConfig config) throws ServletException {
-    String path = config.getServletContext().getRealPath("");
+    String path = config.getServletContext().getRealPath("/");
 
     String pros = path + config.getInitParameter("proFile");
     Properties pp = new Properties();
@@ -24,8 +28,9 @@ public class ControllerDispatcher extends HttpServlet {
     try {
       ff = new FileInputStream(pros);
       pp.load(ff);
+    } catch (Exception ex) {
+      System.out.println("파일 읽기 에러:" + ex);
     }
-    catch (Exception ex) {}
 
     Iterator keyIter = pp.keySet().iterator();
     while (keyIter.hasNext()) {
@@ -36,9 +41,10 @@ public class ControllerDispatcher extends HttpServlet {
         Class commandClass = Class.forName(className);
         Object commandObject = commandClass.newInstance();
         map.put(key, commandObject);
-      }
-      catch (Exception ex) {
-
+      } catch (Exception ex) {
+        System.out.println(
+          "properties파일 내용을 클래스로 만들던 중 예외발생" + ex
+        );
       }
     }
   }
@@ -67,14 +73,14 @@ public class ControllerDispatcher extends HttpServlet {
 
       commandAction = (CommandAction) map.get(uri);
       view = commandAction.requestPro(request, response);
-    }
-    catch (Throwable ex) {
+    } catch (Throwable ex) {
       throw new ServletException(ex);
     }
     request.setAttribute("CONTENT", view);
 
-    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home/template.jsp");
-    requestDispatcher.forward(request, response);
+    RequestDispatcher rd = request.getRequestDispatcher (
+      "/home/template.jsp"
+    );
+    rd.forward(request, response);
   }
-
 }

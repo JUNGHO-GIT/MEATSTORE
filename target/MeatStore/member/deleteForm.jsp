@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -21,7 +22,7 @@
 		<!-- section -->
 		<section>
 			<table border="1" width="350">
-				<form name="delForm" method="post" action="${ctxpath}/member/deletePro.do" onSubmit="return pwcheck()">
+				<form name="delForm" method="post" action="${ctxpath}/member/deletePro.do" onSubmit="return pwCheck()">
 					<tr>
 						<td>암호</td>
 						<td>

@@ -77,26 +77,4 @@ public class NoticeDTO {
     this.ip = ip;
   }
 
-  @Override
-  public String toString() {
-    return (
-      "NoticeDTO [num=" +
-      num +
-      ", writer=" +
-      writer +
-      ", Title=" +
-      Title +
-      ", content=" +
-      content +
-      ", pw=" +
-      pw +
-      ", regdate=" +
-      regdate +
-      ", readcount=" +
-      readcount +
-      ", ip=" +
-      ip +
-      "]"
-    );
-  }
 }

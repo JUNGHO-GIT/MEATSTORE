@@ -287,7 +287,7 @@ public class ProductDAO {
         request,
         uploadPath,
         5 * 1024 * 1024,
-        "utf-8",
+        "UTF-8",
         new DefaultFileRenamePolicy()
       );
       sql = "insert into product(pro_no,name,code,price,stock,detail,comp,regdate,image) ";
@@ -344,7 +344,7 @@ public class ProductDAO {
         request,
         uploadPath,
         size,
-        "utf-8",
+        "UTF-8",
         new DefaultFileRenamePolicy()
       );
 

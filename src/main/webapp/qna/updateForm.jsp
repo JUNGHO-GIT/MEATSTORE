@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -21,44 +21,32 @@
 		</section>
 		<!-- section -->
 		<section>
-			<table>
-				<form name="updateForm" method="post" action="${ctxpath}/qna/updatePro.do?pageNum=${pageNum}" onSubmit="return UIcheck()">
-					<tr>
-						<td>이름</td>
-						<td>
-							<input type="text" name="writer" id="writer" value="${dto.writer}" />
-							<input type="hidden" name="num" value="${dto.num}" />
-						</td>
-					</tr>
-					<tr>
-						<td>글제목</td>
-						<td>
-							<input type="text" name="subject" id="subject" size="45" value="${dto.subject}" />
-						</td>
-					</tr>
-					<tr>
-						<td>글내용</td>
-						<td>
-							<textarea name="content" id="content" rows="10" cols="45">
-								${dto.content}
-							</textarea>
-						</td>
-					</tr>
-					<tr>
-						<td>암호</td>
-						<td>
-							<input type="password" name="pw" id="pw" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center">
-							<input type="submit" value="글수정" />
-							<input type="reset" value="다시쓰기" />
-							<input type="button" value="리스트" onClick="location='${ctxpath}/qna/list.do?pageNum=${pageNum}'" />
-						</td>
-					</tr>
-				</form>
-			</table>
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+					<form name="updateForm" method="post" action="${ctxpath}/qna/updatePro.do?pageNum=${pageNum}" onSubmit="return pwCheck()">
+						<input type="hidden" name="num" value="${dto.num}" />
+						<div class="form-group">
+							<input class="form-control" type="text" name="subject" id="subject" size="50" value="${dto.subject}" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="writer" id="writer" size="20" value="${dto.writer}" />
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" name="content" id="content" rows="10" cols="50" style="resize: none;">${dto.content}</textarea>
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="password" name="pw" id="pw" size="20" />
+						</div>
+						<div class="btn btn-group d-flex justify-content-center align-items-center">
+							<button class="btn btn-jungho" type="submit">글쓰기</button>
+							&nbsp;&nbsp;
+							<button class="btn btn-jungho" type="reset">다시쓰기</button>
+							&nbsp;&nbsp;
+							<button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/qna/list.do?pageNum=${pageNum}'">취소하기</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</section>
 
 	</body>

@@ -3,15 +3,26 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
-<c:if test="${x==1}">
-	<meta http-equiv="Refresh" content="0;url=${ctxpath}/notice/list.do" />
-</c:if>
+<!doctype html>
+<html lang="en, ko">
 
-<c:if test="${x==-1}">
-	<script>
-		alert("암호가 틀립니다.");
-		history.back();
-	</script>
-</c:if>
+	<body>
+		<c:if test="${x == 1}">
+			<script>
+				alert("수정이 완료되었습니다.");
+				setTimeout(function() {
+					window.location.href = "${ctxpath}/notice/list.do";
+				}, 100);
+			</script>
+		</c:if>
+		<c:if test="${x == -1}">
+			<script>
+				alert("암호가 다릅니다.");
+				history.back();
+			</script>
+		</c:if>
+
+	</body>
+</html>

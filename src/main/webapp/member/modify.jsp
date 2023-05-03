@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -21,22 +21,22 @@
 		</section>
 		<!-- section -->
 		<section>
-			<table>
-				<tr>
-					<td>
-						<form name="update" method="post" action="${ctxpath}/member/updateForm.do">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+					<form name="update" method="post" action="${ctxpath}/member/updateForm.do">
+						<div class="btn btn-group d-flex justify-content-center align-items-center">
 							<input type="hidden" name="id" value="${sessionScope.id}" />
-							<input type="submit" value="내정보수정" />
-						</form>
-					</td>
-					<td>
-						<form name="delForm" method="post" action="${ctxpath}/member/deleteForm.do">
+							<button class="btn btn-jungho" type="submit">회원정보수정</button>
+						</div>
+					</form>
+					<form name="delForm" method="post" action="${ctxpath}/member/deleteForm.do">
+						<div class="btn btn-group d-flex justify-content-center align-items-center">
 							<input type="hidden" name="id" value="${sessionScope.id}" />
-							<input type="submit" value="회원탈퇴" />
-						</form>
-					</td>
-				</tr>
-			</table>
+							<button class="btn btn-jungho" type="submit">회원탈퇴</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</section>
 
 	</body>

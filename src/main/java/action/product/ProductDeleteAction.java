@@ -12,7 +12,7 @@ public class ProductDeleteAction implements CommandAction {
     HttpServletResponse response
   ) throws Throwable {
 
-    request.setCharacterEncoding("utf-8");
+    request.setCharacterEncoding("UTF-8");
 
     return "/admin/productDelete.jsp";
   }

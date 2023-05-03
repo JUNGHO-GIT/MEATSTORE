@@ -13,7 +13,7 @@ public class ProductInsertProAction implements CommandAction {
     HttpServletResponse response
   ) throws Throwable {
 
-    request.setCharacterEncoding("utf-8");
+    request.setCharacterEncoding("UTF-8");
     ProductDAO productDAO = ProductDAO.getInstance();
     String flag = request.getParameter("flag");
     boolean result = false;

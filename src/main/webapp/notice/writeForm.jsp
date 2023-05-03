@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -39,8 +39,10 @@
 						</div>
 						<div class="btn btn-group d-flex justify-content-center align-items-center">
 							<button class="btn btn-jungho" type="submit">글쓰기</button>
+              &nbsp;&nbsp;
 							<button class="btn btn-jungho" type="reset">다시쓰기</button>
-							<button class="btn btn-jungho" type="button" onClick="javascript:history.back();">취소하기</button>
+              &nbsp;&nbsp;
+							<button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/list.do'">목록보기</button>
 						</div>
 					</form>
 				</div>

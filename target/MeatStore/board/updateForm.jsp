@@ -26,7 +26,7 @@
 		<section class="blog">
 			<div class="container">
 				<!-- form --------------------------------------------------------------------------------->
-				<form name="updateForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/updatePro.do?pageNum=${pageNum}" onsubmit="return uppwcheck()">
+				<form name="updateForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/updatePro.do?pageNum=${pageNum}" onsubmit="return uppwCheck()">
 					<input type="hidden" name="pw" id="pw" value="${dto.pw}" />
 					<input type="hidden" name="num" value="${dto.num}" />
 

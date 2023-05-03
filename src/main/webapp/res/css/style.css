@@ -63,4 +63,9 @@
 		font-size: 25px;
 		font-weight: 800;
 	}
+
+  .form-control[readonly] {
+    background-color: #eee;
+  }
+
 }

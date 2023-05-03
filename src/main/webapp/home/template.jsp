@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -19,6 +19,7 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800">
 		<link rel="stylesheet" href="${ctxpath}/res/css/main.css" />
 		<link rel="stylesheet" href="${ctxpath}/res/css/style.css" />
+    <link rel="stylesheet" href="${ctxpath}/res/css/jungho.css" />
 		<!-- js -->
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -33,9 +34,7 @@
 		<script src="${ctxpath}/res/js/notice.js"></script>
 		<script src="${ctxpath}/res/js/cart.js"></script>
 		<!-- custom -->
-		<script>
-			document.getElementById("buttons-jungho").addEventListener("click", function() {});
-		</script>
+
 		<script>
 			$(document).ready(function() {
 				if (screen.width > 1024) {
@@ -55,7 +54,7 @@
 			})).observe(document.querySelector('.trigger'));
 		</script>
 		<script>
-			function pwcheck() {
+			function pwCheck() {
 				if (document.updateForm.pw.value == "") {
 					alert("암호는 필수 입력");
 					document.updateForm.pw.focus();

@@ -1,9 +1,14 @@
 package dao;
 
-import java.sql.*;
-import java.util.*;
-import javax.naming.*;
-import javax.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import dto.NoticeDTO;
 
 public class NoticeDAO {
@@ -55,7 +60,9 @@ public class NoticeDAO {
           con.close();
         }
       }
-    catch (Exception ex2) {}
+      catch (Exception ex2) {
+        System.out.println("insertNotice() close 예외 :" + ex2);
+      }
     }
   }
 
@@ -85,7 +92,9 @@ public class NoticeDAO {
           con.close();
         }
       }
-    catch (Exception ex2) {}
+      catch (Exception ex2) {
+        System.out.println("getCount() close 예외 :" + ex2);
+      }
     }
 
     return cnt;
@@ -125,7 +134,9 @@ public class NoticeDAO {
           con.close();
         }
       }
-    catch (Exception ex2) {}
+      catch (Exception ex2) {
+        System.out.println("getCount() close 예외 :" + ex2);
+      }
     }
 
     return cnt;
@@ -177,7 +188,9 @@ public class NoticeDAO {
           con.close();
         }
       }
-    catch (Exception ex2) {}
+      catch (Exception ex2) {
+        System.out.println("getList() close 예외 :" + ex2);
+      }
     }
     return list;
   }
@@ -188,7 +201,9 @@ public class NoticeDAO {
     String title,
     String writer
   ) {
-    List<NoticeDTO> list = null;
+
+    // 초기화를 먼저 수행합니다.
+    List<NoticeDTO> list = new ArrayList<>();
     try {
       con = getCon();
 
@@ -196,45 +211,45 @@ public class NoticeDAO {
       String whereClause = "";
       String orderByClause = " order by num desc limit ?,?";
 
-      if (title != null) {
+      boolean hasTitle = title != null && !title.trim().isEmpty(); // 조건 확인을 변수로 추출
+      boolean hasWriter = writer != null && !writer.trim().isEmpty(); // 조건 확인을 변수로 추출
+
+      if (hasTitle) {
         whereClause += " where title like ?";
       }
 
-      if (writer != null) {
-        whereClause += " where writer like ?";
+      if (hasWriter) {
+        whereClause += hasTitle ? " and writer like ?" : " where writer like ?";
       }
 
       sql = selectClause + whereClause + orderByClause;
 
       pstmt = con.prepareStatement(sql);
-      if (title != null) {
-        pstmt.setString(1, "%" + title + "%");
+      int parameterIndex = 1; // 파라미터 인덱스 변수 추가
+      if (hasTitle) {
+        pstmt.setString(parameterIndex++, "%" + title + "%");
       }
 
-      if (writer != null) {
-        pstmt.setString(1, "%" + writer + "%");
+      if (hasWriter) {
+        pstmt.setString(parameterIndex++, "%" + writer + "%");
       }
-      pstmt.setInt(2, start - 1);
-      pstmt.setInt(3, cnt);
+      pstmt.setInt(parameterIndex++, start - 1);
+      pstmt.setInt(parameterIndex, cnt);
       rs = pstmt.executeQuery();
 
       while (rs.next()) {
-        list = new ArrayList<NoticeDTO>();
-        do {
-          NoticeDTO dto = new NoticeDTO();
+        NoticeDTO dto = new NoticeDTO();
 
-          dto.setNum(rs.getInt(1));
+        dto.setNum(rs.getInt(1));
+        dto.setWriter(rs.getString("writer"));
+        dto.setTitle(rs.getString("title"));
+        dto.setContent(rs.getString("content"));
+        dto.setPw(rs.getString("pw"));
+        dto.setRegdate(rs.getTimestamp("regdate"));
+        dto.setReadcount(rs.getInt("readcount"));
+        dto.setIp(rs.getString("ip"));
 
-          dto.setWriter(rs.getString("writer"));
-          dto.setTitle(rs.getString("title"));
-          dto.setContent(rs.getString("content"));
-          dto.setPw(rs.getString("pw"));
-          dto.setRegdate(rs.getTimestamp("regdate"));
-          dto.setReadcount(rs.getInt("readcount"));
-
-          dto.setIp(rs.getString("ip"));
-          list.add(dto);
-        } while (rs.next());
+        list.add(dto);
       }
     }
     catch (Exception ex) {
@@ -252,10 +267,13 @@ public class NoticeDAO {
           con.close();
         }
       }
-    catch (Exception ex2) {}
+      catch (Exception ex2) {
+        System.out.println("getList() close 예외 :" + ex2);
+      }
     }
     return list;
   }
+
 
   public NoticeDTO getNotice(int num) {
     NoticeDTO dto = null;

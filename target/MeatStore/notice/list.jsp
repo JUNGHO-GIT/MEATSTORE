@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -15,12 +15,12 @@
 				<div class="gradient"></div>
 				<div class="container-fluid content">
 					<h1 data-aos="fade-right" data-aos-delay="300">공지 사항</h1>
-					<h2 data-aos="fade-left" data-aos-delay="300">[등록된 글이 없습니다.]</h1>
-						<c:if test="${!empty sessionScope.adminid}">
-							<h2>
-								<button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/notice/writeForm.do'" data-aos="fade-up" data-aos-delay="300">글쓰기</button>
-							</h2>
-						</c:if>
+					<h2 data-aos="fade-left" data-aos-delay="300">[전체글 : ${count}]</h1>
+          <c:if test="${!empty sessionScope.adminid}">
+            <h2>
+              <button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/notice/writeForm.do'" data-aos="fade-up" data-aos-delay="300">글쓰기</button>
+            </h2>
+          </c:if>
 				</div>
 			</div>
 		</section>
@@ -34,7 +34,7 @@
 			<section class="section">
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-						<table class="table table-striped dataTable" style="border: 1px solid #dddddd;">
+						<table class="table table-striped dataTable table-hover" style="border: 1px solid #dddddd;">
 							<thead>
 								<tr>
 									<th>번호</th>
@@ -70,10 +70,11 @@
 					</div>
 				</div>
         <br />
+        <br />
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
 						<div class="search_page d-flex justify-content-center align-items-center">
-							<form method="post" name="search_list" action="${ctxpath}/notice/searchList.do" class="form-inline">
+							<form method="GET" name="search_list" action="${ctxpath}/notice/searchList.do" class="form-inline">
 								<select name="keyword" class="form-control">
 									<option value="title">제목</option>
 									<option value="writer">작성자</option>
@@ -84,7 +85,8 @@
 						</div>
 					</div>
 				</div>
-        <br/>
+        <br />
+        <br />
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
 						<c:if test="${count>0}">
@@ -97,7 +99,7 @@
 								</c:if>
                 &nbsp;&nbsp;
 								<c:forEach var="i" begin="${startPage}" end="${endPage}">
-									<button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/notice/list.do?pageNum=${i}'">&nbsp;${i}&nbsp;</button>
+									<button class="btn btn-jungho mr-2" onclick="window.location.href='${ctxpath}/notice/list.do?pageNum=${i}'">${i}</button>
 								</c:forEach>
                 &nbsp;&nbsp;
 								<c:if test="${endPage<pageCount}">

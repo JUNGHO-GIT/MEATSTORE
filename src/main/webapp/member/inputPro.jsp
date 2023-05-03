@@ -3,6 +3,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
-<meta http-equiv="Refresh" content="0;url=${ctxpath}/home/template.jsp" />
+<!doctype html>
+<html lang="en, ko">
+
+	<body>
+    <script>
+    	setTimeout(function() {
+    		window.location.href = "${ctxpath}/home/template.jsp";
+    	}, 100);
+    </script>
+  </body>
+
+</html>

@@ -3,23 +3,33 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="<%= request.getContextPath() %>" />
 <c:set var="imgspath" value="/board/upload" />
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
-<c:if test="${x==1}">
-	<% session.setAttribute("id", (String)request.getAttribute("id")); %>
-	<meta http-equiv="Refresh" content="0;url=${ctxpath}/home/template.jsp" />
-</c:if>
+<!doctype html>
+<html lang="en, ko">
+	<body>
 
-<c:if test="${x==0}">
-	<script>
-		alert("암호틀림");
-		history.back();
-	</script>
-</c:if>
+		<c:if test="${x == 1}">
+      <% session.setAttribute("id", (String)request.getAttribute("id")); %>
+			<script>
+				alert("로그인 되었습니다.");
+				setTimeout(function() {
+					window.location.href="${ctxpath}/home/template.jsp";
+				}, 100);
+			</script>
+		</c:if>
+		<c:if test="${x == 0}">
+			<script>
+				alert("암호가 틀립니다");
+				history.back();
+			</script>
+		</c:if>
+    <c:if test="${x == -1}">
+      <script>
+        alert("없는 ID 입니다");
+        history.back();
+      </script>
+    </c:if>
 
-<c:if test="${x==-1}">
-	<script>
-		alert("없는 ID 입니다");
-		history.back();
-	</script>
-</c:if>
+	</body>
+</html>

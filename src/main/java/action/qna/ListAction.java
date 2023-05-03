@@ -2,7 +2,8 @@ package action.qna;
 
 import command.CommandAction;
 import dao.QnaDAO;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +14,6 @@ public class ListAction implements CommandAction {
     HttpServletRequest request,
     HttpServletResponse response
   ) throws Throwable {
-
     String pageNum = request.getParameter("pageNum");
     if (pageNum == null) {
       pageNum = "1";
@@ -29,22 +29,21 @@ public class ListAction implements CommandAction {
     int number = 0;
     int pageBlock = 10;
 
-    List list = null;
+    List<dto.QnaDTO> list = null;
 
     QnaDAO dao = QnaDAO.getInstance();
     count = dao.getCount();
 
     if (count > 0) {
       list = dao.getList(startRow, pageSize);
-    }
-        else {
-      list = Collections.EMPTY_LIST;
+    } else {
+      list = Collections.emptyList();
     }
 
     number = count - (currentPage - 1) * pageSize;
     int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 
-    int startPage = (int) (currentPage / pageBlock) * 10 + 1;
+    int startPage = (currentPage / pageBlock) * 10 + 1;
 
     pageBlock = 10;
     if (currentPage % pageBlock == 0 && currentPage >= pageBlock) {
@@ -53,8 +52,8 @@ public class ListAction implements CommandAction {
 
     int endPage = startPage + pageBlock - 1;
 
-    request.setAttribute("startPage", new Integer(startPage));
-    request.setAttribute("endPage", new Integer(endPage));
+    request.setAttribute("startPage", startPage);
+    request.setAttribute("endPage", endPage);
     request.setAttribute("currentPage", currentPage);
 
     request.setAttribute("startRow", startRow);
