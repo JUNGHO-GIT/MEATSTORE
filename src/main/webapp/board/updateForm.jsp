@@ -3,13 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
-<!--[Html]----------------------------------------------------------------------------------------->
-<!doctype html>
-<html lang="ko, en">
-
-	<!--[Body]--------------------------------------------------------------------------------------->
-	<body>
-
 		<!-- header -->
 		<section class="section-1">
 			<div class="jumbotron d-flex align-items-center">

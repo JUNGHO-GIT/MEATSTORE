@@ -28,19 +28,19 @@
           <tr>
             <th>제목</th>
             <th>
-              <input class="form-control-plaintext" type="text" name="subject" id="subject" placeholder="제목을 입력하세요." />
+              <input class="form-control" type="text" name="subject" id="subject" placeholder="제목을 입력하세요." />
             </th>
           </tr>
           <tr>
             <th>작성자</th>
             <th>
-              <input class="form-control-plaintext" type="text" name="writer" id="writer" placeholder="이름을 입력하세요." />
+              <input class="form-control" type="text" name="writer" id="writer" placeholder="이름을 입력하세요." />
             </th>
           </tr>
           <tr>
             <th>내용</th>
             <th>
-              <textarea class="form-control-plaintext" name="content" id="content" rows="10" cols="50" placeholder="내용을 입력하세요."></textarea>
+              <textarea class="form-control" name="content" id="content" rows="10" cols="50" placeholder="내용을 입력하세요."></textarea>
             </th>
           </tr>
           <tr>

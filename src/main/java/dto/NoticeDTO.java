@@ -7,12 +7,14 @@ public class NoticeDTO {
   // variables ------------------------------------------------------------------------------------>
   private int num;
   private String writer;
-  private String Title;
-  private String content;
   private String pw;
+  private String subject;
+  private String content;
+  private int views;
+  private int ref;
+  private int re_step;
+  private int re_indent;
   private Date regdate;
-  private int readcount;
-  private String ip;
 
   // getter --------------------------------------------------------------------------------------->
   public int getNum() {
@@ -21,8 +23,8 @@ public class NoticeDTO {
   public String getWriter() {
     return writer;
   }
-  public String getTitle() {
-    return Title;
+  public String getSubject() {
+    return subject;
   }
   public String getContent() {
     return content;
@@ -33,11 +35,17 @@ public class NoticeDTO {
   public Date getRegdate() {
     return regdate;
   }
-  public int getReadcount() {
-    return readcount;
+  public int getViews() {
+    return views;
   }
-  public String getIp() {
-    return ip;
+  public int getRef() {
+    return ref;
+  }
+  public int getRe_step() {
+    return re_step;
+  }
+  public int getRe_indent() {
+    return re_indent;
   }
 
   // setter --------------------------------------------------------------------------------------->
@@ -47,8 +55,8 @@ public class NoticeDTO {
   public void setWriter(String writer) {
     this.writer = writer;
   }
-  public void setTitle(String title) {
-    Title = title;
+  public void setSubject(String subject) {
+    this.subject = subject;
   }
   public void setContent(String content) {
     this.content = content;
@@ -59,13 +67,17 @@ public class NoticeDTO {
   public void setRegdate(Date regdate) {
     this.regdate = regdate;
   }
-  public void setReadcount(int readcount) {
-    this.readcount = readcount;
+  public void setViews(int views) {
+    this.views = views;
   }
-  public void setIp(String ip) {
-    this.ip = ip;
+  public void setRef(int ref) {
+    this.ref = ref;
+  }
+  public void setRe_step(int re_step) {
+    this.re_step = re_step;
+  }
+  public void setRe_indent(int re_indent) {
+    this.re_indent = re_indent;
   }
 
 }
-
-

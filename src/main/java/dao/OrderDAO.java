@@ -49,7 +49,7 @@ public class OrderDAO {
   private Connection getConnection() throws Exception {
     Context context = new InitialContext();
     DataSource datasource = (DataSource) context.lookup(
-      "java:comp/env/jdbc/mysqlParam"
+      "java:comp/env/jdbc/mysql"
     );
     return datasource.getConnection();
   }
@@ -65,7 +65,7 @@ public class OrderDAO {
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         sqlParam = "insert into orderlist(ordno,id,pro_no,quantity,orddate,state)";
-        sqlParam = sqlParam + " values(0,?,?,?,now(),?)";
+        sqlParam = sqlParam + " values(0,?, ?, ?,now(),?)";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setString(1, dto.getId());
         psTmt.setInt(2, dto.getPro_no());

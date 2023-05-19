@@ -3,13 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
-<!--[Html]----------------------------------------------------------------------------------------->
 
-<!doctype html>
-<html lang="ko, en">
-	<!--[Body]--------------------------------------------------------------------------------------->
-
-	<body>
 		<section class="section-1">
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
@@ -37,13 +31,13 @@
 						<tr>
 							<td>작성자</td>
 							<td>
-								<input type="text" name="writer" id="writer" class="form-control-plaintext" value="${dto.writer}" readonly />
+								<input type="text" name="writer" id="writer" class="form-control" value="${dto.writer}" readonly />
 							</td>
 						</tr>
 						<tr>
 							<td>작성일</td>
 							<td>
-								<input type="text" name="regdate" id="regdate" class="form-control-plaintext" value="${dto.regdate}" readonly />
+								<input type="text" name="regdate" id="regdate" class="form-control" value="${dto.regdate}" readonly />
 							</td>
 						</tr>
             <tr>
@@ -67,6 +61,3 @@
 				</div>
 			</div>
 		</section>
-
-  </body>
-</html>

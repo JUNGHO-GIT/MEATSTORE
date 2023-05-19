@@ -34,31 +34,31 @@
           <tr>
             <td>상품코드</td>
             <td>
-              <input type="text" name="code" id="code" class="form-control-plaintext" value="${dto.code}" readonly />
+              <input type="text" name="code" id="code" class="form-control" value="${dto.code}" readonly />
             </td>
           </tr>
           <tr>
             <td>상품가격</td>
             <td>
-              <input type="text" name="price" id="price" class="form-control-plaintext" value="${dto.price}원" readonly />
+              <input type="text" name="price" id="price" class="form-control" value="${dto.price}원" readonly />
             </td>
           </tr>
           <tr>
             <td>제품수량</td>
             <td>
-              <input type="text" name="stock" id="stock" class="form-control-plaintext" value="${dto.stock}개" readonly />
+              <input type="text" name="stock" id="stock" class="form-control" value="${dto.stock}개" readonly />
             </td>
           </tr>
           <tr>
             <td>등록날짜</td>
             <td>
-              <input type="text" name="regdate" id="regdate" class="form-control-plaintext" value="${dto.regdate}" readonly />
+              <input type="text" name="regdate" id="regdate" class="form-control" value="${dto.regdate}" readonly />
             </td>
           </tr>
           <tr>
             <td>제조회사</td>
             <td>
-              <input type="text" name="comp" id="comp" class="form-control-plaintext" value="(주)${dto.comp}" readonly />
+              <input type="text" name="comp" id="comp" class="form-control" value="(주)${dto.comp}" readonly />
             </td>
           </tr>
           <tr>

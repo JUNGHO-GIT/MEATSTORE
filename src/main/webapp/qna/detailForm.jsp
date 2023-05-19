@@ -28,25 +28,25 @@
         <tr>
           <th>글번호</th>
           <th>
-            <input class="form-control-plaintext" type="text" name="num" value="${dto.num}" readonly="readonly" />
+            <input class="form-control" type="text" name="num" value="${dto.num}" readonly="readonly" />
           </th>
         </tr>
         <tr>
           <th>작성자</th>
           <th>
-            <input class="form-control-plaintext" type="text" name="writer" value="${dto.writer}" readonly="readonly" />
+            <input class="form-control" type="text" name="writer" value="${dto.writer}" readonly="readonly" />
           </th>
         </tr>
         <tr>
           <th>작성일</th>
           <th>
-            <input class="form-control-plaintext" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" />
+            <input class="form-control" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" />
           </th>
         </tr>
         <tr>
           <th>조회수</th>
           <th>
-            <input class="form-control-plaintext" type="text" name="views" value="${dto.views}" readonly="readonly" />
+            <input class="form-control" type="text" name="views" value="${dto.views}" readonly="readonly" />
           </th>
         </tr>
         <tr>

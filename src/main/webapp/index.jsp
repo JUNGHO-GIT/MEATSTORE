@@ -144,8 +144,7 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 						<h6>
-							<p class="m-0 text-center text-white">JIWOONAE ENG Corp. All rights reserved.</p>
-							<p class="m-0 text-center text-white">서울특별시 영등포구 국제금융로 6길 42 | (주)JIWOONAE</p>
+            <p class="text-center text-white mb-1 pt-1 ft-7">© 2023 MTS Corp. All Rights Reserved | Designed & Developed by MTS Corp.</p>
 						</<h6>
 					</div>
 				</div>

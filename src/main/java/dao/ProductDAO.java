@@ -54,7 +54,7 @@ public class ProductDAO {
   private Connection getConnection() throws Exception {
     Context context = new InitialContext();
     DataSource datasource = (DataSource) context.lookup(
-      "java:comp/env/jdbc/mysqlParam"
+      "java:comp/env/jdbc/mysql"
     );
     return datasource.getConnection();
   }
@@ -115,7 +115,7 @@ public class ProductDAO {
     List<ProductDTO> list = null;
     try {
       connecTion = getConnection();
-      sqlParam = "select*from product order by pro_no desc limit ?,?";
+      sqlParam = "select*from product order by pro_no desc limit ?, ?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, start - 1);
       psTmt.setInt(2, cnt);
@@ -234,7 +234,7 @@ public class ProductDAO {
       uploadPath = "C:\\_imgs\\shop_upload\\";
       MultipartRequest mul = new MultipartRequest(request, uploadPath, 5 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
       sqlParam = "insert into product(pro_no,name,code,price,stock,detail,comp,regdate,image) ";
-      sqlParam = sqlParam + "values(0,?,?,?,?,?,?,NOW(),?)";
+      sqlParam = sqlParam + "values(0,?, ?, ?, ?, ?, ?,NOW(),?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, mul.getParameter("name"));
       psTmt.setString(2, mul.getParameter("code"));

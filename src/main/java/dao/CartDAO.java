@@ -54,7 +54,7 @@ public class CartDAO {
   private Connection getConnection() throws Exception {
     Context context = new InitialContext();
     DataSource datasource = (DataSource) context.lookup(
-      "java:comp/env/jdbc/mysqlParam"
+      "java:comp/env/jdbc/mysql"
     );
     return datasource.getConnection();
   }
@@ -92,7 +92,7 @@ public class CartDAO {
   public void insertCart (CartDTO cart) {
     try {
       connecTion = getConnection();
-      sqlParam = "insert into cart values(?,?,?,?,?,?)";
+      sqlParam = "insert into cart values(?, ?, ?, ?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, cart.getPro_no());
       psTmt.setString(2, cart.getCode());

@@ -30,25 +30,25 @@
           <tr>
             <th>작성자</th>
             <th>
-              <input class="form-control-plaintext" type="text" name="writer" value="${dto.writer}" readonly="readonly" id="writer" />
+              <input class="form-control" type="text" name="writer" value="${dto.writer}" readonly="readonly" id="writer" />
             </th>
           </tr>
           <tr>
             <th>작성일</th>
             <th>
-              <input class="form-control-plaintext" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" id="regdate" />
+              <input class="form-control" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" id="regdate" />
             </th>
           </tr>
           <tr>
             <th>조회수</th>
             <th>
-              <input class="form-control-plaintext" type="text" name="views" value="${dto.views}" readonly="readonly" id="views" />
+              <input class="form-control" type="text" name="views" value="${dto.views}" readonly="readonly" id="views" />
             </th>
           </tr>
           <tr>
             <th>제목</th>
             <th>
-              <input class="form-control-plaintext" type="text" name="subject" value="${dto.subject}" id="subject" placeholder="제목을 입력하세요." />
+              <input class="form-control" type="text" name="subject" value="${dto.subject}" id="subject" placeholder="제목을 입력하세요." />
             </th>
           </tr>
           <tr>
@@ -75,7 +75,8 @@
         <div class="btn btn-group d-flex justify-content-center align-items-center">
           <button class="btn btn-jungho" type="submit">글쓰기</button>
           &nbsp;&nbsp;
-          <button class="btn btn-jungho" type="reset">다시쓰기</button>
+          <button class="btn btn-jungho" type="button" onclick="window.location.reload()">
+          초기화</button>
           &nbsp;&nbsp;
           <button class="btn btn-secondary" type="button" onclick="window.location.href='${ctxpath}/qna/listForm.do?pageNum=${pageNum}'">취소</button>
         </div>

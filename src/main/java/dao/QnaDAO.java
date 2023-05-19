@@ -11,10 +11,9 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import dto.QnaDTO;
 
-// ------------------------------------------------------------------------------------------------>
 public class QnaDAO {
 
-  // 전역변수 선언
+  // 전역변수 선언 -------------------------------------------------------------------------------->
   Connection connecTion = null;
   PreparedStatement psTmt = null;
   Statement sTmt = null;
@@ -23,13 +22,13 @@ public class QnaDAO {
   String dbPw = "";
   int checkParam = 0;
 
-  // 프라이빗 생성자를 통한 싱글톤 패턴 구현
+  // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
   private QnaDAO() {}
 
-  // 싱글톤 패턴을 위한 객체 생성
+  // 싱글톤 패턴을 위한 객체 생성 ----------------------------------------------------------------->
   private static QnaDAO instance = new QnaDAO();
 
-  // 반복되는 예외처리를 위한 메소드
+  // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
   public void exceptionHandling() {
     try {
       if (resultSet != null) {
@@ -45,12 +44,12 @@ public class QnaDAO {
     catch (Exception ex2) {}
   }
 
-  // [인스턴스 반환 - getInstance]
+  // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
   public static QnaDAO getInstance() {
     return instance;
   }
 
-  // [커넥션 반환 - getConnection]
+  // [커넥션 반환 - getConnection] ---------------------------------------------------------------->
   private Connection getConnection() throws Exception {
     Context context = new InitialContext();
     DataSource datasource = (DataSource) context.lookup(
@@ -93,7 +92,7 @@ public class QnaDAO {
       }
 
       sqlParam = "insert into qna(writer, subject, content, pw, regdate, ref, re_step, re_indent)";
-      sqlParam = sqlParam + " values(?,?,?,?,NOW(),?,?,?)";
+      sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, dto.getWriter());
       psTmt.setString(2, dto.getSubject());
@@ -137,7 +136,7 @@ public class QnaDAO {
     List<QnaDTO> list = null;
     try {
       connecTion = getConnection();
-      sqlParam = "select * from qna order by ref desc, re_step asc limit ?,?";
+      sqlParam = "select * from qna order by ref desc, re_step asc limit ?, ?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, start - 1);
       psTmt.setInt(2, cnt);
@@ -191,49 +190,52 @@ public class QnaDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List<QnaDTO> listSearch (int start, int cnt, String subject, String writer)  {
-    List<QnaDTO> list = null;
+  public List<QnaDTO> listSearch(int start, int cnt, String subject, String writer) {
+    List<QnaDTO> list = new ArrayList<>();
     try {
       connecTion = getConnection();
-      String selectClause = "select * from qna ";
+      String selectClause = "SELECT * FROM qna";
       String whereClause = "";
-      String orderByClause = " order by ref desc, re_step asc limit ?,?";
       if (subject != null) {
-        whereClause += " where subject like=?";
+        whereClause += " WHERE subject LIKE ?";
       }
-
       if (writer != null) {
-        whereClause += " where writer like=?";
+        if (whereClause.isEmpty()) {
+          whereClause += " WHERE writer LIKE ?";
+        }
+        else {
+          whereClause += " AND writer LIKE ?";
+        }
       }
 
-      sqlParam = selectClause + whereClause + orderByClause;
+      String orderByClause = " ORDER BY ref DESC, re_step ASC LIMIT ?, ?";
+      String sqlParam = selectClause + whereClause + orderByClause;
       psTmt = connecTion.prepareStatement(sqlParam);
-      if (subject != null) {
-        psTmt.setString(1, "%" + subject + "%");
-      }
+      int paramIndex = 1;
 
-      if (writer != null) {
-        psTmt.setString(1, "%" + writer + "%");
+      if (subject != null) {
+        psTmt.setString(paramIndex++, "%" + subject + "%");
       }
-      psTmt.setInt(2, start - 1);
-      psTmt.setInt(3, cnt);
+      if (writer != null) {
+        psTmt.setString(paramIndex++, "%" + writer + "%");
+      }
+      psTmt.setInt(paramIndex++, start - 1);
+      psTmt.setInt(paramIndex, cnt);
       resultSet = psTmt.executeQuery();
+
       while (resultSet.next()) {
-        list = new ArrayList<QnaDTO>();
-        do {
-          QnaDTO dto = new QnaDTO();
-          dto.setNum(resultSet.getInt(1));
-          dto.setWriter(resultSet.getString("writer"));
-          dto.setSubject(resultSet.getString("subject"));
-          dto.setContent(resultSet.getString("content"));
-          dto.setPw(resultSet.getString("pw"));
-          dto.setRegdate(resultSet.getTimestamp("regdate"));
-          dto.setViews(resultSet.getInt("views"));
-          dto.setRef(resultSet.getInt("ref"));
-          dto.setRe_step(resultSet.getInt("re_step"));
-          dto.setRe_indent(resultSet.getInt("re_indent"));
-          list.add(dto);
-        } while (resultSet.next());
+        QnaDTO dto = new QnaDTO();
+        dto.setNum(resultSet.getInt("num"));
+        dto.setWriter(resultSet.getString("writer"));
+        dto.setSubject(resultSet.getString("subject"));
+        dto.setContent(resultSet.getString("content"));
+        dto.setPw(resultSet.getString("pw"));
+        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setViews(resultSet.getInt("views"));
+        dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
+        dto.setRe_indent(resultSet.getInt("re_indent"));
+        list.add(dto);
       }
     }
     catch (Exception ex) {

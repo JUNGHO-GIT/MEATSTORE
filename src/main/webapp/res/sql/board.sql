@@ -5,7 +5,7 @@ CREATE TABLE board (
   content TEXT,
   pw VARCHAR(255),
   regdate DATETIME,
-  readcount INT,
+  views INT,
   ref INT,
   re_step INT,
   re_level INT,

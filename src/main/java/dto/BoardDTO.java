@@ -11,7 +11,7 @@ public class BoardDTO {
   private String content;
   private String pw;
   private Date regdate;
-  private int readcount;
+  private int views;
   private int ref;
   private int re_step;
   private int re_level;
@@ -37,8 +37,8 @@ public class BoardDTO {
   public Date getRegdate() {
     return regdate;
   }
-  public int getReadcount() {
-    return readcount;
+  public int getViews() {
+    return views;
   }
   public int getRef() {
     return ref;
@@ -75,8 +75,8 @@ public class BoardDTO {
   public void setRegdate(Date regdate) {
     this.regdate = regdate;
   }
-  public void setReadcount(int readcount) {
-    this.readcount = readcount;
+  public void setViews(int views) {
+    this.views = views;
   }
   public void setRef(int ref) {
     this.ref = ref;

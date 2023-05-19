@@ -3,18 +3,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
-<!-- [비밀번호 일치 O] -->
-<c:if test="${checkparam == 1}">
+
+<c:if test="${checkParam == 1}">
   <script>
   	alert("수정이 완료되었습니다")
 		setTimeout(function() {
-		window.location.href = "/board/listForm.do";
+		  window.location.href = "${ctxpath}/board/listForm.do";
 		}, 100);
   </script>
 </c:if>
 
-<!-- [비밀번호 일치 X] -->
-<c:if test="${checkparam == -1}">
+<c:if test="${checkParam == -1}">
 	<script>
 		alert("암호가 다릅니다");
 		history.back();

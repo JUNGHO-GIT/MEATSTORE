@@ -16,9 +16,9 @@ function qnaCheck ()  {
     return false;
   }
 
-  if ($("#title").val() == "") {
+  if ($("#subject").val() == "") {
     alert("글제목을 입력 하세요");
-    $("#title").focus();
+    $("#subject").focus();
     return false;
   }
 

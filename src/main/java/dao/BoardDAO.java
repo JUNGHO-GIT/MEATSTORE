@@ -102,7 +102,7 @@ public class BoardDAO {
           dto.setContent(resultSet.getString("content"));
           dto.setPw(resultSet.getString("pw"));
           dto.setRegdate(resultSet.getTimestamp("regdate"));
-          dto.setReadcount(resultSet.getInt("readcount"));
+          dto.setViews(resultSet.getInt("views"));
           dto.setRef(resultSet.getInt("ref"));
           dto.setRe_step(resultSet.getInt("re_step"));
           dto.setRe_level(resultSet.getInt("re_level"));
@@ -113,7 +113,7 @@ public class BoardDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getList()예외:" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
       exceptionHandling();
@@ -126,7 +126,7 @@ public class BoardDAO {
     BoardDTO dto = null;
     try {
       connecTion = getConnection();
-      sqlParam = "update board set readcount = readcount+1 where num=" + num;
+      sqlParam = "update board set views = views+1 where num=" + num;
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.executeUpdate();
       psTmt =
@@ -141,7 +141,7 @@ public class BoardDAO {
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
         dto.setRegdate(resultSet.getTimestamp("regdate"));
-        dto.setReadcount(resultSet.getInt("readcount"));
+        dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_level(resultSet.getInt("re_level"));
@@ -150,7 +150,7 @@ public class BoardDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getBoard()예외:" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
       exceptionHandling();
@@ -209,7 +209,7 @@ public class BoardDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("insertBoard()예외:" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
       exceptionHandling();
@@ -233,7 +233,7 @@ public class BoardDAO {
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
         dto.setRegdate(resultSet.getTimestamp("regdate"));
-        dto.setReadcount(resultSet.getInt("readcount"));
+        dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_level(resultSet.getInt("re_level"));
@@ -242,7 +242,7 @@ public class BoardDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getUpdate()예외:" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
       exceptionHandling();
@@ -279,7 +279,7 @@ public class BoardDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("updateBoard()예외:" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
       exceptionHandling();
@@ -308,7 +308,7 @@ public class BoardDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getDelete() 예외:" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
       exceptionHandling();

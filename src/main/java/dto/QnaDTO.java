@@ -7,14 +7,14 @@ public class QnaDTO {
   // variables ----------------------------------------------------------------------------------->
   private int num;
   private String writer;
+  private String pw;
   private String subject;
   private String content;
-  private String pw;
-  private Date regdate;
   private int views;
   private int ref;
   private int re_step;
   private int re_indent;
+  private Date regdate;
 
   // getter --------------------------------------------------------------------------------------->
   public int getNum() {

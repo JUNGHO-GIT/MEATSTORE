@@ -10,25 +10,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// ------------------------------------------------------------------------------------------------>
 public class InsertProAction implements CommandAction {
 
-  public String requestPro(
-    HttpServletRequest request,
-    HttpServletResponse response
-  ) throws Throwable {
-    // 멀티파트 리퀘스트 객체 생성
+  // ---------------------------------------------------------------------------------------------->
+  public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
     ServletContext context = request.getServletContext();
     String uploadPath = context.getRealPath("/upload");
     int sizeLimit = 1024 * 1024 * 10;
-    MultipartRequest multi = new MultipartRequest(
-      request,
-      uploadPath,
-      sizeLimit,
-      "UTF-8",
-      new DefaultFileRenamePolicy()
-    );
-
-    // insertForm.jsp 에서 보내준 데이터 받기
+    MultipartRequest multi = new MultipartRequest(request, uploadPath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
     BoardDTO dto = new BoardDTO();
     dto.setNum(Integer.parseInt(multi.getParameter("num")));
     dto.setWriter(multi.getParameter("writer"));
@@ -40,17 +30,12 @@ public class InsertProAction implements CommandAction {
     dto.setRe_level(Integer.parseInt(multi.getParameter("re_level")));
     dto.setIp(request.getRemoteAddr());
     dto.setFileupload(multi.getParameter("fileupload"));
-
     Enumeration files = multi.getFileNames();
     String file = (String) files.nextElement();
-
-    // 파일 이름
     String filename = multi.getFilesystemName(file);
     dto.setFileupload(filename);
-
     BoardDAO dao = BoardDAO.getInstance();
     dao.insertBoard(dto);
-
     return "/board/insertPro.jsp";
   }
 }
