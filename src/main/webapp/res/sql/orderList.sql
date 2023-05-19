@@ -4,6 +4,6 @@ CREATE TABLE orderlist (
   quantity INT,
   orddate DATETIME,
   state VARCHAR(255),
-  userid VARCHAR(255),
-  FOREIGN KEY (userid) REFERENCES member(id)
+  id VARCHAR(255),
+  FOREIGN KEY (id) REFERENCES member(id)
 );

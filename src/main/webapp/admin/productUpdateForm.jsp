@@ -4,15 +4,10 @@
 <%@ page import="dto.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="<%= request.getContextPath() %>" />
+<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
-<% request.setCharacterEncoding("UTF-8"); %>
 
-<!doctype html>
-<html lang="en, ko">
-
-	<body>
-		<!-- header -->
+<!-- header -->
 		<section class="section">
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
@@ -26,7 +21,7 @@
 		<section>
 			<div class="row">
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-					<form name="inputForm" method="post" action="productInsertPro.do?flag=update" enctype="multipart/form-data">
+					<form name="insertForm" method="post" action="productInsertPro.do?flag=update" enctype="multipart/form-data">
 						<div class="form-group">
 							<div class="input-group">
 								<input class="form-control" type="text" name="name" id="name" size="50" value="${dto.name}" placeholder="상품이름" />

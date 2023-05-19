@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="<%= request.getContextPath() %>" />
+<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
-<% request.setCharacterEncoding("UTF-8"); %>
 
-<!doctype html>
-<html lang="en, ko">
-
-	<body>
-		<!-- header -->
+<!-- header -->
 		<section class="section">
 			<div class="jumbotron d-flex align-items-center">
 				<div class="gradient"></div>
@@ -53,7 +48,7 @@
           <div class="btn btn-group">
           	<button class="btn btn-jungho mt-2" type="submit">수정하기</button>&nbsp;&nbsp;
           	<button class="btn btn-jungho mt-2" type="reset">재입력</button>&nbsp;&nbsp;
-          	<button class="btn btn-secondary mt-2" type="button" onClick="location='${ctxpath}/module/template.jsp'">취소</button>
+          	<button class="btn btn-secondary mt-2" type="button" onClick="location='${ctxpath}/index.jsp'">취소</button>
           </div>
         </form>
         </div>

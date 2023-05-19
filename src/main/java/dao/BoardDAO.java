@@ -1,6 +1,5 @@
 package dao;
 
-import com.oreilly.servlet.MultipartRequest;
 import dto.BoardDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,44 +14,43 @@ import javax.sql.DataSource;
 // [Class BoardDAO]
 public class BoardDAO {
 
-  // 전역변수 선언
-  Connection connection = null;
-  PreparedStatement pstmt = null;
-  Statement stmt = null;
-  ResultSet resultset = null;
-  MultipartRequest multipart = null;
-  String sqlparam = "";
-  String dbpw = "";
-  int checkparam = 0;
+  // 전역변수 선언 -------------------------------------------------------------------------------->
+  Connection connecTion = null;
+  PreparedStatement psTmt = null;
+  Statement sTmt = null;
+  ResultSet resultSet = null;
+  String sqlParam = "";
+  String dbPw = "";
+  int checkParam = 0;
 
-  // 프라이빗 생성자를 통한 싱글톤 패턴 구현
+  // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
   private BoardDAO() {}
 
-  // 싱글톤 패턴을 위한 객체 생성
+  // 싱글톤 패턴을 위한 객체 생성 ----------------------------------------------------------------->
   private static BoardDAO instance = new BoardDAO();
 
-  // 반복되는 예외처리를 위한 메소드
+  // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
   public void exceptionHandling() {
     try {
-      if (resultset != null) {
-        resultset.close();
+      if (resultSet != null) {
+        resultSet.close();
       }
-      if (pstmt != null) {
-        pstmt.close();
+      if (psTmt != null) {
+        psTmt.close();
       }
-      if (connection != null) {
-        connection.close();
+      if (connecTion != null) {
+        connecTion.close();
       }
     }
     catch (Exception ex2) {}
   }
 
-  // [인스턴스 반환 - getInstance]
+  // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
   public static BoardDAO getInstance() {
     return instance;
   }
 
-  // [커넥션 반환 - getConnection]
+  // [커넥션 반환 - getConnection] ---------------------------------------------------------------->
   private Connection getConnection() throws Exception {
     Context context = new InitialContext();
     DataSource datasource = (DataSource) context.lookup(
@@ -61,16 +59,16 @@ public class BoardDAO {
     return datasource.getConnection();
   }
 
-  // [글갯수 반환 - getCount]
+  // [글갯수 반환 - getCount] --------------------------------------------------------------------->
   public int getCount() {
     int count = 0;
     try {
-      connection = getConnection();
-      pstmt = connection.prepareStatement("select count(*) from board");
-      resultset = pstmt.executeQuery();
+      connecTion = getConnection();
+      psTmt = connecTion.prepareStatement("select count(*) from board");
+      resultSet = psTmt.executeQuery();
 
-      if (resultset.next()) {
-        count = resultset.getInt(1);
+      if (resultSet.next()) {
+        count = resultSet.getInt(1);
       }
     }
     catch (Exception ex) {
@@ -82,38 +80,36 @@ public class BoardDAO {
     return count;
   }
 
-  // [글목록 반환 - getList]
+  // [글목록 반환 - getList] --------------------------------------------------------------------->
   public List getList(int start, int count) {
     BoardDTO dto = null;
     List<BoardDTO> list = null;
     try {
-      connection = getConnection();
-      sqlparam =
-        "select * from board order by ref desc, re_step asc limit ?, ?";
+      connecTion = getConnection();
+      sqlParam = "select * from board order by ref desc, re_step asc limit ?, ?";
+      psTmt = connecTion.prepareStatement(sqlParam);
+      psTmt.setInt(1, start - 1);
+      psTmt.setInt(2, count);
+      resultSet = psTmt.executeQuery();
 
-      pstmt = connection.prepareStatement(sqlparam);
-      pstmt.setInt(1, start - 1);
-      pstmt.setInt(2, count);
-      resultset = pstmt.executeQuery();
-
-      while (resultset.next()) {
+      while (resultSet.next()) {
         list = new ArrayList<BoardDTO>();
         do {
           dto = new BoardDTO();
-          dto.setNum(resultset.getInt("num"));
-          dto.setWriter(resultset.getString("writer"));
-          dto.setSubject(resultset.getString("subject"));
-          dto.setContent(resultset.getString("content"));
-          dto.setPw(resultset.getString("pw"));
-          dto.setRegdate(resultset.getTimestamp("regdate"));
-          dto.setReadcount(resultset.getInt("readcount"));
-          dto.setRef(resultset.getInt("ref"));
-          dto.setRe_step(resultset.getInt("re_step"));
-          dto.setRe_level(resultset.getInt("re_level"));
-          dto.setIp(resultset.getString("ip"));
-          dto.setFileupload(resultset.getString("fileupload"));
+          dto.setNum(resultSet.getInt("num"));
+          dto.setWriter(resultSet.getString("writer"));
+          dto.setSubject(resultSet.getString("subject"));
+          dto.setContent(resultSet.getString("content"));
+          dto.setPw(resultSet.getString("pw"));
+          dto.setRegdate(resultSet.getTimestamp("regdate"));
+          dto.setReadcount(resultSet.getInt("readcount"));
+          dto.setRef(resultSet.getInt("ref"));
+          dto.setRe_step(resultSet.getInt("re_step"));
+          dto.setRe_level(resultSet.getInt("re_level"));
+          dto.setIp(resultSet.getString("ip"));
+          dto.setFileupload(resultSet.getString("fileupload"));
           list.add(dto);
-        } while (resultset.next());
+        } while (resultSet.next());
       }
     }
     catch (Exception ex) {
@@ -125,32 +121,32 @@ public class BoardDAO {
     return list;
   }
 
-  // [내용 보기 - getBoard]
+  // [내용 보기 - getBoard] --------------------------------------------------------------------->
   public BoardDTO getBoard(int num) {
     BoardDTO dto = null;
     try {
-      connection = getConnection();
-      sqlparam = "update board set readcount = readcount+1 where num=" + num;
-      pstmt = connection.prepareStatement(sqlparam);
-      pstmt.executeUpdate();
-      pstmt =
-        connection.prepareStatement("select * from board where num=" + num);
-      resultset = pstmt.executeQuery();
+      connecTion = getConnection();
+      sqlParam = "update board set readcount = readcount+1 where num=" + num;
+      psTmt = connecTion.prepareStatement(sqlParam);
+      psTmt.executeUpdate();
+      psTmt =
+        connecTion.prepareStatement("select * from board where num=" + num);
+      resultSet = psTmt.executeQuery();
 
-      if (resultset.next()) {
+      if (resultSet.next()) {
         dto = new BoardDTO();
-        dto.setNum(resultset.getInt("num"));
-        dto.setWriter(resultset.getString("writer"));
-        dto.setSubject(resultset.getString("subject"));
-        dto.setContent(resultset.getString("content"));
-        dto.setPw(resultset.getString("pw"));
-        dto.setRegdate(resultset.getTimestamp("regdate"));
-        dto.setReadcount(resultset.getInt("readcount"));
-        dto.setRef(resultset.getInt("ref"));
-        dto.setRe_step(resultset.getInt("re_step"));
-        dto.setRe_level(resultset.getInt("re_level"));
-        dto.setIp(resultset.getString("ip"));
-        dto.setFileupload(resultset.getString("fileupload"));
+        dto.setNum(resultSet.getInt("num"));
+        dto.setWriter(resultSet.getString("writer"));
+        dto.setSubject(resultSet.getString("subject"));
+        dto.setContent(resultSet.getString("content"));
+        dto.setPw(resultSet.getString("pw"));
+        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setReadcount(resultSet.getInt("readcount"));
+        dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
+        dto.setRe_level(resultSet.getInt("re_level"));
+        dto.setIp(resultSet.getString("ip"));
+        dto.setFileupload(resultSet.getString("fileupload"));
       }
     }
     catch (Exception ex) {
@@ -162,7 +158,7 @@ public class BoardDAO {
     return dto;
   }
 
-  // [글 집어넣기 - insertBoard]
+  // [글 집어넣기 - insertBoard] ------------------------------------------------------------------>
   public void insertBoard(BoardDTO dto) {
     int num = dto.getNum();
     int ref = dto.getRef();
@@ -171,23 +167,23 @@ public class BoardDAO {
     int number = 0;
 
     try {
-      connection = getConnection();
-      pstmt = connection.prepareStatement("select max(num) from board");
-      resultset = pstmt.executeQuery();
+      connecTion = getConnection();
+      psTmt = connecTion.prepareStatement("select max(num) from board");
+      resultSet = psTmt.executeQuery();
 
-      if (resultset.next()) {
-        number = resultset.getInt(1) + 1;
+      if (resultSet.next()) {
+        number = resultSet.getInt(1) + 1;
       }
         else {
         number = 1;
       }
       if (num != 0) {
-        sqlparam =
+        sqlParam =
           "update board set re_step = re_step+1 where ref = ? and re_step>?";
-        pstmt = connection.prepareStatement(sqlparam);
-        pstmt.setInt(1, ref);
-        pstmt.setInt(2, re_step);
-        pstmt.executeUpdate();
+        psTmt = connecTion.prepareStatement(sqlParam);
+        psTmt.setInt(1, ref);
+        psTmt.setInt(2, re_step);
+        psTmt.executeUpdate();
         re_step = re_step + 1;
         re_level = re_level + 1;
       }
@@ -196,21 +192,21 @@ public class BoardDAO {
         re_step = 0;
         re_level = 0;
       }
-      sqlparam =
+      sqlParam =
         "insert into board(writer, subject, content, pw, regdate, ref, re_step, re_level, ip, fileupload)";
-      sqlparam = sqlparam + " values(?, ?, ?, ?, NOW(), ?, ?, ?, ?, ?)";
+      sqlParam = sqlParam + " values(?, ?, ?, ?, NOW(), ?, ?, ?, ?, ?)";
 
-      pstmt = connection.prepareStatement(sqlparam);
-      pstmt.setString(1, dto.getWriter());
-      pstmt.setString(2, dto.getSubject());
-      pstmt.setString(3, dto.getContent());
-      pstmt.setString(4, dto.getPw());
-      pstmt.setInt(5, ref);
-      pstmt.setInt(6, re_step);
-      pstmt.setInt(7, re_level);
-      pstmt.setString(8, dto.getIp());
-      pstmt.setString(9, dto.getFileupload());
-      pstmt.executeUpdate();
+      psTmt = connecTion.prepareStatement(sqlParam);
+      psTmt.setString(1, dto.getWriter());
+      psTmt.setString(2, dto.getSubject());
+      psTmt.setString(3, dto.getContent());
+      psTmt.setString(4, dto.getPw());
+      psTmt.setInt(5, ref);
+      psTmt.setInt(6, re_step);
+      psTmt.setInt(7, re_level);
+      psTmt.setString(8, dto.getIp());
+      psTmt.setString(9, dto.getFileupload());
+      psTmt.executeUpdate();
     }
     catch (Exception ex) {
       System.out.println("insertBoard()예외:" + ex);
@@ -220,29 +216,29 @@ public class BoardDAO {
     }
   }
 
-  // [글 수정하기 - getUpdate]
+  // [글 수정하기 - getUpdate] ------------------------------------------------------------------>
   public BoardDTO getUpdate(int num) {
     BoardDTO dto = null;
     try {
-      connection = getConnection();
-      pstmt =
-        connection.prepareStatement("select * from board where num=" + num);
-      resultset = pstmt.executeQuery();
+      connecTion = getConnection();
+      psTmt =
+        connecTion.prepareStatement("select * from board where num=" + num);
+      resultSet = psTmt.executeQuery();
 
-      if (resultset.next()) {
+      if (resultSet.next()) {
         dto = new BoardDTO();
-        dto.setNum(resultset.getInt("num"));
-        dto.setWriter(resultset.getString("writer"));
-        dto.setSubject(resultset.getString("subject"));
-        dto.setContent(resultset.getString("content"));
-        dto.setPw(resultset.getString("pw"));
-        dto.setRegdate(resultset.getTimestamp("regdate"));
-        dto.setReadcount(resultset.getInt("readcount"));
-        dto.setRef(resultset.getInt("ref"));
-        dto.setRe_step(resultset.getInt("re_step"));
-        dto.setRe_level(resultset.getInt("re_level"));
-        dto.setIp(resultset.getString("ip"));
-        dto.setFileupload(resultset.getString("fileupload"));
+        dto.setNum(resultSet.getInt("num"));
+        dto.setWriter(resultSet.getString("writer"));
+        dto.setSubject(resultSet.getString("subject"));
+        dto.setContent(resultSet.getString("content"));
+        dto.setPw(resultSet.getString("pw"));
+        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setReadcount(resultSet.getInt("readcount"));
+        dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
+        dto.setRe_level(resultSet.getInt("re_level"));
+        dto.setIp(resultSet.getString("ip"));
+        dto.setFileupload(resultSet.getString("fileupload"));
       }
     }
     catch (Exception ex) {
@@ -254,31 +250,31 @@ public class BoardDAO {
     return dto;
   }
 
-  // [수정한 글 DB 연동 - updateBoard]
+  // [수정한 글 DB 연동 - updateBoard] ----------------------------------------------------------->
   public int updateBoard(BoardDTO dto) {
     try {
-      connection = getConnection();
-      pstmt = connection.prepareStatement("select pw from board where num = ?");
-      pstmt.setInt(1, dto.getNum());
-      resultset = pstmt.executeQuery();
+      connecTion = getConnection();
+      psTmt = connecTion.prepareStatement("select pw from board where num = ?");
+      psTmt.setInt(1, dto.getNum());
+      resultSet = psTmt.executeQuery();
 
-      if (resultset.next()) {
-        dbpw = resultset.getString("pw");
+      if (resultSet.next()) {
+        dbPw = resultSet.getString("pw");
 
-        if (dto.getPw().equals(dbpw)) {
-          sqlparam =
+        if (dto.getPw().equals(dbPw)) {
+          sqlParam =
             "update board set writer=?, subject=?, content=?, fileupload=? where num=?";
-          pstmt = connection.prepareStatement(sqlparam);
-          pstmt.setString(1, dto.getWriter());
-          pstmt.setString(2, dto.getSubject());
-          pstmt.setString(3, dto.getContent());
-          pstmt.setString(4, dto.getFileupload());
-          pstmt.setInt(5, dto.getNum());
-          pstmt.executeUpdate();
-          checkparam = 1;
+          psTmt = connecTion.prepareStatement(sqlParam);
+          psTmt.setString(1, dto.getWriter());
+          psTmt.setString(2, dto.getSubject());
+          psTmt.setString(3, dto.getContent());
+          psTmt.setString(4, dto.getFileupload());
+          psTmt.setInt(5, dto.getNum());
+          psTmt.executeUpdate();
+          checkParam = 1;
         }
         else {
-          checkparam = -1;
+          checkParam = -1;
         }
       }
     }
@@ -288,27 +284,26 @@ public class BoardDAO {
     finally {
       exceptionHandling();
     }
-    return checkparam;
+    return checkParam;
   }
 
-  // [글 삭제 - getDelete]
+  // [글 삭제 - getDelete] ---------------------------------------------------------------------->
   public int getDelete(int num, String pw) {
     try {
-      connection = getConnection();
-      pstmt =
-        connection.prepareStatement("select pw from board where num=" + num);
-      resultset = pstmt.executeQuery();
+      connecTion = getConnection();
+      psTmt = connecTion.prepareStatement("select pw from board where num=" + num);
+      resultSet = psTmt.executeQuery();
 
-      if (resultset.next()) {
-        dbpw = resultset.getString("pw");
-        if (pw.equals(dbpw)) {
-          pstmt =
-            connection.prepareStatement("delete from board where num=" + num);
-          pstmt.executeUpdate();
-          checkparam = 1;
+      if (resultSet.next()) {
+        dbPw = resultSet.getString("pw");
+        if (pw.equals(dbPw)) {
+          psTmt =
+            connecTion.prepareStatement("delete from board where num=" + num);
+          psTmt.executeUpdate();
+          checkParam = 1;
         }
         else {
-          checkparam = -1;
+          checkParam = -1;
         }
       }
     }
@@ -318,6 +313,6 @@ public class BoardDAO {
     finally {
       exceptionHandling();
     }
-    return checkparam;
+    return checkParam;
   }
 }

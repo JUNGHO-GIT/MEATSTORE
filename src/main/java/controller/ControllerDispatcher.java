@@ -1,6 +1,5 @@
 package controller;
 
-import command.CommandAction;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import command.CommandAction;
 
 public class ControllerDispatcher extends HttpServlet {
 
@@ -59,8 +59,7 @@ public class ControllerDispatcher extends HttpServlet {
     reqPro(request, response);
   }
 
-  private void reqPro(HttpServletRequest request, HttpServletResponse response)
-    throws IOException, ServletException {
+  private void reqPro(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     String view = "";
     CommandAction commandAction = null;
 
@@ -73,13 +72,14 @@ public class ControllerDispatcher extends HttpServlet {
 
       commandAction = (CommandAction) map.get(uri);
       view = commandAction.requestPro(request, response);
-    } catch (Throwable ex) {
+    }
+    catch (Throwable ex) {
       throw new ServletException(ex);
     }
     request.setAttribute("CONTENT", view);
 
     RequestDispatcher rd = request.getRequestDispatcher (
-      "/module/template.jsp"
+      "/index.jsp"
     );
     rd.forward(request, response);
   }
