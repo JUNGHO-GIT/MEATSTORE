@@ -81,20 +81,11 @@ public class ProductDAO {
         list.add(dto);
       }
     }
-    catch (Exception ex) {}
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
+    }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (sTmt != null) {
-          sTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return list;
   }
@@ -111,21 +102,10 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getCount() error : " + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return cnt;
   }
@@ -158,21 +138,10 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getProductList() error : " + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return list;
   }
@@ -198,21 +167,10 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getDetail() error : " + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (sTmt != null) {
-          sTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return dto;
   }
@@ -239,21 +197,10 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getProduct() error : " + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return dto;
   }
@@ -270,18 +217,10 @@ public class ProductDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("reduceProduct() error : " + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
   }
 
@@ -316,18 +255,10 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("insertProduct() error : " + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return re;
   }
@@ -383,24 +314,10 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("updateProduct()예외" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (sTmt != null) {
-          sTmt.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
 
     return re;
@@ -432,24 +349,10 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("deleteProduct 예외" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (sTmt != null) {
-          sTmt.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return re;
   }

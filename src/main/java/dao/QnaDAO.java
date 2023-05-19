@@ -105,15 +105,10 @@ public class QnaDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("insertqna()예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {resultSet.close();}
-        if (psTmt != null) {psTmt.close();}
-        if (connecTion != null) {connecTion.close();}
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
   }
 
@@ -129,17 +124,11 @@ public class QnaDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getCount() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {resultSet.close();}
-        if (psTmt != null) {psTmt.close();}
-        if (connecTion != null) {connecTion.close();}
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
-
     return cnt;
   }
 
@@ -172,15 +161,10 @@ public class QnaDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getList() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {resultSet.close();}
-        if (psTmt != null) {psTmt.close();}
-        if (connecTion != null) {connecTion.close();}
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return list;
   }
@@ -198,17 +182,11 @@ public class QnaDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getCount() 매개변수 예외: " + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {resultSet.close();}
-        if (psTmt != null) {psTmt.close();}
-        if (connecTion != null) {connecTion.close();}
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
-
     return cnt;
   }
 
@@ -259,15 +237,10 @@ public class QnaDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getList() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {resultSet.close();}
-        if (psTmt != null) {psTmt.close();}
-        if (connecTion != null) {connecTion.close();}
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return list;
   }
@@ -297,15 +270,10 @@ public class QnaDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getqna() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {resultSet.close();}
-        if (psTmt != null) {psTmt.close();}
-        if (connecTion != null) {connecTion.close();}
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return dto;
   }
@@ -332,17 +300,11 @@ public class QnaDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getUpdate() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {resultSet.close();}
-        if (psTmt != null) {psTmt.close();}
-        if (connecTion != null) {connecTion.close();}
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
-
     return dto;
   }
 
@@ -373,17 +335,11 @@ public class QnaDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("updateqna() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {resultSet.close();}
-        if (psTmt != null) {psTmt.close();}
-        if (connecTion != null) {connecTion.close();}
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
-
     return x;
   }
 
@@ -408,17 +364,11 @@ public class QnaDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("deleteQna() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {resultSet.close();}
-        if (psTmt != null) {psTmt.close();}
-        if (connecTion != null) {connecTion.close();}
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
-
     return x;
   }
 }

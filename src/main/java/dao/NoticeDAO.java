@@ -72,20 +72,10 @@ public class NoticeDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("insertNotice()예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {
-        System.out.println("insertNotice() close 예외 :" + ex2);
-      }
+      exceptionHandling();
     }
   }
 
@@ -101,23 +91,10 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getCount() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {
-        System.out.println("getCount() close 예외 :" + ex2);
-      }
+      exceptionHandling();
     }
 
     return cnt;
@@ -136,25 +113,11 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getCount() 매개변수 예외: " + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {
-        System.out.println("getCount() close 예외 :" + ex2);
-      }
+      exceptionHandling();
     }
-
     return cnt;
   }
 
@@ -185,23 +148,10 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getList() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {
-        System.out.println("getList() close 예외 :" + ex2);
-      }
+      exceptionHandling();
     }
     return list;
   }
@@ -252,23 +202,10 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getList() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {
-        System.out.println("getList() close 예외 :" + ex2);
-      }
+      exceptionHandling();
     }
     return list;
   }
@@ -294,21 +231,10 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getNotice() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return dto;
   }
@@ -333,21 +259,10 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getUpdate() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return dto;
   }
@@ -379,21 +294,10 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("updateNotice() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return x;
   }
@@ -419,23 +323,11 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("deleteNotice() 예외 :" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
-
     return x;
   }
 }

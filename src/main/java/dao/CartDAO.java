@@ -79,18 +79,11 @@ public class CartDAO {
         cartList.add(cart);
       }
     }
-    catch (Exception e) {
-      e.printStackTrace();
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) resultSet.close();
-        if (psTmt != null) psTmt.close();
-        if (connecTion != null) connecTion.close();
-      }
-      catch (Exception e) {
-        e.printStackTrace();
-      }
+      exceptionHandling();
     }
     return cartList;
   }
@@ -109,17 +102,11 @@ public class CartDAO {
       psTmt.setString(6, cart.getImage());
       psTmt.executeUpdate();
     }
-    catch (Exception e) {
-      e.printStackTrace();
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (psTmt != null) psTmt.close();
-        if (connecTion != null) connecTion.close();
-      }
-      catch (Exception e) {
-        e.printStackTrace();
-      }
+      exceptionHandling();
     }
   }
 
@@ -141,18 +128,11 @@ public class CartDAO {
         cart.setImage(resultSet.getString("image"));
       }
     }
-    catch (Exception e) {
-      e.printStackTrace();
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) resultSet.close();
-        if (psTmt != null) psTmt.close();
-        if (connecTion != null) connecTion.close();
-      }
-      catch (Exception e) {
-        e.printStackTrace();
-      }
+      exceptionHandling();
     }
     return cart;
   }
@@ -171,17 +151,11 @@ public class CartDAO {
       psTmt.setInt(6, cart.getPro_no());
       psTmt.executeUpdate();
     }
-    catch (Exception e) {
-      e.printStackTrace();
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (psTmt != null) psTmt.close();
-        if (connecTion != null) connecTion.close();
-      }
-      catch (Exception e) {
-        e.printStackTrace();
-      }
+      exceptionHandling();
     }
   }
 
@@ -194,17 +168,11 @@ public class CartDAO {
       psTmt.setInt(1, pro_no);
       psTmt.executeUpdate();
     }
-    catch (Exception e) {
-      e.printStackTrace();
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (psTmt != null) psTmt.close();
-        if (connecTion != null) connecTion.close();
-      }
-      catch (Exception e) {
-        e.printStackTrace();
-      }
+      exceptionHandling();
     }
   }
 

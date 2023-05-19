@@ -73,21 +73,10 @@ public class MemberDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("confirmID예외" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-    catch (Exception ex2) {}
+      exceptionHandling();
     }
     return x;
   }
@@ -110,18 +99,10 @@ public class MemberDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("insertMember 예외" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
   }
 
@@ -149,21 +130,10 @@ public class MemberDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("userCheck()-예외" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return x;
   }
@@ -186,21 +156,10 @@ public class MemberDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("pwCheck예외" + pw);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-    catch (Exception ex2) {}
+      exceptionHandling();
     }
     return x;
   }
@@ -228,21 +187,10 @@ public class MemberDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getMember 예외" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return dto;
   }
@@ -266,21 +214,10 @@ public class MemberDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("updateMember에러" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
   }
 
@@ -308,21 +245,10 @@ public class MemberDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("deleteMember 예외" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return x;
   }
@@ -347,21 +273,10 @@ public class MemberDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("admin 에러" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return x;
   }

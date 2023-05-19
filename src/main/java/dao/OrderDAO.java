@@ -78,22 +78,10 @@ public class OrderDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("insertOrder()����:" + ex);
-      result = "insert ����:" + ex;
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex) {}
+      exceptionHandling();
     }
     return result;
   }
@@ -120,21 +108,10 @@ public class OrderDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getOrder ����" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return vec;
   }
@@ -160,21 +137,10 @@ public class OrderDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getOrderlist����" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
-      try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
-        if (psTmt != null) {
-          psTmt.close();
-        }
-        if (connecTion != null) {
-          connecTion.close();
-        }
-      }
-      catch (Exception ex2) {}
+      exceptionHandling();
     }
     return vec;
   }

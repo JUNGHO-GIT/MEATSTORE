@@ -72,7 +72,7 @@ public class BoardDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("getCount()예외:" + ex);
+      System.out.println("Exception occurred: " + ex.getMessage());
     }
     finally {
       exceptionHandling();
