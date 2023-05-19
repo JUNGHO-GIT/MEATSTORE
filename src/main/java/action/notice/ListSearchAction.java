@@ -35,7 +35,7 @@ public class ListSearchAction implements CommandAction {
     String subject = null;
     String writer = null;
     if (keyword != null && search != null) {
-      count = dao.getCount(keyword, search);
+      count = dao.getSearch(keyword, search);
     }
 
     if (keyword != null && keyword.equals("subject")) {

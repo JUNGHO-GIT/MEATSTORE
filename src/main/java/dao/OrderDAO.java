@@ -25,7 +25,7 @@ public class OrderDAO {
   private static OrderDAO instance = new OrderDAO();
 
   // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
-  public void exceptionHandling() {
+  private void exceptionHandling() {
     try {
       if (resultSet != null) {
         resultSet.close();

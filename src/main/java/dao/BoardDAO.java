@@ -30,7 +30,7 @@ public class BoardDAO {
   private static BoardDAO instance = new BoardDAO();
 
   // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
-  public void exceptionHandling() {
+  private void exceptionHandling() {
     try {
       if (resultSet != null) {
         resultSet.close();
@@ -86,7 +86,7 @@ public class BoardDAO {
     List<BoardDTO> list = null;
     try {
       connecTion = getConnection();
-      sqlParam = "select * from board order by ref desc, re_step asc limit ?, ?";
+      sqlParam = "select * from board order by ref desc, re_indent asc limit ?, ?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, start - 1);
       psTmt.setInt(2, count);
@@ -104,9 +104,7 @@ public class BoardDAO {
           dto.setRegdate(resultSet.getTimestamp("regdate"));
           dto.setViews(resultSet.getInt("views"));
           dto.setRef(resultSet.getInt("ref"));
-          dto.setRe_step(resultSet.getInt("re_step"));
-          dto.setRe_level(resultSet.getInt("re_level"));
-          dto.setIp(resultSet.getString("ip"));
+          dto.setRe_indent(resultSet.getInt("re_indent"));
           dto.setFileupload(resultSet.getString("fileupload"));
           list.add(dto);
         } while (resultSet.next());
@@ -143,9 +141,7 @@ public class BoardDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
-        dto.setRe_step(resultSet.getInt("re_step"));
-        dto.setRe_level(resultSet.getInt("re_level"));
-        dto.setIp(resultSet.getString("ip"));
+        dto.setRe_indent(resultSet.getInt("re_indent"));
         dto.setFileupload(resultSet.getString("fileupload"));
       }
     }
@@ -162,8 +158,7 @@ public class BoardDAO {
   public void insertBoard(BoardDTO dto) {
     int num = dto.getNum();
     int ref = dto.getRef();
-    int re_step = dto.getRe_step();
-    int re_level = dto.getRe_level();
+    int re_indent = dto.getRe_indent();
     int number = 0;
 
     try {
@@ -179,21 +174,21 @@ public class BoardDAO {
       }
       if (num != 0) {
         sqlParam =
-          "update board set re_step = re_step+1 where ref = ? and re_step>?";
+          "update board set re_indent = re_indent+1 where ref = ? and re_indent>?";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setInt(1, ref);
-        psTmt.setInt(2, re_step);
+        psTmt.setInt(2, re_indent);
         psTmt.executeUpdate();
-        re_step = re_step + 1;
-        re_level = re_level + 1;
+        re_indent = re_indent + 1;
+        re_indent = re_indent + 1;
       }
         else {
         ref = number;
-        re_step = 0;
-        re_level = 0;
+        re_indent = 0;
+        re_indent = 0;
       }
       sqlParam =
-        "insert into board(writer, subject, content, pw, regdate, ref, re_step, re_level, ip, fileupload)";
+        "insert into board(writer, subject, content, pw, regdate, ref, re_indent, re_indent, ip, fileupload)";
       sqlParam = sqlParam + " values(?, ?, ?, ?, NOW(), ?, ?, ?, ?, ?)";
 
       psTmt = connecTion.prepareStatement(sqlParam);
@@ -202,10 +197,9 @@ public class BoardDAO {
       psTmt.setString(3, dto.getContent());
       psTmt.setString(4, dto.getPw());
       psTmt.setInt(5, ref);
-      psTmt.setInt(6, re_step);
-      psTmt.setInt(7, re_level);
-      psTmt.setString(8, dto.getIp());
-      psTmt.setString(9, dto.getFileupload());
+      psTmt.setInt(6, re_indent);
+      psTmt.setInt(7, re_indent);
+      psTmt.setString(8, dto.getFileupload());
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
@@ -214,6 +208,85 @@ public class BoardDAO {
     finally {
       exceptionHandling();
     }
+  }
+
+  // [글 검색하기 - getSearch] ------------------------------------------------------------------->
+  public int getSearch (String keyword, String search)  {
+    int count = 0;
+    try {
+      connecTion = getConnection();
+      psTmt = connecTion.prepareStatement("select count(*) from board where " + keyword + " like '%" +
+      search + "%'");
+      resultSet = psTmt.executeQuery();
+
+      if (resultSet.next()) {
+        count = resultSet.getInt(1);
+      }
+    }
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
+    }
+    finally {
+      exceptionHandling();
+    }
+    return count;
+  }
+
+  // [글 검색 결과 - listSearch] ------------------------------------------------------------------>
+  public List<BoardDTO> listSearch(int start, int count, String subject, String writer) {
+    List<BoardDTO> list = new ArrayList<>();
+    try {
+      connecTion = getConnection();
+      String selectClause = "SELECT * FROM board";
+      String whereClause = "";
+      if (subject != null) {
+        whereClause += " WHERE subject LIKE ?";
+      }
+      if (writer != null) {
+        if (whereClause.isEmpty()) {
+          whereClause += " WHERE writer LIKE ?";
+        }
+        else {
+          whereClause += " AND writer LIKE ?";
+        }
+      }
+
+      String orderByClause = " ORDER BY ref DESC, re_indent ASC LIMIT ?, ?";
+      String sqlParam = selectClause + whereClause + orderByClause;
+      psTmt = connecTion.prepareStatement(sqlParam);
+      int paramIndex = 1;
+
+      if (subject != null) {
+        psTmt.setString(paramIndex++, "%" + subject + "%");
+      }
+      if (writer != null) {
+        psTmt.setString(paramIndex++, "%" + writer + "%");
+      }
+      psTmt.setInt(paramIndex++, start - 1);
+      psTmt.setInt(paramIndex, count);
+      resultSet = psTmt.executeQuery();
+
+      while (resultSet.next()) {
+        BoardDTO dto = new BoardDTO();
+        dto.setNum(resultSet.getInt("num"));
+        dto.setWriter(resultSet.getString("writer"));
+        dto.setSubject(resultSet.getString("subject"));
+        dto.setContent(resultSet.getString("content"));
+        dto.setPw(resultSet.getString("pw"));
+        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setViews(resultSet.getInt("views"));
+        dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_indent(resultSet.getInt("re_indent"));
+        list.add(dto);
+      }
+    }
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
+    }
+    finally {
+      exceptionHandling();
+    }
+    return list;
   }
 
   // [글 수정하기 - getUpdate] ------------------------------------------------------------------>
@@ -235,9 +308,7 @@ public class BoardDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
-        dto.setRe_step(resultSet.getInt("re_step"));
-        dto.setRe_level(resultSet.getInt("re_level"));
-        dto.setIp(resultSet.getString("ip"));
+        dto.setRe_indent(resultSet.getInt("re_indent"));
         dto.setFileupload(resultSet.getString("fileupload"));
       }
     }

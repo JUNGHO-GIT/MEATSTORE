@@ -69,7 +69,7 @@
         &nbsp;&nbsp;
         <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/deleteForm.do?num=${num}&pageNum=${pageNum}'">글 삭제</button>
         <c:if test="${!empty sessionScope.adminid}">
-          <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/insertForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_step=${dto.re_step}&re_indent=${dto.re_indent}'">답글 작성</button>
+          <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/insertForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_indent=${dto.re_indent}&re_indent=${dto.re_indent}'">답글 작성</button>
         </c:if>
         &nbsp;&nbsp;
         <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/listForm.do?pageNum=${pageNum}'">리스트</button>

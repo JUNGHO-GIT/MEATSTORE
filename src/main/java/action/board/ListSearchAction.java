@@ -1,8 +1,8 @@
-package action.qna;
+package action.board;
 
 import command.CommandAction;
-import dao.QnaDAO;
-import dto.QnaDTO;
+import dao.BoardDAO;
+import dto.BoardDTO;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,8 +26,8 @@ public class ListSearchAction implements CommandAction {
     int count = 0;
     int number = 0;
     int pageBlock = 10;
-    List<QnaDTO> list = null;
-    QnaDAO dao = QnaDAO.getInstance();
+    List<BoardDTO> list = null;
+    BoardDAO dao = BoardDAO.getInstance();
     count = dao.getCount();
     String keyword = request.getParameter("keyword");
     String search = request.getParameter("search");
@@ -71,6 +71,6 @@ public class ListSearchAction implements CommandAction {
     request.setAttribute("pageSize", pageSize);
     request.setAttribute("number", number);
     request.setAttribute("list", list);
-    return "/qna/listForm.jsp";
+    return "/board/listForm.jsp";
   }
 }

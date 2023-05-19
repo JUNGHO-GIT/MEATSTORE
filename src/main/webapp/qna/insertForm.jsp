@@ -22,7 +22,7 @@
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <input type="hidden" name="num" value="${num}" />
         <input type="hidden" name="ref" value="${ref}" />
-        <input type="hidden" name="re_step" value="${re_step}" />
+        <input type="hidden" name="re_indent" value="${re_indent}" />
         <input type="hidden" name="re_indent" value="${re_indent}" />
         <table class="table table-borderless">
           <tr>

@@ -7,6 +7,6 @@ CREATE TABLE qna (
   regdate DATETIME,
   views INT,
   ref INT,
-  re_step INT,
+  re_indent INT,
   re_indent INT
 );

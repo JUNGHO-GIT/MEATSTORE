@@ -25,8 +25,8 @@
 				<form name="insertForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/insertPro.do" onsubmit="return boardCheck()">
 					<input type="hidden" name="num" value="${num}" />
 					<input type="hidden" name="ref" value="${ref}" />
-					<input type="hidden" name="re_step" value="${re_step}" />
-					<input type="hidden" name="re_level" value="${re_level}" />
+					<input type="hidden" name="re_indent" value="${re_indent}" />
+					<input type="hidden" name="re_indent" value="${re_indent}" />
 					<!-- row -->
 					<div class="row">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">

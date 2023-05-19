@@ -30,7 +30,7 @@ public class CartDAO {
   private static CartDAO instance = new CartDAO();
 
   // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
-  public void exceptionHandling() {
+  private void exceptionHandling() {
     try {
       if (resultSet != null) {
         resultSet.close();

@@ -20,7 +20,7 @@ public class InsertProAction implements CommandAction {
     dto.setContent(request.getParameter("content"));
     dto.setPw(request.getParameter("pw"));
     dto.setRef(Integer.parseInt(request.getParameter("ref")));
-    dto.setRe_step(Integer.parseInt(request.getParameter("re_step")));
+    dto.setRe_indent(Integer.parseInt(request.getParameter("re_indent")));
     dto.setRe_indent(Integer.parseInt(request.getParameter("re_indent")));
     QnaDAO dao = QnaDAO.getInstance();
     dao.insertQna(dto);

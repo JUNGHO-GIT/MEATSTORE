@@ -49,12 +49,12 @@
                   <c:set var="number" value="${number-1}" />
                 </td>
                 <td id="list_subject">
-                  <c:if test="${dto.re_step>0}">
-                    <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_step}" height="16" />
+                  <c:if test="${dto.re_indent>0}">
+                    <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_indent}" height="16" />
                     <img src="${ctxpath}/res/imgs/re.gif" />
                   </c:if>
-                  <c:if test="${dto.re_step==0}">
-                    <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_step}" height="16" />
+                  <c:if test="${dto.re_indent==0}">
+                    <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_indent}" height="16" />
                   </c:if>
                   <a href="${ctxpath}/qna/detail.do?num=${dto.num}&pageNum=${currentPage}">
                     ${dto.subject}</a>
@@ -95,7 +95,7 @@
     <br />
 
     <!-- button -->
-    <div class="row">
+    <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <c:if test="${count>0}">
           <c:if test="${endPage>pageCount}">

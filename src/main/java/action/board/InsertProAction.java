@@ -26,9 +26,7 @@ public class InsertProAction implements CommandAction {
     dto.setContent(multi.getParameter("content"));
     dto.setPw(multi.getParameter("pw"));
     dto.setRef(Integer.parseInt(multi.getParameter("ref")));
-    dto.setRe_step(Integer.parseInt(multi.getParameter("re_step")));
-    dto.setRe_level(Integer.parseInt(multi.getParameter("re_level")));
-    dto.setIp(request.getRemoteAddr());
+    dto.setRe_indent(Integer.parseInt(multi.getParameter("re_indent")));
     dto.setFileupload(multi.getParameter("fileupload"));
     Enumeration files = multi.getFileNames();
     String file = (String) files.nextElement();

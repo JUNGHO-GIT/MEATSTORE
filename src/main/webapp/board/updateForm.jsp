@@ -17,12 +17,9 @@
 		<!-- section -->
 		<section class="blog">
 			<div class="container">
-				<!-- form --------------------------------------------------------------------------------->
 				<form name="updateForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/updatePro.do?pageNum=${pageNum}" onsubmit="return uppwCheck()">
 					<input type="hidden" name="pw" id="pw" value="${dto.pw}" />
 					<input type="hidden" name="num" value="${dto.num}" />
-
-					<!-- row -->
 					<div class="row">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 							<div id="image_container" oninput="setThumbnail(event);" style="margin-bottom: 20px;">

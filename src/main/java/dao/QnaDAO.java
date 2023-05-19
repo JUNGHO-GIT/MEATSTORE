@@ -29,7 +29,7 @@ public class QnaDAO {
   private static QnaDAO instance = new QnaDAO();
 
   // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
-  public void exceptionHandling() {
+  private void exceptionHandling() {
     try {
       if (resultSet != null) {
         resultSet.close();
@@ -62,7 +62,6 @@ public class QnaDAO {
   public void insertQna (QnaDTO dto)  {
     int num = dto.getNum();
     int ref = dto.getRef();
-    int re_step = dto.getRe_step();
     int re_indent = dto.getRe_indent();
     int number = 0;
     try {
@@ -77,21 +76,21 @@ public class QnaDAO {
       }
 
       if (num != 0) {
-        sqlParam = "update qna set re_step=re_step+1 where ref=? and re_step>=?";
+        sqlParam = "update qna set re_indent=re_indent+1 where ref=? and re_indent>=?";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setInt(1, ref);
-        psTmt.setInt(2, re_step);
+        psTmt.setInt(2, re_indent);
         psTmt.executeUpdate();
-        re_step = re_step + 1;
+        re_indent = re_indent + 1;
         re_indent = re_indent + 1;
       }
       else {
         ref = number;
-        re_step = 0;
+        re_indent = 0;
         re_indent = 0;
       }
 
-      sqlParam = "insert into qna(writer, subject, content, pw, regdate, ref, re_step, re_indent)";
+      sqlParam = "insert into qna(writer, subject, content, pw, regdate, ref, re_indent, re_indent)";
       sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, dto.getWriter());
@@ -99,7 +98,7 @@ public class QnaDAO {
       psTmt.setString(3, dto.getContent());
       psTmt.setString(4, dto.getPw());
       psTmt.setInt(5, ref);
-      psTmt.setInt(6, re_step);
+      psTmt.setInt(6, re_indent);
       psTmt.setInt(7, re_indent);
       psTmt.executeUpdate();
     }
@@ -113,13 +112,14 @@ public class QnaDAO {
 
   // ---------------------------------------------------------------------------------------------->
   public int getCount ()  {
-    int cnt = 0;
+    int count = 0;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select count(*) from qna");
       resultSet = psTmt.executeQuery();
+
       if (resultSet.next()) {
-        cnt = resultSet.getInt(1);
+        count = resultSet.getInt(1);
       }
     }
     catch (Exception ex) {
@@ -128,18 +128,18 @@ public class QnaDAO {
     finally {
       exceptionHandling();
     }
-    return cnt;
+    return count;
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List getList (int start, int cnt)  {
+  public List getList (int start, int count)  {
     List<QnaDTO> list = null;
     try {
       connecTion = getConnection();
-      sqlParam = "select * from qna order by ref desc, re_step asc limit ?, ?";
+      sqlParam = "select * from qna order by ref desc, re_indent asc limit ?, ?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, start - 1);
-      psTmt.setInt(2, cnt);
+      psTmt.setInt(2, count);
       resultSet = psTmt.executeQuery();
       while (resultSet.next()) {
         list = new ArrayList<QnaDTO>();
@@ -153,7 +153,7 @@ public class QnaDAO {
           dto.setRegdate(resultSet.getTimestamp("regdate"));
           dto.setViews(resultSet.getInt("views"));
           dto.setRef(resultSet.getInt("ref"));
-          dto.setRe_step(resultSet.getInt("re_step"));
+          dto.setRe_indent(resultSet.getInt("re_indent"));
           dto.setRe_indent(resultSet.getInt("re_indent"));
           list.add(dto);
         } while (resultSet.next());
@@ -169,15 +169,15 @@ public class QnaDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public int getCount (String keyword, String search)  {
-    int cnt = 0;
+  public int getSearch (String keyword, String search)  {
+    int count = 0;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select count(*) from qna where " + keyword + " like '%" +
       search + "%'");
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        cnt = resultSet.getInt(1);
+        count = resultSet.getInt(1);
       }
     }
     catch (Exception ex) {
@@ -186,11 +186,11 @@ public class QnaDAO {
     finally {
       exceptionHandling();
     }
-    return cnt;
+    return count;
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List<QnaDTO> listSearch(int start, int cnt, String subject, String writer) {
+  public List<QnaDTO> listSearch(int start, int count, String subject, String writer) {
     List<QnaDTO> list = new ArrayList<>();
     try {
       connecTion = getConnection();
@@ -208,7 +208,7 @@ public class QnaDAO {
         }
       }
 
-      String orderByClause = " ORDER BY ref DESC, re_step ASC LIMIT ?, ?";
+      String orderByClause = " ORDER BY ref DESC, re_indent ASC LIMIT ?, ?";
       String sqlParam = selectClause + whereClause + orderByClause;
       psTmt = connecTion.prepareStatement(sqlParam);
       int paramIndex = 1;
@@ -220,7 +220,7 @@ public class QnaDAO {
         psTmt.setString(paramIndex++, "%" + writer + "%");
       }
       psTmt.setInt(paramIndex++, start - 1);
-      psTmt.setInt(paramIndex, cnt);
+      psTmt.setInt(paramIndex, count);
       resultSet = psTmt.executeQuery();
 
       while (resultSet.next()) {
@@ -233,7 +233,6 @@ public class QnaDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
-        dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
         list.add(dto);
       }
@@ -267,7 +266,6 @@ public class QnaDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
-        dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
       }
     }
@@ -297,7 +295,6 @@ public class QnaDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
-        dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
       }
     }

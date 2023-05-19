@@ -30,7 +30,7 @@ public class ProductDAO {
   private static ProductDAO instance = new ProductDAO();
 
   // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
-  public void exceptionHandling() {
+  private void exceptionHandling() {
     try {
       if (resultSet != null) {
         resultSet.close();
@@ -92,13 +92,13 @@ public class ProductDAO {
 
   // ---------------------------------------------------------------------------------------------->
   public int getCount ()  {
-    int cnt = 0;
+    int count = 0;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select count(*) from product");
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        cnt = resultSet.getInt(1);
+        count = resultSet.getInt(1);
       }
     }
     catch (Exception ex) {
@@ -107,18 +107,18 @@ public class ProductDAO {
     finally {
       exceptionHandling();
     }
-    return cnt;
+    return count;
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List getProductList (int start, int cnt)  {
+  public List getProductList (int start, int count)  {
     List<ProductDTO> list = null;
     try {
       connecTion = getConnection();
       sqlParam = "select*from product order by pro_no desc limit ?, ?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, start - 1);
-      psTmt.setInt(2, cnt);
+      psTmt.setInt(2, count);
       resultSet = psTmt.executeQuery();
       while (resultSet.next()) {
         list = new ArrayList<ProductDTO>();
@@ -308,8 +308,8 @@ public class ProductDAO {
         psTmt.setInt(8, Integer.parseInt(mul.getParameter("pro_no")));
       }
 
-      int cnt = psTmt.executeUpdate();
-      if (cnt == 1) {
+      int count = psTmt.executeUpdate();
+      if (count == 1) {
         re = true;
       }
     }
@@ -343,8 +343,8 @@ public class ProductDAO {
 
       sqlParam = "delete from product where pro_no=" + pro_no;
       psTmt = connecTion.prepareStatement(sqlParam);
-      int cnt = psTmt.executeUpdate();
-      if (cnt > 0) {
+      int count = psTmt.executeUpdate();
+      if (count > 0) {
         re = true;
       }
     }

@@ -7,8 +7,8 @@ CREATE TABLE board (
   regdate DATETIME,
   views INT,
   ref INT,
-  re_step INT,
-  re_level INT,
+  re_indent INT,
+  re_indent INT,
   ip VARCHAR(255),
   fileupload VARCHAR(255)
 );
