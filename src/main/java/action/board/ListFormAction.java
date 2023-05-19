@@ -1,16 +1,16 @@
 package action.board;
 
-import command.CommandAction;
-import dao.BoardDAO;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import command.CommandAction;
+import dao.BoardDAO;
+import dto.BoardDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class ListFormAction implements CommandAction {
 
-  // ---------------------------------------------------------------------------------------------->
   @Override
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
     String pageNum = request.getParameter("pageNum");
@@ -19,29 +19,30 @@ public class ListFormAction implements CommandAction {
     }
 
     int currentPage = Integer.parseInt(pageNum);
-    int pageSize = 4;
+    int pageSize = 10;
     int startRow = (currentPage - 1) * pageSize + 1;
     int endRow = currentPage * pageSize;
     int count = 0;
     int number = 0;
     int pageBlock = 10;
-    List list = null;
+    List<BoardDTO> list = null;
     BoardDAO dao = BoardDAO.getInstance();
     count = dao.getCount();
     if (count > 0) {
       list = dao.getList(startRow, pageSize);
     }
     else {
-      list = Collections.EMPTY_LIST;
+      list = Collections.emptyList();
     }
 
     number = count - (currentPage - 1) * pageSize;
     int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-    int startPage = (int) (currentPage / pageBlock) * 10 + 1;
+    int startPage = (currentPage / pageBlock) * 10 + 1;
     pageBlock = 10;
     if (currentPage % pageBlock == 0 && currentPage >= pageBlock) {
       startPage = currentPage - 9;
     }
+
     int endPage = startPage + pageBlock - 1;
     request.setAttribute("startPage", startPage);
     request.setAttribute("endPage", endPage);

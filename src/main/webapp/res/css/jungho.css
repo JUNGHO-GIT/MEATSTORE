@@ -473,4 +473,28 @@
 .sh-9 { box-shadow: 0px 9px 18px rgba(0, 0, 0, 0.5) !important;}
 .sh-10 { box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.55) !important;}
 
-/** etc custom ************************************************************************************/
+/** 테두리 레디우스 *******************************************************************************/
+.rd-1 {border-radius: 10px !important;}
+.rd-2 {border-radius: 20px !important;}
+.rd-3 {border-radius: 30px !important;}
+.rd-4 {border-radius: 40px !important;}
+.rd-5 {border-radius: 50px !important;}
+.rd-6 {border-radius: 60px !important;}
+.rd-7 {border-radius: 70px !important;}
+.rd-8 {border-radius: 80px !important;}
+.rd-9 {border-radius: 90px !important;}
+.rd-10 {border-radius: 100px !important;}
+.rd-11 {border-radius: 110px !important;}
+.rd-12 {border-radius: 120px !important;}
+.rd-13 {border-radius: 130px !important;}
+.rd-14 {border-radius: 140px !important;}
+.rd-15 {border-radius: 150px !important;}
+
+/** 가운데 정렬 ***********************************************************************************/
+.jungho-center {
+  display: flex;
+  text-align: center !important;
+  justify-content: center !important;
+  align-items: center !important;
+  vertical-align: middle !important;
+}

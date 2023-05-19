@@ -46,15 +46,15 @@
 			<section class="section">
 				<table width="90%">
 					<tr>
-						<td>주문번호</td>
-						<td>제품</td>
-						<td>주문수량</td>
-						<td>주문날짜</td>
-						<td>주문상태</td>
+						<th>주문번호</td>
+						<th>제품</td>
+						<th>주문수량</td>
+						<th>주문날짜</td>
+						<th>주문상태</td>
 					</tr>
 					<c:if test="${vec.size() == 0}">
 						<tr>
-							<td colspan="5" align="center">구매목록이 없습니다.</td>
+							<th colspan="5" align="center">구매목록이 없습니다.</td>
 						</tr>
 					</c:if>
 					<c:if test="${vec.size() > 0}">
@@ -64,14 +64,14 @@
               ProductDTO productDTO = productDAO.getProduct(pro_no);
             %>
 						<tr>
-							<td><%= orderDTO.getOrdno() %></td>
-							<td>
+							<th><%= orderDTO.getOrdno() %></td>
+							<th>
 								<a href="javascript:productDetail('<%= productDTO.getCode()%>')">
 									<%= productDTO.getName() %></a>
 							</td>
-							<td><%= orderDTO.getQuantity() %></td>
-							<td><%= orderDTO.getOrddate() %></td>
-							<td>
+							<th><%= orderDTO.getQuantity() %></td>
+							<th><%= orderDTO.getOrddate() %></td>
+							<th>
 								<%
               switch (Integer.parseInt(orderDTO.getState())) {
               case 1:

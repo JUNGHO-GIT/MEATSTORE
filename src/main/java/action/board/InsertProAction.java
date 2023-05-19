@@ -16,7 +16,7 @@ public class InsertProAction implements CommandAction {
   // ---------------------------------------------------------------------------------------------->
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
     ServletContext context = request.getServletContext();
-    String uploadPath = context.getRealPath("/upload");
+    String uploadPath = context.getRealPath("/res/upload");
     int sizeLimit = 1024 * 1024 * 10;
     MultipartRequest multi = new MultipartRequest(request, uploadPath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
     BoardDTO dto = new BoardDTO();

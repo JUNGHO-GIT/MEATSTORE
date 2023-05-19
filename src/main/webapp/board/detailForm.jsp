@@ -24,19 +24,19 @@
     <div class="col-md-6">
       <table class="table table-borderless">
         <tr>
-          <td colspan="2" class="text-center">
+          <th colspan="2" class="text-center">
             <h2>${dto.subject}</h2>
           </td>
         </tr>
         <tr>
-          <td>작성자</td>
-          <td>
+          <th>작성자</td>
+          <th>
             <input type="text" name="writer" id="writer" class="form-control" value="${dto.writer}" readonly />
           </td>
         </tr>
         <tr>
-          <td>작성일</td>
-          <td>
+          <th>작성일</td>
+          <th>
             <input type="text" name="regdate" id="regdate" class="form-control" value="${dto.regdate}" readonly />
           </td>
         </tr>
@@ -47,7 +47,7 @@
           </th>
         </tr>
         <tr>
-          <td colspan="2" class="text-center">
+          <th colspan="2" class="text-center">
             <button type="button" onclick="window.location.href='${ctxpath}/board/updateForm.do?num=${num}&pageNum=${pageNum}'" class="btn btn-jungho">수정</button>
             &nbsp;&nbsp;
             <button type="button" onclick="window.location.href='${ctxpath}/board/deleteForm.do?num=${num}&pageNum=${pageNum}'" class="btn btn-jungho">삭제</button>

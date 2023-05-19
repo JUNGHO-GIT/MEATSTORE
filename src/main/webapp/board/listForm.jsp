@@ -1,26 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 
 <!-- header -->
-<section class="section-1">
+<section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
-      <h1 data-aos="fade-right" data-aos-delay="300">자유게시판</h1>
-      <h2 data-aos="fade-left" data-aos-delay="300">[전체글: ${count}]</h2>
-      <h2>
-        <button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/insertForm.do'" data-aos="fade-up" data-aos-delay="300">글쓰기 </button>
-      </h2>
+      <h1 data-aos="fade-right" data-aos-delay="300">Board</h1>
+      <h2 data-aos="fade-left" data-aos-delay="300">[전체글 : ${count}]</h1>
+        <h2>
+          <button class="btn btn-jungho" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='${ctxpath}/board/insertForm.do'">글쓰기</button>
+        </h2>
     </div>
   </div>
 </section>
 
 <!-- 글 x -->
-<c:if test="${count == 0}">
+<c:if test="${count==0}">
   <section class="empty-section"></section>
 </c:if>
 
@@ -29,25 +28,34 @@
   <!-- section -->
   <section class="section">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+      <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <table class="table table-striped dataTable table-hover" style="border: 1px solid #dddddd;">
           <thead>
             <tr>
-              <th scope="col">번호</th>
-              <th scope="col">제목</th>
-              <th scope="col">작성자</th>
-              <th scope="col">작성일</th>
-              <th scope="col">조회수</th>
+              <th style="width:100px;">번호</th>
+              <th style="width:120px;">이미지</th>
+              <th style="width:200px;">제목</th>
+              <th style="width:100px;">작성자</th>
+              <th style="width:100px;">작성일</th>
+              <th style="width:100px;">조회수</th>
             </tr>
           </thead>
           <tbody>
             <c:forEach var="dto" items="${list}">
               <tr>
-                <td id="list_td">
+                <th class="fw-5">
                   <c:out value="${number}" />
                   <c:set var="number" value="${number-1}" />
                 </td>
-                <td id="list_subject">
+                <th>
+                  <c:if test="${dto.fileupload!=null}">
+                    <img src="${cloudPath}/${dto.fileupload}" width="100" height="100" class="sh-10 rd-1"/>
+                  </c:if>
+                  <c:if test="${dto.fileupload==null}">
+                    <img src="${ctxpath}/res/imgs/nofile.jpg" width="100" height="100" class="sh-10 rd-1"/>
+                  </c:if>
+                </td>
+                <th class="fw-5">
                   <c:if test="${dto.re_indent>0}">
                     <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_indent}" height="16" />
                     <img src="${ctxpath}/res/imgs/re.gif" />
@@ -61,11 +69,11 @@
                     <img src="${ctxpath}/res/imgs/hot.gif" />
                   </c:if>
                 </td>
-                <td id="list_td">${dto.writer}</td>
-                <td id="list_td">
+                <th class="fw-5">${dto.writer}</td>
+                <th class="fw-5">
                   <fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd" />
                 </td>
-                <td id="list_td">${dto.views}</td>
+                <th class="fw-5">${dto.views}</td>
               </tr>
             </c:forEach>
           </tbody>

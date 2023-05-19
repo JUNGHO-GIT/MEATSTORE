@@ -14,14 +14,14 @@ public class DeleteProAction implements CommandAction {
   // ---------------------------------------------------------------------------------------------->
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
     ServletContext context = request.getServletContext();
-    String uploadPath = context.getRealPath("/upload");
+    String uploadPath = context.getRealPath("/res/upload");
     int sizeLimit = 1024 * 1024 * 10;
     MultipartRequest multi = new MultipartRequest(request, uploadPath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
     int num = Integer.parseInt(multi.getParameter("num"));
     String pageNum = request.getParameter("pageNum");
     String pw = multi.getParameter("pw");
     BoardDAO dao = BoardDAO.getInstance();
-    int checkParam = dao.getDelete(num, pw);
+    int checkParam = dao.deleteBoard(num, pw);
     request.setAttribute("checkParam", checkParam);
     request.setAttribute("pageNum", pageNum);
     return "/board/deletePro.jsp";

@@ -48,7 +48,7 @@
 				else {
 					document.documentElement.setAttribute('class', 'stuck');
 				};
-			}))/* .observe(document.querySelector('.trigger')); */
+			}));
 		</script>
 		<script>
 			function pwCheck() {
@@ -83,13 +83,13 @@
 						<a href="${ctxpath}/order/listForm.do">
 							<img src="${ctxpath}/res/imgs/orderList.png" />
 						</a>
+            &nbsp;&nbsp;
+						<a href="${ctxpath}/board/listForm.do">
+							<img src="${ctxpath}/res/imgs/board.png" />
+						</a>
 						&nbsp;&nbsp;
 						<a href="${ctxpath}/notice/listForm.do">
 							<img src="${ctxpath}/res/imgs/notice.png" />
-						</a>
-						&nbsp;&nbsp;
-						<a href="${ctxpath}/board/listForm.do">
-							<img src="${ctxpath}/res/imgs/board.png" />
 						</a>
 						&nbsp;&nbsp;
 						<a href="${ctxpath}/qna/listForm.do">
@@ -144,7 +144,9 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 						<h6>
-            <p class="text-center text-white mb-1 pt-1 ft-7">© 2023 MTS Corp. All Rights Reserved | Designed & Developed by MTS Corp.</p>
+              <p class="text-center text-white mb-1 pt-1 ft-7">
+                © 2023 MTS Corp. All Rights Reserved | Designed & Developed by MTS Corp.
+              </p>
 						</<h6>
 					</div>
 				</div>

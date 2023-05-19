@@ -27,43 +27,43 @@
       <div class="col-md-6">
         <table class="table table-borderless">
           <tr>
-            <td colspan="2" class="text-center">
+            <th colspan="2" class="text-center">
               <h2>${dto.name}</h2>
             </td>
           </tr>
           <tr>
-            <td>상품코드</td>
-            <td>
+            <th>상품코드</td>
+            <th>
               <input type="text" name="code" id="code" class="form-control" value="${dto.code}" readonly />
             </td>
           </tr>
           <tr>
-            <td>상품가격</td>
-            <td>
+            <th>상품가격</td>
+            <th>
               <input type="text" name="price" id="price" class="form-control" value="${dto.price}원" readonly />
             </td>
           </tr>
           <tr>
-            <td>제품수량</td>
-            <td>
+            <th>제품수량</td>
+            <th>
               <input type="text" name="stock" id="stock" class="form-control" value="${dto.stock}개" readonly />
             </td>
           </tr>
           <tr>
-            <td>등록날짜</td>
-            <td>
+            <th>등록날짜</td>
+            <th>
               <input type="text" name="regdate" id="regdate" class="form-control" value="${dto.regdate}" readonly />
             </td>
           </tr>
           <tr>
-            <td>제조회사</td>
-            <td>
+            <th>제조회사</td>
+            <th>
               <input type="text" name="comp" id="comp" class="form-control" value="(주)${dto.comp}" readonly />
             </td>
           </tr>
           <tr>
-            <td>주문수량</td>
-            <td>
+            <th>주문수량</td>
+            <th>
               <select name="quantity" class="custom-select">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -74,7 +74,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="text-center">
+            <th colspan="2" class="text-center">
               <button type="submit" id="submit_detail" class="btn btn-jungho">장바구니 담기</button>
               <button type="button" id="button_detail" class="btn btn-secondary" onClick="location='${ctxpath}/product/listForm.do'">취소</button>
               <input type="hidden" name="pro_no" id="pro_no" value="${dto.pro_no}" />

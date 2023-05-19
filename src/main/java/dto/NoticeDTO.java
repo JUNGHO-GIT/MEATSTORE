@@ -12,6 +12,7 @@ public class NoticeDTO {
   private String content;
   private int views;
   private int ref;
+  private int re_step;
   private int re_indent;
   private Date regdate;
 
@@ -39,6 +40,9 @@ public class NoticeDTO {
   }
   public int getRef() {
     return ref;
+  }
+  public int getRe_step() {
+    return re_step;
   }
   public int getRe_indent() {
     return re_indent;
@@ -68,6 +72,9 @@ public class NoticeDTO {
   }
   public void setRef(int ref) {
     this.ref = ref;
+  }
+  public void setRe_step(int re_step) {
+    this.re_step = re_step;
   }
   public void setRe_indent(int re_indent) {
     this.re_indent = re_indent;

@@ -54,7 +54,7 @@ public class MemberDAO {
 
   // confirmID ------------------------------------------------------------------------------------>
   public int confirmID(String id) {
-    int x = -100;
+    int checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select id from member where id=?");
@@ -64,12 +64,12 @@ public class MemberDAO {
 
       // success = 1
       if (resultSet.next()) {
-        x = 1;
+        checkParam = 1;
       }
 
       // fail = -1
       else {
-        x = -1;
+        checkParam = -1;
       }
     }
     catch (Exception ex) {
@@ -78,7 +78,7 @@ public class MemberDAO {
     finally {
       exceptionHandling();
     }
-    return x;
+    return checkParam;
   }
 
   // insertMember --------------------------------------------------------------------------------->
@@ -108,7 +108,7 @@ public class MemberDAO {
 
   // userCheck ------------------------------------------------------------------------------------>
   public int userCheck(String id, String pw) {
-    int x = -100;
+    int checkParam = -100;
     String dbPw = "";
     try {
       connecTion = getConnection();
@@ -119,14 +119,14 @@ public class MemberDAO {
       if (resultSet.next()) {
         dbPw = resultSet.getString("pw");
         if (pw.equals(dbPw)) {
-          x = 1;
+          checkParam = 1;
         }
         else {
-          x = 0;
+          checkParam = 0;
         }
       }
       else {
-        x = -1;
+        checkParam = -1;
       }
     }
     catch (Exception ex) {
@@ -135,12 +135,12 @@ public class MemberDAO {
     finally {
       exceptionHandling();
     }
-    return x;
+    return checkParam;
   }
 
   // getMember ------------------------------------------------------------------------------------>
   public int pwCheck(String id, String pw) {
-    int x = -100;
+    int checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select * from member where id=? and pw=?");
@@ -149,10 +149,10 @@ public class MemberDAO {
       resultSet = psTmt.executeQuery();
 
       if (resultSet.next()) {
-        x = 1;
+        checkParam = 1;
       }
       else {
-        x = -1;
+        checkParam = -1;
       }
     }
     catch (Exception ex) {
@@ -161,7 +161,7 @@ public class MemberDAO {
     finally {
       exceptionHandling();
     }
-    return x;
+    return checkParam;
   }
 
   // getMember ------------------------------------------------------------------------------------>
@@ -223,7 +223,7 @@ public class MemberDAO {
 
   // deleteMember --------------------------------------------------------------------------------->
   public int deleteMember(String id, String pw) {
-    int x = -100;
+    int checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from member where id=?");
@@ -237,10 +237,10 @@ public class MemberDAO {
           psTmt.setString(1, id);
           psTmt.executeUpdate();
 
-          x = 1;
+          checkParam = 1;
         }
         else {
-          x = -1;
+          checkParam = -1;
         }
       }
     }
@@ -250,12 +250,12 @@ public class MemberDAO {
     finally {
       exceptionHandling();
     }
-    return x;
+    return checkParam;
   }
 
   // adminLogin ----------------------------------------------------------------------------------->
   public int adminLogin(String adminid, String adminpw) {
-    int x = 100;
+    int checkParam = 100;
     try {
       connecTion = getConnection();
       psTmt =
@@ -266,10 +266,10 @@ public class MemberDAO {
       psTmt.setString(2, adminpw);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        x = 1;
+        checkParam = 1;
       }
       else {
-        x = -1;
+        checkParam = -1;
       }
     }
     catch (Exception ex) {
@@ -278,6 +278,6 @@ public class MemberDAO {
     finally {
       exceptionHandling();
     }
-    return x;
+    return checkParam;
   }
 }

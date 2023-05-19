@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import dto.QnaDTO;
+import dto.QnaDTO;
 
 public class QnaDAO {
 
@@ -62,6 +63,7 @@ public class QnaDAO {
   public void insertQna (QnaDTO dto)  {
     int num = dto.getNum();
     int ref = dto.getRef();
+    int re_step = dto.getRe_step();
     int re_indent = dto.getRe_indent();
     int number = 0;
     try {
@@ -76,21 +78,21 @@ public class QnaDAO {
       }
 
       if (num != 0) {
-        sqlParam = "update qna set re_indent=re_indent+1 where ref=? and re_indent>=?";
+        sqlParam = "update qna set re_step=re_step+1 where ref?and re_step>?";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setInt(1, ref);
-        psTmt.setInt(2, re_indent);
+        psTmt.setInt(2, re_step);
         psTmt.executeUpdate();
-        re_indent = re_indent + 1;
+        re_step = re_step + 1;
         re_indent = re_indent + 1;
       }
       else {
         ref = number;
-        re_indent = 0;
+        re_step = 0;
         re_indent = 0;
       }
 
-      sqlParam = "insert into qna(writer, subject, content, pw, regdate, ref, re_indent, re_indent)";
+      sqlParam = "insert into qna(writer, subject, content, pw, regdate, ref, re_step, re_indent)";
       sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, dto.getWriter());
@@ -98,7 +100,7 @@ public class QnaDAO {
       psTmt.setString(3, dto.getContent());
       psTmt.setString(4, dto.getPw());
       psTmt.setInt(5, ref);
-      psTmt.setInt(6, re_indent);
+      psTmt.setInt(6, re_step);
       psTmt.setInt(7, re_indent);
       psTmt.executeUpdate();
     }
@@ -132,8 +134,8 @@ public class QnaDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List getList (int start, int count)  {
-    List<QnaDTO> list = null;
+  public List getList(int start, int count) {
+    List<QnaDTO> list = new ArrayList<QnaDTO>();
     try {
       connecTion = getConnection();
       sqlParam = "select * from qna order by ref desc, re_indent asc limit ?, ?";
@@ -141,22 +143,20 @@ public class QnaDAO {
       psTmt.setInt(1, start - 1);
       psTmt.setInt(2, count);
       resultSet = psTmt.executeQuery();
+
       while (resultSet.next()) {
-        list = new ArrayList<QnaDTO>();
-        do {
-          QnaDTO dto = new QnaDTO();
-          dto.setNum(resultSet.getInt(1));
-          dto.setWriter(resultSet.getString("writer"));
-          dto.setSubject(resultSet.getString("subject"));
-          dto.setContent(resultSet.getString("content"));
-          dto.setPw(resultSet.getString("pw"));
-          dto.setRegdate(resultSet.getTimestamp("regdate"));
-          dto.setViews(resultSet.getInt("views"));
-          dto.setRef(resultSet.getInt("ref"));
-          dto.setRe_indent(resultSet.getInt("re_indent"));
-          dto.setRe_indent(resultSet.getInt("re_indent"));
-          list.add(dto);
-        } while (resultSet.next());
+        QnaDTO dto = new QnaDTO();
+        dto.setNum(resultSet.getInt(1));
+        dto.setWriter(resultSet.getString("writer"));
+        dto.setSubject(resultSet.getString("subject"));
+        dto.setContent(resultSet.getString("content"));
+        dto.setPw(resultSet.getString("pw"));
+        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setViews(resultSet.getInt("views"));
+        dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
+        dto.setRe_indent(resultSet.getInt("re_indent"));
+        list.add(dto);
       }
     }
     catch (Exception ex) {
@@ -233,6 +233,7 @@ public class QnaDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
         list.add(dto);
       }
@@ -266,6 +267,7 @@ public class QnaDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
       }
     }
@@ -295,6 +297,7 @@ public class QnaDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
       }
     }
@@ -309,7 +312,7 @@ public class QnaDAO {
 
   // ---------------------------------------------------------------------------------------------->
   public int updateQna (QnaDTO dto)  {
-    int x = -100;
+    int checkParam = -100;
     String dbPw = "";
     try {
       connecTion = getConnection();
@@ -326,10 +329,10 @@ public class QnaDAO {
           psTmt.setString(3, dto.getContent());
           psTmt.setInt(4, dto.getNum());
           psTmt.executeUpdate();
-          x = 1;
+          checkParam = 1;
         }
         else {
-          x = -1;
+          checkParam = -1;
         }
       }
     }
@@ -339,13 +342,13 @@ public class QnaDAO {
     finally {
       exceptionHandling();
     }
-    return x;
+    return checkParam;
   }
 
   // ---------------------------------------------------------------------------------------------->
   public int deleteQna (int num, String pw)  {
     String dbPw = "";
-    int x = -100;
+    int checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from qna where num=" + num);
@@ -355,10 +358,10 @@ public class QnaDAO {
         if (pw.equals(dbPw)) {
           psTmt = connecTion.prepareStatement("delete from qna where num=" + num);
           psTmt.executeUpdate();
-          x = 1;
+          checkParam = 1;
         }
         else {
-          x = -1;
+          checkParam = -1;
         }
       }
     }
@@ -368,6 +371,6 @@ public class QnaDAO {
     finally {
       exceptionHandling();
     }
-    return x;
+    return checkParam;
   }
 }

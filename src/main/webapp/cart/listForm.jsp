@@ -52,27 +52,27 @@
                     <input type="hidden" name="flag">
                     <input type="hidden" name="state" value="1">
                     <tr>
-                      <td>${productDTO.name}</td>
-                      <td>
+                      <th>${productDTO.name}</td>
+                      <th>
                         <input type="text" name="quantity" id="quantity" value="${orderDTO.quantity}" size="5">
                       </td>
-                      <td>${subTotal}</td>
-                      <td>
+                      <th>${subTotal}</td>
+                      <th>
                         <input type="button" value="장바구니 수정" onclick="cartUpdate(this.form);">
                         <input type="button" value="장바구니 삭제" onclick="cartDelete(this.form);">
                         <input type="submit" value="주문하기">
                       </td>
-                      <td>
+                      <th>
                         <a href="javaScript:productDetail('${productDTO.code}')">상세보기</a>
                       </td>
                     </tr>
                   </form>
                 </c:forEach>
 								<tr>
-									<td colspan="4" align="right">
+									<th colspan="4" align="right">
 										총 금액:
 									</td>
-									<td align="center">
+									<th align="center">
 										<a href="${ctxpath}/order/insert.do">주문하기</a>
 									</td>
 								</tr>

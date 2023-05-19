@@ -34,21 +34,21 @@
         <table class="table table-striped dataTable table-hover" style="border: 1px solid #dddddd;">
           <thead>
             <tr>
-              <th scope="col">번호</th>
-              <th scope="col">제목</th>
-              <th scope="col">작성자</th>
-              <th scope="col">작성일</th>
-              <th scope="col">조회수</th>
+              <th style="width:100px;">번호</th>
+              <th style="width:200px;">제목</th>
+              <th style="width:100px;">작성자</th>
+              <th style="width:100px;">작성일</th>
+              <th style="width:100px;">조회수</th>
             </tr>
           </thead>
           <tbody>
             <c:forEach var="dto" items="${list}">
               <tr>
-                <td id="list_td">
+                <th class="fw-5">
                   <c:out value="${number}" />
                   <c:set var="number" value="${number-1}" />
                 </td>
-                <td id="list_subject">
+                <th class="fw-5">
                   <c:if test="${dto.re_indent>0}">
                     <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_indent}" height="16" />
                     <img src="${ctxpath}/res/imgs/re.gif" />
@@ -62,11 +62,11 @@
                     <img src="${ctxpath}/res/imgs/hot.gif" />
                   </c:if>
                 </td>
-                <td id="list_td">${dto.writer}</td>
-                <td id="list_td">
+                <th class="fw-5">${dto.writer}</td>
+                <th class="fw-5">
                   <fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd" />
                 </td>
-                <td id="list_td">${dto.views}</td>
+                <th class="fw-5">${dto.views}</td>
               </tr>
             </c:forEach>
           </tbody>

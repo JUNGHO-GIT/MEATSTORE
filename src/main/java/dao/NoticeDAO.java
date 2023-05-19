@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import dto.NoticeDTO;
+import dto.NoticeDTO;
 
 public class NoticeDAO {
 
@@ -28,7 +29,7 @@ public class NoticeDAO {
   // 싱글톤 패턴을 위한 객체 생성 ----------------------------------------------------------------->
   private static NoticeDAO instance = new NoticeDAO();
 
-  // 반복되는 예외처리를 위한 메소드 --------------------------------------------------------------
+  // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
   private void exceptionHandling() {
     try {
       if (resultSet != null) {
@@ -62,6 +63,7 @@ public class NoticeDAO {
   public void insertNotice (NoticeDTO dto)  {
     int num = dto.getNum();
     int ref = dto.getRef();
+    int re_step = dto.getRe_step();
     int re_indent = dto.getRe_indent();
     int number = 0;
     try {
@@ -76,21 +78,21 @@ public class NoticeDAO {
       }
 
       if (num != 0) {
-        sqlParam = "update notice set re_indent=re_indent+1 where ref=? and re_indent>=?";
+        sqlParam = "update notice set re_step=re_step+1 where ref?and re_step>?";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setInt(1, ref);
-        psTmt.setInt(2, re_indent);
+        psTmt.setInt(2, re_step);
         psTmt.executeUpdate();
-        re_indent = re_indent + 1;
+        re_step = re_step + 1;
         re_indent = re_indent + 1;
       }
       else {
         ref = number;
-        re_indent = 0;
+        re_step = 0;
         re_indent = 0;
       }
 
-      sqlParam = "insert into notice(writer, subject, content, pw, regdate, ref, re_indent, re_indent)";
+      sqlParam = "insert into notice(writer, subject, content, pw, regdate, ref, re_step, re_indent)";
       sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, dto.getWriter());
@@ -98,7 +100,7 @@ public class NoticeDAO {
       psTmt.setString(3, dto.getContent());
       psTmt.setString(4, dto.getPw());
       psTmt.setInt(5, ref);
-      psTmt.setInt(6, re_indent);
+      psTmt.setInt(6, re_step);
       psTmt.setInt(7, re_indent);
       psTmt.executeUpdate();
     }
@@ -117,6 +119,7 @@ public class NoticeDAO {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select count(*) from notice");
       resultSet = psTmt.executeQuery();
+
       if (resultSet.next()) {
         count = resultSet.getInt(1);
       }
@@ -131,8 +134,8 @@ public class NoticeDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List getList (int start, int count)  {
-    List<NoticeDTO> list = null;
+  public List getList(int start, int count) {
+    List<NoticeDTO> list = new ArrayList<NoticeDTO>();
     try {
       connecTion = getConnection();
       sqlParam = "select * from notice order by ref desc, re_indent asc limit ?, ?";
@@ -140,22 +143,20 @@ public class NoticeDAO {
       psTmt.setInt(1, start - 1);
       psTmt.setInt(2, count);
       resultSet = psTmt.executeQuery();
+
       while (resultSet.next()) {
-        list = new ArrayList<NoticeDTO>();
-        do {
-          NoticeDTO dto = new NoticeDTO();
-          dto.setNum(resultSet.getInt(1));
-          dto.setWriter(resultSet.getString("writer"));
-          dto.setSubject(resultSet.getString("subject"));
-          dto.setContent(resultSet.getString("content"));
-          dto.setPw(resultSet.getString("pw"));
-          dto.setRegdate(resultSet.getTimestamp("regdate"));
-          dto.setViews(resultSet.getInt("views"));
-          dto.setRef(resultSet.getInt("ref"));
-          dto.setRe_indent(resultSet.getInt("re_indent"));
-          dto.setRe_indent(resultSet.getInt("re_indent"));
-          list.add(dto);
-        } while (resultSet.next());
+        NoticeDTO dto = new NoticeDTO();
+        dto.setNum(resultSet.getInt(1));
+        dto.setWriter(resultSet.getString("writer"));
+        dto.setSubject(resultSet.getString("subject"));
+        dto.setContent(resultSet.getString("content"));
+        dto.setPw(resultSet.getString("pw"));
+        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setViews(resultSet.getInt("views"));
+        dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
+        dto.setRe_indent(resultSet.getInt("re_indent"));
+        list.add(dto);
       }
     }
     catch (Exception ex) {
@@ -232,6 +233,7 @@ public class NoticeDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
         list.add(dto);
       }
@@ -265,6 +267,7 @@ public class NoticeDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
       }
     }
@@ -294,6 +297,7 @@ public class NoticeDAO {
         dto.setRegdate(resultSet.getTimestamp("regdate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
+        dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
       }
     }
@@ -308,7 +312,7 @@ public class NoticeDAO {
 
   // ---------------------------------------------------------------------------------------------->
   public int updateNotice (NoticeDTO dto)  {
-    int x = -100;
+    int checkParam = -100;
     String dbPw = "";
     try {
       connecTion = getConnection();
@@ -325,10 +329,10 @@ public class NoticeDAO {
           psTmt.setString(3, dto.getContent());
           psTmt.setInt(4, dto.getNum());
           psTmt.executeUpdate();
-          x = 1;
+          checkParam = 1;
         }
         else {
-          x = -1;
+          checkParam = -1;
         }
       }
     }
@@ -338,13 +342,13 @@ public class NoticeDAO {
     finally {
       exceptionHandling();
     }
-    return x;
+    return checkParam;
   }
 
   // ---------------------------------------------------------------------------------------------->
   public int deleteNotice (int num, String pw)  {
     String dbPw = "";
-    int x = -100;
+    int checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from notice where num=" + num);
@@ -354,10 +358,10 @@ public class NoticeDAO {
         if (pw.equals(dbPw)) {
           psTmt = connecTion.prepareStatement("delete from notice where num=" + num);
           psTmt.executeUpdate();
-          x = 1;
+          checkParam = 1;
         }
         else {
-          x = -1;
+          checkParam = -1;
         }
       }
     }
@@ -367,6 +371,6 @@ public class NoticeDAO {
     finally {
       exceptionHandling();
     }
-    return x;
+    return checkParam;
   }
 }

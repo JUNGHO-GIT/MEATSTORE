@@ -18,9 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 public class ControllerDispatcher extends HttpServlet {
 
   // ---------------------------------------------------------------------------------------------->
-  private Map map = new HashMap () ;
+  private final Map<String, CommandAction> map = new HashMap<>();
 
   // ---------------------------------------------------------------------------------------------->
+  @Override
   public void init(ServletConfig config) throws ServletException {
     String path = config.getServletContext().getRealPath("/");
     String pros = path + config.getInitParameter("proFile");
@@ -34,14 +35,15 @@ public class ControllerDispatcher extends HttpServlet {
       System.out.println("파일 읽기 에러:" + ex);
     }
 
-    Iterator keyIter = pp.keySet().iterator();
+    Iterator<?> keyIter = pp.keySet().iterator();
     while (keyIter.hasNext()) {
       String key = (String) keyIter.next();
       String className = pp.getProperty(key);
       try {
-        Class commandClass = Class.forName(className);
-        Object commandObject = commandClass.newInstance();
-        map.put(key, commandObject);
+        Class<?> commandClass = Class.forName(className);
+        Object commandObject = commandClass.getDeclaredConstructor().newInstance();
+        map.put(key, (CommandAction) commandObject);
+
       }
       catch (Exception ex) {
         System.out.println("properties파일 내용을 클래스로 만들던 중 예외발생" + ex);
@@ -69,7 +71,7 @@ public class ControllerDispatcher extends HttpServlet {
         uri = uri.substring(request.getContextPath().length());
       }
 
-      commandAction = (CommandAction) map.get(uri);
+      commandAction = map.get(uri);
       view = commandAction.requestPro(request, response);
     }
     catch (Throwable ex) {
