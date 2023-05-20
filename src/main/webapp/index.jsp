@@ -68,7 +68,7 @@
           textHover.style.cursor = "pointer";
           textHover.style.caretColor = "transparent";
           textHover.addEventListener("mouseenter", function  ()  {
-            this.style.fontSize = `calc(${getComputedStyle(this).fontSize} + 3px)`;
+            this.style.fontSize = `calc(\${getComputedStyle(this).fontSize} + 3px)`;
           });
           textHover.addEventListener("mouseleave", function  ()  {
             this.style.fontSize = "";
@@ -84,54 +84,54 @@
 			<div class="container">
 				<div class="row menu">
 					<div class="col-xl-1 col-lg-1 col-md-1 d-none d-sm-block d-xs-block d-md-block d-lg-block">
-						<a class="text-hover" href="${ctxPath}/index.jsp">
+						<a href="${ctxPath}/index.jsp">
 							<img src="${imgsPath}/main/logo.png" width="150px" height="150px" />
 						</a>
 					</div>
 					<div class="col-xl-11 col-lg-11 col-md-11 col-sm-12 col-xs-12 col-12">
-						<a class="text-hover" href="${ctxPath}/product/listForm.do">
+						<a href="${ctxPath}/product/listForm.do">
 							<img src="${imgsPath}/section/productList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a class="text-hover" href="${ctxPath}/cart/listForm.do">
+						<a href="${ctxPath}/cart/listForm.do">
 							<img src="${imgsPath}/section/cartList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a class="text-hover" href="${ctxPath}/order/listForm.do">
+						<a href="${ctxPath}/order/listForm.do">
 							<img src="${imgsPath}/section/orderList.png" />
 						</a>
             &nbsp;&nbsp;
-						<a class="text-hover" href="${ctxPath}/board/listForm.do">
+						<a href="${ctxPath}/board/listForm.do">
 							<img src="${imgsPath}/section/board.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a class="text-hover" href="${ctxPath}/notice/listForm.do">
+						<a href="${ctxPath}/notice/listForm.do">
 							<img src="${imgsPath}/section/notice.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a class="text-hover" href="${ctxPath}/qna/listForm.do">
+						<a href="${ctxPath}/qna/listForm.do">
 							<img src="${imgsPath}/section/qna.png" />
 						</a>
 						&nbsp;&nbsp;
             <!-- login x -->
 						<c:if test="${sessionScope.id == null && sessionScope.adminId == null}">
-              <span class="log"><a class="text-hover" href="${ctxPath}/member/loginForm.do">로그인</a></span>
+              <span class="log"><a href="${ctxPath}/member/loginForm.do">로그인</a></span>
 							&nbsp;
-              <span class="log"><a class="text-hover" href="${ctxPath}/member/insertForm.do">회원가입</a></span>
+              <span class="log"><a href="${ctxPath}/member/insertForm.do">회원가입</a></span>
 						</c:if>
 						&nbsp;&nbsp;
 						<!-- login o (일반 회원) -->
 						<c:if test="${sessionScope.id != null}">
-              <span class="log"><a class="text-hover" href="${ctxPath}/member/logoutPro.do">로그아웃</a></span>
+              <span class="log"><a href="${ctxPath}/member/logoutPro.do">로그아웃</a></span>
               &nbsp;
-              <span class="log"><a class="text-hover" href="${ctxPath}/member/updateForm.do">회원정보수정</a></span>
+              <span class="log"><a href="${ctxPath}/member/updateForm.do">회원정보수정</a></span>
 						</c:if>
 						&nbsp;&nbsp;
 						<!-- login o (관리자) -->
 						<c:if test="${sessionScope.adminId != null}">
-              <span class="log"><a class="text-hover" href="${ctxPath}/index.jsp">관리자 모드</a></span>
+              <span class="log"><a href="${ctxPath}/index.jsp">관리자 모드</a></span>
               &nbsp;
-              <span class="log"><a class="text-hover" href="${ctxPath}/admin/logoutPro.do">로그아웃</a></span>
+              <span class="log"><a href="${ctxPath}/admin/logoutPro.do">로그아웃</a></span>
 						</c:if>
 					</div>
 				</div>

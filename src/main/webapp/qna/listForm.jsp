@@ -49,7 +49,7 @@
                   <c:out value="${number}" />
                   <c:set var="number" value="${number-1}" />
                 </th>
-                <th class="fw-5">
+                <th class="fw-6">
                   <c:if test="${dto.re_indent>0}">
                     <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
                     <img src="${imgsPath}/etc/re.gif" />
@@ -57,17 +57,22 @@
                   <c:if test="${dto.re_indent==0}">
                     <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
                   </c:if>
-                  <a href="${ctxPath}/qna/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
-                    ${dto.subject}</a>
                   <c:if test="${dto.views}=10">
                     <img src="${imgsPath}/etc/hot.gif" />
                   </c:if>
+                  <a class="text-hover" href="${ctxPath}/qna/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
+                    ${dto.subject}
+                  </a>
                 </th>
-                <th class="fw-5">${dto.writer}</th>
+                <th class="fw-5">
+                  ${dto.writer}
+                </th>
                 <th class="fw-5">
                   <fmt:formatDate value="${dto.regDate}" pattern="yyyy-MM-dd" />
                 </th>
-                <th class="fw-5">${dto.views}</th>
+                <th class="fw-5">
+                  ${dto.views}
+                </th>
               </tr>
             </c:forEach>
           </tbody>

@@ -50,7 +50,7 @@
                   <c:out value="${number}" />
                   <c:set var="number" value="${number-1}" />
                 </th>
-                <th>
+                <th class="jungho-center ft-8 fw-5">
                   <c:if test="${dto.imageFile!=null}">
                     <img src="${uploadPath}/board/${dto.imageFile}" width="100" height="100"
                     class="sh-7 rd-1"/>
@@ -60,7 +60,7 @@
                      class="sh-7 rd-1"/>
                   </c:if>
                 </th>
-                <th class="jungho-center ft-8 fw-5">
+                <th class="jungho-center ft-8 fw-6">
                   <c:if test="${dto.re_indent>0}">
                     <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
                     <img src="${imgsPath}/etc/re.gif" />
@@ -68,11 +68,12 @@
                   <c:if test="${dto.re_indent==0}">
                     <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
                   </c:if>
-                  <a href="${ctxPath}/board/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
-                    ${dto.subject}</a>
                   <c:if test="${dto.views}=10">
                     <img src="${imgsPath}/etc/hot.gif" />
                   </c:if>
+                  <a class="text-hover" href="${ctxPath}/board/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
+                    ${dto.subject}
+                  </a>
                 </th>
                 <th class="jungho-center ft-8 fw-5">
                   ${dto.writer}
