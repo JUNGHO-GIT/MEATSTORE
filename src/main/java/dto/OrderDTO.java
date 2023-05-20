@@ -6,7 +6,7 @@ public class OrderDTO {
 
   // variables ----------------------------------------------------------------------------------->
   private int ordno;
-  private int pro_no;
+  private int num;
   private int quantity;
   private Date orddate;
   private String state;
@@ -16,8 +16,8 @@ public class OrderDTO {
   public int getOrdno() {
     return ordno;
   }
-  public int getPro_no() {
-    return pro_no;
+  public int getNum() {
+    return num;
   }
   public int getQuantity() {
     return quantity;
@@ -36,8 +36,8 @@ public class OrderDTO {
   public void setOrdno(int ordno) {
     this.ordno = ordno;
   }
-  public void setPro_no(int pro_no) {
-    this.pro_no = pro_no;
+  public void setNum(int num) {
+    this.num = num;
   }
   public void setQuantity(int quantity) {
     this.quantity = quantity;

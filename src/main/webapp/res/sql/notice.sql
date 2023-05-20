@@ -4,7 +4,7 @@ CREATE TABLE notice (
   subject VARCHAR(255),
   content TEXT,
   pw VARCHAR(255),
-  regdate DATETIME,
+  regDate DATETIME,
   views INT,
   ip VARCHAR(255)
 );

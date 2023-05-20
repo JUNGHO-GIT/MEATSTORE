@@ -36,7 +36,7 @@
           <tr>
             <th>작성일</th>
             <th>
-              <input class="form-control" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" id="regdate" />
+              <input class="form-control" type="text" name="regDate" value="${dto.regDate}" readonly="readonly" id="regDate" />
             </th>
           </tr>
           <tr>

@@ -6,13 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import command.CommandAction;
 import dao.ProductDAO;
+import dto.ProductDTO;
 
 // ------------------------------------------------------------------------------------------------>
-public class ListFormAction implements CommandAction {
+public class ListSearchAction implements CommandAction {
 
   // ---------------------------------------------------------------------------------------------->
   @Override
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
+    request.setCharacterEncoding("UTF-8");
     String pageNum = request.getParameter("pageNum");
     if (pageNum == null) {
       pageNum = "1";
@@ -25,11 +27,26 @@ public class ListFormAction implements CommandAction {
     int count = 0;
     int number = 0;
     int pageBlock = 10;
-    List<dto.ProductDTO> list = null;
+    List<ProductDTO> list = null;
     ProductDAO dao = ProductDAO.getInstance();
     count = dao.getCount();
+    String keyword = request.getParameter("keyword");
+    String search = request.getParameter("search");
+    String subject = null;
+    String writer = null;
+    if (keyword != null && search != null) {
+      count = dao.getSearch(keyword, search);
+    }
+
+    if (keyword != null && keyword.equals("subject")) {
+      subject = search;
+    }
+    else {
+      writer = search;
+    }
+
     if (count > 0) {
-      list = dao.getList(startRow, pageSize);
+      list = dao.listSearch(startRow, pageSize, subject, writer);
     }
     else {
       list = Collections.emptyList();

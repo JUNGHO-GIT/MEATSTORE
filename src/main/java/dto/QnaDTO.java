@@ -14,7 +14,7 @@ public class QnaDTO {
   private int ref;
   private int re_step;
   private int re_indent;
-  private Date regdate;
+  private Date regDate;
 
   // getter --------------------------------------------------------------------------------------->
   public int getNum() {
@@ -32,8 +32,8 @@ public class QnaDTO {
   public String getPw() {
     return pw;
   }
-  public Date getRegdate() {
-    return regdate;
+  public Date getRegDate() {
+    return regDate;
   }
   public int getViews() {
     return views;
@@ -64,8 +64,8 @@ public class QnaDTO {
   public void setPw(String pw) {
     this.pw = pw;
   }
-  public void setRegdate(Date regdate) {
-    this.regdate = regdate;
+  public void setRegDate(Date regDate) {
+    this.regDate = regDate;
   }
   public void setViews(int views) {
     this.views = views;

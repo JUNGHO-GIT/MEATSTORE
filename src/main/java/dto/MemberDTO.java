@@ -13,7 +13,7 @@ public class MemberDTO {
   private String zipcode;
   private String addr;
   private String addr2;
-  private Date regdate;
+  private Date regDate;
   private String adminid;
   private String adminpw;
 
@@ -42,8 +42,8 @@ public class MemberDTO {
   public String getAddr2() {
     return addr2;
   }
-  public Date getRegdate() {
-    return regdate;
+  public Date getRegDate() {
+    return regDate;
   }
   public String getAdminid() {
     return adminid;
@@ -77,8 +77,8 @@ public class MemberDTO {
   public void setAddr2(String addr2) {
     this.addr2 = addr2;
   }
-  public void setRegdate(Date regdate) {
-    this.regdate = regdate;
+  public void setRegDate(Date regDate) {
+    this.regDate = regDate;
   }
   public void setAdminid(String adminid) {
     this.adminid = adminid;

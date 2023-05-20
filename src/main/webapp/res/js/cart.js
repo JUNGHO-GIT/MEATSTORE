@@ -22,14 +22,14 @@ function productDetail (code)  {
 }
 
 // ------------------------------------------------------------------------------------------------>
-function productUpdate (pro_no)  {
-  document.updateForm.pro_no.value = pro_no;
+function productUpdate (num)  {
+  document.updateForm.num.value = num;
   document.updateForm.submit();
 }
 
 // ------------------------------------------------------------------------------------------------>
-function productDelete (pro_no)  {
-  document.delForm.pro_no.value = pro_no;
+function productDelete (num)  {
+  document.delForm.num.value = num;
   document.delForm.submit();
 }
 

@@ -68,32 +68,32 @@
 				<div class="row menu">
 					<div class="col-xl-1 col-lg-1 col-md-1 d-none d-sm-block d-xs-block d-md-block d-lg-block">
 						<a href="${ctxpath}/index.jsp">
-							<img src="${ctxpath}/res/imgs/logo.png" width="150px" height="150px" />
+							<img src="${ctxpath}/res/imgs/main/logo.png" width="150px" height="150px" />
 						</a>
 					</div>
 					<div class="col-xl-11 col-lg-11 col-md-11 col-sm-12 col-xs-12 col-12">
 						<a href="${ctxpath}/product/listForm.do">
-							<img src="${ctxpath}/res/imgs/productList.png" />
+							<img src="${ctxpath}/res/imgs/section/productList.png" />
 						</a>
 						&nbsp;&nbsp;
 						<a href="${ctxpath}/cart/listForm.do">
-							<img src="${ctxpath}/res/imgs/cartList.png" />
+							<img src="${ctxpath}/res/imgs/section/cartList.png" />
 						</a>
 						&nbsp;&nbsp;
 						<a href="${ctxpath}/order/listForm.do">
-							<img src="${ctxpath}/res/imgs/orderList.png" />
+							<img src="${ctxpath}/res/imgs/section/orderList.png" />
 						</a>
             &nbsp;&nbsp;
 						<a href="${ctxpath}/board/listForm.do">
-							<img src="${ctxpath}/res/imgs/board.png" />
+							<img src="${ctxpath}/res/imgs/section/board.png" />
 						</a>
 						&nbsp;&nbsp;
 						<a href="${ctxpath}/notice/listForm.do">
-							<img src="${ctxpath}/res/imgs/notice.png" />
+							<img src="${ctxpath}/res/imgs/section/notice.png" />
 						</a>
 						&nbsp;&nbsp;
 						<a href="${ctxpath}/qna/listForm.do">
-							<img src="${ctxpath}/res/imgs/qna.png" />
+							<img src="${ctxpath}/res/imgs/section/qna.png" />
 						</a>
 						&nbsp;&nbsp;
 						<c:if test="${sessionScope.id == null && sessionScope.adminid == null}">
@@ -131,7 +131,7 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 						<video autoplay loop muted style="width: -webkit-fill-available;">
-							<source src="${ctxpath}/res/imgs/meat_video.mp4" type="video/mp4" />
+							<source src="${ctxpath}/res/imgs/main/meat_video.mp4" type="video/mp4" />
 						</video>
 					</div>
 				</div>
@@ -139,7 +139,7 @@
 		</main>
 
 		<!-- bottom ----------------------------------------------------------------------------------->
-		<footer class="footer" style="background-color: #760d17; margin-top: 60px;">
+		<footer class="footer" style="background-color: #3d1216; margin-top: 60px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">

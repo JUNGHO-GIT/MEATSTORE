@@ -92,7 +92,7 @@ public class NoticeDAO {
         re_indent = 0;
       }
 
-      sqlParam = "insert into notice(writer, subject, content, pw, regdate, ref, re_step, re_indent)";
+      sqlParam = "insert into notice(writer, subject, content, pw, regDate, ref, re_step, re_indent)";
       sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, dto.getWriter());
@@ -151,7 +151,7 @@ public class NoticeDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
@@ -230,7 +230,7 @@ public class NoticeDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
@@ -264,7 +264,7 @@ public class NoticeDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
@@ -294,7 +294,7 @@ public class NoticeDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));

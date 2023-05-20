@@ -40,7 +40,7 @@
         <tr>
           <th>작성일</th>
           <th>
-            <input class="form-control" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" />
+            <input class="form-control" type="text" name="regDate" value="${dto.regDate}" readonly="readonly" />
           </th>
         </tr>
         <tr>
@@ -52,7 +52,7 @@
         <tr>
           <th>글내용</th>
           <th>
-            <textarea class="form-control" name="content" style="height: 300px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
+            <textarea class="form-control" name="content" style="height: 200px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
           </th>
         </tr>
       </table>

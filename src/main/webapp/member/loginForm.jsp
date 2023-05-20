@@ -30,7 +30,8 @@
         <div class="btn btn-group d-flex justify-content-center align-items-center">
           <button class="btn btn-jungho" type="submit" id="submit_button">로그인</button>
           &nbsp;&nbsp;
-          <button class="btn btn-jungho" type="reset">다시입력</button>
+          <button class="btn btn-jungho"type="button" onclick="window.location.reload();">
+          다시입력</button>
           &nbsp;&nbsp;
           <button class="btn btn-jungho" type="button" onClick="location='${ctxpath}/admin/adminLoginForm.do'">관리자 로그인</button>
           &nbsp;&nbsp;

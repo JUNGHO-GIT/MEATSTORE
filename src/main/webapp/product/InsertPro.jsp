@@ -7,5 +7,9 @@
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 
-<b>성공</b>
-<meta http-equiv="Refresh" content="1;url=/product/listForm.do" />
+<script>
+	alert("상품등록이 완료되었습니다.");
+	setTimeout(function() {
+		window.location.href = "${ctxpath}/product/listForm.do";
+  }, 100);
+</script>

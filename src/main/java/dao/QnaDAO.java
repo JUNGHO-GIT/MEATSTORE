@@ -10,7 +10,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import dto.QnaDTO;
-import dto.QnaDTO;
 
 public class QnaDAO {
 
@@ -59,6 +58,27 @@ public class QnaDAO {
     return datasource.getConnection();
   }
 
+  // 1. 목록 갯수 구하기 -------------------------------------------------------------------------->
+  public int getCount ()  {
+    int count = 0;
+    try {
+      connecTion = getConnection();
+      psTmt = connecTion.prepareStatement("select count(*) from qna");
+      resultSet = psTmt.executeQuery();
+
+      if (resultSet.next()) {
+        count = resultSet.getInt(1);
+      }
+    }
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
+    }
+    finally {
+      exceptionHandling();
+    }
+    return count;
+  }
+
   // ---------------------------------------------------------------------------------------------->
   public void insertQna (QnaDTO dto)  {
     int num = dto.getNum();
@@ -92,7 +112,7 @@ public class QnaDAO {
         re_indent = 0;
       }
 
-      sqlParam = "insert into qna(writer, subject, content, pw, regdate, ref, re_step, re_indent)";
+      sqlParam = "insert into qna(writer, subject, content, pw, regDate, ref, re_step, re_indent)";
       sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, dto.getWriter());
@@ -112,26 +132,7 @@ public class QnaDAO {
     }
   }
 
-  // ---------------------------------------------------------------------------------------------->
-  public int getCount ()  {
-    int count = 0;
-    try {
-      connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select count(*) from qna");
-      resultSet = psTmt.executeQuery();
 
-      if (resultSet.next()) {
-        count = resultSet.getInt(1);
-      }
-    }
-    catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
-    }
-    finally {
-      exceptionHandling();
-    }
-    return count;
-  }
 
   // ---------------------------------------------------------------------------------------------->
   public List getList(int start, int count) {
@@ -151,7 +152,7 @@ public class QnaDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
@@ -230,7 +231,7 @@ public class QnaDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
@@ -264,7 +265,7 @@ public class QnaDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
@@ -294,7 +295,7 @@ public class QnaDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));

@@ -14,12 +14,13 @@
     </div>
   </div>
 </section>
+
 <!-- section -->
 <section class="container">
   <form method="post" action="${ctxpath}/cart/insert.do">
-    <div class="row justify-content-center">
-      <div class="col-md-4 text-center">
-        <img src="https://storage.googleapis.com/jungho-bucket/MEATSTORE/product/${dto.image}" class="img-fluid" />
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+        <img src="https://storage.googleapis.com/jungho-bucket/MEATSTORE/product/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
       </div>
     </div>
     <hr class="my-4" style="border-top: 2px solid #9B111E;" />
@@ -52,7 +53,7 @@
           <tr>
             <th>등록날짜</td>
             <th>
-              <input type="text" name="regdate" id="regdate" class="form-control" value="${dto.regdate}" readonly />
+              <input type="text" name="regDate" id="regDate" class="form-control" value="${dto.regDate}" readonly />
             </td>
           </tr>
           <tr>
@@ -77,7 +78,7 @@
             <th colspan="2" class="text-center">
               <button type="submit" id="submit_detail" class="btn btn-jungho">장바구니 담기</button>
               <button type="button" id="button_detail" class="btn btn-secondary" onClick="location='${ctxpath}/product/listForm.do'">취소</button>
-              <input type="hidden" name="pro_no" id="pro_no" value="${dto.pro_no}" />
+              <input type="hidden" name="num" id="num" value="${dto.num}" />
               <input type="hidden" name="id" id="id" value="${sessionScope.id}" />
               <input type="hidden" name="state" value="1" />
             </td>

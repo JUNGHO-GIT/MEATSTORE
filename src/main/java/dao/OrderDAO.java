@@ -60,15 +60,15 @@ public class OrderDAO {
     int quantity2 = dto.getQuantity();
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select * from product where pro_no?and stock>=" + quantity2);
-      psTmt.setInt(1, dto.getPro_no());
+      psTmt = connecTion.prepareStatement("select * from product where num?and stock>=" + quantity2);
+      psTmt.setInt(1, dto.getNum());
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        sqlParam = "insert into orderlist(ordno,id,pro_no,quantity,orddate,state)";
+        sqlParam = "insert into orderlist(ordno,id,num,quantity,orddate,state)";
         sqlParam = sqlParam + " values(0,?, ?, ?,now(),?)";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setString(1, dto.getId());
-        psTmt.setInt(2, dto.getPro_no());
+        psTmt.setInt(2, dto.getNum());
         psTmt.setInt(3, dto.getQuantity());
         psTmt.setString(4, dto.getState());
         psTmt.executeUpdate();
@@ -103,7 +103,7 @@ public class OrderDAO {
         dto.setOrddate(resultSet.getDate("orddate"));
         dto.setOrdno(resultSet.getInt("ordno"));
         dto.setState(resultSet.getString("state"));
-        dto.setPro_no(resultSet.getInt("pro_no"));
+        dto.setNum(resultSet.getInt("num"));
         vec.add(dto);
       }
     }
@@ -132,7 +132,7 @@ public class OrderDAO {
         dto.setOrddate(resultSet.getDate("orddate"));
         dto.setOrdno(resultSet.getInt("ordno"));
         dto.setState(resultSet.getString("state"));
-        dto.setPro_no(resultSet.getInt("pro_no"));
+        dto.setNum(resultSet.getInt("num"));
         vec.add(dto);
       }
     }

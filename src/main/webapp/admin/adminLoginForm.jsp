@@ -49,11 +49,11 @@
     							dataType: "JSON",
     							success: function(data) {
     								if (data.x == 1) {
-    									alert("사용 중인 id입니다");
+    									alert("사용 중인 ID 입니다");
     									$('#id').val('').focus();
     								}
     								else {
-    									alert("사용 가능한id입니다");
+    									alert("사용 가능한ID 입니다");
     									$('#idck').val('true');
     									$('#pw').focus();
     								}
@@ -80,7 +80,7 @@
             </div>
             <div class="btn btn-group">
             	<button class="btn btn-jungho mt-2" type="submit">로그인</button>
-              <button class="btn btn-secondary mt-2" type="reset">취소</button>
+              <button class="btn btn-secondary mt-2" type="button" onclick="window.location.reload();">다시작성</button>
             </div>
 				  </form>
         </div>

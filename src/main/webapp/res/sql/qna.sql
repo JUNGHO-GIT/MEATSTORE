@@ -4,7 +4,7 @@ CREATE TABLE qna (
   subject VARCHAR(255),
   content TEXT,
   pw VARCHAR(255),
-  regdate DATETIME,
+  regDate DATETIME,
   views INT,
   ref INT,
   re_indent INT,

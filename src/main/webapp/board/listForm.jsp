@@ -48,12 +48,12 @@
                   <c:set var="number" value="${number-1}" />
                 </th>
                 <th>
-                  <c:if test="${dto.fileupload!=null}">
-                    <img src="${cloudPath}/${dto.fileupload}" width="100" height="100"
+                  <c:if test="${dto.imageFile!=null}">
+                    <img src="${ctxpath}/res/upload/${dto.imageFile}" width="100" height="100"
                     class="sh-7 rd-1"/>
                   </c:if>
-                  <c:if test="${dto.fileupload==null}">
-                    <img src="${ctxpath}/res/imgs/nofile.png" width="100" height="100"
+                  <c:if test="${dto.imageFile==null}">
+                    <img src="${cloudPath}/etc/noImage.png" width="100" height="100"
                      class="sh-7 rd-1"/>
                   </c:if>
                 </th>
@@ -65,7 +65,7 @@
                   <c:if test="${dto.re_indent==0}">
                     <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_indent}" height="16" />
                   </c:if>
-                  <a href="${ctxpath}/board/detail.do?num=${dto.num}&pageNum=${currentPage}">
+                  <a href="${ctxpath}/board/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
                     ${dto.subject}</a>
                   <c:if test="${dto.views}=10">
                     <img src="${ctxpath}/res/imgs/hot.gif" />
@@ -75,7 +75,7 @@
                   ${dto.writer}
                 </th>
                 <th class="jungho-center ft-8 fw-5">
-                  <fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd" />
+                  <fmt:formatDate value="${dto.regDate}" pattern="yyyy-MM-dd" />
                 </th>
                 <th class="jungho-center ft-8 fw-5">
                   ${dto.views}

@@ -8,7 +8,7 @@
 <c:set var="id" value="${sessionScope.id}" />
 <c:set var="state" value="${param.state}" />
 <c:set var="flag" value="${param.flag}" />
-<c:set var="pro_no" value="${param.pro_no}" />
+<c:set var="num" value="${param.num}" />
 
 
 <jsp:useBean id="cartDAO" class="dao.CartDAO" scope="session"></jsp:useBean>
@@ -37,7 +37,7 @@
       </c:when>
       <c:when test="${flag eq 'update'}">
         <c:set target="${orderDTO}" property="id" value="${id}" />
-        <c:set target="${orderDTO}" property="pro_no" value="${pro_no}" />
+        <c:set target="${orderDTO}" property="num" value="${num}" />
         <c:set var="result" value="${cartDAO.updateCart(orderDTO)}" />
         <script>
           alert("장바구니 내용이 수정 되었습니다");
@@ -47,7 +47,7 @@
         </script>
       </c:when>
       <c:when test="${flag eq 'delete'}">
-        <c:set target="${orderDTO}" property="pro_no" value="${pro_no}" />
+        <c:set target="${orderDTO}" property="num" value="${num}" />
         <c:set var="result" value="${cartDAO.deleteCart(orderDTO)}" />
         <script>
           alert("장바구니 목록이 삭제되었습니다");

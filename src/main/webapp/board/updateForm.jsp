@@ -21,10 +21,10 @@
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <div id="image_container" oninput="setThumbnail(event);" style="margin-bottom: 20px;">
-          <c:if test="${dto.fileupload != null}">
-            <img src="/${imgspath}/${dto.fileupload}" />
+          <c:if test="${dto.imageFile != null}">
+            <img src="/${imgspath}/${dto.imageFile}" />
           </c:if>
-          <c:if test="${dto.fileupload == null}">
+          <c:if test="${dto.imageFile == null}">
             <img src="${ctxpath}/res/imgs/nofile.png" />
           </c:if>
         </div>
@@ -63,7 +63,7 @@
           <tr>
             <th>파일</th>
             <th>
-              <input class="form-control" type="file" name="fileupload" id="fileupload" onchange="setThumbnail(event);"/>
+              <input class="form-control" type="file" name="imageFile" id="imageFile" onchange="setThumbnail(event);"/>
             </th>
           </tr>
         </table>

@@ -2,15 +2,15 @@ package dto;
 
 
 public class CartDTO {
-  private int pro_no;
+  private int num;
   private String code;
   private String name;
   private int price;
   private int quantity;
-  private String image;
+  private String imageFile;
 
-  public int getPro_no() {
-    return pro_no;
+  public int getNum() {
+    return num;
   }
 
   public String getCode() {
@@ -29,12 +29,12 @@ public class CartDTO {
     return quantity;
   }
 
-  public String getImage() {
-    return image;
+  public String getImageFile() {
+    return imageFile;
   }
 
-  public void setPro_no(int pro_no) {
-    this.pro_no = pro_no;
+  public void setNum(int num) {
+    this.num = num;
   }
   public void setCode(String code) {
     this.code = code;
@@ -48,7 +48,7 @@ public class CartDTO {
   public void setQuantity(int quantity) {
     this.quantity = quantity;
   }
-  public void setImage(String image) {
-    this.image = image;
+  public void setImageFile(String imageFile) {
+    this.imageFile = imageFile;
   }
 }

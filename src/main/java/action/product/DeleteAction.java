@@ -14,6 +14,6 @@ public class DeleteAction implements CommandAction {
 
     request.setCharacterEncoding("UTF-8");
 
-    return "/admin/productDelete.jsp";
+    return "/product/deletePro.jsp";
   }
 }

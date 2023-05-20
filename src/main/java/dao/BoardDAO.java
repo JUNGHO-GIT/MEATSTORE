@@ -91,7 +91,7 @@ public class BoardDAO {
         re_indent = 0;
       }
 
-      sqlParam = "insert into board(writer, subject, content, pw, regdate, ref, re_step, re_indent, fileupload)";
+      sqlParam = "insert into board(writer, subject, content, pw, regDate, ref, re_step, re_indent, imageFile)";
       sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, dto.getWriter());
@@ -101,7 +101,7 @@ public class BoardDAO {
       psTmt.setInt(5, ref);
       psTmt.setInt(6, re_step);
       psTmt.setInt(7, re_indent);
-      psTmt.setString(8, dto.getFileupload());
+      psTmt.setString(8, dto.getImageFile());
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
@@ -151,12 +151,12 @@ public class BoardDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
-        dto.setFileupload(resultSet.getString("fileupload"));
+        dto.setImageFile(resultSet.getString("imageFile"));
         list.add(dto);
       }
     }
@@ -230,12 +230,12 @@ public class BoardDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
-        dto.setFileupload(resultSet.getString("fileupload"));
+        dto.setImageFile(resultSet.getString("imageFile"));
         list.add(dto);
       }
     }
@@ -265,12 +265,12 @@ public class BoardDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
-        dto.setFileupload(resultSet.getString("fileupload"));
+        dto.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -296,12 +296,12 @@ public class BoardDAO {
         dto.setSubject(resultSet.getString("subject"));
         dto.setContent(resultSet.getString("content"));
         dto.setPw(resultSet.getString("pw"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
         dto.setViews(resultSet.getInt("views"));
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
-        dto.setFileupload(resultSet.getString("fileupload"));
+        dto.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -325,12 +325,12 @@ public class BoardDAO {
       if (resultSet.next()) {
         dbPw = resultSet.getString("pw");
         if (dto.getPw().equals(dbPw)) {
-          sqlParam = "update board set writer=?, subject=?, content=?, fileupload=? where num=?";
+          sqlParam = "update board set writer=?, subject=?, content=?, imageFile=? where num=?";
           psTmt = connecTion.prepareStatement(sqlParam);
           psTmt.setString(1, dto.getWriter());
           psTmt.setString(2, dto.getSubject());
           psTmt.setString(3, dto.getContent());
-          psTmt.setString(4, dto.getFileupload());
+          psTmt.setString(4, dto.getImageFile());
           psTmt.setInt(5, dto.getNum());
           psTmt.executeUpdate();
           checkParam = 1;

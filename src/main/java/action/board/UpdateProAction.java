@@ -26,11 +26,11 @@ public class UpdateProAction implements CommandAction {
     dto.setSubject(multi.getParameter("subject"));
     dto.setContent(multi.getParameter("content"));
     dto.setPw(multi.getParameter("pw"));
-    dto.setFileupload(multi.getParameter("fileupload"));
+    dto.setImageFile(multi.getParameter("imageFile"));
     Enumeration files = multi.getFileNames();
     String file = (String) files.nextElement();
     String filename = multi.getFilesystemName(file);
-    dto.setFileupload(filename);
+    dto.setImageFile(filename);
     BoardDAO dao = BoardDAO.getInstance();
     int checkParam = dao.updateBoard(dto);
     request.setAttribute("checkParam", checkParam);

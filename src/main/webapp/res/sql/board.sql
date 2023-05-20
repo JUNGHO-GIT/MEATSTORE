@@ -4,11 +4,11 @@ CREATE TABLE board (
   subject VARCHAR(255),
   content TEXT,
   pw VARCHAR(255),
-  regdate DATETIME,
+  regDate DATETIME,
   views INT,
   ref INT,
   re_indent INT,
   re_indent INT,
   ip VARCHAR(255),
-  fileupload VARCHAR(255)
+  imageFile VARCHAR(255)
 );

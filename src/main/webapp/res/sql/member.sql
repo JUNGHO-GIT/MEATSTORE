@@ -7,7 +7,7 @@ CREATE TABLE member (
   zipcode VARCHAR(255),
   addr VARCHAR(255),
   addr2 VARCHAR(255),
-  regdate DATETIME,
+  regDate DATETIME,
   adminid VARCHAR(255),
   adminpw VARCHAR(255)
 );

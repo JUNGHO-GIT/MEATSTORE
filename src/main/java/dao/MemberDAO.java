@@ -183,7 +183,7 @@ public class MemberDAO {
         dto.setZipcode(resultSet.getString("zipcode"));
         dto.setAddr(resultSet.getString("addr"));
         dto.setAddr2(resultSet.getString("addr2"));
-        dto.setRegdate(resultSet.getTimestamp("regdate"));
+        dto.setRegDate(resultSet.getTimestamp("regDate"));
       }
     }
     catch (Exception ex) {

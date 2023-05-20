@@ -18,8 +18,8 @@
   if (flag.equals("delete")) {
     Vector vec = orderDAO.getOrder();
     if (vec.size() == 0) {
-      int im_pro_no = Integer.parseInt(request.getParameter("pro_no"));
-      result = productDAO.deleteProduct(request, im_pro_no);
+      int im_num = Integer.parseInt(request.getParameter("num"));
+      result = productDAO.deleteProduct(request, im_num);
     }
     response.sendRedirect(request.getConnectiontextPath() + "/product/listForm.do");
   }
@@ -27,14 +27,14 @@
     Vector vec = orderDAO.getOrder();
     for (int i = 0; i < vec.size(); i++) {
       OrderDTO orderDTO = (OrderDTO) vec.get(i);
-      int pro_no = orderDTO.getPro_no();
-      if (pro_no == Integer.parseInt(request.getParameter("pro_no"))) {
+      int num = orderDTO.getNum();
+      if (num == Integer.parseInt(request.getParameter("num"))) {
         iti++;
       }
     }
     if (iti == 0) {
-      int im_pro_no = Integer.parseInt(request.getParameter("pro_no"));
-      result = productDAO.deleteProduct(request, im_pro_no);
+      int im_num = Integer.parseInt(request.getParameter("num"));
+      result = productDAO.deleteProduct(request, im_num);
       response.sendRedirect(request.getConnectiontextPath() + "/product/listForm.do");
     }
     else {

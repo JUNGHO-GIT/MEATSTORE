@@ -19,7 +19,7 @@
 <section>
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-      <img src="${cloudPath}/board/${dto.fileupload}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
+      <img src="${cloudPath}/board/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
     </div>
   </div>
   <div class="row d-flex justify-content-center align-items-center">
@@ -40,7 +40,7 @@
         <tr>
           <th>작성일</th>
           <th>
-            <input class="form-control" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" />
+            <input class="form-control" type="text" name="regDate" value="${dto.regDate}" readonly="readonly" />
           </th>
         </tr>
         <tr>
@@ -58,7 +58,7 @@
         <tr>
           <th>글내용</th>
           <th>
-            <textarea class="form-control" name="content" style="height: 300px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
+            <textarea class="form-control" name="content" style="height: 200px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
           </th>
         </tr>
       </table>

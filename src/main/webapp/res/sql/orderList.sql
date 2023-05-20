@@ -1,6 +1,6 @@
 CREATE TABLE orderlist (
   ordno INT PRIMARY KEY AUTO_INCREMENT,
-  pro_no INT,
+  num INT,
   quantity INT,
   orddate DATETIME,
   state VARCHAR(255),

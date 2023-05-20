@@ -5,7 +5,7 @@
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/meatstore?characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;useSSL=false"
+		url="jdbc:mysql://localhost:3306/meatstore?characterEncoding=UTF-8"
 		username="root"
 		password="m7m7m7m7m7!"
 		testOnBorrow="true"

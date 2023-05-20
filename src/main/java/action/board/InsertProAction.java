@@ -27,11 +27,11 @@ public class InsertProAction implements CommandAction {
     dto.setPw(multi.getParameter("pw"));
     dto.setRef(Integer.parseInt(multi.getParameter("ref")));
     dto.setRe_indent(Integer.parseInt(multi.getParameter("re_indent")));
-    dto.setFileupload(multi.getParameter("fileupload"));
+    dto.setImageFile(multi.getParameter("imageFile"));
     Enumeration files = multi.getFileNames();
     String file = (String) files.nextElement();
     String filename = multi.getFilesystemName(file);
-    dto.setFileupload(filename);
+    dto.setImageFile(filename);
     BoardDAO dao = BoardDAO.getInstance();
     dao.insertBoard(dto);
     return "/board/insertPro.jsp";

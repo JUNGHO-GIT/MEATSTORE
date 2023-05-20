@@ -56,7 +56,7 @@
                   <c:if test="${dto.re_indent==0}">
                     <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_indent}" height="16" />
                   </c:if>
-                  <a href="${ctxpath}/notice/detail.do?num=${dto.num}&pageNum=${currentPage}">
+                  <a href="${ctxpath}/notice/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
                     ${dto.subject}</a>
                   <c:if test="${dto.views}=10">
                     <img src="${ctxpath}/res/imgs/hot.gif" />
@@ -64,7 +64,7 @@
                 </td>
                 <th class="fw-5">${dto.writer}</td>
                 <th class="fw-5">
-                  <fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd" />
+                  <fmt:formatDate value="${dto.regDate}" pattern="yyyy-MM-dd" />
                 </td>
                 <th class="fw-5">${dto.views}</td>
               </tr>

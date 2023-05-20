@@ -60,8 +60,8 @@
 					<c:if test="${vec.size() > 0}">
 						<% for (int i = 0; i < vec.size(); i++) {
               OrderDTO orderDTO = (OrderDTO) vec.get(i);
-              int pro_no = orderDTO.getPro_no();
-              ProductDTO productDTO = productDAO.getProduct(pro_no);
+              int num = orderDTO.getNum();
+              ProductDTO productDTO = productDAO.getProduct(num);
             %>
 						<tr>
 							<th><%= orderDTO.getOrdno() %></td>
@@ -98,7 +98,7 @@
 						</tr>
 						<% } %>
 					</c:if>
-					<form name="detail" action="${ctxpath}/product/detail.do">
+					<form name="detail" action="${ctxpath}/product/detailForm.do">
 						<input type="hidden" name="code" />
 					</form>
 				</table>

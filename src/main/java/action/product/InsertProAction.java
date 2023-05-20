@@ -22,9 +22,9 @@ public class InsertProAction implements CommandAction {
       result = productDAO.insertProduct(request);
     }
     else if (flag.equals("update")) {
-      result = productDAO.updateProduct(request);
+      result = productDAO.getUpdate(request);
     }
 
-    return "/admin/productInsertPro.jsp";
+    return "/product/insertPro.jsp";
   }
 }

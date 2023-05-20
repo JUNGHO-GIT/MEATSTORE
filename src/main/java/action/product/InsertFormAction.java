@@ -12,6 +12,6 @@ public class InsertFormAction implements CommandAction {
     HttpServletResponse response
   ) throws Throwable {
 
-    return "/admin/productInsertForm.jsp";
+    return "/product/insertForm.jsp";
   }
 }

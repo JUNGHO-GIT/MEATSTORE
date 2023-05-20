@@ -48,7 +48,7 @@
 							<tbody>
 								<c:forEach var="entry" items="${hcart}">
                   <form method="POST" action="${ctxpath}/order/insert.do">
-                    <input type="hidden" name="pro_no" value="${productDTO.pro_no}">
+                    <input type="hidden" name="num" value="${productDTO.num}">
                     <input type="hidden" name="flag">
                     <input type="hidden" name="state" value="1">
                     <tr>
@@ -78,7 +78,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<form name="detail" method="post" action="${ctxpath}/product/detail.do">
+						<form name="detail" method="post" action="${ctxpath}/product/detailForm.do">
 							<input type="hidden" name="code">
 						</form>
 					</div>

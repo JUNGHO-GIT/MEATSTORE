@@ -1,15 +1,20 @@
 package dao;
 
-import com.oreilly.servlet.*;
-import com.oreilly.servlet.multipart.*;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dto.OrderDTO;
 import dto.ProductDTO;
-import java.io.File;
-import java.sql.*;
-import java.util.*;
-import javax.naming.*;
-import javax.servlet.http.*;
-import javax.sql.*;
 
 // ------------------------------------------------------------------------------------------------>
 public class ProductDAO {
@@ -60,37 +65,6 @@ public class ProductDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List getProductList ()  {
-    List<ProductDTO> list = new ArrayList<ProductDTO>();
-    try {
-      connecTion = getConnection();
-      sqlParam = "select * from product";
-      sTmt = connecTion.createStatement();
-      resultSet = sTmt.executeQuery(sqlParam);
-      while (resultSet.next()) {
-        ProductDTO dto = new ProductDTO();
-        dto.setPro_no(resultSet.getInt("pro_no"));
-        dto.setCode(resultSet.getString("code"));
-        dto.setName(resultSet.getString("name"));
-        dto.setPrice(resultSet.getInt("price"));
-        dto.setStock(resultSet.getInt("stock"));
-        dto.setContent(resultSet.getString("detail"));
-        dto.setComp(resultSet.getString("comp"));
-        dto.setRegdate(resultSet.getDate("regdate"));
-        dto.setImage(resultSet.getString("image"));
-        list.add(dto);
-      }
-    }
-    catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
-    }
-    finally {
-      exceptionHandling();
-    }
-    return list;
-  }
-
-  // ---------------------------------------------------------------------------------------------->
   public int getCount ()  {
     int count = 0;
     try {
@@ -111,30 +85,27 @@ public class ProductDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List getProductList (int start, int count)  {
-    List<ProductDTO> list = null;
+  public List getList (int start, int count)  {
+    List<ProductDTO> list = new ArrayList<ProductDTO>();
     try {
       connecTion = getConnection();
-      sqlParam = "select*from product order by pro_no desc limit ?, ?";
+      sqlParam = "select * from product order by num desc limit ?, ?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, start - 1);
       psTmt.setInt(2, count);
       resultSet = psTmt.executeQuery();
       while (resultSet.next()) {
-        list = new ArrayList<ProductDTO>();
-        do {
-          ProductDTO dto = new ProductDTO();
-          dto.setPro_no(resultSet.getInt("pro_no"));
-          dto.setCode(resultSet.getString("code"));
-          dto.setName(resultSet.getString("name"));
-          dto.setPrice(resultSet.getInt("price"));
-          dto.setStock(resultSet.getInt("stock"));
-          dto.setContent(resultSet.getString("detail"));
-          dto.setComp(resultSet.getString("comp"));
-          dto.setRegdate(resultSet.getDate("regdate"));
-          dto.setImage(resultSet.getString("image"));
-          list.add(dto);
-        } while (resultSet.next());
+        ProductDTO dto = new ProductDTO();
+        dto.setNum(resultSet.getInt("num"));
+        dto.setCode(resultSet.getString("code"));
+        dto.setName(resultSet.getString("name"));
+        dto.setPrice(resultSet.getInt("price"));
+        dto.setStock(resultSet.getInt("stock"));
+        dto.setContent(resultSet.getString("detail"));
+        dto.setComp(resultSet.getString("comp"));
+        dto.setRegDate(resultSet.getDate("regDate"));
+        dto.setImageFile(resultSet.getString("imageFile"));
+        list.add(dto);
       }
     }
     catch (Exception ex) {
@@ -155,15 +126,15 @@ public class ProductDAO {
       sTmt = connecTion.createStatement();
       resultSet = sTmt.executeQuery(sqlParam);
       if (resultSet.next()) {
-        dto.setPro_no(resultSet.getInt("pro_no"));
+        dto.setNum(resultSet.getInt("num"));
         dto.setCode(resultSet.getString("code"));
         dto.setName(resultSet.getString("name"));
         dto.setPrice(resultSet.getInt("price"));
         dto.setStock(resultSet.getInt("stock"));
         dto.setContent(resultSet.getString("detail"));
         dto.setComp(resultSet.getString("comp"));
-        dto.setRegdate(resultSet.getDate("regdate"));
-        dto.setImage(resultSet.getString("image"));
+        dto.setRegDate(resultSet.getDate("regDate"));
+        dto.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -176,24 +147,101 @@ public class ProductDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public ProductDTO getProduct (int pro_no)  {
-    ProductDTO dto = null;
+  public int getSearch (String keyword, String search)  {
+    int count = 0;
     try {
       connecTion = getConnection();
-      sqlParam = "select * from product where pro_no=" + pro_no;
-      psTmt = connecTion.prepareStatement(sqlParam);
+      psTmt = connecTion.prepareStatement("select count(*) from product where " + keyword + " like '%" + search + "%'");
       resultSet = psTmt.executeQuery();
+      if (resultSet.next()) {
+        count = resultSet.getInt(1);
+      }
+    }
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
+    }
+    finally {
+      exceptionHandling();
+    }
+    return count;
+  }
+
+  // ---------------------------------------------------------------------------------------------->
+  public List<ProductDTO> listSearch(int start, int count, String name, String detail) {
+    List<ProductDTO> list = new ArrayList<>();
+    try {
+      connecTion = getConnection();
+      String selectClause = "SELECT * FROM product";
+      String whereClause = "";
+      if (name != null) {
+        whereClause += " WHERE name LIKE ?";
+      }
+      if (name != null) {
+        if (whereClause.isEmpty()) {
+          whereClause += " WHERE name LIKE ?";
+        }
+        else {
+          whereClause += " AND name LIKE ?";
+        }
+      }
+
+      String orderByClause = " ORDER BY ref DESC, re_indent ASC LIMIT ?, ?";
+      String sqlParam = selectClause + whereClause + orderByClause;
+      psTmt = connecTion.prepareStatement(sqlParam);
+      int paramIndex = 1;
+
+      if (name != null) {
+        psTmt.setString(paramIndex++, "%" + name + "%");
+      }
+      if (detail != null) {
+        psTmt.setString(paramIndex++, "%" + detail + "%");
+      }
+      psTmt.setInt(paramIndex++, start - 1);
+      psTmt.setInt(paramIndex, count);
+      resultSet = psTmt.executeQuery();
+
       while (resultSet.next()) {
-        dto = new ProductDTO();
-        dto.setPro_no(resultSet.getInt("pro_no"));
+        ProductDTO dto = new ProductDTO();
+        dto.setNum(resultSet.getInt("num"));
         dto.setCode(resultSet.getString("code"));
         dto.setName(resultSet.getString("name"));
         dto.setPrice(resultSet.getInt("price"));
         dto.setStock(resultSet.getInt("stock"));
         dto.setContent(resultSet.getString("detail"));
         dto.setComp(resultSet.getString("comp"));
-        dto.setRegdate(resultSet.getDate("regdate"));
-        dto.setImage(resultSet.getString("image"));
+        dto.setRegDate(resultSet.getDate("regDate"));
+        dto.setImageFile(resultSet.getString("imageFile"));
+        list.add(dto);
+      }
+    }
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
+    }
+    finally {
+      exceptionHandling();
+    }
+    return list;
+  }
+
+  // ---------------------------------------------------------------------------------------------->
+  public ProductDTO getProduct (int num)  {
+    ProductDTO dto = null;
+    try {
+      connecTion = getConnection();
+      sqlParam = "select * from product where num=" + num;
+      psTmt = connecTion.prepareStatement(sqlParam);
+      resultSet = psTmt.executeQuery();
+      while (resultSet.next()) {
+        dto = new ProductDTO();
+        dto.setNum(resultSet.getInt("num"));
+        dto.setCode(resultSet.getString("code"));
+        dto.setName(resultSet.getString("name"));
+        dto.setPrice(resultSet.getInt("price"));
+        dto.setStock(resultSet.getInt("stock"));
+        dto.setContent(resultSet.getString("detail"));
+        dto.setComp(resultSet.getString("comp"));
+        dto.setRegDate(resultSet.getDate("regDate"));
+        dto.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -210,10 +258,10 @@ public class ProductDAO {
     int quantity2 = dto.getQuantity();
     try {
       connecTion = getConnection();
-      sqlParam = "update product set stock=(stock-?) where pro_no?and stock>=" + quantity2;
+      sqlParam = "update product set stock=(stock-?) where num?and stock>=" + quantity2;
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, dto.getQuantity());
-      psTmt.setInt(2, dto.getPro_no());
+      psTmt.setInt(2, dto.getNum());
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
@@ -233,7 +281,7 @@ public class ProductDAO {
       String uploadPath = realpath + "/imgs/";
       uploadPath = "C:\\_imgs\\shop_upload\\";
       MultipartRequest mul = new MultipartRequest(request, uploadPath, 5 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
-      sqlParam = "insert into product(pro_no,name,code,price,stock,detail,comp,regdate,image) ";
+      sqlParam = "insert into product(num,name,code,price,stock,detail,comp,regDate,imageFile) ";
       sqlParam = sqlParam + "values(0,?, ?, ?, ?, ?, ?,NOW(),?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, mul.getParameter("name"));
@@ -242,8 +290,8 @@ public class ProductDAO {
       psTmt.setInt(4, Integer.parseInt(mul.getParameter("stock")));
       psTmt.setString(5, mul.getParameter("detail"));
       psTmt.setString(6, mul.getParameter("comp"));
-      if (mul.getFilesystemName("image") != null) {
-        psTmt.setString(7, mul.getFilesystemName("image"));
+      if (mul.getFilesystemName("imageFile") != null) {
+        psTmt.setString(7, mul.getFilesystemName("imageFile"));
       }
       else {
         psTmt.setString(7, "readt.gif");
@@ -264,7 +312,7 @@ public class ProductDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public boolean updateProduct (HttpServletRequest request)  {
+  public boolean getUpdate (HttpServletRequest request)  {
     boolean re = false;
     try {
       connecTion = getConnection();
@@ -273,8 +321,8 @@ public class ProductDAO {
       uploadPath = "C:\\_imgs\\shop_upload\\";
       int size = 5 * 1024 * 1024;
       MultipartRequest mul = new MultipartRequest(request, uploadPath, size, "UTF-8", new DefaultFileRenamePolicy());
-      if (mul.getFilesystemName("image") == null) {
-        sqlParam = "update product set name?, stock?, detail?, price?, code?, comp?where pro_no?";
+      if (mul.getFilesystemName("imageFile") == null) {
+        sqlParam = "update product set name?, stock?, detail?, price?, code?, comp?where num?";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setString(1, mul.getParameter("name"));
         psTmt.setInt(2, Integer.parseInt(mul.getParameter("stock")));
@@ -282,21 +330,21 @@ public class ProductDAO {
         psTmt.setInt(4, Integer.parseInt(mul.getParameter("price")));
         psTmt.setString(5, mul.getParameter("code"));
         psTmt.setString(6, mul.getParameter("comp"));
-        psTmt.setInt(7, Integer.parseInt(mul.getParameter("pro_no")));
+        psTmt.setInt(7, Integer.parseInt(mul.getParameter("num")));
       }
       else {
-        int im_pro_no = Integer.parseInt(mul.getParameter("pro_no"));
-        String sqlParam2 = "select image from product where pro_no=" + im_pro_no;
+        int im_num = Integer.parseInt(mul.getParameter("num"));
+        String sqlParam2 = "select imageFile from product where num=" + im_num;
         sTmt = connecTion.createStatement();
         resultSet = sTmt.executeQuery(sqlParam2);
         if (resultSet.next()) {
-          File f = new File(uploadPath + resultSet.getString("image"));
+          File f = new File(uploadPath + resultSet.getString("imageFile"));
           if (f.isFile()) {
             f.delete();
           }
         }
         resultSet.close();
-        sqlParam = "update product set name?,stock?,detail?,price?, code?, comp?, image?where pro_no?";
+        sqlParam = "update product set name?,stock?,detail?,price?, code?, comp?, imageFile?where num?";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setString(1, mul.getParameter("name"));
         psTmt.setInt(2, Integer.parseInt(mul.getParameter("stock")));
@@ -304,8 +352,8 @@ public class ProductDAO {
         psTmt.setInt(4, Integer.parseInt(mul.getParameter("price")));
         psTmt.setString(5, mul.getParameter("code"));
         psTmt.setString(6, mul.getParameter("comp"));
-        psTmt.setString(7, mul.getFilesystemName("image"));
-        psTmt.setInt(8, Integer.parseInt(mul.getParameter("pro_no")));
+        psTmt.setString(7, mul.getFilesystemName("imageFile"));
+        psTmt.setInt(8, Integer.parseInt(mul.getParameter("num")));
       }
 
       int count = psTmt.executeUpdate();
@@ -324,24 +372,24 @@ public class ProductDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public boolean deleteProduct (HttpServletRequest request, int pro_no)  {
+  public boolean deleteProduct (HttpServletRequest request, int num)  {
     boolean re = false;
     try {
       connecTion = getConnection();
       String realPath = request.getServletContext().getRealPath("/");
       String uploadPath = realPath + "/imgs/";
       uploadPath = "C:\\_imgs\\shop_upload\\";
-      sqlParam = "select image from product where pro_no=" + pro_no;
+      sqlParam = "select imageFile from product where num=" + num;
       sTmt = connecTion.createStatement();
       resultSet = sTmt.executeQuery(sqlParam);
       if (resultSet.next()) {
-        File f = new File(uploadPath + resultSet.getString("image"));
+        File f = new File(uploadPath + resultSet.getString("imageFile"));
         if (f.isFile()) {
           f.delete();
         }
       }
 
-      sqlParam = "delete from product where pro_no=" + pro_no;
+      sqlParam = "delete from product where num=" + num;
       psTmt = connecTion.prepareStatement(sqlParam);
       int count = psTmt.executeUpdate();
       if (count > 0) {

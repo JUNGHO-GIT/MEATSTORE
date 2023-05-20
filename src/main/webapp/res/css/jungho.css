@@ -506,3 +506,7 @@ textarea {
 * {
   caret-color: transparent !important;
 }
+
+.form-control[readonly] {
+  background-color: #f6f6f6;
+}

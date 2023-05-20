@@ -14,8 +14,8 @@ public class BoardDTO {
   private int ref;
   private int re_step;
   private int re_indent;
-  private Date regdate;
-  private String fileupload;
+  private Date regDate;
+  private String imageFile;
 
   // getter --------------------------------------------------------------------------------------->
   public int getNum() {
@@ -33,8 +33,8 @@ public class BoardDTO {
   public String getPw() {
     return pw;
   }
-  public Date getRegdate() {
-    return regdate;
+  public Date getRegDate() {
+    return regDate;
   }
   public int getViews() {
     return views;
@@ -48,8 +48,8 @@ public class BoardDTO {
   public int getRe_indent() {
     return re_indent;
   }
-  public String getFileupload() {
-    return fileupload;
+  public String getImageFile() {
+    return imageFile;
   }
 
   // setter --------------------------------------------------------------------------------------->
@@ -68,8 +68,8 @@ public class BoardDTO {
   public void setPw(String pw) {
     this.pw = pw;
   }
-  public void setRegdate(Date regdate) {
-    this.regdate = regdate;
+  public void setRegDate(Date regDate) {
+    this.regDate = regDate;
   }
   public void setViews(int views) {
     this.views = views;
@@ -83,7 +83,7 @@ public class BoardDTO {
   public void setRe_indent(int re_indent) {
     this.re_indent = re_indent;
   }
-  public void setFileupload(String fileupload) {
-    this.fileupload = fileupload;
+  public void setImageFile(String imageFile) {
+    this.imageFile = imageFile;
   }
 }

@@ -70,12 +70,12 @@ public class CartDAO {
       resultSet = psTmt.executeQuery();
       while (resultSet.next()) {
         CartDTO cart = new CartDTO();
-        cart.setPro_no(resultSet.getInt("pro_no"));
+        cart.setNum(resultSet.getInt("num"));
         cart.setCode(resultSet.getString("code"));
         cart.setName(resultSet.getString("name"));
         cart.setPrice(resultSet.getInt("price"));
         cart.setQuantity(resultSet.getInt("quantity"));
-        cart.setImage(resultSet.getString("image"));
+        cart.setImageFile(resultSet.getString("imageFile"));
         cartList.add(cart);
       }
     }
@@ -94,12 +94,12 @@ public class CartDAO {
       connecTion = getConnection();
       sqlParam = "insert into cart values(?, ?, ?, ?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
-      psTmt.setInt(1, cart.getPro_no());
+      psTmt.setInt(1, cart.getNum());
       psTmt.setString(2, cart.getCode());
       psTmt.setString(3, cart.getName());
       psTmt.setInt(4, cart.getPrice());
       psTmt.setInt(5, cart.getQuantity());
-      psTmt.setString(6, cart.getImage());
+      psTmt.setString(6, cart.getImageFile());
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
@@ -115,17 +115,17 @@ public class CartDAO {
     CartDTO cart = new CartDTO();
     try {
       connecTion = getConnection();
-      sqlParam = "select * from cart where pro_no=?";
+      sqlParam = "select * from cart where num=?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, id);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        cart.setPro_no(resultSet.getInt("pro_no"));
+        cart.setNum(resultSet.getInt("num"));
         cart.setCode(resultSet.getString("code"));
         cart.setName(resultSet.getString("name"));
         cart.setPrice(resultSet.getInt("price"));
         cart.setQuantity(resultSet.getInt("quantity"));
-        cart.setImage(resultSet.getString("image"));
+        cart.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -141,14 +141,14 @@ public class CartDAO {
   public void updateCart (CartDTO cart) {
     try {
       connecTion = getConnection();
-      sqlParam = "update cart set code=?, name=?, price=?, quantity=?, image=? where pro_no=?";
+      sqlParam = "update cart set code=?, name=?, price=?, quantity=?, imageFile=? where num=?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, cart.getCode());
       psTmt.setString(2, cart.getName());
       psTmt.setInt(3, cart.getPrice());
       psTmt.setInt(4, cart.getQuantity());
-      psTmt.setString(5, cart.getImage());
-      psTmt.setInt(6, cart.getPro_no());
+      psTmt.setString(5, cart.getImageFile());
+      psTmt.setInt(6, cart.getNum());
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
@@ -160,12 +160,12 @@ public class CartDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public void deleteCart (int pro_no) {
+  public void deleteCart (int num) {
     try {
       connecTion = getConnection();
-      sqlParam = "delete from cart where pro_no=?";
+      sqlParam = "delete from cart where num=?";
       psTmt = connecTion.prepareStatement(sqlParam);
-      psTmt.setInt(1, pro_no);
+      psTmt.setInt(1, num);
       psTmt.executeUpdate();
     }
     catch (Exception ex) {

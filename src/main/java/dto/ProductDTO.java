@@ -5,19 +5,23 @@ import java.util.Date;
 public class ProductDTO {
 
   // variables ----------------------------------------------------------------------------------->
-  private int pro_no;
+  private int num;
   private String code;
   private String name;
   private int price;
   private int stock;
   private String content;
   private String comp;
-  private Date regdate;
-  private String image;
+  private int views;
+  private int ref;
+  private int re_step;
+  private int re_indent;
+  private Date regDate;
+  private String imageFile;
 
   // getter --------------------------------------------------------------------------------------->
-  public int getPro_no() {
-    return pro_no;
+  public int getNum() {
+    return num;
   }
   public String getCode() {
     return code;
@@ -37,16 +41,28 @@ public class ProductDTO {
   public String getComp() {
     return comp;
   }
-  public Date getRegdate() {
-    return regdate;
+  public int getViews() {
+    return views;
   }
-  public String getImage() {
-    return image;
+  public int getRef() {
+    return ref;
+  }
+  public int getRe_step() {
+    return re_step;
+  }
+  public int getRe_indent() {
+    return re_indent;
+  }
+  public Date getRegDate() {
+    return regDate;
+  }
+  public String getImageFile() {
+    return imageFile;
   }
 
   // setter --------------------------------------------------------------------------------------->
-  public void setPro_no(int pro_no) {
-    this.pro_no = pro_no;
+  public void setNum(int num) {
+    this.num = num;
   }
   public void setCode(String code) {
     this.code = code;
@@ -66,10 +82,11 @@ public class ProductDTO {
   public void setComp(String comp) {
     this.comp = comp;
   }
-  public void setRegdate(Date regdate) {
-    this.regdate = regdate;
+  public void setRegDate(Date regDate) {
+    this.regDate = regDate;
   }
-  public void setImage(String image) {
-    this.image = image;
+  public void setImageFile(String imageFile) {
+    this.imageFile = imageFile;
   }
+
 }
