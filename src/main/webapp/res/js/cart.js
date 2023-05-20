@@ -16,9 +16,9 @@ function cartDelete (form)  {
 }
 
 // ------------------------------------------------------------------------------------------------>
-function productDetail (code)  {
-  document.detail.code.value = code;
-  document.detail.submit();
+function productContent (code)  {
+  document.content.code.value = code;
+  document.content.submit();
 }
 
 // ------------------------------------------------------------------------------------------------>

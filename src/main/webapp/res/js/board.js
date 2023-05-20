@@ -1,6 +1,6 @@
 
 // ------------------------------------------------------------------------------------------------>
-function delpwCheck ()  {
+function delPwCheck ()  {
   if (document.delForm.pw.value == null) {
     alert("암호는 필수입력");
     document.delForm.pw.focus();
@@ -10,7 +10,7 @@ function delpwCheck ()  {
 }
 
 // ------------------------------------------------------------------------------------------------>
-function uppwCheck ()  {
+function upPwCheck ()  {
   if (document.updateForm.pw.value == null) {
     alert("암호는 필수입력");
     document.updateForm.pw.focus();

@@ -6,22 +6,19 @@ import command.CommandAction;
 import dao.ProductDAO;
 import dto.ProductDTO;
 
+// ------------------------------------------------------------------------------------------------>
 public class DetailFormAction implements CommandAction {
 
+  // ---------------------------------------------------------------------------------------------->
   @Override
-  public String requestPro(
-    HttpServletRequest request,
-    HttpServletResponse response
-  ) throws Throwable {
-
+  public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
+    int num = Integer.parseInt(request.getParameter("num"));
+    String pageNum = request.getParameter("pageNum");
     ProductDAO dao = ProductDAO.getInstance();
-    String code = request.getParameter("code");
-
-    ProductDTO dto = dao.getDetail(code);
-
-    request.setAttribute("code", code);
+    ProductDTO dto = dao.getProduct(num);
+    request.setAttribute("num", num);
+    request.setAttribute("pageNum", pageNum);
     request.setAttribute("dto", dto);
-
     return "/product/detailForm.jsp";
   }
 }

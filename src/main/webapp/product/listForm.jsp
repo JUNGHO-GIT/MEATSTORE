@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -13,7 +15,7 @@
       <div class="container-fluid content">
         <h1 data-aos="fade-right" data-aos-delay="300">상품목록</h1>
         <h2 data-aos="fade-left" data-aos-delay="300">[관리자]</h2>
-        <button class="btn btn-junghp" onclick="location='${ctxpath}/admin/productInsertForm.do'">상품등록</button>
+        <h2><button data-aos="fade-up" data-aos-delay="300" class="btn btn-jungho" onclick="window.location.href='${ctxPath}/product/insertForm.do'">상품등록</button>
       </div>
     </c:if>
     <c:if test="${sessionScope.adminId == null}">
@@ -32,6 +34,7 @@
 
 <!-- 글 o -->
 <c:if test="${count>0}">
+  <!-- section -->
   <section class="section">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
@@ -42,32 +45,37 @@
               <th style="width:200px;">상품명</th>
               <th style="width:100px;">상품 가격</th>
               <th style="width:100px;">상품 재고</th>
+              <th style="width:100px;">등록일</th>
               <th style="width:100px;">상세보기</th>
             </tr>
           </thead>
           <tbody>
             <c:forEach var="dto" items="${list}">
               <tr>
-                <th class="jungho-center ft-8">
-                  <c:if test="${dto.imageFile != null}">
-                    <img src="${cloudPath}/product/${dto.imageFile}" width="200" height="200" class="sh-10 rd-1" />
+                <th>
+                  <c:if test="${dto.imageFile!=null}">
+                    <img src="${uploadPath}/product/${dto.imageFile}" width="100" height="100"
+                    class="sh-7 rd-1"/>
                   </c:if>
-                  <c:if test="${dto.imageFile == null}">
-                    <img src="${cloudPath}/etc/noImage.png" width="200" height="200"
-                    class="sh-10 rd-1" />
+                  <c:if test="${dto.imageFile==null}">
+                    <img src="${cloudPath}/etc/noImage.png" width="100" height="100"
+                     class="sh-7 rd-1"/>
                   </c:if>
                 </th>
-                <th class="jungho-center ft-8">
+                <th class="jungho-center ft-8 fw-5">
                   ${dto.name}
                 </th>
-                <th class="jungho-center ft-8">
+                <th class="jungho-center ft-8 fw-5">
                   <fmt:formatNumber value="${dto.price}" type="currency" currencyCode="KRW" maxFractionDigits="0" />
                 </th>
-                <th class="jungho-center ft-8">
+                <th class="jungho-center ft-8 fw-5">
                   ${dto.stock}
-                </td>
-                <th class="jungho-center ft-8">
-                  <button class="btn" style="background-color: #760d17; color: #ffffff;" onclick="location='${ctxpath}/product/detailForm.do?code=${dto.code}'">정보보기</button>
+                </th>
+                <th class="jungho-center ft-8 fw-5">
+                  <fmt:formatDate value="${dto.regDate}" pattern="yyyy-MM-dd" />
+                </th>
+                <th class="jungho-center ft-8 fw-5">
+                  <button class="btn btn-jungho" onclick="window.location.href='${ctxPath}/product/detailForm.do?num=${dto.num}&pageNum=${currentPage}'">상세보기</button>
                 </th>
               </tr>
             </c:forEach>
@@ -82,10 +90,10 @@
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <div class="search_page d-flex justify-content-center align-items-center">
-          <form method="GET" name="search_list" action="${ctxpath}/product/listSearch.do" class="form-inline">
+          <form method="GET" name="search_list" action="${ctxPath}/product/listSearch.do" class="form-inline">
             <select name="keyword" class="form-control">
               <option value="name">상품명</option>
-              <option value="detail">상품설명</option>
+              <option value="content">상품설명</option>
             </select>
             <input type="text" name="search" id="search" class="form-control" />
             <input type="submit" value="검색" class="btn btn-jungho" />
@@ -105,15 +113,15 @@
           </c:if>
           <div class="d-flex justify-content-center align-items-center">
             <c:if test="${startPage>10}">
-              <button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/product/listForm.do?pageNum=${startPage-10}'">이전블럭</button>
+              <button class="btn btn-jungho" onclick="window.location.href='${ctxPath}/product/listForm.do?pageNum=${startPage-10}'">이전블럭</button>
             </c:if>
             &nbsp;&nbsp;
             <c:forEach var="i" begin="${startPage}" end="${endPage}">
-              <button class="btn btn-jungho mr-2" onclick="window.location.href='${ctxpath}/product/listForm.do?pageNum=${i}'">${i}</button>
+              <button class="btn btn-jungho mr-2" onclick="window.location.href='${ctxPath}/product/listForm.do?pageNum=${i}'">${i}</button>
             </c:forEach>
             &nbsp;&nbsp;
             <c:if test="${endPage<pageCount}">
-              <button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/product/listForm.do?pageNum=${endPage+1}'">다음블럭</button>
+              <button class="btn btn-jungho" onclick="window.location.href='${ctxPath}/product/listForm.do?pageNum=${endPage+1}'">다음블럭</button>
             </c:if>
           </div>
         </c:if>

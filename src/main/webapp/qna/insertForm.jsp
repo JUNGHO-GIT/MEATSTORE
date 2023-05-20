@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -18,7 +20,7 @@
 
 <!-- section -->
 <section class="section">
-  <form name="insertForm" method="post" action="${ctxpath}/qna/insertPro.do" onSubmit="return qnaCheck()">
+  <form name="insertForm" method="POST" action="${ctxPath}/qna/insertPro.do" onSubmit="return qnaCheck()">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <input type="hidden" name="num" value="${num}" />
@@ -27,8 +29,8 @@
         <input type="hidden" name="re_indent" value="${re_indent}" />
         <table class="table table-borderless">
           <tr>
-            <th>제목</th>
-            <th>
+            <th style="border-top: transparent;">제목</th>
+            <th style="border-top: transparent;">
               <input class="form-control" type="text" name="subject" id="subject" placeholder="제목을 입력하세요." />
             </th>
           </tr>
@@ -65,7 +67,7 @@
           <button class="btn btn-jungho" type="button" onclick="window.location.reload()">
           다시쓰기</button>
           &nbsp;&nbsp;
-          <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/qna/listForm.do'">목록보기</button>
+          <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxPath}/qna/listForm.do'">목록보기</button>
         </div>
       </div>
     </div>

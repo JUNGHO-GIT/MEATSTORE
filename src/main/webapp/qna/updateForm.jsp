@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -18,13 +20,13 @@
 
 <!-- section -->
 <section class="section">
-  <form name="updateForm" method="post" action="${ctxpath}/qna/updatePro.do?pageNum=${pageNum}" onSubmit="return qnaPwCheck()">
+  <form name="updateForm" method="POST" action="${ctxPath}/qna/updatePro.do?pageNum=${pageNum}" onSubmit="return qnaPwCheck()">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <table class="table table-borderless">
           <input type="hidden" name="num" id="num" value="${dto.num}" />
           <tr>
-            <th colspan="2" class="text-center">
+            <th style="border-top: transparent;" colspan="2">
               <h2>${dto.subject}</h2>
             </th>
           </tr>
@@ -79,7 +81,7 @@
           <button class="btn btn-jungho" type="button" onclick="window.location.reload()">
           초기화</button>
           &nbsp;&nbsp;
-          <button class="btn btn-secondary" type="button" onclick="window.location.href='${ctxpath}/qna/listForm.do?pageNum=${pageNum}'">취소</button>
+          <button class="btn btn-secondary" type="button" onclick="window.location.href='${ctxPath}/qna/listForm.do?pageNum=${pageNum}'">취소</button>
         </div>
       </div>
     </div>

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -12,9 +14,9 @@
     <div class="container-fluid content">
       <h1 data-aos="fade-right" data-aos-delay="300">자유게시판</h1>
       <h2 data-aos="fade-left" data-aos-delay="300">[전체글 : ${count}]</h1>
-        <h2>
-          <button class="btn btn-jungho" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='${ctxpath}/board/insertForm.do'">글쓰기</button>
-        </h2>
+      <h2>
+        <button class="btn btn-jungho" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='${ctxPath}/board/insertForm.do'">글쓰기</button>
+      </h2>
     </div>
   </div>
 </section>
@@ -50,7 +52,7 @@
                 </th>
                 <th>
                   <c:if test="${dto.imageFile!=null}">
-                    <img src="${ctxpath}/res/upload/${dto.imageFile}" width="100" height="100"
+                    <img src="${uploadPath}/board/${dto.imageFile}" width="100" height="100"
                     class="sh-7 rd-1"/>
                   </c:if>
                   <c:if test="${dto.imageFile==null}">
@@ -60,16 +62,16 @@
                 </th>
                 <th class="jungho-center ft-8 fw-5">
                   <c:if test="${dto.re_indent>0}">
-                    <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_indent}" height="16" />
-                    <img src="${ctxpath}/res/imgs/re.gif" />
+                    <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
+                    <img src="${imgsPath}/etc/re.gif" />
                   </c:if>
                   <c:if test="${dto.re_indent==0}">
-                    <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_indent}" height="16" />
+                    <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
                   </c:if>
-                  <a href="${ctxpath}/board/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
+                  <a href="${ctxPath}/board/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
                     ${dto.subject}</a>
                   <c:if test="${dto.views}=10">
-                    <img src="${ctxpath}/res/imgs/hot.gif" />
+                    <img src="${imgsPath}/etc/hot.gif" />
                   </c:if>
                 </th>
                 <th class="jungho-center ft-8 fw-5">
@@ -94,7 +96,7 @@
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <div class="search_page d-flex justify-content-center align-items-center">
-          <form method="GET" name="search_list" action="${ctxpath}/board/listSearch.do" class="form-inline">
+          <form method="GET" name="search_list" action="${ctxPath}/board/listSearch.do" class="form-inline">
             <select name="keyword" class="form-control">
               <option value="subject">제목</option>
               <option value="writer">작성자</option>
@@ -117,15 +119,15 @@
           </c:if>
           <div class="d-flex justify-content-center align-items-center">
             <c:if test="${startPage>10}">
-              <button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/listForm.do?pageNum=${startPage-10}'">이전블럭</button>
+              <button class="btn btn-jungho" onclick="window.location.href='${ctxPath}/board/listForm.do?pageNum=${startPage-10}'">이전블럭</button>
             </c:if>
             &nbsp;&nbsp;
             <c:forEach var="i" begin="${startPage}" end="${endPage}">
-              <button class="btn btn-jungho mr-2" onclick="window.location.href='${ctxpath}/board/listForm.do?pageNum=${i}'">${i}</button>
+              <button class="btn btn-jungho mr-2" onclick="window.location.href='${ctxPath}/board/listForm.do?pageNum=${i}'">${i}</button>
             </c:forEach>
             &nbsp;&nbsp;
             <c:if test="${endPage<pageCount}">
-              <button class="btn btn-jungho" onclick="window.location.href='${ctxpath}/board/listForm.do?pageNum=${endPage+1}'">다음블럭</button>
+              <button class="btn btn-jungho" onclick="window.location.href='${ctxPath}/board/listForm.do?pageNum=${endPage+1}'">다음블럭</button>
             </c:if>
           </div>
         </c:if>

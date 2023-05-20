@@ -3,7 +3,9 @@
 <%@ page import="dto.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 <c:set var="id" value="${sessionScope.id}" />
@@ -22,7 +24,7 @@
     <script>
       alert("로그인 후 이용해 주세요");
       setTimeout(function() {
-        window.location.href = "${ctxpath}/member/loginForm.do";
+        window.location.href = "${ctxPath}/member/loginForm.do";
       }, 100);
     </script>
   </c:when>
@@ -32,7 +34,7 @@
         <script>
           alert("장바구니에 담았습니다");
           setTimeout(function() {
-            window.location.href = "${ctxpath}/cart/listForm.do";
+            window.location.href = "${ctxPath}/cart/listForm.do";
           }, 100);
         </script>
       </c:when>
@@ -43,7 +45,7 @@
         <script>
           alert("장바구니 내용이 수정 되었습니다");
           setTimeout(function() {
-            window.location.href = "${ctxpath}/cart/listForm.do";
+            window.location.href = "${ctxPath}/cart/listForm.do";
           }, 100);
         </script>
       </c:when>
@@ -53,7 +55,7 @@
         <script>
           alert("장바구니 목록이 삭제되었습니다");
           setTimeout(function() {
-            window.location.href = "${ctxpath}/cart/listForm.do";
+            window.location.href = "${ctxPath}/cart/listForm.do";
           }, 100);
         </script>
       </c:when>

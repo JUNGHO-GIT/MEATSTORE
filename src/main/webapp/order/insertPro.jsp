@@ -5,7 +5,7 @@
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="hcart" value="${cartDAO.list}" />
 <c:set var="orderResult" value="" />
 <c:set var="loopFinished" value="false" />

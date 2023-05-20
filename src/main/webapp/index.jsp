@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -17,9 +19,9 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800">
-		<link rel="stylesheet" href="${ctxpath}/res/css/main.css" />
-		<link rel="stylesheet" href="${ctxpath}/res/css/style.css" />
-    <link rel="stylesheet" href="${ctxpath}/res/css/jungho.css" />
+		<link rel="stylesheet" href="${ctxPath}/res/css/main.css" />
+		<link rel="stylesheet" href="${ctxPath}/res/css/media.css" />
+    <link rel="stylesheet" href="${ctxPath}/res/css/jungho.css" />
 		<!-- js -->
 		<script defet src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script defet src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -27,11 +29,11 @@
 		</script>
 		<script defet src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script defet src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		<script defet src="${ctxpath}/res/js/board.js"></script>
-		<script defet src="${ctxpath}/res/js/admin.js"></script>
-		<script defet src="${ctxpath}/res/js/member.js"></script>
-		<script defet src="${ctxpath}/res/js/notice.js"></script>
-		<script defet src="${ctxpath}/res/js/cart.js"></script>
+		<script defet src="${ctxPath}/res/js/board.js"></script>
+		<script defet src="${ctxPath}/res/js/admin.js"></script>
+		<script defet src="${ctxPath}/res/js/member.js"></script>
+		<script defet src="${ctxPath}/res/js/notice.js"></script>
+		<script defet src="${ctxPath}/res/js/cart.js"></script>
 		<!-- custom -->
 		<script>
 			$(document).ready(function() {
@@ -58,7 +60,22 @@
 					return false;
 				}
 			}
-		</script>
+      function textHover() {
+        const textHovers = document.querySelectorAll(".text-hover");
+        textHovers.forEach((textHover) => {
+          textHover.style.transition = "font-size 0.1s ease-in-out";
+          textHover.style.display = "inline-block";
+          textHover.style.cursor = "pointer";
+          textHover.style.caretColor = "transparent";
+          textHover.addEventListener("mouseenter", function  ()  {
+            this.style.fontSize = `calc(${getComputedStyle(this).fontSize} + 3px)`;
+          });
+          textHover.addEventListener("mouseleave", function  ()  {
+            this.style.fontSize = "";
+          });
+        });
+      };
+    </script>
 	</head>
 
 	<body>
@@ -67,52 +84,54 @@
 			<div class="container">
 				<div class="row menu">
 					<div class="col-xl-1 col-lg-1 col-md-1 d-none d-sm-block d-xs-block d-md-block d-lg-block">
-						<a href="${ctxpath}/index.jsp">
-							<img src="${ctxpath}/res/imgs/main/logo.png" width="150px" height="150px" />
+						<a class="text-hover" href="${ctxPath}/index.jsp">
+							<img src="${imgsPath}/main/logo.png" width="150px" height="150px" />
 						</a>
 					</div>
 					<div class="col-xl-11 col-lg-11 col-md-11 col-sm-12 col-xs-12 col-12">
-						<a href="${ctxpath}/product/listForm.do">
-							<img src="${ctxpath}/res/imgs/section/productList.png" />
+						<a class="text-hover" href="${ctxPath}/product/listForm.do">
+							<img src="${imgsPath}/section/productList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="${ctxpath}/cart/listForm.do">
-							<img src="${ctxpath}/res/imgs/section/cartList.png" />
+						<a class="text-hover" href="${ctxPath}/cart/listForm.do">
+							<img src="${imgsPath}/section/cartList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="${ctxpath}/order/listForm.do">
-							<img src="${ctxpath}/res/imgs/section/orderList.png" />
+						<a class="text-hover" href="${ctxPath}/order/listForm.do">
+							<img src="${imgsPath}/section/orderList.png" />
 						</a>
             &nbsp;&nbsp;
-						<a href="${ctxpath}/board/listForm.do">
-							<img src="${ctxpath}/res/imgs/section/board.png" />
+						<a class="text-hover" href="${ctxPath}/board/listForm.do">
+							<img src="${imgsPath}/section/board.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="${ctxpath}/notice/listForm.do">
-							<img src="${ctxpath}/res/imgs/section/notice.png" />
+						<a class="text-hover" href="${ctxPath}/notice/listForm.do">
+							<img src="${imgsPath}/section/notice.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="${ctxpath}/qna/listForm.do">
-							<img src="${ctxpath}/res/imgs/section/qna.png" />
+						<a class="text-hover" href="${ctxPath}/qna/listForm.do">
+							<img src="${imgsPath}/section/qna.png" />
 						</a>
 						&nbsp;&nbsp;
             <!-- login x -->
 						<c:if test="${sessionScope.id == null && sessionScope.adminId == null}">
-              <span class="log"><a href="${ctxpath}/member/loginForm.do">로그인</a></span>
+              <span class="log"><a class="text-hover" href="${ctxPath}/member/loginForm.do">로그인</a></span>
 							&nbsp;
-              <span class="log"><a href="${ctxpath}/member/insertForm.do">회원가입</a></span>
+              <span class="log"><a class="text-hover" href="${ctxPath}/member/insertForm.do">회원가입</a></span>
 						</c:if>
 						&nbsp;&nbsp;
 						<!-- login o (일반 회원) -->
 						<c:if test="${sessionScope.id != null}">
-              <span class="log"><a href="${ctxpath}/member/logoutPro.do">로그아웃</a></span>
+              <span class="log"><a class="text-hover" href="${ctxPath}/member/logoutPro.do">로그아웃</a></span>
               &nbsp;
-              <span class="log"><a href="${ctxpath}/member/updateForm.do">회원정보수정</a></span>
+              <span class="log"><a class="text-hover" href="${ctxPath}/member/updateForm.do">회원정보수정</a></span>
 						</c:if>
 						&nbsp;&nbsp;
 						<!-- login o (관리자) -->
 						<c:if test="${sessionScope.adminId != null}">
-              <span class="log"><a href="${ctxpath}/admin/logoutPro.do">로그아웃</a></span>
+              <span class="log"><a class="text-hover" href="${ctxPath}/index.jsp">관리자 모드</a></span>
+              &nbsp;
+              <span class="log"><a class="text-hover" href="${ctxPath}/admin/logoutPro.do">로그아웃</a></span>
 						</c:if>
 					</div>
 				</div>
@@ -132,7 +151,7 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 						<video autoplay loop muted style="width: -webkit-fill-available;">
-							<source src="${ctxpath}/res/imgs/main/meat_video.mp4" type="video/mp4" />
+							<source src="${imgsPath}/main/meat_video.mp4" type="video/mp4" />
 						</video>
 					</div>
 				</div>

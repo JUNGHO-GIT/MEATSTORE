@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -129,12 +131,12 @@
 
 <!-- section -->
 <section class="section">
-  <form method="post" action="${ctxpath}/member/updatePro.do" onSubmit="return updateCheck()">
+  <form method="POST" action="${ctxPath}/member/updatePro.do" onSubmit="return updateCheck()">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <table class="table table-borderless">
           <tr>
-            <th style="width: 100px;">아이디</th>
+            <th style="width: 100px; border-top: transparent;">아이디</th>
             <th>
               <input class="form-control" type="text" name="id" id="id" value="${dto.id}" readonly />
             </th>
@@ -164,7 +166,7 @@
             <th>
               <div class="input-group">
 								<input class="form-control" type="text" name="addr" id="addr" placeholder="주소를 입력해주세요" value="${dto.addr}" />
-                <button class="btn btn-jungho" type="button" onClick="findAddr()">주소찾기</button>
+                <button class="btn btn-jungho" type="button" onclick="findAddr()">주소찾기</button>
 							</div>
                 <input class="form-control" type="text" name="addr2" id="addr2" placeholder="상세주소를 입력해주세요" value="${dto.addr2}" />
                 <input class="form-control" type="text" name="zipcode" id="zipcode" size="7" readonly placeholder="우편번호" value="${dto.zipcode}" />
@@ -185,9 +187,9 @@
           <button class="btn btn-jungho mt-2" type="button" onclick="window.location.reload()">
           다시작성</button>
           &nbsp;&nbsp;
-          <button class="btn btn-jungho mt-2" type="button" onclick="location='${ctxpath}/member/deleteForm.do'">회원탈퇴</button>
+          <button class="btn btn-jungho mt-2" type="button" onclick="window.location.href='${ctxPath}/member/deleteForm.do'">회원탈퇴</button>
           &nbsp;&nbsp;
-          <button class="btn btn-secondary mt-2" type="button" onclick="location='${ctxpath}/index.jsp'">취소</button>
+          <button class="btn btn-secondary mt-2" type="button" onclick="window.location.href='${ctxPath}/index.jsp'">취소</button>
           &nbsp;&nbsp;
         </div>
       </div>

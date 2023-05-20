@@ -32,21 +32,21 @@ public class ListSearchAction implements CommandAction {
     count = dao.getCount();
     String keyword = request.getParameter("keyword");
     String search = request.getParameter("search");
-    String subject = null;
-    String writer = null;
+    String name = null;
+    String content = null;
     if (keyword != null && search != null) {
       count = dao.getSearch(keyword, search);
     }
 
-    if (keyword != null && keyword.equals("subject")) {
-      subject = search;
+    if (keyword != null && keyword.equals("name")) {
+      name = search;
     }
     else {
-      writer = search;
+      content = search;
     }
 
     if (count > 0) {
-      list = dao.listSearch(startRow, pageSize, subject, writer);
+      list = dao.listSearch(startRow, pageSize, name, content);
     }
     else {
       list = Collections.emptyList();

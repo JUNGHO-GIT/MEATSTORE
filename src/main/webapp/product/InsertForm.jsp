@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -18,9 +20,14 @@
 
 <!-- section -->
 <section class="section">
-  <div class="row">
+  <div class="row d-flex justify-content-center align-items-center">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-      <form method="post" action="${ctxpath}/admin/productInsertPro.do?flag=insert" enctype="multipart/form-data" onSubmit="return productCheck()">
+      <form method="POST" action="${ctxPath}/product/insertPro.do?flag=insert"
+      enctype="multipart/form-data" onSubmit="return productCheck()">
+        <input type="hidden" name="num" value="${num}" />
+        <input type="hidden" name="ref" value="${ref}" />
+        <input type="hidden" name="re_step" value="${re_step}" />
+        <input type="hidden" name="re_indent" value="${re_indent}" />
         <div class="form-group">
           <input class="form-control" type="text" name="name" id="name" placeholder="상품명" required>
         </div>
@@ -31,7 +38,7 @@
           <input class="form-control" type="text" name="price" id="price" placeholder="상품가격" required>
         </div>
         <div class="form-group">
-          <textarea class="form-control" name="detail" id="detail" rows="10" cols="45" placeholder="설명"></textarea>
+          <textarea class="form-control" name="content" id="content" placeholder="설명"></textarea>
         </div>
         <div class="form-group">
           <input class="form-control" type="text" name="stock" id="stock" placeholder="상품수량 입고" required>
@@ -45,7 +52,7 @@
         <div class="btn btn-group">
           <button class="btn btn-jungho" type="submit">상품등록</button>
           &nbsp;&nbsp;
-          <button class="btn btn-jungho"type="button" onclick="window.location.reload();">
+          <button class="btn btn-jungho"type="button" onclick="window.location.reload()">
           다시 입력</button>
           &nbsp;&nbsp;
         </div>

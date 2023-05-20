@@ -15,7 +15,7 @@ public class DeleteProAction implements CommandAction {
   @Override
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
     ServletContext context = request.getServletContext();
-    String uploadPath = context.getRealPath("/res/upload");
+    String uploadPath = context.getRealPath("/res/upload/board");
     int sizeLimit = 1024 * 1024 * 10;
     MultipartRequest multi = new MultipartRequest(request, uploadPath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
     int num = Integer.parseInt(multi.getParameter("num"));

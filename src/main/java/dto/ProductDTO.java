@@ -82,6 +82,18 @@ public class ProductDTO {
   public void setComp(String comp) {
     this.comp = comp;
   }
+  public void setViews(int views) {
+    this.views = views;
+  }
+  public void setRef(int ref) {
+    this.ref = ref;
+  }
+  public void setRe_step(int re_step) {
+    this.re_step = re_step;
+  }
+  public void setRe_indent(int re_indent) {
+    this.re_indent = re_indent;
+  }
   public void setRegDate(Date regDate) {
     this.regDate = regDate;
   }

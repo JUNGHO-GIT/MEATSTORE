@@ -16,9 +16,9 @@ function productCheck() {
     $("#price").focus();
     return false;
   }
-  if ($("#detail").val() == "") {
+  if ($("#content").val() == "") {
     alert("상품설명을 입력하세요");
-    $("#stock").focus();
+    $("#content").focus();
     return false;
   }
   if ($("#stock").val() == "") {
@@ -162,9 +162,9 @@ function zipCheck() {
 }
 
 // ------------------------------------------------------------------------------------------------>
-function productDetail (code)  {
-  document.detail.code.value = code;
-  document.detail.submit();
+function productContent (code)  {
+  document.content.code.value = code;
+  document.content.submit();
 }
 
 // ------------------------------------------------------------------------------------------------>

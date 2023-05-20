@@ -92,7 +92,6 @@ public class BoardDAO {
         re_step = 0;
         re_indent = 0;
       }
-
       sqlParam = "insert into board(writer, subject, content, pw, regDate, ref, re_step, re_indent, imageFile)";
       sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
@@ -351,8 +350,6 @@ public class BoardDAO {
 
   // ---------------------------------------------------------------------------------------------->
   public int getDelete (int num, String pw)  {
-    String dbPw = "";
-    checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from board where num=" + num);

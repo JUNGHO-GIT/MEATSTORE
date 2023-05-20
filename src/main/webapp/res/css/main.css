@@ -2722,3 +2722,8 @@ nav {
 	padding-bottom: 0;
 }
 
+.red-line {
+  border: none;
+  height: 2px;
+  background-color: #9B111E;
+}

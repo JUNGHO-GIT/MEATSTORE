@@ -100,7 +100,7 @@ public class QnaDAO {
       }
 
       if (num != 0) {
-        sqlParam = "update qna set re_step=re_step+1 where ref?and re_step>?";
+        sqlParam = "update qna set re_step=re_step+1 where ref=? and re_step>?";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setInt(1, ref);
         psTmt.setInt(2, re_step);

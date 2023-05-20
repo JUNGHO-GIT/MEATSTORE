@@ -5,16 +5,18 @@
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-  String ctxpath = request.getConnectiontextPath();
+  String ctxPath = request.getConnectiontextPath();
   ProductDAO productDAO = ProductDAO.getInstance();
   OrderDAO orderDAO = new OrderDAO();
   String id = (String) session.getAttribute("id");
   if (id == null) {
-    response.sendRedirect(ctxpath + "/member/loginForm.do");
+    response.sendRedirect(ctxPath + "/member/loginForm.do");
   }
   Vector vec = orderDAO.getOrder(id);
 %>
@@ -47,15 +49,15 @@
 			<section class="section">
 				<table width="90%">
 					<tr>
-						<th>주문번호</td>
-						<th>제품</td>
-						<th>주문수량</td>
-						<th>주문날짜</td>
-						<th>주문상태</td>
+						<th>주문번호</th>
+						<th>제품</th>
+						<th>주문수량</th>
+						<th>주문날짜</th>
+						<th>주문상태</th>
 					</tr>
 					<c:if test="${vec.size() == 0}">
 						<tr>
-							<th colspan="5" align="center">구매목록이 없습니다.</td>
+							<th colspan="5" align="center">구매목록이 없습니다.</th>
 						</tr>
 					</c:if>
 					<c:if test="${vec.size() > 0}">
@@ -65,13 +67,13 @@
               ProductDTO productDTO = productDAO.getProduct(num);
             %>
 						<tr>
-							<th><%= orderDTO.getOrdno() %></td>
+							<th><%= orderDTO.getOrdno() %></th>
 							<th>
 								<a href="javascript:productDetail('<%= productDTO.getCode()%>')">
 									<%= productDTO.getName() %></a>
-							</td>
-							<th><%= orderDTO.getQuantity() %></td>
-							<th><%= orderDTO.getOrddate() %></td>
+							</th>
+							<th><%= orderDTO.getQuantity() %></th>
+							<th><%= orderDTO.getOrddate() %></th>
 							<th>
 								<%
               switch (Integer.parseInt(orderDTO.getState())) {
@@ -95,11 +97,11 @@
                 break;
               }
               %>
-							</td>
+							</th>
 						</tr>
 						<% } %>
 					</c:if>
-					<form name="detail" action="${ctxpath}/product/detailForm.do">
+					<form name="detail" action="${ctxPath}/product/detailForm.do">
 						<input type="hidden" name="code" />
 					</form>
 				</table>

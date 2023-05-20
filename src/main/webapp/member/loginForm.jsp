@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -36,7 +38,7 @@
 <section class="section">
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center mt-3">
-      <form name="loginForm" method="post" action="${ctxpath}/member/loginPro.do" onSubmit="return loginCheck()">
+      <form name="loginForm" method="POST" action="${ctxPath}/member/loginPro.do" onSubmit="return loginCheck()">
         <div class="form-group">
           <input class="form-control" type="text" name="id" id="id" placeholder="아이디를 입력해주세요" />
         </div>
@@ -51,7 +53,7 @@
           <button class="btn btn-jungho"type="button" onclick="window.location.reload()">
           다시입력</button>
           &nbsp;&nbsp;
-          <button class="btn btn-jungho" type="button" onclick="window.location='${ctxpath}/admin/loginForm.do'">관리자 로그인</button>
+          <button class="btn btn-jungho" type="button" onclick="window.location='${ctxPath}/admin/loginForm.do'">관리자 로그인</button>
           &nbsp;&nbsp;
         </div>
       </form>

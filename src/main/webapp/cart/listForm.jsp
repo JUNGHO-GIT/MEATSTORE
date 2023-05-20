@@ -5,7 +5,9 @@
 <%@ page import="java.util.Hashtable" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctxpath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="imgsPath" value="${ctxPath}/res/imgs" />
+<c:set var="uploadPath" value="${ctxPath}/res/upload" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -26,7 +28,7 @@
 			<script>
 				alert("로그인 후 이용해주세요");
 				setTimeout(function() {
-					window.location.href = "${ctxpath}/member/loginForm.do";
+					window.location.href = "${ctxPath}/member/loginForm.do";
 				}, 100);
 			</script>
 		</c:if>
@@ -48,38 +50,38 @@
 							</thead>
 							<tbody>
 								<c:forEach var="entry" items="${hcart}">
-                  <form method="POST" action="${ctxpath}/order/insert.do">
+                  <form method="POST" action="${ctxPath}/order/insert.do">
                     <input type="hidden" name="num" value="${productDTO.num}">
                     <input type="hidden" name="flag">
                     <input type="hidden" name="state" value="1">
                     <tr>
-                      <th>${productDTO.name}</td>
+                      <th>${productDTO.name}</th>
                       <th>
                         <input type="text" name="quantity" id="quantity" value="${orderDTO.quantity}" size="5">
-                      </td>
-                      <th>${subTotal}</td>
+                      </th>
+                      <th>${subTotal}</th>
                       <th>
                         <input type="button" value="장바구니 수정" onclick="cartUpdate(this.form);">
                         <input type="button" value="장바구니 삭제" onclick="cartDelete(this.form);">
                         <input type="submit" value="주문하기">
-                      </td>
+                      </th>
                       <th>
                         <a href="javaScript:productDetail('${productDTO.code}')">상세보기</a>
-                      </td>
+                      </th>
                     </tr>
                   </form>
                 </c:forEach>
 								<tr>
 									<th colspan="4" align="right">
 										총 금액:
-									</td>
+									</th>
 									<th align="center">
-										<a href="${ctxpath}/order/insert.do">주문하기</a>
-									</td>
+										<a href="${ctxPath}/order/insert.do">주문하기</a>
+									</th>
 								</tr>
 							</tbody>
 						</table>
-						<form name="detail" method="post" action="${ctxpath}/product/detailForm.do">
+						<form name="detail" method="POST" action="${ctxPath}/product/detailForm.do">
 							<input type="hidden" name="code">
 						</form>
 					</div>
