@@ -48,7 +48,8 @@
 						</div>
             <div class="btn btn-group">
               <button class="btn btn-jungho" type="submit">수정하기</button>
-              <button class="btn btn-jungho" type="reset">다시쓰기</button>
+              <button class="btn btn-jungho" type="button" onclick="window.location.reload()">
+          다시쓰기</button>
             </div>
           </form>
         </div>

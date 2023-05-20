@@ -61,7 +61,8 @@
         <div class="btn btn-group d-flex justify-content-center align-items-center">
           <button class="btn btn-jungho" type="submit">글쓰기</button>
           &nbsp;&nbsp;
-          <button class="btn btn-jungho" type="reset">다시쓰기</button>
+          <button class="btn btn-jungho" type="button" onclick="window.location.reload()">
+          다시쓰기</button>
           &nbsp;&nbsp;
           <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/qna/listForm.do'">목록보기</button>
         </div>

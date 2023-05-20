@@ -4,60 +4,82 @@
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 
-<section class="section-1">
+<!-- header -->
+<section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
       <h1 data-aos="fade-right" data-aos-delay="300">자유게시판</h1>
-      <h2 data-aos="fade-left" data-aos-delay="300">[글 내용 보기]</h2>
+      <h2 data-aos="fade-left" data-aos-delay="300">[상세 보기]</h2>
     </div>
   </div>
 </section>
-<section class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-4 text-center">
-      <img src="${cloudPath}/board/${dto.fileupload}" class="img-fluid" alt="게시글 이미지" />
+
+<!-- section -->
+<section>
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+      <img src="${cloudPath}/board/${dto.fileupload}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
     </div>
   </div>
-  <hr class="my-4" style="border-top: 2px solid #9B111E;" />
-  <div class="row justify-content-center">
-    <div class="col-md-6">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
       <table class="table table-borderless">
         <tr>
-          <th colspan="2" class="text-center">
-            <h2>${dto.subject}</h2>
-          </td>
+          <th>글번호</th>
+          <th>
+            <input class="form-control" type="text" name="num" value="${dto.num}" readonly="readonly" />
+          </th>
         </tr>
         <tr>
-          <th>작성자</td>
+          <th>작성자</th>
           <th>
-            <input type="text" name="writer" id="writer" class="form-control" value="${dto.writer}" readonly />
-          </td>
+            <input class="form-control" type="text" name="writer" value="${dto.writer}" readonly="readonly" />
+          </th>
         </tr>
         <tr>
-          <th>작성일</td>
+          <th>작성일</th>
           <th>
-            <input type="text" name="regdate" id="regdate" class="form-control" value="${dto.regdate}" readonly />
-          </td>
+            <input class="form-control" type="text" name="regdate" value="${dto.regdate}" readonly="readonly" />
+          </th>
+        </tr>
+        <tr>
+          <th>조회수</th>
+          <th>
+            <input class="form-control" type="text" name="views" value="${dto.views}" readonly="readonly" />
+          </th>
+        </tr>
+        <tr>
+          <th>제목</th>
+          <th>
+            <input class="form-control" type="text" name="subject" value="${dto.subject}" readonly="readonly" />
+          </th>
         </tr>
         <tr>
           <th>글내용</th>
           <th>
-            <textarea class="form-control" name="content" readonly="readonly" style="height: 300px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
+            <textarea class="form-control" name="content" style="height: 300px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
           </th>
         </tr>
-        <tr>
-          <th colspan="2" class="text-center">
-            <button type="button" onclick="window.location.href='${ctxpath}/board/updateForm.do?num=${num}&pageNum=${pageNum}'" class="btn btn-jungho">수정</button>
-            &nbsp;&nbsp;
-            <button type="button" onclick="window.location.href='${ctxpath}/board/deleteForm.do?num=${num}&pageNum=${pageNum}'" class="btn btn-jungho">삭제</button>
-            &nbsp;&nbsp;
-            <button type="button" onclick="window.location.href='${ctxpath}/board/insertForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_indent=${dto.re_indent}&re_indent=${dto.re_indent}'" class="btn btn-jungho">답글쓰기</button>
-            &nbsp;&nbsp;
-            <button type="button" onclick="window.location.href='${ctxpath}/board/listForm.do?pageNum=${pageNum}'" class="btn btn-jungho">목록보기</button>
-          </td>
-        </tr>
       </table>
+    </div>
+  </div>
+  <br />
+  <br />
+
+  <!-- button -->
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+      <div class="btn btn-group d-flex justify-content-center align-items-center ms-4">
+        <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/board/updateForm.do?num=${num}&pageNum=${pageNum}'">글 수정</button>
+        &nbsp;&nbsp;
+        <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/board/deleteForm.do?num=${num}&pageNum=${pageNum}'">글 삭제</button>
+        <c:if test="${!empty sessionScope.adminid}">
+          <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/board/insertForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_indent=${dto.re_indent}&re_indent=${dto.re_indent}'">답글 작성</button>
+        </c:if>
+        &nbsp;&nbsp;
+        <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/board/listForm.do?pageNum=${pageNum}'">리스트</button>
+      </div>
     </div>
   </div>
 </section>

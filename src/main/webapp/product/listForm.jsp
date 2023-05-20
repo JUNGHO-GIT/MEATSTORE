@@ -47,7 +47,7 @@
           <tbody>
             <c:forEach var="dto" items="${list}">
               <tr>
-                <th class="jungho-center ft-10">
+                <th class="jungho-center ft-8">
                   <c:if test="${dto.image != null}">
                     <img src="${cloudPath}/product/${dto.image}" width="200" height="200" class="sh-10 rd-1" />
                   </c:if>
@@ -56,16 +56,16 @@
                     class="sh-10 rd-1" />
                   </c:if>
                 </th>
-                <th class="jungho-center ft-10">
+                <th class="jungho-center ft-8">
                   ${dto.name}
                 </th>
-                <th class="jungho-center ft-10">
+                <th class="jungho-center ft-8">
                   <fmt:formatNumber value="${dto.price}" type="currency" currencyCode="KRW" maxFractionDigits="0" />
                 </th>
-                <th class="jungho-center ft-10">
+                <th class="jungho-center ft-8">
                   ${dto.stock}
                 </td>
-                <th class="jungho-center ft-10">
+                <th class="jungho-center ft-8">
                   <button class="btn" style="background-color: #760d17; color: #ffffff;" onClick="location='${ctxpath}/product/detail.do?code=${dto.code}'">정보보기</button>
                 </th>
               </tr>

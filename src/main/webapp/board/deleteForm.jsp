@@ -15,12 +15,11 @@
   </div>
 </section>
 
-
 <!-- section -->
 <section>
   <form name="delForm" method="post" enctype="multipart/form-data" action="${ctxpath}/board/deletePro.do?pageNum=${pageNum}" onsubmit="return delpwCheck()">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <table class="table table-borderless">
           <tr>
             <th>암호</th>

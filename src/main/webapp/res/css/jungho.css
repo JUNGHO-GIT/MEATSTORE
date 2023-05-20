@@ -492,9 +492,17 @@
 
 /** 가운데 정렬 ***********************************************************************************/
 .jungho-center {
-  display: flex;
   text-align: center !important;
   justify-content: center !important;
   align-items: center !important;
   vertical-align: middle !important;
+}
+
+textarea {
+  resize: none;
+  height: 200px;
+}
+
+* {
+  caret-color: transparent !important;
 }

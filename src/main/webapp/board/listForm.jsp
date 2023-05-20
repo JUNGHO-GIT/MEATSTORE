@@ -9,7 +9,7 @@
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
-      <h1 data-aos="fade-right" data-aos-delay="300">Board</h1>
+      <h1 data-aos="fade-right" data-aos-delay="300">자유게시판</h1>
       <h2 data-aos="fade-left" data-aos-delay="300">[전체글 : ${count}]</h1>
         <h2>
           <button class="btn btn-jungho" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='${ctxpath}/board/insertForm.do'">글쓰기</button>
@@ -43,19 +43,21 @@
           <tbody>
             <c:forEach var="dto" items="${list}">
               <tr>
-                <th class="fw-5">
+                <th class="jungho-center ft-8 fw-5">
                   <c:out value="${number}" />
                   <c:set var="number" value="${number-1}" />
-                </td>
+                </th>
                 <th>
                   <c:if test="${dto.fileupload!=null}">
-                    <img src="${cloudPath}/${dto.fileupload}" width="100" height="100" class="sh-10 rd-1"/>
+                    <img src="${cloudPath}/${dto.fileupload}" width="100" height="100"
+                    class="sh-7 rd-1"/>
                   </c:if>
                   <c:if test="${dto.fileupload==null}">
-                    <img src="${ctxpath}/res/imgs/nofile.jpg" width="100" height="100" class="sh-10 rd-1"/>
+                    <img src="${ctxpath}/res/imgs/nofile.png" width="100" height="100"
+                     class="sh-7 rd-1"/>
                   </c:if>
-                </td>
-                <th class="fw-5">
+                </th>
+                <th class="jungho-center ft-8 fw-5">
                   <c:if test="${dto.re_indent>0}">
                     <img src="${ctxpath}/res/imgs/level.gif" width="${5*dto.re_indent}" height="16" />
                     <img src="${ctxpath}/res/imgs/re.gif" />
@@ -68,12 +70,16 @@
                   <c:if test="${dto.views}=10">
                     <img src="${ctxpath}/res/imgs/hot.gif" />
                   </c:if>
-                </td>
-                <th class="fw-5">${dto.writer}</td>
-                <th class="fw-5">
+                </th>
+                <th class="jungho-center ft-8 fw-5">
+                  ${dto.writer}
+                </th>
+                <th class="jungho-center ft-8 fw-5">
                   <fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd" />
-                </td>
-                <th class="fw-5">${dto.views}</td>
+                </th>
+                <th class="jungho-center ft-8 fw-5">
+                  ${dto.views}
+                </th>
               </tr>
             </c:forEach>
           </tbody>
