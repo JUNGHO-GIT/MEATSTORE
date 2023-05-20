@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 // ------------------------------------------------------------------------------------------------>
-public class DetailAction implements CommandAction {
+public class DetailFormAction implements CommandAction {
 
   // ---------------------------------------------------------------------------------------------->
   @Override

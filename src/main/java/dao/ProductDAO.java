@@ -26,7 +26,7 @@ public class ProductDAO {
   ResultSet resultSet = null;
   String sqlParam = "";
   String dbPw = "";
-  int checkParam = 0;
+  int checkParam = -100;
 
   // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
   private ProductDAO() {}
@@ -47,7 +47,9 @@ public class ProductDAO {
         connecTion.close();
       }
     }
-    catch (Exception ex2) {}
+    catch (Exception ex2) {
+      System.out.println("Exception occurred: " + ex2.getMessage());
+    }
   }
 
   // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
@@ -176,12 +178,12 @@ public class ProductDAO {
       if (name != null) {
         whereClause += " WHERE name LIKE ?";
       }
-      if (name != null) {
+      if (detail != null) {
         if (whereClause.isEmpty()) {
-          whereClause += " WHERE name LIKE ?";
+          whereClause += " WHERE detail LIKE ?";
         }
         else {
-          whereClause += " AND name LIKE ?";
+          whereClause += " AND detail LIKE ?";
         }
       }
 
@@ -372,7 +374,7 @@ public class ProductDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public boolean deleteProduct (HttpServletRequest request, int num)  {
+  public boolean getDelete (HttpServletRequest request, int num)  {
     boolean re = false;
     try {
       connecTion = getConnection();

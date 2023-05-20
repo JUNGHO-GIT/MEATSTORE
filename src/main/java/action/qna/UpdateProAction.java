@@ -21,8 +21,8 @@ public class UpdateProAction implements CommandAction {
     dto.setContent(request.getParameter("content"));
     dto.setPw(request.getParameter("pw"));
     QnaDAO dao = QnaDAO.getInstance();
-    int x = dao.updateQna(dto);
-    request.setAttribute("x", x);
+    int checkParam = dao.updateQna(dto);
+    request.setAttribute("checkParam", checkParam);
     request.setAttribute("pageNum", pageNum);
     return "/qna/updatePro.jsp";
   }

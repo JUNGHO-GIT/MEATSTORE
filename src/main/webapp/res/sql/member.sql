@@ -8,6 +8,6 @@ CREATE TABLE member (
   addr VARCHAR(255),
   addr2 VARCHAR(255),
   regDate DATETIME,
-  adminid VARCHAR(255),
-  adminpw VARCHAR(255)
+  adminId VARCHAR(255),
+  adminPw VARCHAR(255)
 );

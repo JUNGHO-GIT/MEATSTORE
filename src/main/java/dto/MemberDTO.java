@@ -14,8 +14,6 @@ public class MemberDTO {
   private String addr;
   private String addr2;
   private Date regDate;
-  private String adminid;
-  private String adminpw;
 
   // getter --------------------------------------------------------------------------------------->
   public String getId() {
@@ -45,12 +43,6 @@ public class MemberDTO {
   public Date getRegDate() {
     return regDate;
   }
-  public String getAdminid() {
-    return adminid;
-  }
-  public String getAdminpw() {
-    return adminpw;
-  }
 
   // setter --------------------------------------------------------------------------------------->
   public void setId(String id) {
@@ -79,12 +71,6 @@ public class MemberDTO {
   }
   public void setRegDate(Date regDate) {
     this.regDate = regDate;
-  }
-  public void setAdminid(String adminid) {
-    this.adminid = adminid;
-  }
-  public void setAdminpw(String adminpw) {
-    this.adminpw = adminpw;
   }
 }
 

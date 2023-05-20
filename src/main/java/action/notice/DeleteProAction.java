@@ -15,8 +15,8 @@ public class DeleteProAction implements CommandAction {
     String pageNum = request.getParameter("pageNum");
     String pw = request.getParameter("pw");
     NoticeDAO dao = NoticeDAO.getInstance();
-    int x = dao.deleteNotice(num, pw);
-    request.setAttribute("x", x);
+    int checkParam = dao.getDelete(num, pw);
+    request.setAttribute("checkParam", checkParam);
     request.setAttribute("pageNum", pageNum);
     return "/notice/deletePro.jsp";
   }

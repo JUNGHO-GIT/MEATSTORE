@@ -3,8 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
-<c:if test="${x == 1}">
+<c:if test="${checkParam == 1}">
   <% session.setAttribute("id", (String)request.getAttribute("id")); %>
   <script>
     alert("로그인 되었습니다.");
@@ -14,14 +15,14 @@
   </script>
 </c:if>
 
-<c:if test="${x == 0}">
+<c:if test="${checkParam == 0}">
   <script>
     alert("암호가 틀립니다");
     history.back();
   </script>
 </c:if>
 
-<c:if test="${x == -1}">
+<c:if test="${checkParam == -1}">
   <script>
     alert("없는 ID 입니다");
     history.back();

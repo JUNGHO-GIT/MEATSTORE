@@ -1,17 +1,18 @@
 package action.board;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import command.CommandAction;
 import dao.BoardDAO;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 // ------------------------------------------------------------------------------------------------>
 public class DeleteProAction implements CommandAction {
 
   // ---------------------------------------------------------------------------------------------->
+  @Override
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
     ServletContext context = request.getServletContext();
     String uploadPath = context.getRealPath("/res/upload");
@@ -21,7 +22,7 @@ public class DeleteProAction implements CommandAction {
     String pageNum = request.getParameter("pageNum");
     String pw = multi.getParameter("pw");
     BoardDAO dao = BoardDAO.getInstance();
-    int checkParam = dao.deleteBoard(num, pw);
+    int checkParam = dao.getDelete(num, pw);
     request.setAttribute("checkParam", checkParam);
     request.setAttribute("pageNum", pageNum);
     return "/board/deletePro.jsp";

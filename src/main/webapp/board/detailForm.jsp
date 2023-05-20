@@ -3,9 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section">
+<section class="section pb-5">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
@@ -16,7 +17,7 @@
 </section>
 
 <!-- section -->
-<section>
+<section class="section">
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
       <img src="${cloudPath}/board/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
@@ -74,7 +75,7 @@
         <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/board/updateForm.do?num=${num}&pageNum=${pageNum}'">글 수정</button>
         &nbsp;&nbsp;
         <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/board/deleteForm.do?num=${num}&pageNum=${pageNum}'">글 삭제</button>
-        <c:if test="${!empty sessionScope.adminid}">
+        <c:if test="${!empty sessionScope.adminId}">
           <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/board/insertForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_indent=${dto.re_indent}&re_indent=${dto.re_indent}'">답글 작성</button>
         </c:if>
         &nbsp;&nbsp;

@@ -8,6 +8,7 @@
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
+
 <jsp:useBean id="cartDAO" class="dao.CartDAO" scope="session" />
 
 <!-- header -->

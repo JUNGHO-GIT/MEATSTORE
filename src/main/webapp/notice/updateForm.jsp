@@ -3,20 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section">
+<section class="section pb-5">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
-      <h1 data-aos="fade-right" data-aos-delay="300">Notice</h1>
+      <h1 data-aos="fade-right" data-aos-delay="300">공지사항</h1>
       <h2 data-aos="fade-left" data-aos-delay="300">[글 수정]</h2>
     </div>
   </div>
 </section>
 
 <!-- section -->
-<section>
+<section class="section">
   <form name="updateForm" method="post" action="${ctxpath}/notice/updatePro.do?pageNum=${pageNum}" onSubmit="return noticePwCheck()">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
@@ -60,7 +61,7 @@
           <tr>
             <th>암호</th>
             <th>
-              <input class="form-control" type="password" name="pw" id="pw" size="20" placeholder="암호를 입력하세요." />
+              <input class="form-control" type="password" name="pw" id="pw" placeholder="암호를 입력하세요." />
             </th>
           </tr>
         </table>

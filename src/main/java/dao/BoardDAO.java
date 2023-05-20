@@ -20,7 +20,7 @@ public class BoardDAO {
   ResultSet resultSet = null;
   String sqlParam = "";
   String dbPw = "";
-  int checkParam = 0;
+  int checkParam = -100;
 
   // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
   private BoardDAO() {}
@@ -41,7 +41,9 @@ public class BoardDAO {
         connecTion.close();
       }
     }
-    catch (Exception ex2) {}
+    catch (Exception ex2) {
+      System.out.println("Exception occurred: " + ex2.getMessage());
+    }
   }
 
   // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
@@ -314,9 +316,7 @@ public class BoardDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public int updateBoard (BoardDTO dto)  {
-    int checkParam = -100;
-    String dbPw = "";
+  public int updateBoard (BoardDTO dto) {
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from board where num=?");
@@ -350,9 +350,9 @@ public class BoardDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public int deleteBoard (int num, String pw)  {
+  public int getDelete (int num, String pw)  {
     String dbPw = "";
-    int checkParam = -100;
+    checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from board where num=" + num);

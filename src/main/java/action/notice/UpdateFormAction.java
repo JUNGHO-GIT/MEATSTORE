@@ -11,7 +11,8 @@ public class UpdateFormAction implements CommandAction {
 
   // ---------------------------------------------------------------------------------------------->
   @Override
-  public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
+  public String requestPro (HttpServletRequest request, HttpServletResponse response)
+  throws Throwable {
     int num = Integer.parseInt(request.getParameter("num"));
     String pageNum = request.getParameter("pageNum");
     NoticeDAO dao = NoticeDAO.getInstance();

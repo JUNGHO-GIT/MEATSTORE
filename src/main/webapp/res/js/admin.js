@@ -1,6 +1,6 @@
 
 // ------------------------------------------------------------------------------------------------>
-function productCheck ()  {
+function productCheck() {
   if ($("#name").val() == "") {
     alert("상품명을 입력하세요");
     $("#name").focus();
@@ -35,7 +35,7 @@ function productCheck ()  {
 }
 
 // ------------------------------------------------------------------------------------------------>
-function loginCheck ()  {
+function loginCheck() {
   if ($("#memId").val() == "") {
     alert("아이디를 입력해 주세요.");
     $("#memId").focus();
@@ -50,12 +50,12 @@ function loginCheck ()  {
 }
 
 // ------------------------------------------------------------------------------------------------>
-function memberReg ()  {
+function memberReg() {
   document.location = "Register.jsp";
 }
 
 // ------------------------------------------------------------------------------------------------>
-function insertCheck ()  {
+function insertCheck() {
   if ($("#mem_id").val() == "") {
     alert("아이디를 입력해 주세요.");
     $("#mem_id").focus();
@@ -156,7 +156,7 @@ function idCheck (id)  {
 }
 
 // ------------------------------------------------------------------------------------------------>
-function zipCheck ()  {
+function zipCheck() {
   url = "ZipCheck.jsp?check=y";
   window.open(url, "post", "toolbar=no ,width=500 ,height=300 ,directories=no,status=yes,scrollbars=yes,menubar=no");
 }

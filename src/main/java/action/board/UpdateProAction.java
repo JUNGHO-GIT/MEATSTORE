@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UpdateProAction implements CommandAction {
 
   // ---------------------------------------------------------------------------------------------->
+  @Override
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
     ServletContext context = request.getServletContext();
     String uploadPath = context.getRealPath("/res/upload");

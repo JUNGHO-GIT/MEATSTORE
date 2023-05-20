@@ -4,7 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
+<!-- header -->
 <section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
@@ -16,11 +18,11 @@
 </section>
 
 <!-- section -->
-<section class="container">
-  <form method="post" action="${ctxpath}/cart/insert.do">
+<section class="section">
+  <form method="post" action="${ctxpath}/cart/insertForm.do">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-        <img src="https://storage.googleapis.com/jungho-bucket/MEATSTORE/product/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
+        <img src="${cloudPath}/product/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
       </div>
     </div>
     <hr class="my-4" style="border-top: 2px solid #9B111E;" />
@@ -72,19 +74,28 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-            </td>
-          </tr>
-          <tr>
-            <th colspan="2" class="text-center">
-              <button type="submit" id="submit_detail" class="btn btn-jungho">장바구니 담기</button>
-              <button type="button" id="button_detail" class="btn btn-secondary" onClick="location='${ctxpath}/product/listForm.do'">취소</button>
-              <input type="hidden" name="num" id="num" value="${dto.num}" />
-              <input type="hidden" name="id" id="id" value="${sessionScope.id}" />
-              <input type="hidden" name="state" value="1" />
-            </td>
+            </th>
           </tr>
         </table>
       </div>
     </div>
+    <br />
+    <br />
+
+    <!-- button -->
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+        <div class="btn btn-group d-flex justify-content-center align-items-center ms-4">
+          <button type="submit" id="submit_detail" class="btn btn-jungho">장바구니 담기</button>
+          &nbsp;&nbsp;
+          <button type="button" id="button_detail" class="btn btn-secondary" onclick="location='${ctxpath}/product/listForm.do'">취소</button>
+          &nbsp;&nbsp;
+          <input type="hidden" name="num" id="num" value="${dto.num}" />
+          <input type="hidden" name="id" id="id" value="${sessionScope.id}" />
+          <input type="hidden" name="state" value="1" />
+        </div>
+      </div>
+    </div>
+
   </form>
 </section>

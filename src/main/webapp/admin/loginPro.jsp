@@ -6,17 +6,25 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <c:if test="${checkParam == 1}">
+  <% session.setAttribute("adminId", (String)request.getAttribute("adminId")); %>
   <script>
-    alert("수정이 완료되었습니다.");
+    alert("로그인 되었습니다.");
     setTimeout(function() {
-      window.location.href = "${ctxpath}/notice/listForm.do";
+      window.location.href="${ctxpath}/index.jsp";
     }, 100);
+  </script>
+</c:if>
+
+<c:if test="${checkParam == 0}">
+  <script>
+    alert("암호가 틀립니다");
+    history.back();
   </script>
 </c:if>
 
 <c:if test="${checkParam == -1}">
   <script>
-    alert("암호가 다릅니다.");
+    alert("없는 ID 입니다");
     history.back();
   </script>
 </c:if>

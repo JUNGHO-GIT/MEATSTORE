@@ -10,7 +10,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import dto.NoticeDTO;
-import dto.NoticeDTO;
 
 public class NoticeDAO {
 
@@ -21,7 +20,7 @@ public class NoticeDAO {
   ResultSet resultSet = null;
   String sqlParam = "";
   String dbPw = "";
-  int checkParam = 0;
+  int checkParam = -100;
 
   // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
   private NoticeDAO() {}
@@ -42,7 +41,9 @@ public class NoticeDAO {
         connecTion.close();
       }
     }
-    catch (Exception ex2) {}
+    catch (Exception ex2) {
+      System.out.println("Exception occurred: " + ex2.getMessage());
+    }
   }
 
   // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
@@ -311,9 +312,7 @@ public class NoticeDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public int updateNotice (NoticeDTO dto)  {
-    int checkParam = -100;
-    String dbPw = "";
+  public int updateNotice (NoticeDTO dto) {
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from notice where num=?");
@@ -346,9 +345,9 @@ public class NoticeDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public int deleteNotice (int num, String pw)  {
+  public int getDelete (int num, String pw)  {
     String dbPw = "";
-    int checkParam = -100;
+    checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from notice where num=" + num);

@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
 <html lang="en, ko">
@@ -20,17 +21,17 @@
 		<link rel="stylesheet" href="${ctxpath}/res/css/style.css" />
     <link rel="stylesheet" href="${ctxpath}/res/css/jungho.css" />
 		<!-- js -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+		<script defet src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script defet src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script defet src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
 		</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		<script src="${ctxpath}/res/js/board.js"></script>
-		<script src="${ctxpath}/res/js/admin.js"></script>
-		<script src="${ctxpath}/res/js/member.js"></script>
-		<script src="${ctxpath}/res/js/notice.js"></script>
-		<script src="${ctxpath}/res/js/cart.js"></script>
+		<script defet src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script defet src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script defet src="${ctxpath}/res/js/board.js"></script>
+		<script defet src="${ctxpath}/res/js/admin.js"></script>
+		<script defet src="${ctxpath}/res/js/member.js"></script>
+		<script defet src="${ctxpath}/res/js/notice.js"></script>
+		<script defet src="${ctxpath}/res/js/cart.js"></script>
 		<!-- custom -->
 		<script>
 			$(document).ready(function() {
@@ -49,8 +50,7 @@
 					document.documentElement.setAttribute('class', 'stuck');
 				};
 			}));
-		</script>
-		<script>
+
 			function pwCheck() {
 				if (document.updateForm.pw.value == "") {
 					alert("암호는 필수 입력");
@@ -96,7 +96,8 @@
 							<img src="${ctxpath}/res/imgs/section/qna.png" />
 						</a>
 						&nbsp;&nbsp;
-						<c:if test="${sessionScope.id == null && sessionScope.adminid == null}">
+            <!-- login x -->
+						<c:if test="${sessionScope.id == null && sessionScope.adminId == null}">
               <span class="log"><a href="${ctxpath}/member/loginForm.do">로그인</a></span>
 							&nbsp;
               <span class="log"><a href="${ctxpath}/member/insertForm.do">회원가입</a></span>
@@ -104,14 +105,14 @@
 						&nbsp;&nbsp;
 						<!-- login o (일반 회원) -->
 						<c:if test="${sessionScope.id != null}">
-              <span class="log"><a href="${ctxpath}/member/logOut.do">로그아웃</a></span>
+              <span class="log"><a href="${ctxpath}/member/logoutPro.do">로그아웃</a></span>
               &nbsp;
-              <span class="log"><a href="${ctxpath}/member/modify.do">정보수정</a></span>
+              <span class="log"><a href="${ctxpath}/member/updateForm.do">회원정보수정</a></span>
 						</c:if>
 						&nbsp;&nbsp;
 						<!-- login o (관리자) -->
-						<c:if test="${sessionScope.adminid != null}">
-              <span class="log"><a href="${ctxpath}/member/logOut.do">로그아웃</a></span>
+						<c:if test="${sessionScope.adminId != null}">
+              <span class="log"><a href="${ctxpath}/admin/logoutPro.do">로그아웃</a></span>
 						</c:if>
 					</div>
 				</div>
@@ -139,7 +140,7 @@
 		</main>
 
 		<!-- bottom ----------------------------------------------------------------------------------->
-		<footer class="footer" style="background-color: #3d1216; margin-top: 60px;">
+		<footer class="footer" style="background-color: #3d1216; margin-top: 20px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">

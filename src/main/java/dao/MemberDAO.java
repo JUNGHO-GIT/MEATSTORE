@@ -1,8 +1,12 @@
 package dao;
 
-import java.sql.*;
-import javax.naming.*;
-import javax.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import dto.MemberDTO;
 
 public class MemberDAO {
@@ -14,7 +18,7 @@ public class MemberDAO {
   ResultSet resultSet = null;
   String sqlParam = "";
   String dbPw = "";
-  int checkParam = 0;
+  int checkParam = -100;
 
   // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
   private MemberDAO() {}
@@ -35,7 +39,9 @@ public class MemberDAO {
         connecTion.close();
       }
     }
-    catch (Exception ex2) {}
+    catch (Exception ex2) {
+      System.out.println("Exception occurred: " + ex2.getMessage());
+    }
   }
 
   // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
@@ -54,7 +60,6 @@ public class MemberDAO {
 
   // confirmID ------------------------------------------------------------------------------------>
   public int confirmID(String id) {
-    int checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select id from member where id=?");
@@ -106,10 +111,8 @@ public class MemberDAO {
     }
   }
 
-  // userCheck ------------------------------------------------------------------------------------>
-  public int userCheck(String id, String pw) {
-    int checkParam = -100;
-    String dbPw = "";
+  // memberCheck ---------------------------------------------------------------------------------->
+  public int memberCheck(String id, String pw) {
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from member where id=?");
@@ -138,9 +141,8 @@ public class MemberDAO {
     return checkParam;
   }
 
-  // getMember ------------------------------------------------------------------------------------>
+  // pwCheck -------------------------------------------------------------------------------------->
   public int pwCheck(String id, String pw) {
-    int checkParam = -100;
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select * from member where id=? and pw=?");
@@ -196,7 +198,7 @@ public class MemberDAO {
   }
 
   // updateMember --------------------------------------------------------------------------------->
-  public void updateMember(MemberDTO dto) {
+  public void getUpdate(MemberDTO dto) {
     try {
       connecTion = getConnection();
       sqlParam = "update member set pw=?, name=?, email=?, tel=?, zipcode=?, addr=?, addr2=? where id=?";
@@ -210,7 +212,6 @@ public class MemberDAO {
       psTmt.setString(6, dto.getAddr());
       psTmt.setString(7, dto.getAddr2());
       psTmt.setString(8, dto.getId());
-
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
@@ -222,8 +223,7 @@ public class MemberDAO {
   }
 
   // deleteMember --------------------------------------------------------------------------------->
-  public int deleteMember(String id, String pw) {
-    int checkParam = -100;
+  public int getDelete (String id, String pw) {
     try {
       connecTion = getConnection();
       psTmt = connecTion.prepareStatement("select pw from member where id=?");
@@ -231,12 +231,11 @@ public class MemberDAO {
       resultSet = psTmt.executeQuery();
 
       if (resultSet.next()) {
-        String dbPw = resultSet.getString("pw");
+        dbPw = resultSet.getString("pw");
         if (pw.equals(dbPw)) {
           psTmt = connecTion.prepareStatement("delete from member where id=?");
           psTmt.setString(1, id);
           psTmt.executeUpdate();
-
           checkParam = 1;
         }
         else {
@@ -253,31 +252,5 @@ public class MemberDAO {
     return checkParam;
   }
 
-  // adminLogin ----------------------------------------------------------------------------------->
-  public int adminLogin(String adminid, String adminpw) {
-    int checkParam = 100;
-    try {
-      connecTion = getConnection();
-      psTmt =
-        connecTion.prepareStatement(
-          "select * from admin where adminid=? and adminpw=?"
-        );
-      psTmt.setString(1, adminid);
-      psTmt.setString(2, adminpw);
-      resultSet = psTmt.executeQuery();
-      if (resultSet.next()) {
-        checkParam = 1;
-      }
-      else {
-        checkParam = -1;
-      }
-    }
-    catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
-    }
-    finally {
-      exceptionHandling();
-    }
-    return checkParam;
-  }
+
 }

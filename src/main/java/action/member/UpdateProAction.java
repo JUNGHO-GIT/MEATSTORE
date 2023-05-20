@@ -1,10 +1,10 @@
 package action.member;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import command.CommandAction;
 import dao.MemberDAO;
 import dto.MemberDTO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 // ------------------------------------------------------------------------------------------------>
 public class UpdateProAction implements CommandAction {
@@ -24,7 +24,7 @@ public class UpdateProAction implements CommandAction {
     dto.setAddr(request.getParameter("addr"));
     dto.setAddr2(request.getParameter("addr2"));
     MemberDAO dao = MemberDAO.getInstance();
-    dao.updateMember(dto);
+    dao.getUpdate(dto);
     request.setAttribute("id", id);
     return "/member/updatePro.jsp";
   }

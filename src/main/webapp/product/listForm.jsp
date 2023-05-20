@@ -3,19 +3,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section">
+<section class="section pb-5">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
-    <c:if test="${sessionScope.adminid != null}">
+    <c:if test="${sessionScope.adminId != null}">
       <div class="container-fluid content">
         <h1 data-aos="fade-right" data-aos-delay="300">상품목록</h1>
         <h2 data-aos="fade-left" data-aos-delay="300">[관리자]</h2>
-        <button class="btn btn-junghp" onClick="location='${ctxpath}/admin/productInsertForm.do'">상품등록</button>
+        <button class="btn btn-junghp" onclick="location='${ctxpath}/admin/productInsertForm.do'">상품등록</button>
       </div>
     </c:if>
-    <c:if test="${sessionScope.adminid == null}">
+    <c:if test="${sessionScope.adminId == null}">
       <div class="container-fluid content">
         <h1 data-aos="fade-right" data-aos-delay="300">상품목록</h2>
         <h2 data-aos="fade-left" data-aos-delay="300">[최고급 고기를 즐겨보세요.]</h2>
@@ -66,12 +67,30 @@
                   ${dto.stock}
                 </td>
                 <th class="jungho-center ft-8">
-                  <button class="btn" style="background-color: #760d17; color: #ffffff;" onClick="location='${ctxpath}/product/detailForm.do?code=${dto.code}'">정보보기</button>
+                  <button class="btn" style="background-color: #760d17; color: #ffffff;" onclick="location='${ctxpath}/product/detailForm.do?code=${dto.code}'">정보보기</button>
                 </th>
               </tr>
             </c:forEach>
           </tbody>
         </table>
+      </div>
+    </div>
+    <br />
+    <br />
+
+    <!-- search -->
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+        <div class="search_page d-flex justify-content-center align-items-center">
+          <form method="GET" name="search_list" action="${ctxpath}/product/listSearch.do" class="form-inline">
+            <select name="keyword" class="form-control">
+              <option value="name">상품명</option>
+              <option value="detail">상품설명</option>
+            </select>
+            <input type="text" name="search" id="search" class="form-control" />
+            <input type="submit" value="검색" class="btn btn-jungho" />
+          </form>
+        </div>
       </div>
     </div>
     <br />

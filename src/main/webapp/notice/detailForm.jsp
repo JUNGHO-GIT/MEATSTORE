@@ -3,20 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section">
+<section class="section pb-5">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
-      <h1 data-aos="fade-right" data-aos-delay="300">Notice</h1>
+      <h1 data-aos="fade-right" data-aos-delay="300">공지사항</h1>
       <h2 data-aos="fade-left" data-aos-delay="300">[여러분들의 의견을 들려주세요]</h2>
     </div>
   </div>
 </section>
 
 <!-- section -->
-<section>
+<section class="section">
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
       <table class="table table-borderless">
@@ -68,7 +69,7 @@
         <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/updateForm.do?num=${num}&pageNum=${pageNum}'">글 수정</button>
         &nbsp;&nbsp;
         <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/deleteForm.do?num=${num}&pageNum=${pageNum}'">글 삭제</button>
-        <c:if test="${!empty sessionScope.adminid}">
+        <c:if test="${!empty sessionScope.adminId}">
           <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxpath}/notice/insertForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_indent=${dto.re_indent}&re_indent=${dto.re_indent}'">답글 작성</button>
         </c:if>
         &nbsp;&nbsp;

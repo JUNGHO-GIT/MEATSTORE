@@ -1,9 +1,9 @@
 package action.qna;
 
-import command.CommandAction;
-import dao.QnaDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import command.CommandAction;
+import dao.QnaDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class DeleteProAction implements CommandAction {
@@ -15,8 +15,8 @@ public class DeleteProAction implements CommandAction {
     String pageNum = request.getParameter("pageNum");
     String pw = request.getParameter("pw");
     QnaDAO dao = QnaDAO.getInstance();
-    int x = dao.deleteQna(num, pw);
-    request.setAttribute("x", x);
+    int checkParam = dao.getDelete(num, pw);
+    request.setAttribute("checkParam", checkParam);
     request.setAttribute("pageNum", pageNum);
     return "/qna/deletePro.jsp";
   }

@@ -6,7 +6,7 @@ import command.CommandAction;
 import dao.ProductDAO;
 import dto.ProductDTO;
 
-public class DetailAction implements CommandAction {
+public class DetailFormAction implements CommandAction {
 
   @Override
   public String requestPro(

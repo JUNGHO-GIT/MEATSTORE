@@ -1,27 +1,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-  https://maven.apache.org/xsd/maven-4.0.0.xsd">
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>MeatStore</groupId>
   <artifactId>MeatStore</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+
+  <!-- dependencies -->
   <dependencies>
-    <!-- java servlet dependency -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
     </dependency>
-    <!-- oreilly cos.jar file -->
     <dependency>
       <groupId>servlets.com</groupId>
       <artifactId>cos</artifactId>
       <version>05Nov2002</version>
     </dependency>
   </dependencies>
+
+  <!-- build -->
   <build>
     <plugins>
       <plugin>
@@ -44,9 +46,6 @@
         <version>3.2.3</version>
       </plugin>
     </plugins>
-
-    <!-- war file name -->
     <finalName>MeatStore</finalName>
-
   </build>
 </project>

@@ -3,9 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section">
+<section class="section pb-5">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
@@ -16,20 +17,34 @@
 </section>
 
 <!-- section -->
-<section>
-  <div class="row">
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-      <form class="m-4" name="delForm" method="post" action="${ctxpath}/member/deletePro.do" onSubmit="return pwCheck()">
-        <div class="form-group">
-          <input type="password" name="pw" id="pw" size="20" placeholder="비밀번호" class="form-control" required="required" />
-          <input type="hidden" name="id" value="${sessionScope.id}" class="form-control" />
-        </div>
+<section class="section">
+  <form class="m-4" name="delForm" method="post" action="${ctxpath}/member/deletePro.do" onSubmit="return pwCheck()">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+        <table class="table table-borderless">
+          <tr>
+            <th>비밀번호</th>
+            <th>
+              <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요" class="form-control" required/>
+              <input type="hidden" name="id" value="${sessionScope.id}" class="form-control" />
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <br/>
+    <br/>
+
+    <!-- button -->
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <div class="btn btn-group d-flex justify-content-center align-items-center">
           <button class="btn btn-jungho" type="submit">회원탈퇴</button>
           &nbsp;&nbsp;
-          <button class="btn btn-secondary" type="button" onClick="location='${ctxpath}/index.jsp'">취소</button>
+          <button class="btn btn-secondary" type="button" onclick="location='${ctxpath}/index.jsp'">취소</button>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
+
+  </form>
 </section>

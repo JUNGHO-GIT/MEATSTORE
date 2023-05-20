@@ -21,8 +21,8 @@ public class UpdateProAction implements CommandAction {
     dto.setContent(request.getParameter("content"));
     dto.setPw(request.getParameter("pw"));
     NoticeDAO dao = NoticeDAO.getInstance();
-    int x = dao.updateNotice(dto);
-    request.setAttribute("x", x);
+    int checkParam = dao.updateNotice(dto);
+    request.setAttribute("checkParam", checkParam);
     request.setAttribute("pageNum", pageNum);
     return "/notice/updatePro.jsp";
   }

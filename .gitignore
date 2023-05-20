@@ -1,9 +1,9 @@
-.vscode/
+/.vscode/
+/.gradle/
 /target/
 /build/
 /classes/
-/*.class
-node_modules/
-*.properties
-.gradle/
+/node_modules/
 /maven-wrapper/
+*.properties
+*.class

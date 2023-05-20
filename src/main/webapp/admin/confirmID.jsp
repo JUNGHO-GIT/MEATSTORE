@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="dao.*" %>
+<%@ page import="dto.*" %>
+<%@ page import="java.util.*" %>
 <c:set var="ctxpath" value="${pageContext.request.contextPath}" />
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
-<script>
-	alert("글작성이 완료되었습니다")
-	setTimeout(function() {
-		window.location.href = "${ctxpath}/notice/listForm.do";
-  }, 100);
-</script>
+<%
+  String adminId = request.getParameter("adminId");
+  AdminDAO dao = AdminDAO.getInstance();
+  int checkParam = dao.confirmID(adminId);
+%>
+
+{"checkParam" : <%= checkParam %>}

@@ -21,7 +21,7 @@ public class CartDAO {
   ResultSet resultSet = null;
   String sqlParam = "";
   String dbPw = "";
-  int checkParam = 0;
+  int checkParam = -100;
 
   // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
   private CartDAO() {}
@@ -42,7 +42,9 @@ public class CartDAO {
         connecTion.close();
       }
     }
-    catch (Exception ex2) {}
+    catch (Exception ex2) {
+      System.out.println("Exception occurred: " + ex2.getMessage());
+    }
   }
 
   // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
@@ -160,7 +162,7 @@ public class CartDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public void deleteCart (int num) {
+  public void getDelete (int num) {
     try {
       connecTion = getConnection();
       sqlParam = "delete from cart where num=?";
