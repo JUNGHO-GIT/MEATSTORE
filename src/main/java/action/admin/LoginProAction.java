@@ -1,9 +1,9 @@
 package action.admin;
 
-import command.CommandAction;
-import dao.AdminDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import core.command.CommandAction;
+import data.dao.AdminDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class LoginProAction implements CommandAction {

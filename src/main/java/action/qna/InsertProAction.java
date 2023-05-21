@@ -1,10 +1,10 @@
 package action.qna;
 
-import command.CommandAction;
-import dao.QnaDAO;
-import dto.QnaDTO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import core.command.CommandAction;
+import data.dao.QnaDAO;
+import data.dto.QnaDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class InsertProAction implements CommandAction {

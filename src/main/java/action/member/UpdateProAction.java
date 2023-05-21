@@ -2,9 +2,9 @@ package action.member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import command.CommandAction;
-import dao.MemberDAO;
-import dto.MemberDTO;
+import core.command.CommandAction;
+import data.dao.MemberDAO;
+import data.dto.MemberDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class UpdateProAction implements CommandAction {

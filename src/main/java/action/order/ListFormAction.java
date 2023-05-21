@@ -2,8 +2,8 @@ package action.order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import command.CommandAction;
-import dao.ProductDAO;
+import core.command.CommandAction;
+import data.dao.ProductDAO;
 
 public class ListFormAction implements CommandAction {
 

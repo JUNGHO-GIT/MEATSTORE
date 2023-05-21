@@ -1,10 +1,10 @@
-package dao;
+package data.dao;
 
-import dto.OrderDTO;
 import java.sql.*;
 import java.util.*;
 import javax.naming.*;
 import javax.sql.*;
+import data.dto.OrderDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class OrderDAO {

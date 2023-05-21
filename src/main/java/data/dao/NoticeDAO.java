@@ -1,4 +1,4 @@
-package dao;
+package data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import dto.BoardDTO;
+import data.dto.NoticeDTO;
 
-public class BoardDAO {
+public class NoticeDAO {
 
   // 전역변수 선언 -------------------------------------------------------------------------------->
   Connection connecTion = null;
@@ -23,10 +23,10 @@ public class BoardDAO {
   int checkParam = -100;
 
   // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
-  private BoardDAO() {}
+  private NoticeDAO() {}
 
   // 싱글톤 패턴을 위한 객체 생성 ----------------------------------------------------------------->
-  private static BoardDAO instance = new BoardDAO();
+  private static NoticeDAO instance = new NoticeDAO();
 
   // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
   private void exceptionHandling() {
@@ -47,7 +47,7 @@ public class BoardDAO {
   }
 
   // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
-  public static BoardDAO getInstance() {
+  public static NoticeDAO getInstance() {
     return instance;
   }
 
@@ -61,7 +61,7 @@ public class BoardDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public void insertBoard (BoardDTO dto)  {
+  public void insertNotice (NoticeDTO dto)  {
     int num = dto.getNum();
     int ref = dto.getRef();
     int re_step = dto.getRe_step();
@@ -69,7 +69,7 @@ public class BoardDAO {
     int number = 0;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select max(num) from board");
+      psTmt = connecTion.prepareStatement("select max(num) from notice");
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         number = resultSet.getInt(1) + 1;
@@ -79,7 +79,7 @@ public class BoardDAO {
       }
 
       if (num != 0) {
-        sqlParam = "update board set re_step=re_step+1 where ref?and re_step>?";
+        sqlParam = "update notice set re_step=re_step+1 where ref=?and re_step>?";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setInt(1, ref);
         psTmt.setInt(2, re_step);
@@ -92,8 +92,9 @@ public class BoardDAO {
         re_step = 0;
         re_indent = 0;
       }
-      sqlParam = "insert into board(writer, subject, content, pw, regDate, ref, re_step, re_indent, imageFile)";
-      sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?, ?)";
+
+      sqlParam = "insert into notice(writer, subject, content, pw, regDate, ref, re_step, re_indent)";
+      sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, dto.getWriter());
       psTmt.setString(2, dto.getSubject());
@@ -102,7 +103,6 @@ public class BoardDAO {
       psTmt.setInt(5, ref);
       psTmt.setInt(6, re_step);
       psTmt.setInt(7, re_indent);
-      psTmt.setString(8, dto.getImageFile());
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
@@ -118,7 +118,7 @@ public class BoardDAO {
     int count = 0;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select count(*) from board");
+      psTmt = connecTion.prepareStatement("select count(*) from notice");
       resultSet = psTmt.executeQuery();
 
       if (resultSet.next()) {
@@ -136,17 +136,17 @@ public class BoardDAO {
 
   // ---------------------------------------------------------------------------------------------->
   public List getList(int start, int count) {
-    List<BoardDTO> list = new ArrayList<BoardDTO>();
+    List<NoticeDTO> list = new ArrayList<NoticeDTO>();
     try {
       connecTion = getConnection();
-      sqlParam = "select * from board order by ref desc, re_indent asc limit ?, ?";
+      sqlParam = "select * from notice order by ref desc, re_indent asc limit ?, ?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, start - 1);
       psTmt.setInt(2, count);
       resultSet = psTmt.executeQuery();
 
       while (resultSet.next()) {
-        BoardDTO dto = new BoardDTO();
+        NoticeDTO dto = new NoticeDTO();
         dto.setNum(resultSet.getInt(1));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -157,7 +157,6 @@ public class BoardDAO {
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
-        dto.setImageFile(resultSet.getString("imageFile"));
         list.add(dto);
       }
     }
@@ -175,7 +174,8 @@ public class BoardDAO {
     int count = 0;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select count(*) from board where " + keyword + " like '%" + search + "%'");
+      psTmt = connecTion.prepareStatement("select count(*) from notice where " + keyword + " like '%" +
+      search + "%'");
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         count = resultSet.getInt(1);
@@ -191,11 +191,11 @@ public class BoardDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List<BoardDTO> listSearch(int start, int count, String subject, String writer) {
-    List<BoardDTO> list = new ArrayList<>();
+  public List<NoticeDTO> listSearch(int start, int count, String subject, String writer) {
+    List<NoticeDTO> list = new ArrayList<>();
     try {
       connecTion = getConnection();
-      String selectClause = "SELECT * FROM board";
+      String selectClause = "SELECT * FROM notice";
       String whereClause = "";
       if (subject != null) {
         whereClause += " WHERE subject LIKE ?";
@@ -225,7 +225,7 @@ public class BoardDAO {
       resultSet = psTmt.executeQuery();
 
       while (resultSet.next()) {
-        BoardDTO dto = new BoardDTO();
+        NoticeDTO dto = new NoticeDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -236,7 +236,6 @@ public class BoardDAO {
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
-        dto.setImageFile(resultSet.getString("imageFile"));
         list.add(dto);
       }
     }
@@ -250,17 +249,17 @@ public class BoardDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public BoardDTO getBoard (int num)  {
-    BoardDTO dto = null;
+  public NoticeDTO getNotice (int num)  {
+    NoticeDTO dto = null;
     try {
       connecTion = getConnection();
-      sqlParam = "update board set views=views+1 where num=" + num;
+      sqlParam = "update notice set views=views+1 where num=" + num;
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.executeUpdate();
-      psTmt = connecTion.prepareStatement("select * from board where num=" + num);
+      psTmt = connecTion.prepareStatement("select * from notice where num=" + num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        dto = new BoardDTO();
+        dto = new NoticeDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -271,7 +270,6 @@ public class BoardDAO {
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
-        dto.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -284,14 +282,14 @@ public class BoardDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public BoardDTO getUpdate (int num)  {
-    BoardDTO dto = null;
+  public NoticeDTO getUpdate (int num)  {
+    NoticeDTO dto = null;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select * from board where num=" + num);
+      psTmt = connecTion.prepareStatement("select * from notice where num=" + num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        dto = new BoardDTO();
+        dto = new NoticeDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -302,7 +300,6 @@ public class BoardDAO {
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
-        dto.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -315,22 +312,21 @@ public class BoardDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public int updateBoard (BoardDTO dto) {
+  public int updateNotice (NoticeDTO dto) {
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select pw from board where num=?");
+      psTmt = connecTion.prepareStatement("select pw from notice where num=?");
       psTmt.setInt(1, dto.getNum());
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         dbPw = resultSet.getString("pw");
         if (dto.getPw().equals(dbPw)) {
-          sqlParam = "update board set writer=?, subject=?, content=?, imageFile=? where num=?";
+          sqlParam = "update notice set writer=?, subject=?, content=? where num=?";
           psTmt = connecTion.prepareStatement(sqlParam);
           psTmt.setString(1, dto.getWriter());
           psTmt.setString(2, dto.getSubject());
           psTmt.setString(3, dto.getContent());
-          psTmt.setString(4, dto.getImageFile());
-          psTmt.setInt(5, dto.getNum());
+          psTmt.setInt(4, dto.getNum());
           psTmt.executeUpdate();
           checkParam = 1;
         }
@@ -350,14 +346,16 @@ public class BoardDAO {
 
   // ---------------------------------------------------------------------------------------------->
   public int getDelete (int num, String pw)  {
+    String dbPw = "";
+    checkParam = -100;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select pw from board where num=" + num);
+      psTmt = connecTion.prepareStatement("select pw from notice where num=" + num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         dbPw = resultSet.getString("pw");
         if (pw.equals(dbPw)) {
-          psTmt = connecTion.prepareStatement("delete from board where num=" + num);
+          psTmt = connecTion.prepareStatement("delete from notice where num=" + num);
           psTmt.executeUpdate();
           checkParam = 1;
         }

@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import command.CommandAction;
-import dao.ProductDAO;
-import dto.ProductDTO;
+import core.command.CommandAction;
+import data.dao.ProductDAO;
+import data.dto.ProductDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class UpdateProAction implements CommandAction {

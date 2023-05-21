@@ -1,8 +1,8 @@
 package action.notice;
 
-import command.CommandAction;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import core.command.CommandAction;
 
 // ------------------------------------------------------------------------------------------------>
 public class DeleteFormAction implements CommandAction {

@@ -1,4 +1,4 @@
-package dao;
+package data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.Statement;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import dto.MemberDTO;
+import data.dto.MemberDTO;
 
 public class MemberDAO {
 

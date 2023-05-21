@@ -1,4 +1,4 @@
-package dao;
+package data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,8 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import dto.ProductDTO;
-import dto.OrderDTO;
-import dto.ProductDTO;
+import data.dto.OrderDTO;
+import data.dto.ProductDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class ProductDAO {

@@ -1,10 +1,10 @@
 package action.member;
 
-import command.CommandAction;
-import dao.MemberDAO;
-import dto.MemberDTO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import core.command.CommandAction;
+import data.dao.MemberDAO;
+import data.dto.MemberDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class InsertProAction implements CommandAction {

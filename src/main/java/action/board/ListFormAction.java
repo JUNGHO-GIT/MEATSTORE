@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import command.CommandAction;
-import dao.BoardDAO;
-import dto.BoardDTO;
+import core.command.CommandAction;
+import data.dao.BoardDAO;
+import data.dto.BoardDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class ListFormAction implements CommandAction {

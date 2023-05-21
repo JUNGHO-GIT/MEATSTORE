@@ -1,6 +1,5 @@
-package controller;
+package core.controller;
 
-import command.CommandAction;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import core.command.CommandAction;
 
 // ------------------------------------------------------------------------------------------------>
 public class ControllerDispatcher extends HttpServlet {
@@ -52,11 +52,13 @@ public class ControllerDispatcher extends HttpServlet {
   }
 
   // ---------------------------------------------------------------------------------------------->
+  @Override
   public void doGet (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     reqPro(request, response);
   }
 
   // ---------------------------------------------------------------------------------------------->
+  @Override
   public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     reqPro(request, response);
   }

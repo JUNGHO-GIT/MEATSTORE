@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import command.CommandAction;
-import dao.ProductDAO;
+import core.command.CommandAction;
+import data.dao.ProductDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class ListFormAction implements CommandAction {
@@ -25,7 +25,7 @@ public class ListFormAction implements CommandAction {
     int count = 0;
     int number = 0;
     int pageBlock = 10;
-    List<dto.ProductDTO> list = null;
+    List<data.dto.ProductDTO> list = null;
     ProductDAO dao = ProductDAO.getInstance();
     count = dao.getCount();
     if (count > 0) {

@@ -2,8 +2,8 @@ package action.qna;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import command.CommandAction;
-import dao.QnaDAO;
+import core.command.CommandAction;
+import data.dao.QnaDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class DeleteProAction implements CommandAction {

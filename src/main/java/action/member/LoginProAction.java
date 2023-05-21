@@ -1,9 +1,9 @@
 package action.member;
 
-import command.CommandAction;
-import dao.MemberDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import core.command.CommandAction;
+import data.dao.MemberDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class LoginProAction implements CommandAction {

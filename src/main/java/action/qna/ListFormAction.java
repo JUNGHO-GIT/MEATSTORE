@@ -1,11 +1,11 @@
 package action.qna;
 
-import command.CommandAction;
-import dao.QnaDAO;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import core.command.CommandAction;
+import data.dao.QnaDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class ListFormAction implements CommandAction {
@@ -25,7 +25,7 @@ public class ListFormAction implements CommandAction {
     int count = 0;
     int number = 0;
     int pageBlock = 10;
-    List<dto.QnaDTO> list = null;
+    List<data.dto.QnaDTO> list = null;
     QnaDAO dao = QnaDAO.getInstance();
     count = dao.getCount();
     if (count > 0) {

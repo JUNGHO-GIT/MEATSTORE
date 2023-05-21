@@ -1,39 +1,45 @@
-package dto;
+package data.dto;
 
 import java.util.Date;
 
-public class NoticeDTO {
+public class ProductDTO {
 
-  // variables ------------------------------------------------------------------------------------>
+  // variables ----------------------------------------------------------------------------------->
   private int num;
-  private String writer;
-  private String pw;
-  private String subject;
+  private String code;
+  private String name;
+  private int price;
+  private int stock;
   private String content;
+  private String comp;
   private int views;
   private int ref;
   private int re_step;
   private int re_indent;
   private Date regDate;
+  private String imageFile;
 
   // getter --------------------------------------------------------------------------------------->
   public int getNum() {
     return num;
   }
-  public String getWriter() {
-    return writer;
+  public String getCode() {
+    return code;
   }
-  public String getSubject() {
-    return subject;
+  public String getName() {
+    return name;
+  }
+  public int getPrice() {
+    return price;
+  }
+  public int getStock() {
+    return stock;
   }
   public String getContent() {
     return content;
   }
-  public String getPw() {
-    return pw;
-  }
-  public Date getRegDate() {
-    return regDate;
+  public String getComp() {
+    return comp;
   }
   public int getViews() {
     return views;
@@ -47,25 +53,34 @@ public class NoticeDTO {
   public int getRe_indent() {
     return re_indent;
   }
+  public Date getRegDate() {
+    return regDate;
+  }
+  public String getImageFile() {
+    return imageFile;
+  }
 
   // setter --------------------------------------------------------------------------------------->
   public void setNum(int num) {
     this.num = num;
   }
-  public void setWriter(String writer) {
-    this.writer = writer;
+  public void setCode(String code) {
+    this.code = code;
   }
-  public void setSubject(String subject) {
-    this.subject = subject;
+  public void setName(String name) {
+    this.name = name;
+  }
+  public void setPrice(int price) {
+    this.price = price;
+  }
+  public void setStock(int stock) {
+    this.stock = stock;
   }
   public void setContent(String content) {
     this.content = content;
   }
-  public void setPw(String pw) {
-    this.pw = pw;
-  }
-  public void setRegDate(Date regDate) {
-    this.regDate = regDate;
+  public void setComp(String comp) {
+    this.comp = comp;
   }
   public void setViews(int views) {
     this.views = views;
@@ -78,6 +93,12 @@ public class NoticeDTO {
   }
   public void setRe_indent(int re_indent) {
     this.re_indent = re_indent;
+  }
+  public void setRegDate(Date regDate) {
+    this.regDate = regDate;
+  }
+  public void setImageFile(String imageFile) {
+    this.imageFile = imageFile;
   }
 
 }

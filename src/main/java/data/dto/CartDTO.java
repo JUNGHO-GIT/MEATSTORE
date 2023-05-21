@@ -1,4 +1,4 @@
-package dto;
+package data.dto;
 
 
 public class CartDTO {

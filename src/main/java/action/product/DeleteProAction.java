@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import command.CommandAction;
-import dao.ProductDAO;
+import core.command.CommandAction;
+import data.dao.ProductDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class DeleteProAction implements CommandAction {

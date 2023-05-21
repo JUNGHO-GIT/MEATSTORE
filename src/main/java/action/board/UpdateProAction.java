@@ -2,9 +2,9 @@ package action.board;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import command.CommandAction;
-import dao.BoardDAO;
-import dto.BoardDTO;
+import core.command.CommandAction;
+import data.dao.BoardDAO;
+import data.dto.BoardDTO;
 import java.util.Enumeration;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

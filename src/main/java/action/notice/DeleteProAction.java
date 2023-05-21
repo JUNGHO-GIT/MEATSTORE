@@ -1,9 +1,9 @@
 package action.notice;
 
-import command.CommandAction;
-import dao.NoticeDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import core.command.CommandAction;
+import data.dao.NoticeDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class DeleteProAction implements CommandAction {

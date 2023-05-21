@@ -1,4 +1,4 @@
-package dao;
+package data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import dto.QnaDTO;
+import data.dto.BoardDTO;
 
-public class QnaDAO {
+public class BoardDAO {
 
   // 전역변수 선언 -------------------------------------------------------------------------------->
   Connection connecTion = null;
@@ -23,10 +23,10 @@ public class QnaDAO {
   int checkParam = -100;
 
   // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
-  private QnaDAO() {}
+  private BoardDAO() {}
 
   // 싱글톤 패턴을 위한 객체 생성 ----------------------------------------------------------------->
-  private static QnaDAO instance = new QnaDAO();
+  private static BoardDAO instance = new BoardDAO();
 
   // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
   private void exceptionHandling() {
@@ -47,7 +47,7 @@ public class QnaDAO {
   }
 
   // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
-  public static QnaDAO getInstance() {
+  public static BoardDAO getInstance() {
     return instance;
   }
 
@@ -60,12 +60,65 @@ public class QnaDAO {
     return datasource.getConnection();
   }
 
-  // 1. 목록 갯수 구하기 -------------------------------------------------------------------------->
+  // ---------------------------------------------------------------------------------------------->
+  public void insertBoard (BoardDTO dto)  {
+    int num = dto.getNum();
+    int ref = dto.getRef();
+    int re_step = dto.getRe_step();
+    int re_indent = dto.getRe_indent();
+    int number = 0;
+    try {
+      connecTion = getConnection();
+      psTmt = connecTion.prepareStatement("select max(num) from board");
+      resultSet = psTmt.executeQuery();
+      if (resultSet.next()) {
+        number = resultSet.getInt(1) + 1;
+      }
+      else {
+        number = 1;
+      }
+
+      if (num != 0) {
+        sqlParam = "update board set re_step=re_step+1 where ref?and re_step>?";
+        psTmt = connecTion.prepareStatement(sqlParam);
+        psTmt.setInt(1, ref);
+        psTmt.setInt(2, re_step);
+        psTmt.executeUpdate();
+        re_step = re_step + 1;
+        re_indent = re_indent + 1;
+      }
+      else {
+        ref = number;
+        re_step = 0;
+        re_indent = 0;
+      }
+      sqlParam = "insert into board(writer, subject, content, pw, regDate, ref, re_step, re_indent, imageFile)";
+      sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?, ?)";
+      psTmt = connecTion.prepareStatement(sqlParam);
+      psTmt.setString(1, dto.getWriter());
+      psTmt.setString(2, dto.getSubject());
+      psTmt.setString(3, dto.getContent());
+      psTmt.setString(4, dto.getPw());
+      psTmt.setInt(5, ref);
+      psTmt.setInt(6, re_step);
+      psTmt.setInt(7, re_indent);
+      psTmt.setString(8, dto.getImageFile());
+      psTmt.executeUpdate();
+    }
+    catch (Exception ex) {
+      System.out.println("Exception occurred: " + ex.getMessage());
+    }
+    finally {
+      exceptionHandling();
+    }
+  }
+
+  // ---------------------------------------------------------------------------------------------->
   public int getCount ()  {
     int count = 0;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select count(*) from qna");
+      psTmt = connecTion.prepareStatement("select count(*) from board");
       resultSet = psTmt.executeQuery();
 
       if (resultSet.next()) {
@@ -82,73 +135,18 @@ public class QnaDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public void insertQna (QnaDTO dto)  {
-    int num = dto.getNum();
-    int ref = dto.getRef();
-    int re_step = dto.getRe_step();
-    int re_indent = dto.getRe_indent();
-    int number = 0;
-    try {
-      connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select max(num) from qna");
-      resultSet = psTmt.executeQuery();
-      if (resultSet.next()) {
-        number = resultSet.getInt(1) + 1;
-      }
-      else {
-        number = 1;
-      }
-
-      if (num != 0) {
-        sqlParam = "update qna set re_step=re_step+1 where ref=? and re_step>?";
-        psTmt = connecTion.prepareStatement(sqlParam);
-        psTmt.setInt(1, ref);
-        psTmt.setInt(2, re_step);
-        psTmt.executeUpdate();
-        re_step = re_step + 1;
-        re_indent = re_indent + 1;
-      }
-      else {
-        ref = number;
-        re_step = 0;
-        re_indent = 0;
-      }
-
-      sqlParam = "insert into qna(writer, subject, content, pw, regDate, ref, re_step, re_indent)";
-      sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?)";
-      psTmt = connecTion.prepareStatement(sqlParam);
-      psTmt.setString(1, dto.getWriter());
-      psTmt.setString(2, dto.getSubject());
-      psTmt.setString(3, dto.getContent());
-      psTmt.setString(4, dto.getPw());
-      psTmt.setInt(5, ref);
-      psTmt.setInt(6, re_step);
-      psTmt.setInt(7, re_indent);
-      psTmt.executeUpdate();
-    }
-    catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
-    }
-    finally {
-      exceptionHandling();
-    }
-  }
-
-
-
-  // ---------------------------------------------------------------------------------------------->
   public List getList(int start, int count) {
-    List<QnaDTO> list = new ArrayList<QnaDTO>();
+    List<BoardDTO> list = new ArrayList<BoardDTO>();
     try {
       connecTion = getConnection();
-      sqlParam = "select * from qna order by ref desc, re_indent asc limit ?, ?";
+      sqlParam = "select * from board order by ref desc, re_indent asc limit ?, ?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, start - 1);
       psTmt.setInt(2, count);
       resultSet = psTmt.executeQuery();
 
       while (resultSet.next()) {
-        QnaDTO dto = new QnaDTO();
+        BoardDTO dto = new BoardDTO();
         dto.setNum(resultSet.getInt(1));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -159,6 +157,7 @@ public class QnaDAO {
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
+        dto.setImageFile(resultSet.getString("imageFile"));
         list.add(dto);
       }
     }
@@ -176,8 +175,7 @@ public class QnaDAO {
     int count = 0;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select count(*) from qna where " + keyword + " like '%" +
-      search + "%'");
+      psTmt = connecTion.prepareStatement("select count(*) from board where " + keyword + " like '%" + search + "%'");
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         count = resultSet.getInt(1);
@@ -193,11 +191,11 @@ public class QnaDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List<QnaDTO> listSearch(int start, int count, String subject, String writer) {
-    List<QnaDTO> list = new ArrayList<>();
+  public List<BoardDTO> listSearch(int start, int count, String subject, String writer) {
+    List<BoardDTO> list = new ArrayList<>();
     try {
       connecTion = getConnection();
-      String selectClause = "SELECT * FROM qna";
+      String selectClause = "SELECT * FROM board";
       String whereClause = "";
       if (subject != null) {
         whereClause += " WHERE subject LIKE ?";
@@ -227,7 +225,7 @@ public class QnaDAO {
       resultSet = psTmt.executeQuery();
 
       while (resultSet.next()) {
-        QnaDTO dto = new QnaDTO();
+        BoardDTO dto = new BoardDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -238,6 +236,7 @@ public class QnaDAO {
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
+        dto.setImageFile(resultSet.getString("imageFile"));
         list.add(dto);
       }
     }
@@ -251,17 +250,17 @@ public class QnaDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public QnaDTO getQna (int num)  {
-    QnaDTO dto = null;
+  public BoardDTO getBoard (int num)  {
+    BoardDTO dto = null;
     try {
       connecTion = getConnection();
-      sqlParam = "update qna set views=views+1 where num=" + num;
+      sqlParam = "update board set views=views+1 where num=" + num;
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.executeUpdate();
-      psTmt = connecTion.prepareStatement("select * from qna where num=" + num);
+      psTmt = connecTion.prepareStatement("select * from board where num=" + num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        dto = new QnaDTO();
+        dto = new BoardDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -272,6 +271,7 @@ public class QnaDAO {
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
+        dto.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -284,14 +284,14 @@ public class QnaDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public QnaDTO getUpdate (int num)  {
-    QnaDTO dto = null;
+  public BoardDTO getUpdate (int num)  {
+    BoardDTO dto = null;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select * from qna where num=" + num);
+      psTmt = connecTion.prepareStatement("select * from board where num=" + num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        dto = new QnaDTO();
+        dto = new BoardDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -302,6 +302,7 @@ public class QnaDAO {
         dto.setRef(resultSet.getInt("ref"));
         dto.setRe_step(resultSet.getInt("re_step"));
         dto.setRe_indent(resultSet.getInt("re_indent"));
+        dto.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -314,21 +315,22 @@ public class QnaDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public int updateQna (QnaDTO dto) {
+  public int updateBoard (BoardDTO dto) {
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select pw from qna where num=?");
+      psTmt = connecTion.prepareStatement("select pw from board where num=?");
       psTmt.setInt(1, dto.getNum());
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         dbPw = resultSet.getString("pw");
         if (dto.getPw().equals(dbPw)) {
-          sqlParam = "update qna set writer=?, subject=?, content=? where num=?";
+          sqlParam = "update board set writer=?, subject=?, content=?, imageFile=? where num=?";
           psTmt = connecTion.prepareStatement(sqlParam);
           psTmt.setString(1, dto.getWriter());
           psTmt.setString(2, dto.getSubject());
           psTmt.setString(3, dto.getContent());
-          psTmt.setInt(4, dto.getNum());
+          psTmt.setString(4, dto.getImageFile());
+          psTmt.setInt(5, dto.getNum());
           psTmt.executeUpdate();
           checkParam = 1;
         }
@@ -348,16 +350,14 @@ public class QnaDAO {
 
   // ---------------------------------------------------------------------------------------------->
   public int getDelete (int num, String pw)  {
-    String dbPw = "";
-    checkParam = -100;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select pw from qna where num=" + num);
+      psTmt = connecTion.prepareStatement("select pw from board where num=" + num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         dbPw = resultSet.getString("pw");
         if (pw.equals(dbPw)) {
-          psTmt = connecTion.prepareStatement("delete from qna where num=" + num);
+          psTmt = connecTion.prepareStatement("delete from board where num=" + num);
           psTmt.executeUpdate();
           checkParam = 1;
         }
