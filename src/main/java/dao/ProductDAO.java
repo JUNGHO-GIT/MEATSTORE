@@ -1,4 +1,4 @@
-package data.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,11 +9,15 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import data.dto.OrderDTO;
-import data.dto.ProductDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import dto.OrderDTO;
+import dto.ProductDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class ProductDAO {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProductDAO.class);
 
   // 전역변수 선언 -------------------------------------------------------------------------------->
   Connection connecTion = null;
@@ -43,8 +47,8 @@ public class ProductDAO {
         connecTion.close();
       }
     }
-    catch (Exception ex2) {
-      System.out.println("Exception occurred: " + ex2.getMessage());
+    catch (Exception ex) {
+      LOGGER.error("EXCEPTION", ex);
     }
   }
 
@@ -74,7 +78,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -107,7 +111,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -136,7 +140,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -156,7 +160,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -213,7 +217,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -243,7 +247,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -263,7 +267,7 @@ public class ProductDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -318,7 +322,7 @@ public class ProductDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -349,7 +353,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -384,7 +388,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -414,7 +418,7 @@ public class ProductDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();

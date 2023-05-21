@@ -15,7 +15,7 @@
       <div class="container-fluid content">
         <h1 data-aos="fade-right" data-aos-delay="300">상품목록</h1>
         <h2 data-aos="fade-left" data-aos-delay="300">[관리자]</h2>
-        <h2><button data-aos="fade-up" data-aos-delay="300" class="btn btn-jungho" onclick="window.location.href='${ctxPath}/product/insertForm.do'">상품등록</button>
+        <h2><button data-aos="fade-up" data-aos-delay="300" class="btn btn-jungho" onclick="window.location.href='${ctxPath}/product/insertForm.do'">상품등록</button></h2>
       </div>
     </c:if>
     <c:if test="${sessionScope.adminId == null}">

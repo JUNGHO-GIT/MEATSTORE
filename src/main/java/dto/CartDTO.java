@@ -1,8 +1,9 @@
-package data.dto;
+package dto;
 
 
 public class CartDTO {
   private int num;
+  private String id;
   private String code;
   private String name;
   private int price;
@@ -11,6 +12,10 @@ public class CartDTO {
 
   public int getNum() {
     return num;
+  }
+
+  public String getId() {
+    return id;
   }
 
   public String getCode() {
@@ -36,6 +41,9 @@ public class CartDTO {
   public void setNum(int num) {
     this.num = num;
   }
+  public void setId(String id) {
+    this.id = id;
+  }
   public void setCode(String code) {
     this.code = code;
   }
@@ -50,5 +58,13 @@ public class CartDTO {
   }
   public void setImageFile(String imageFile) {
     this.imageFile = imageFile;
+  }
+
+  // product
+  public void setProduct(ProductDTO product) {
+    this.code = product.getCode();
+    this.name = product.getName();
+    this.price = product.getPrice();
+    this.imageFile = product.getImageFile();
   }
 }

@@ -1,9 +1,12 @@
-package action.notice;
+package action.cart;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import command.CommandAction;
-import dao.NoticeDAO;
+import dao.CartDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class DeleteProAction implements CommandAction {
@@ -11,13 +14,22 @@ public class DeleteProAction implements CommandAction {
   // ---------------------------------------------------------------------------------------------->
   @Override
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
-    int num = Integer.parseInt(request.getParameter("num"));
+
+    ServletContext context = request.getServletContext();
+    String uploadPath = context.getRealPath("/res/upload/cart");
+    int sizeLimit = 1024 * 1024 * 10;
+    MultipartRequest multi = new MultipartRequest(request, uploadPath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+
+    int num = Integer.parseInt(multi.getParameter("num"));
     String pageNum = request.getParameter("pageNum");
-    String pw = request.getParameter("pw");
-    NoticeDAO dao = NoticeDAO.getInstance();
-    int checkParam = dao.getDelete(num, pw);
+
+    CartDAO dao = CartDAO.getInstance();
+    dao.deleteCart(num);
+    int checkParam = num;
+
     request.setAttribute("checkParam", checkParam);
     request.setAttribute("pageNum", pageNum);
-    return "/notice/deletePro.jsp";
+
+    return "/cart/deletePro.jsp";
   }
 }

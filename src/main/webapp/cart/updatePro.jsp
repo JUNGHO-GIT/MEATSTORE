@@ -7,9 +7,18 @@
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
-<script>
-	alert("장바구니에 상품이 담겼습니다.");
-	setTimeout(function() {
-		window.location.href = "${ctxPath}/cart/listForm.do";
-  }, 100);
-</script>
+<c:if test="${checkParam == 1}">
+  <script>
+  	alert("수정이 완료되었습니다")
+		setTimeout(function() {
+		  window.location.href = "${ctxPath}/board/listForm.do";
+		}, 100);
+  </script>
+</c:if>
+
+<c:if test="${checkParam == -1}">
+	<script>
+		alert("암호가 다릅니다");
+		history.back();
+	</script>
+</c:if>

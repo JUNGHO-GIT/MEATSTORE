@@ -2,7 +2,7 @@ package action.member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import core.command.CommandAction;
+import command.CommandAction;
 
 // ------------------------------------------------------------------------------------------------>
 public class LogoutProAction implements CommandAction {

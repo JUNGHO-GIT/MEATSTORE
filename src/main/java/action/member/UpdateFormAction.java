@@ -3,9 +3,9 @@ package action.member;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import core.command.CommandAction;
-import data.dao.MemberDAO;
-import data.dto.MemberDTO;
+import command.CommandAction;
+import dao.MemberDAO;
+import dto.MemberDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class UpdateFormAction implements CommandAction {

@@ -1,13 +1,21 @@
-package data.dao;
+package dao;
 
-import java.sql.*;
-import java.util.*;
-import javax.naming.*;
-import javax.sql.*;
-import data.dto.OrderDTO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import dto.OrderDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class OrderDAO {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(OrderDAO.class);
 
   // 전역변수 선언 -------------------------------------------------------------------------------->
   Connection connecTion = null;
@@ -37,8 +45,8 @@ public class OrderDAO {
         connecTion.close();
       }
     }
-    catch (Exception ex2) {
-      System.out.println("Exception occurred: " + ex2.getMessage());
+    catch (Exception ex) {
+      LOGGER.error("EXCEPTION", ex);
     }
   }
 
@@ -80,7 +88,7 @@ public class OrderDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -110,7 +118,7 @@ public class OrderDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -139,7 +147,7 @@ public class OrderDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();

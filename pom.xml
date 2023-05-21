@@ -21,6 +21,33 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
       <artifactId>cos</artifactId>
       <version>05Nov2002</version>
     </dependency>
+
+    <!-- SLF4J -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </dependencies>
 
   <!-- build -->

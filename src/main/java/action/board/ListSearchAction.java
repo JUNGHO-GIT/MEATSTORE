@@ -3,9 +3,9 @@ package action.board;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import core.command.CommandAction;
-import data.dao.BoardDAO;
-import data.dto.BoardDTO;
+import command.CommandAction;
+import dao.BoardDAO;
+import dto.BoardDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class ListSearchAction implements CommandAction {

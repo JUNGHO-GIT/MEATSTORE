@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import core.command.CommandAction;
-import data.dao.ProductDAO;
-import data.dto.ProductDTO;
+import command.CommandAction;
+import dao.ProductDAO;
+import dto.ProductDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class ListSearchAction implements CommandAction {

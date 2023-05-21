@@ -1,11 +1,11 @@
-package action.qna;
+package action.cart;
 
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import command.CommandAction;
-import dao.QnaDAO;
+import dao.CartDAO;
 
 // ------------------------------------------------------------------------------------------------>
 public class ListFormAction implements CommandAction {
@@ -25,8 +25,8 @@ public class ListFormAction implements CommandAction {
     int count = 0;
     int number = 0;
     int pageBlock = 10;
-    List<dto.QnaDTO> list = null;
-    QnaDAO dao = QnaDAO.getInstance();
+    List<dto.CartDTO> list = null;
+    CartDAO dao = CartDAO.getInstance();
     count = dao.getCount();
     if (count > 0) {
       list = dao.getList(startRow, pageSize);
@@ -55,6 +55,6 @@ public class ListFormAction implements CommandAction {
     request.setAttribute("pageSize", pageSize);
     request.setAttribute("number", number);
     request.setAttribute("list", list);
-    return "/qna/listForm.jsp";
+    return "/cart/listForm.jsp";
   }
 }

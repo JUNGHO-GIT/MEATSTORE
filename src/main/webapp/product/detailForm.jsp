@@ -20,7 +20,7 @@
 
 <!-- section -->
 <section class="section">
-  <form method="POST" action="${ctxPath}/cart/insertForm.do">
+  <form method="POST" action="${ctxPath}/cart/insertPro.do" enctype="multipart/form-data">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <img src="${uploadPath}/product/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
@@ -44,13 +44,13 @@
           <tr>
             <th>상품가격</th>
             <th>
-              <input type="text" name="price" id="price" class="form-control" value="${dto.price}원" readonly />
+              <input type="text" name="price" id="price" class="form-control" value="${dto.price}" readonly />
             </th>
           </tr>
           <tr>
             <th>제품수량</th>
             <th>
-              <input type="text" name="stock" id="stock" class="form-control" value="${dto.stock}개" readonly />
+              <input type="text" name="stock" id="stock" class="form-control" value="${dto.stock}" readonly />
             </th>
           </tr>
           <tr>
@@ -62,7 +62,7 @@
           <tr>
             <th>제조회사</th>
             <th>
-              <input type="text" name="comp" id="comp" class="form-control" value="(주)${dto.comp}" readonly />
+              <input type="text" name="comp" id="comp" class="form-control" value="${dto.comp}" readonly />
             </th>
           </tr>
           <tr>
@@ -82,6 +82,15 @@
     </div>
     <br />
     <br />
+
+    <!-- hidden -->
+    <input type="hidden" name="name" id="name" value="${dto.name}" />
+    <input type="hidden" name="imageFile" id="imageFile" value="${dto.imageFile}" />
+    <input type="hidden" name="stock" id="stock" value="${dto.stock}" />
+    <input type="hidden" name="regDate" id="regDate" value="${dto.regDate}" />
+    <input type="hidden" name="comp" id="comp" value="${dto.comp}" />
+    <input type="hidden" name="num" id="num" value="${dto.num}" />
+    <input type="hidden" name="id" id="id" value="${sessionScope.id}" />
 
     <!-- button -->
     <div class="row d-flex justify-content-center align-items-center">

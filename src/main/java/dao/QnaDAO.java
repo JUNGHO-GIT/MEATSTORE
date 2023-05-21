@@ -1,4 +1,4 @@
-package data.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,13 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import data.dto.NoticeDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import dto.QnaDTO;
 
-public class NoticeDAO {
+public class QnaDAO {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(QnaDAO.class);
 
   // 전역변수 선언 -------------------------------------------------------------------------------->
   Connection connecTion = null;
@@ -23,10 +27,10 @@ public class NoticeDAO {
   int checkParam = -100;
 
   // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
-  private NoticeDAO() {}
+  private QnaDAO() {}
 
   // 싱글톤 패턴을 위한 객체 생성 ----------------------------------------------------------------->
-  private static NoticeDAO instance = new NoticeDAO();
+  private static QnaDAO instance = new QnaDAO();
 
   // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
   private void exceptionHandling() {
@@ -41,13 +45,13 @@ public class NoticeDAO {
         connecTion.close();
       }
     }
-    catch (Exception ex2) {
-      System.out.println("Exception occurred: " + ex2.getMessage());
+    catch (Exception ex) {
+      LOGGER.error("EXCEPTION", ex);
     }
   }
 
   // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
-  public static NoticeDAO getInstance() {
+  public static QnaDAO getInstance() {
     return instance;
   }
 
@@ -60,8 +64,29 @@ public class NoticeDAO {
     return datasource.getConnection();
   }
 
+  // 1. 목록 갯수 구하기 -------------------------------------------------------------------------->
+  public int getCount ()  {
+    int count = 0;
+    try {
+      connecTion = getConnection();
+      psTmt = connecTion.prepareStatement("select count(*) from qna");
+      resultSet = psTmt.executeQuery();
+
+      if (resultSet.next()) {
+        count = resultSet.getInt(1);
+      }
+    }
+    catch (Exception ex) {
+      LOGGER.error("EXCEPTION", ex);
+    }
+    finally {
+      exceptionHandling();
+    }
+    return count;
+  }
+
   // ---------------------------------------------------------------------------------------------->
-  public void insertNotice (NoticeDTO dto)  {
+  public void insertQna (QnaDTO dto)  {
     int num = dto.getNum();
     int ref = dto.getRef();
     int re_step = dto.getRe_step();
@@ -69,7 +94,7 @@ public class NoticeDAO {
     int number = 0;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select max(num) from notice");
+      psTmt = connecTion.prepareStatement("select max(num) from qna");
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         number = resultSet.getInt(1) + 1;
@@ -79,7 +104,7 @@ public class NoticeDAO {
       }
 
       if (num != 0) {
-        sqlParam = "update notice set re_step=re_step+1 where ref=?and re_step>?";
+        sqlParam = "update qna set re_step=re_step+1 where ref=? and re_step>?";
         psTmt = connecTion.prepareStatement(sqlParam);
         psTmt.setInt(1, ref);
         psTmt.setInt(2, re_step);
@@ -93,7 +118,7 @@ public class NoticeDAO {
         re_indent = 0;
       }
 
-      sqlParam = "insert into notice(writer, subject, content, pw, regDate, ref, re_step, re_indent)";
+      sqlParam = "insert into qna(writer, subject, content, pw, regDate, ref, re_step, re_indent)";
       sqlParam = sqlParam + " values(?, ?, ?, ?,NOW(),?, ?, ?)";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, dto.getWriter());
@@ -106,47 +131,28 @@ public class NoticeDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
     }
   }
 
-  // ---------------------------------------------------------------------------------------------->
-  public int getCount ()  {
-    int count = 0;
-    try {
-      connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select count(*) from notice");
-      resultSet = psTmt.executeQuery();
 
-      if (resultSet.next()) {
-        count = resultSet.getInt(1);
-      }
-    }
-    catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
-    }
-    finally {
-      exceptionHandling();
-    }
-    return count;
-  }
 
   // ---------------------------------------------------------------------------------------------->
   public List getList(int start, int count) {
-    List<NoticeDTO> list = new ArrayList<NoticeDTO>();
+    List<QnaDTO> list = new ArrayList<QnaDTO>();
     try {
       connecTion = getConnection();
-      sqlParam = "select * from notice order by ref desc, re_indent asc limit ?, ?";
+      sqlParam = "select * from qna order by ref desc, re_indent asc limit ?, ?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setInt(1, start - 1);
       psTmt.setInt(2, count);
       resultSet = psTmt.executeQuery();
 
       while (resultSet.next()) {
-        NoticeDTO dto = new NoticeDTO();
+        QnaDTO dto = new QnaDTO();
         dto.setNum(resultSet.getInt(1));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -161,7 +167,7 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -174,7 +180,7 @@ public class NoticeDAO {
     int count = 0;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select count(*) from notice where " + keyword + " like '%" +
+      psTmt = connecTion.prepareStatement("select count(*) from qna where " + keyword + " like '%" +
       search + "%'");
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
@@ -182,7 +188,7 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -191,11 +197,11 @@ public class NoticeDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List<NoticeDTO> listSearch(int start, int count, String subject, String writer) {
-    List<NoticeDTO> list = new ArrayList<>();
+  public List<QnaDTO> listSearch(int start, int count, String subject, String writer) {
+    List<QnaDTO> list = new ArrayList<>();
     try {
       connecTion = getConnection();
-      String selectClause = "SELECT * FROM notice";
+      String selectClause = "SELECT * FROM qna";
       String whereClause = "";
       if (subject != null) {
         whereClause += " WHERE subject LIKE ?";
@@ -225,7 +231,7 @@ public class NoticeDAO {
       resultSet = psTmt.executeQuery();
 
       while (resultSet.next()) {
-        NoticeDTO dto = new NoticeDTO();
+        QnaDTO dto = new QnaDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -240,7 +246,7 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -249,17 +255,17 @@ public class NoticeDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public NoticeDTO getNotice (int num)  {
-    NoticeDTO dto = null;
+  public QnaDTO getQna (int num)  {
+    QnaDTO dto = null;
     try {
       connecTion = getConnection();
-      sqlParam = "update notice set views=views+1 where num=" + num;
+      sqlParam = "update qna set views=views+1 where num=" + num;
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.executeUpdate();
-      psTmt = connecTion.prepareStatement("select * from notice where num=" + num);
+      psTmt = connecTion.prepareStatement("select * from qna where num=" + num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        dto = new NoticeDTO();
+        dto = new QnaDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -273,7 +279,7 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -282,14 +288,14 @@ public class NoticeDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public NoticeDTO getUpdate (int num)  {
-    NoticeDTO dto = null;
+  public QnaDTO getUpdate (int num)  {
+    QnaDTO dto = null;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select * from notice where num=" + num);
+      psTmt = connecTion.prepareStatement("select * from qna where num=" + num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        dto = new NoticeDTO();
+        dto = new QnaDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setWriter(resultSet.getString("writer"));
         dto.setSubject(resultSet.getString("subject"));
@@ -303,7 +309,7 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -312,16 +318,16 @@ public class NoticeDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public int updateNotice (NoticeDTO dto) {
+  public int updateQna (QnaDTO dto) {
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select pw from notice where num=?");
+      psTmt = connecTion.prepareStatement("select pw from qna where num=?");
       psTmt.setInt(1, dto.getNum());
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         dbPw = resultSet.getString("pw");
         if (dto.getPw().equals(dbPw)) {
-          sqlParam = "update notice set writer=?, subject=?, content=? where num=?";
+          sqlParam = "update qna set writer=?, subject=?, content=? where num=?";
           psTmt = connecTion.prepareStatement(sqlParam);
           psTmt.setString(1, dto.getWriter());
           psTmt.setString(2, dto.getSubject());
@@ -336,7 +342,7 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -350,12 +356,12 @@ public class NoticeDAO {
     checkParam = -100;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select pw from notice where num=" + num);
+      psTmt = connecTion.prepareStatement("select pw from qna where num=" + num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
         dbPw = resultSet.getString("pw");
         if (pw.equals(dbPw)) {
-          psTmt = connecTion.prepareStatement("delete from notice where num=" + num);
+          psTmt = connecTion.prepareStatement("delete from qna where num=" + num);
           psTmt.executeUpdate();
           checkParam = 1;
         }
@@ -365,7 +371,7 @@ public class NoticeDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();

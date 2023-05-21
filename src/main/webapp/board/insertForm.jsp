@@ -13,12 +13,12 @@
     <div class="gradient"></div>
     <div class="container-fluid content">
       <h1 data-aos="fade-right" data-aos-delay="300">자유게시판</h1>
-        <c:if test="${num == 0}">
-          <h2 data-aos="fade-left" data-aos-delay="300">[글 쓰기]</h2>
-        </c:if>
-        <c:if test="${num != 0}">
-          <h2 data-aos="fade-left" data-aos-delay="300">[답글 쓰기]</h2>
-        </c:if>
+      <c:if test="${num == 0}">
+        <h2 data-aos="fade-left" data-aos-delay="300">[글 쓰기]</h2>
+      </c:if>
+      <c:if test="${num != 0}">
+        <h2 data-aos="fade-left" data-aos-delay="300">[답글 쓰기]</h2>
+      </c:if>
     </div>
   </div>
 </section>

@@ -1,4 +1,4 @@
-package action.product;
+package action.cart;
 
 import java.util.Enumeration;
 import javax.servlet.ServletContext;
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import command.CommandAction;
-import dao.ProductDAO;
-import dto.ProductDTO;
+import dao.CartDAO;
+import dto.CartDTO;
 
 // ------------------------------------------------------------------------------------------------>
 public class InsertProAction implements CommandAction {
@@ -18,32 +18,30 @@ public class InsertProAction implements CommandAction {
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
     ServletContext context = request.getServletContext();
-    String uploadPath = context.getRealPath("/res/upload/product");
+    String uploadPath = context.getRealPath("/res/upload/cart");
     int sizeLimit = 1024 * 1024 * 10;
 
     MultipartRequest multi = new MultipartRequest(request, uploadPath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
 
-    ProductDTO dto = new ProductDTO();
+    CartDTO dto = new CartDTO();
     dto.setNum(Integer.parseInt(multi.getParameter("num")));
+    dto.setId(multi.getParameter("id"));
     dto.setCode(multi.getParameter("code"));
     dto.setName(multi.getParameter("name"));
     dto.setPrice(Integer.parseInt(multi.getParameter("price")));
-    dto.setStock(Integer.parseInt(multi.getParameter("stock")));
-    dto.setContent(multi.getParameter("content"));
-    dto.setComp(multi.getParameter("comp"));
-    dto.setRef(Integer.parseInt(multi.getParameter("ref")));
-    dto.setRe_step(Integer.parseInt(multi.getParameter("re_step")));
-    dto.setRe_indent(Integer.parseInt(multi.getParameter("re_indent")));
+    dto.setQuantity(Integer.parseInt(multi.getParameter("quantity")));
     dto.setImageFile(multi.getParameter("imageFile"));
 
-    Enumeration files = multi.getFileNames();
-    String file = (String) files.nextElement();
-    String filename = multi.getFilesystemName(file);
+    Enumeration<String> files = multi.getFileNames();
+    if (files.hasMoreElements()) {
+      String file = files.nextElement();
+      String filename = multi.getFilesystemName(file);
+      dto.setImageFile(filename);
+    }
 
-    dto.setImageFile(filename);
-    ProductDAO dao = ProductDAO.getInstance();
-    dao.insertProduct(dto);
+    CartDAO dao = CartDAO.getInstance();
+    dao.insertCart(dto);
 
-    return "/product/insertPro.jsp";
+    return "/cart/insertPro.jsp";
   }
 }

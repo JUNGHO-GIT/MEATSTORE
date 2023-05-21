@@ -1,4 +1,4 @@
-package core.controller;
+package controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,10 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import core.command.CommandAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import command.CommandAction;
 
 // ------------------------------------------------------------------------------------------------>
 public class ControllerDispatcher extends HttpServlet {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ControllerDispatcher.class);
 
   // ---------------------------------------------------------------------------------------------->
   private final Map<String, CommandAction> map = new HashMap<>();
@@ -32,7 +36,7 @@ public class ControllerDispatcher extends HttpServlet {
       pp.load(ff);
     }
     catch (Exception ex) {
-      System.out.println("파일 읽기 에러:" + ex);
+      LOGGER.error("EXCEPTION", ex);
     }
 
     Iterator<?> keyIter = pp.keySet().iterator();
@@ -46,7 +50,7 @@ public class ControllerDispatcher extends HttpServlet {
 
       }
       catch (Exception ex) {
-        System.out.println("properties파일 내용을 클래스로 만들던 중 예외발생" + ex);
+        LOGGER.error("EXCEPTION", ex);
       }
     }
   }

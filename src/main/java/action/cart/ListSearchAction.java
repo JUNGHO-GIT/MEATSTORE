@@ -1,18 +1,20 @@
-package action.qna;
+package action.cart;
 
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import command.CommandAction;
-import dao.QnaDAO;
+import dao.CartDAO;
+import dto.CartDTO;
 
 // ------------------------------------------------------------------------------------------------>
-public class ListFormAction implements CommandAction {
+public class ListSearchAction implements CommandAction {
 
   // ---------------------------------------------------------------------------------------------->
   @Override
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
+    request.setCharacterEncoding("UTF-8");
     String pageNum = request.getParameter("pageNum");
     if (pageNum == null) {
       pageNum = "1";
@@ -25,11 +27,26 @@ public class ListFormAction implements CommandAction {
     int count = 0;
     int number = 0;
     int pageBlock = 10;
-    List<dto.QnaDTO> list = null;
-    QnaDAO dao = QnaDAO.getInstance();
+    List<CartDTO> list = null;
+    CartDAO dao = CartDAO.getInstance();
     count = dao.getCount();
+    String keyword = request.getParameter("keyword");
+    String search = request.getParameter("search");
+    String name = null;
+    String content = null;
+    if (keyword != null && search != null) {
+      count = dao.getSearch(keyword, search);
+    }
+
+    if (keyword != null && keyword.equals("name")) {
+      name = search;
+    }
+    else {
+      content = search;
+    }
+
     if (count > 0) {
-      list = dao.getList(startRow, pageSize);
+      list = dao.listSearch(startRow, pageSize, name, content);
     }
     else {
       list = Collections.emptyList();
@@ -55,6 +72,6 @@ public class ListFormAction implements CommandAction {
     request.setAttribute("pageSize", pageSize);
     request.setAttribute("number", number);
     request.setAttribute("list", list);
-    return "/qna/listForm.jsp";
+    return "/cart/listForm.jsp";
   }
 }

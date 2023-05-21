@@ -2,7 +2,7 @@ package action.product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import core.command.CommandAction;
+import command.CommandAction;
 
 // ------------------------------------------------------------------------------------------------>
 public class DeleteFormAction implements CommandAction {

@@ -1,4 +1,4 @@
-package data.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,9 +7,13 @@ import java.sql.Statement;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import data.dto.AdminDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import dto.AdminDTO;
 
 public class AdminDAO {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(AdminDAO.class);
 
   // 전역변수 선언 -------------------------------------------------------------------------------->
   Connection connecTion = null;
@@ -39,8 +43,8 @@ public class AdminDAO {
         connecTion.close();
       }
     }
-    catch (Exception ex2) {
-      System.out.println("Exception occurred: " + ex2.getMessage());
+    catch (Exception ex) {
+      LOGGER.error("EXCEPTION", ex);
     }
   }
 
@@ -75,7 +79,7 @@ public class AdminDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -94,7 +98,7 @@ public class AdminDAO {
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -123,7 +127,7 @@ public class AdminDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -148,7 +152,7 @@ public class AdminDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
@@ -174,7 +178,7 @@ public class AdminDAO {
       }
     }
     catch (Exception ex) {
-      System.out.println("Exception occurred: " + ex.getMessage());
+      LOGGER.error("EXCEPTION", ex);
     }
     finally {
       exceptionHandling();
