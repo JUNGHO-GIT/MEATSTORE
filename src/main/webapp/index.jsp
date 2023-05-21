@@ -23,70 +23,17 @@
 		<link rel="stylesheet" href="${ctxPath}/res/css/media.css" />
     <link rel="stylesheet" href="${ctxPath}/res/css/jungho.css" />
 		<!-- js -->
-		<script defet src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script defet src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-		<script defet src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+		<script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
 		</script>
-		<script defet src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script defet src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		<script defet src="${ctxPath}/res/js/board.js"></script>
-		<script defet src="${ctxPath}/res/js/admin.js"></script>
-		<script defet src="${ctxPath}/res/js/member.js"></script>
-		<script defet src="${ctxPath}/res/js/notice.js"></script>
-		<script defet src="${ctxPath}/res/js/cart.js"></script>
-		<!-- custom -->
-		<script>
-			$(document).ready(function() {
-				if (screen.width > 1024) {
-					AOS.init({
-						easing: 'ease-in-out-sine',
-						once: true,
-					});
-				}
-			});
-			(new IntersectionObserver(function(e, o) {
-				if (e[0].intersectionRatio > 0) {
-					document.documentElement.removeAttribute('class');
-				}
-				else {
-					document.documentElement.setAttribute('class', 'stuck');
-				};
-			}));
-			function pwCheck() {
-				if (document.updateForm.pw.value == "") {
-					alert("암호는 필수 입력");
-					document.updateForm.pw.focus();
-					return false;
-				}
-			}
-      function textHover() {
-        const textHovers = document.querySelectorAll(".text-hover");
-        textHovers.forEach((textHover) => {
-          textHover.style.transition = "font-size 0.1s ease-in-out";
-          textHover.style.display = "inline-block";
-          textHover.style.cursor = "pointer";
-          textHover.style.caretColor = "transparent";
-          textHover.addEventListener("mouseenter", function () {
-            this.style.fontSize = `calc(\${getComputedStyle(this).fontSize} + 3px)`;
-          });
-          textHover.addEventListener("mouseleave", function () {
-            this.style.fontSize = "";
-          });
-        });
-      };
-      var sessionId = "${sessionScope.id}";
-      function sessionAlert(event) {
-        if (!sessionId) {
-          event.preventDefault();
-          alert("로그인 후 이용해주세요.");
-          window.location.href = "${ctxPath}/member/loginForm.do";
-          return false;
-        }
-        else {
-          return true;
-        }
-      };
-    </script>
+		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script defer src="${ctxPath}/res/js/board.js"></script>
+		<script defer src="${ctxPath}/res/js/admin.js"></script>
+		<script defer src="${ctxPath}/res/js/main.js"></script>
+		<script defer src="${ctxPath}/res/js/notice.js"></script>
+		<script defer src="${ctxPath}/res/js/cart.js"></script>
 	</head>
 
 	<body>
@@ -110,8 +57,8 @@
 							<img src="${imgsPath}/section/cartList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="${ctxPath}/order/listForm.do" onclick="return sessionAlert(event);">
-							<img src="${imgsPath}/section/orderList.png" />
+						<a href="${ctxPath}/orders/listForm.do" onclick="return deprecated(event);">
+							<img src="${imgsPath}/section/orders.png" />
 						</a>
             &nbsp;&nbsp;
 						<a href="${ctxPath}/board/listForm.do">

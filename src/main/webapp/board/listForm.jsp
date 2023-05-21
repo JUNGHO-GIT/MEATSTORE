@@ -56,12 +56,12 @@
                     class="sh-7 rd-1"/>
                   </c:if>
                   <c:if test="${dto.imageFile==null}">
-                    <img src="${cloudPath}/etc/noImage.png" width="100" height="100"
+                    <img src="${imgsPath}/etc/noImage.png" width="100" height="100"
                      class="sh-7 rd-1"/>
                   </c:if>
                 </th>
                 <th class="jungho-center ft-8 fw-6">
-                  <c:if test="${dto.re_indent>0}">
+                  <c:if test="${dto.re_indent > 0}">
                     <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
                     <img src="${imgsPath}/etc/re.gif" />
                   </c:if>

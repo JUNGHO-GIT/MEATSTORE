@@ -11,7 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import dto.OrderDTO;
+import dto.OrdersDTO;
 import dto.ProductDTO;
 
 // ------------------------------------------------------------------------------------------------>
@@ -256,7 +256,7 @@ public class ProductDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public void reduceProduct (OrderDTO dto)  {
+  public void reduceProduct (OrdersDTO dto)  {
     int quantity2 = dto.getQuantity();
     try {
       connecTion = getConnection();

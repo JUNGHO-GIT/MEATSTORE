@@ -7,11 +7,9 @@
 <c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
-<c:if test="${checkParam == 1}">
-  <script>
-  	alert("상품수정이 완료되었습니다")
-		setTimeout(function() {
-		  window.location.href = "${ctxPath}/board/listForm.do";
-		}, 100);
-  </script>
-</c:if>
+<script>
+	alert("상품주문이 접수되었습니다. 감사합니다.");
+	setTimeout(function() {
+		window.location.href = "${ctxPath}/order/listForm.do";
+  }, 100);
+</script>

@@ -112,13 +112,13 @@
                     </c:if>
                   </th>
                   <th class="jungho-center ft-8 fw-5">
-                    <c:out value="${dto.name}"/>
+                    <c:out value="${dto.name}" id="name" name="name" />
                   </th>
                   <th class="jungho-center ft-8 fw-5">
-                    <fmt:formatNumber value="${dto.price}" type="currency" currencySymbol="₩" maxFractionDigits="0" />
+                    <fmt:formatNumber value="${dto.price}" type="currency" currencySymbol="₩" maxFractionDigits="0" id="price" name="price"/>
                   </th>
                   <th class="jungho-center ft-8 fw-5">
-                    <c:out value="${dto.quantity}"/>
+                    <c:out value="${dto.quantity}" id="quantity" name="quantity" />
                   </th>
                   <th class="jungho-center ft-8 fw-5">
                     <fmt:formatNumber value="${dto.price*dto.quantity}" type="currency" currencySymbol="₩" maxFractionDigits="0"/>
@@ -137,7 +137,7 @@
                   <fmt:formatNumber value="${totalPrice}" type="currency" currencySymbol="₩" maxFractionDigits="0"/>
                 </th>
                 <th colspan="2" class="jungho-center ft-8 fw-5">
-                  <button type="button" id="orderButton" class="btn btn-jungho" onclick="return deprecated(event)">주문하기</button>
+                  <button type="button" id="orderButton" class="btn btn-jungho" onclick="orderSelected()">주문하기</button>
                 </th>
               </tr>
             </tfoot>

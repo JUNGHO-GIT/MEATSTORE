@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>MeatStore</display-name>
-
-  <!-- context-param -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/META-INF/context.xml</param-value>
   </context-param>
-
-  <!-- ControllerDispatcher -->
   <servlet>
     <servlet-name>ControllerDispatcher</servlet-name>
     <servlet-class>controller.ControllerDispatcher</servlet-class>
@@ -20,14 +13,11 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
       <param-value>/WEB-INF/command.properties</param-value>
     </init-param>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>ControllerDispatcher</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-
 </web-app>

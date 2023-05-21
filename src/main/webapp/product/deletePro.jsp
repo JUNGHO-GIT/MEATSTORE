@@ -12,14 +12,14 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
   ProductDAO productDAO = ProductDAO.getInstance();
-  OrderDAO orderDAO = new OrderDAO();
+  OrdersDAO ordersDAO = new OrdersDAO();
 
   String flag = request.getParameter("flag");
   boolean result = false;
   int iti = 0;
 
   if (flag.equals("delete")) {
-    Vector vec = orderDAO.getOrder();
+    Vector vec = ordersDAO.getOrder();
     if (vec.size() == 0) {
       int im_num = Integer.parseInt(request.getParameter("num"));
       result = productDAO.deleteProduct(request, im_num);
@@ -27,7 +27,7 @@
     response.sendRedirect(request.getConnectiontextPath() + "/product/listForm.do");
   }
   else {
-    Vector vec = orderDAO.getOrder();
+    Vector vec = ordersDAO.getOrder();
     for (int i = 0; i < vec.size(); i++) {
       OrderDTO orderDTO = (OrderDTO) vec.get(i);
       int num = orderDTO.getNum();

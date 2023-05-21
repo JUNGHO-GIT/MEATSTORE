@@ -58,7 +58,7 @@
                     class="sh-7 rd-1"/>
                   </c:if>
                   <c:if test="${dto.imageFile==null}">
-                    <img src="${cloudPath}/etc/noImage.png" width="100" height="100"
+                    <img src="${imgsPath}/etc/etc/noImage.png" width="100" height="100"
                      class="sh-7 rd-1"/>
                   </c:if>
                 </th>

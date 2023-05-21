@@ -1,7 +1,8 @@
 package dto;
 
-public class CartDTO {
+public class OrdersDTO {
 
+  // variables ----------------------------------------------------------------------------------->
   private int num;
   private String id;
   private String code;
@@ -10,34 +11,30 @@ public class CartDTO {
   private int quantity;
   private String imageFile;
 
+  // getter --------------------------------------------------------------------------------------->
   public int getNum() {
     return num;
   }
-
   public String getId() {
     return id;
   }
-
   public String getCode() {
     return code;
   }
-
   public String getName() {
     return name;
   }
-
   public int getPrice() {
     return price;
   }
-
   public int getQuantity() {
     return quantity;
   }
-
   public String getImageFile() {
     return imageFile;
   }
 
+  // setter --------------------------------------------------------------------------------------->
   public void setNum(int num) {
     this.num = num;
   }
@@ -60,4 +57,11 @@ public class CartDTO {
     this.imageFile = imageFile;
   }
 
+  // product -------------------------------------------------------------------------------------->
+  public void setProduct(ProductDTO product) {
+    this.code = product.getCode();
+    this.name = product.getName();
+    this.price = product.getPrice();
+    this.imageFile = product.getImageFile();
   }
+}

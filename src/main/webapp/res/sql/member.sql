@@ -1,13 +1,12 @@
-CREATE TABLE member (
-  id VARCHAR(255) PRIMARY KEY,
-  pw VARCHAR(255),
-  name VARCHAR(255),
-  email VARCHAR(255),
-  tel VARCHAR(255),
-  zipcode VARCHAR(255),
-  addr VARCHAR(255),
-  addr2 VARCHAR(255),
-  regDate DATETIME,
-  adminId VARCHAR(255),
-  adminPw VARCHAR(255)
-);
+CREATE TABLE `member` (
+  `id` varchar(255) NOT NULL,
+  `pw` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `tel` varchar(255) NOT NULL,
+  `zipcode` varchar(255) NOT NULL,
+  `addr` varchar(255) NOT NULL,
+  `addr2` varchar(255) NOT NULL,
+  `regDate` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

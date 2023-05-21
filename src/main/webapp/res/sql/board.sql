@@ -1,14 +1,14 @@
-CREATE TABLE board (
-  num INT PRIMARY KEY AUTO_INCREMENT,
-  writer VARCHAR(255),
-  subject VARCHAR(255),
-  content TEXT,
-  pw VARCHAR(255),
-  regDate DATETIME,
-  views INT,
-  ref INT,
-  re_indent INT,
-  re_indent INT,
-  ip VARCHAR(255),
-  imageFile VARCHAR(255)
-);
+CREATE TABLE `board` (
+  `num` int(11) NOT NULL AUTO_INCREMENT,
+  `writer` varchar(255) NOT NULL,
+  `pw` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `views` int(11) NOT NULL DEFAULT '0',
+  `ref` int(11) NOT NULL DEFAULT '1',
+  `re_step` int(11) NOT NULL DEFAULT '0',
+  `re_indent` int(11) NOT NULL DEFAULT '0',
+  `imageFile` varchar(255) DEFAULT NULL,
+  `regDate` datetime NOT NULL,
+  PRIMARY KEY (`num`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;

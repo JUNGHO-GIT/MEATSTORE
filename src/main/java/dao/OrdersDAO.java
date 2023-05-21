@@ -11,13 +11,13 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import dto.CartDTO;
+import dto.OrdersDTO;
 import dto.ProductDTO;
 
 // ------------------------------------------------------------------------------------------------>
-public class CartDAO {
+public class OrdersDAO {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(CartDAO.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(OrdersDAO.class);
 
   // 전역변수 선언 -------------------------------------------------------------------------------->
   Connection connecTion = null;
@@ -29,10 +29,10 @@ public class CartDAO {
   int checkParam = -100;
 
   // 프라이빗 생성자를 통한 싱글톤 패턴 구현 ------------------------------------------------------>
-  private CartDAO() {}
+  private OrdersDAO() {}
 
   // 싱글톤 패턴을 위한 객체 생성 ----------------------------------------------------------------->
-  private static CartDAO instance = new CartDAO();
+  private static OrdersDAO instance = new OrdersDAO();
 
   // 반복되는 예외처리를 위한 메소드 -------------------------------------------------------------->
   private void exceptionHandling() {
@@ -53,7 +53,7 @@ public class CartDAO {
   }
 
   // [인스턴스 반환 - getInstance] ---------------------------------------------------------------->
-  public static CartDAO getInstance() {
+  public static OrdersDAO getInstance() {
     return instance;
   }
 
@@ -67,11 +67,11 @@ public class CartDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public List<CartDTO> getList(String id, int start, int count) {
-    List<CartDTO> list = new ArrayList<>();
+  public List<OrdersDTO> getList(String id, int start, int count) {
+    List<OrdersDTO> list = new ArrayList<>();
     try {
       connecTion = getConnection();
-      sqlParam = "select num, id, code, name, price, quantity, imageFile from cart where id=? order by num desc";
+      sqlParam = "select num, id, code, name, price, quantity, imageFile from orders where id=? order by num desc";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, id);
       resultSet = psTmt.executeQuery();
@@ -84,7 +84,7 @@ public class CartDAO {
         if (index > start + count - 1) {
           break;
         }
-        CartDTO dto = new CartDTO();
+        OrdersDTO dto = new OrdersDTO();
         dto.setNum(resultSet.getInt("num"));
         dto.setId(resultSet.getString("id"));
         dto.setCode(resultSet.getString("code"));
@@ -109,7 +109,7 @@ public class CartDAO {
     int count = 0;
     try {
       connecTion = getConnection();
-      psTmt = connecTion.prepareStatement("select count(*) from cart where id=?");
+      psTmt = connecTion.prepareStatement("select count(*) from orders where id=?");
       psTmt.setString(1, id);
       resultSet = psTmt.executeQuery();
 
@@ -128,77 +128,76 @@ public class CartDAO {
 
 
   // ---------------------------------------------------------------------------------------------->
-  public void insertCart(CartDTO cartDto) {
+  public void insertOrders(OrdersDTO ordersDto) {
     try {
       connecTion = getConnection();
-      sqlParam = "SELECT * FROM cart WHERE id=? AND code=?";
+      sqlParam = "SELECT * FROM orders WHERE id=? AND code=?";
       psTmt = connecTion.prepareStatement(sqlParam);
-      psTmt.setString(1, cartDto.getId());
-      psTmt.setString(2, cartDto.getCode());
+      psTmt.setString(1, ordersDto.getId());
+      psTmt.setString(2, ordersDto.getCode());
       resultSet = psTmt.executeQuery();
 
       if (resultSet.next()) {
-        int quantity = resultSet.getInt("quantity") + cartDto.getQuantity();
-        sqlParam = "UPDATE cart SET quantity=? WHERE id=? AND code=?";
-        psTmt = connecTion.prepareStatement(sqlParam);
-        psTmt.setInt(1, quantity);
-        psTmt.setString(2, cartDto.getId());
-        psTmt.setString(3, cartDto.getCode());
-      }
-      else {
+        int quantity = resultSet.getInt("quantity") + ordersDto.getQuantity();
+        sqlParam = "UPDATE orders SET quantity=? WHERE id=? AND code=?";
+        PreparedStatement updateStatement = connecTion.prepareStatement(sqlParam);
+        updateStatement.setInt(1, quantity);
+        updateStatement.setString(2, ordersDto.getId());
+        updateStatement.setString(3, ordersDto.getCode());
+        updateStatement.execute();
+      } else {
         sqlParam = "SELECT * FROM product WHERE num=?";
         psTmt = connecTion.prepareStatement(sqlParam);
-        psTmt.setInt(1, cartDto.getNum());
-        resultSet = psTmt.executeQuery();
+        psTmt.setInt(1, ordersDto.getNum());
+        ResultSet productResultSet = psTmt.executeQuery();
 
-        if (resultSet.next()) {
+        if (productResultSet.next()) {
           ProductDTO productDto = new ProductDTO();
-          productDto.setNum(resultSet.getInt(1));
-          productDto.setCode(resultSet.getString("code"));
-          productDto.setName(resultSet.getString("name"));
-          productDto.setPrice(resultSet.getInt("price"));
-          productDto.setStock(resultSet.getInt("stock"));
-          productDto.setContent(resultSet.getString("content"));
-          productDto.setComp(resultSet.getString("comp"));
-          productDto.setRef(resultSet.getInt("ref"));
-          productDto.setRe_step(resultSet.getInt("re_step"));
-          productDto.setRe_indent(resultSet.getInt("re_indent"));
-          productDto.setRegDate(resultSet.getTimestamp("regDate"));
-          productDto.setImageFile(resultSet.getString("imageFile"));
+          productDto.setNum(productResultSet.getInt(1));
+          productDto.setCode(productResultSet.getString("code"));
+          productDto.setName(productResultSet.getString("name"));
+          productDto.setPrice(productResultSet.getInt("price"));
+          productDto.setStock(productResultSet.getInt("stock"));
+          productDto.setContent(productResultSet.getString("content"));
+          productDto.setComp(productResultSet.getString("comp"));
+          productDto.setRef(productResultSet.getInt("ref"));
+          productDto.setRe_step(productResultSet.getInt("re_step"));
+          productDto.setRe_indent(productResultSet.getInt("re_indent"));
+          productDto.setRegDate(productResultSet.getTimestamp("regDate"));
+          productDto.setImageFile(productResultSet.getString("imageFile"));
 
-          String id = cartDto.getId();
+          String id = ordersDto.getId();
           String code = productDto.getCode();
-          int quantity = cartDto.getQuantity();
+          int quantity = ordersDto.getQuantity();
           int price = productDto.getPrice();
           String name = productDto.getName();
           String imageFile = productDto.getImageFile();
 
-          sqlParam = "INSERT INTO cart(id, code, name, price, quantity, imageFile) VALUES(?, ?, ?, ?, ?, ?)";
-          psTmt = connecTion.prepareStatement(sqlParam);
-          psTmt.setString(1, id);
-          psTmt.setString(2, code);
-          psTmt.setString(3, name);
-          psTmt.setInt(4, price);
-          psTmt.setInt(5, quantity);
-          psTmt.setString(6, imageFile);
+          sqlParam = "INSERT INTO orders(id, code, name, price, quantity, imageFile) VALUES(?, ?, ?, ?, ?, ?)";
+          PreparedStatement insertStatement = connecTion.prepareStatement(sqlParam);
+          insertStatement.setString(1, id);
+          insertStatement.setString(2, code);
+          insertStatement.setString(3, name);
+          insertStatement.setInt(4, price);
+          insertStatement.setInt(5, quantity);
+          insertStatement.setString(6, imageFile);
+          insertStatement.execute();
         }
       }
-      psTmt.executeUpdate();
-    }
-    catch (Exception ex) {
+    } catch (Exception ex) {
       LOGGER.error("EXCEPTION", ex);
-    }
-    finally {
+    } finally {
       exceptionHandling();
     }
   }
 
-  // ---------------------------------------------------------------------------------------------->
-  public int deleteCart(String[] codes) {
+
+
+  public int deleteOrders(String[] codes) {
     int result = 0;
     try {
       connecTion = getConnection();
-      sqlParam = "delete from cart where code in (";
+      sqlParam = "delete from orders where code in (";
       for (int i = 0; i < codes.length; i++) {
         if (i == 0) {
           sqlParam += "?";
@@ -222,26 +221,24 @@ public class CartDAO {
     return result;
   }
 
-
-
   // ---------------------------------------------------------------------------------------------->
-  public CartDTO getUpdate(int num) {
-    CartDTO cartDto = new CartDTO();
+  public OrdersDTO getUpdate(int num) {
+    OrdersDTO ordersDto = new OrdersDTO();
     try {
       connecTion = getConnection();
-      sqlParam = "select * from cart where num=" + num;
+      sqlParam = "select * from orders where num=" + num;
       psTmt = connecTion.prepareStatement(sqlParam);
-      psTmt = connecTion.prepareStatement("delete from cart where num=?");
+      psTmt = connecTion.prepareStatement("delete from orders where num=?");
       psTmt.setInt(1, num);
       resultSet = psTmt.executeQuery();
       if (resultSet.next()) {
-        cartDto.setNum(resultSet.getInt("num"));
-        cartDto.setId(resultSet.getString("id"));
-        cartDto.setCode(resultSet.getString("code"));
-        cartDto.setName(resultSet.getString("name"));
-        cartDto.setPrice(resultSet.getInt("price"));
-        cartDto.setQuantity(resultSet.getInt("quantity"));
-        cartDto.setImageFile(resultSet.getString("imageFile"));
+        ordersDto.setNum(resultSet.getInt("num"));
+        ordersDto.setId(resultSet.getString("id"));
+        ordersDto.setCode(resultSet.getString("code"));
+        ordersDto.setName(resultSet.getString("name"));
+        ordersDto.setPrice(resultSet.getInt("price"));
+        ordersDto.setQuantity(resultSet.getInt("quantity"));
+        ordersDto.setImageFile(resultSet.getString("imageFile"));
       }
     }
     catch (Exception ex) {
@@ -250,17 +247,17 @@ public class CartDAO {
     finally {
       exceptionHandling();
     }
-    return cartDto;
+    return ordersDto;
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public int updateCart(CartDTO cartDto) {
+  public int updateOrders(OrdersDTO ordersDto) {
     try {
       connecTion = getConnection();
-      sqlParam = "update cart set product_quantity=? where num=?";
+      sqlParam = "update orders set product_quantity=? where num=?";
       psTmt = connecTion.prepareStatement(sqlParam);
-      psTmt.setInt(1, cartDto.getQuantity());
-      psTmt.setInt(2, cartDto.getNum());
+      psTmt.setInt(1, ordersDto.getQuantity());
+      psTmt.setInt(2, ordersDto.getNum());
       psTmt.executeUpdate();
     }
     catch (Exception ex) {
@@ -273,10 +270,10 @@ public class CartDAO {
   }
 
   // ---------------------------------------------------------------------------------------------->
-  public void deleteAllCart(String id) {
+  public void deleteAllOrders(String id) {
     try {
       connecTion = getConnection();
-      sqlParam = "delete from cart where id=?";
+      sqlParam = "delete from orders where id=?";
       psTmt = connecTion.prepareStatement(sqlParam);
       psTmt.setString(1, id);
       psTmt.executeUpdate();
@@ -288,6 +285,5 @@ public class CartDAO {
       exceptionHandling();
     }
   }
-
 
 }
