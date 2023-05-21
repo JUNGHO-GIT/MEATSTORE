@@ -41,24 +41,3 @@ function textHover ()  {
   });
 }
 
-// ------------------------------------------------------------------------------------------------>
-var sessionId = "${sessionScope.id}";
-function sessionAlert (event)  {
-  if (!sessionId) {
-    event.preventDefault();
-    alert("로그인 후 이용해주세요.");
-    window.location.href = "${ctxPath}/member/loginForm.do";
-    return false;
-  }
-  else {
-    return true;
-  }
-}
-
-// ------------------------------------------------------------------------------------------------>
-const deprecated = (event) => {
-  event.preventDefault();
-  alert("점검중 입니다.");
-  window.location.reload();
-  return false;
-};

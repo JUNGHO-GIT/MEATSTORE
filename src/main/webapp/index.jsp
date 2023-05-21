@@ -34,6 +34,28 @@
 		<script defer src="${ctxPath}/res/js/main.js"></script>
 		<script defer src="${ctxPath}/res/js/notice.js"></script>
 		<script defer src="${ctxPath}/res/js/cart.js"></script>
+    <!-- script -->
+    <script>
+      // ------------------------------------------------------------------------------------------>
+      var sessionId = "${sessionScope.id}";
+      function sessionAlert (event)  {
+        if (sessionId == null || sessionId == "") {
+          event.preventDefault();
+          alert("로그인 후 이용해주세요.");
+          window.location.href = "${ctxPath}/member/loginForm.do";
+          return false;
+        }
+        else {
+          return true;
+        }
+      }
+      // ------------------------------------------------------------------------------------------>
+      function deprecated(event) {
+        event.preventDefault();
+        alert("점검중 입니다.");
+        window.location.reload();
+      };
+    </script>
 	</head>
 
 	<body>

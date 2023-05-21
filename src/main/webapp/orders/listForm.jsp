@@ -112,13 +112,13 @@
                     </c:if>
                   </th>
                   <th class="jungho-center ft-8 fw-5">
-                    <c:out value="${dto.name}" id="name" name="name" />
+                    <c:out value="${dto.name}"/>
                   </th>
                   <th class="jungho-center ft-8 fw-5">
-                    <fmt:formatNumber value="${dto.price}" type="currency" currencySymbol="₩" maxFractionDigits="0" id="price" name="price"/>
+                    <fmt:formatNumber value="${dto.price}" type="currency" currencySymbol="₩" maxFractionDigits="0"/>
                   </th>
                   <th class="jungho-center ft-8 fw-5">
-                    <c:out value="${dto.quantity}" id="quantity" name="quantity" />
+                    <c:out value="${dto.quantity}"/>
                   </th>
                   <th class="jungho-center ft-8 fw-5">
                     <fmt:formatNumber value="${dto.price*dto.quantity}" type="currency" currencySymbol="₩" maxFractionDigits="0"/>
