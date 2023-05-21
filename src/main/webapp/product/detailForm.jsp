@@ -91,18 +91,16 @@
     <input type="hidden" name="comp" id="comp" value="${dto.comp}" />
     <input type="hidden" name="num" id="num" value="${dto.num}" />
     <input type="hidden" name="id" id="id" value="${sessionScope.id}" />
+    <input type="hidden" name="state" id="state" value="1" />
 
     <!-- button -->
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <div class="btn btn-group d-flex justify-content-center align-items-center ms-4">
-          <button type="submit" id="submit_detail" class="btn btn-jungho">장바구니 담기</button>
+          <button type="submit" id="submit_detail" class="btn btn-jungho" onclick="return sessionAlert(event);">장바구니 담기</button>
           &nbsp;&nbsp;
           <button type="button" id="button_detail" class="btn btn-secondary" onclick="window.location.href='${ctxPath}/product/listForm.do'">취소</button>
           &nbsp;&nbsp;
-          <input type="hidden" name="num" id="num" value="${dto.num}" />
-          <input type="hidden" name="id" id="id" value="${sessionScope.id}" />
-          <input type="hidden" name="state" value="1" />
         </div>
       </div>
     </div>

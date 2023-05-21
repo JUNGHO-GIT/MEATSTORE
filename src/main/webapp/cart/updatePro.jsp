@@ -9,16 +9,9 @@
 
 <c:if test="${checkParam == 1}">
   <script>
-  	alert("수정이 완료되었습니다")
+  	alert("상품수정이 완료되었습니다")
 		setTimeout(function() {
 		  window.location.href = "${ctxPath}/board/listForm.do";
 		}, 100);
   </script>
-</c:if>
-
-<c:if test="${checkParam == -1}">
-	<script>
-		alert("암호가 다릅니다");
-		history.back();
-	</script>
 </c:if>

@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 import command.CommandAction;
 import dao.CartDAO;
 
-// ------------------------------------------------------------------------------------------------>
 public class ListFormAction implements CommandAction {
 
-  // ---------------------------------------------------------------------------------------------->
   @Override
   public String requestPro (HttpServletRequest request, HttpServletResponse response) throws Throwable {
     String pageNum = request.getParameter("pageNum");
+    String id = (String) request.getSession().getAttribute("id");
+
     if (pageNum == null) {
       pageNum = "1";
     }
@@ -27,9 +27,9 @@ public class ListFormAction implements CommandAction {
     int pageBlock = 10;
     List<dto.CartDTO> list = null;
     CartDAO dao = CartDAO.getInstance();
-    count = dao.getCount();
+    count = dao.getCount(id);
     if (count > 0) {
-      list = dao.getList(startRow, pageSize);
+      list = dao.getList(id, startRow, pageSize);
     }
     else {
       list = Collections.emptyList();

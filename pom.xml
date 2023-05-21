@@ -33,21 +33,6 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.25</version>
     </dependency>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </dependencies>
 
   <!-- build -->

@@ -52,7 +52,6 @@
 					document.documentElement.setAttribute('class', 'stuck');
 				};
 			}));
-
 			function pwCheck() {
 				if (document.updateForm.pw.value == "") {
 					alert("암호는 필수 입력");
@@ -67,13 +66,25 @@
           textHover.style.display = "inline-block";
           textHover.style.cursor = "pointer";
           textHover.style.caretColor = "transparent";
-          textHover.addEventListener("mouseenter", function  ()  {
+          textHover.addEventListener("mouseenter", function () {
             this.style.fontSize = `calc(\${getComputedStyle(this).fontSize} + 3px)`;
           });
-          textHover.addEventListener("mouseleave", function  ()  {
+          textHover.addEventListener("mouseleave", function () {
             this.style.fontSize = "";
           });
         });
+      };
+      var sessionId = "${sessionScope.id}";
+      function sessionAlert(event) {
+        if (!sessionId) {
+          event.preventDefault();
+          alert("로그인 후 이용해주세요.");
+          window.location.href = "${ctxPath}/member/loginForm.do";
+          return false;
+        }
+        else {
+          return true;
+        }
       };
     </script>
 	</head>
@@ -83,21 +94,23 @@
 		<header class="header" id="header">
 			<div class="container">
 				<div class="row menu">
+          <!-- logo -->
 					<div class="col-xl-1 col-lg-1 col-md-1 d-none d-sm-block d-xs-block d-md-block d-lg-block">
 						<a href="${ctxPath}/index.jsp">
 							<img src="${imgsPath}/main/logo.png" width="150px" height="150px" />
 						</a>
 					</div>
+          <!-- section -->
 					<div class="col-xl-11 col-lg-11 col-md-11 col-sm-12 col-xs-12 col-12">
 						<a href="${ctxPath}/product/listForm.do">
 							<img src="${imgsPath}/section/productList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="${ctxPath}/cart/listForm.do">
+						<a href="${ctxPath}/cart/listForm.do" onclick="return sessionAlert(event);">
 							<img src="${imgsPath}/section/cartList.png" />
 						</a>
 						&nbsp;&nbsp;
-						<a href="${ctxPath}/order/listForm.do">
+						<a href="${ctxPath}/order/listForm.do" onclick="return sessionAlert(event);">
 							<img src="${imgsPath}/section/orderList.png" />
 						</a>
             &nbsp;&nbsp;

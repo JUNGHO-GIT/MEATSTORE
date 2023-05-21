@@ -14,9 +14,9 @@
     <div class="container-fluid content">
       <h1 data-aos="fade-right" data-aos-delay="300">QNA</h1>
       <h2 data-aos="fade-left" data-aos-delay="300">[전체글 : ${count}]</h1>
-        <h2>
-          <button class="btn btn-jungho" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='${ctxPath}/qna/insertForm.do'">글쓰기</button>
-        </h2>
+      <h2>
+        <button class="btn btn-jungho" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='${ctxPath}/qna/insertForm.do'">글쓰기</button>
+      </h2>
     </div>
   </div>
 </section>
