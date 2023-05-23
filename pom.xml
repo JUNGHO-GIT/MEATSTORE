@@ -4,8 +4,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>MeatStore</groupId>
-  <artifactId>MeatStore</artifactId>
+  <groupId>MEATSTORE</groupId>
+  <artifactId>MEATSTORE</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -58,6 +58,6 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
         <version>3.2.3</version>
       </plugin>
     </plugins>
-    <finalName>MeatStore</finalName>
+    <finalName>MEATSTORE</finalName>
   </build>
 </project>
