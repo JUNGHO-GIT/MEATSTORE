@@ -142,7 +142,7 @@
 		</main>
 
 		<!-- bottom ----------------------------------------------------------------------------------->
-		<footer class="footer" style="background-color: #b23b46; margin-top: 20px;">
+		<footer class="footer" style="background-color: #872d35; margin-top: 20px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">

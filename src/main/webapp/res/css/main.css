@@ -166,15 +166,15 @@ nav {
 	font-size: 18px;
 	font-weight: 600;
 	padding: 8px 35px;
-	background-color: #b23b46;
-	border-color: #b23b46;
-	border: 2px solid #b23b46;
+	background-color: #872d35;
+	border-color: #872d35;
+	border: 2px solid #872d35;
 }
 
 .jumbotron .btn-success:hover {
 	color: #fff;
 	background-color: transparent;
-	border: 2px solid #b23b46;
+	border: 2px solid #872d35;
 }
 
 .jumbotron h2 {
@@ -366,8 +366,8 @@ nav {
 	padding: 12px 35px;
 	letter-spacing: 1px;
 	border-radius: 0;
-	background-color: #b23b46;
-	border-color: #b23b46;
+	background-color: #872d35;
+	border-color: #872d35;
 	text-transform: uppercase;
 }
 
@@ -375,8 +375,8 @@ nav {
 	color: #fff;
 	font-size: 18px;
 	padding: 5px 20px;
-	background-color: #b23b46;
-	border-color: #b23b46;
+	background-color: #872d35;
+	border-color: #872d35;
 }
 
 .section-4 .btn-success:hover,
@@ -465,8 +465,8 @@ nav {
 	color: #fff;
 	padding: 12px 35px;
 	letter-spacing: 1px;
-	background-color: #b23b46;
-	border-color: #b23b46;
+	background-color: #872d35;
+	border-color: #872d35;
 	text-transform: uppercase;
 }
 
@@ -660,8 +660,8 @@ nav {
 
 .section-6 .btn-info:hover {
 	color: #ffffff;
-	background-color: #b23b46;
-	border: 1px solid #b23b46;
+	background-color: #872d35;
+	border: 1px solid #872d35;
 }
 
 .section-6 input {
@@ -818,8 +818,8 @@ nav {
 }
 
 .blog .bt .active {
-	background-color: #b23b46;
-	border: 1px solid #b23b46;
+	background-color: #872d35;
+	border: 1px solid #872d35;
 	color: white;
 }
 
@@ -827,8 +827,8 @@ nav {
 	color: #ffffff;
 	font-size: 15px;
 	padding: 5px;
-	background-color: #b23b46;
-	border-color: #b23b46;
+	background-color: #872d35;
+	border-color: #872d35;
 }
 
 .blog .btn-success:hover {
@@ -838,8 +838,8 @@ nav {
 }
 
 .blog .bt a:hover {
-	background-color: #b23b46;
-	border: 1px solid #b23b46;
+	background-color: #872d35;
+	border: 1px solid #872d35;
 	color: white;
 	border-radius: 100px;
 }
@@ -1963,7 +1963,7 @@ nav {
 		top: -65px;
 		color: rgb(0, 0, 0);
 		border-color: rgba(255, 255, 255, 0.1);
-		background: #b23b46;
+		background: #872d35;
 	}
 
 	header .box-1 {
@@ -2311,7 +2311,7 @@ nav {
     Made by Jungho
 ==================================================================================================*/
 .btn-jungho {
-	background-color: #b23b46;
+	background-color: #872d35;
 	color: #ffffff;
 }
 
@@ -2417,13 +2417,13 @@ nav {
 .number-jungho {
 	font-size: 0.5em;
 	font-weight: bold;
-	color: #b23b46;
+	color: #872d35;
 }
 
 .component-jungho1 h5,
 .component-jungho1 h6 {
 	display: inline;
-	color: #b23b46;
+	color: #872d35;
 
 }
 
@@ -2434,7 +2434,7 @@ nav {
 .buttons-jungho {
 	font-size: default;
 	font-weight: 500;
-	color: #b23b46;
+	color: #872d35;
 	border: #acacac;
 	padding-bottom: 10px;
 }
@@ -2482,7 +2482,7 @@ nav {
 	height: 50px;
 	padding: 5px;
 	color: white;
-	background-color: #b23b46;
+	background-color: #872d35;
 	font-weight: 300;
 	font-size: 30px;
 	text-align: center;
@@ -2496,7 +2496,7 @@ nav {
 	height: 30px;
 	padding: 5px;
 	color: white;
-	background-color: #b23b46;
+	background-color: #872d35;
 	font-weight: 300;
 	text-align: center;
 }
@@ -2539,7 +2539,7 @@ nav {
 	border-spacing: 0;
 	border: 2px solid black;
 	height: 50px;
-	background-color: #b23b46;
+	background-color: #872d35;
 	padding: 5px;
 	text-align: center;
 	font-weight: 300;
@@ -2552,7 +2552,7 @@ nav {
 	height: 30px;
 	padding: 5px;
 	color: white;
-	background-color: #b23b46;
+	background-color: #872d35;
 	font-weight: 300;
 	text-align: center;
 }
@@ -2578,7 +2578,7 @@ nav {
 	height: 50px;
 	padding: 5px;
 	color: white;
-	background-color: #b23b46;
+	background-color: #872d35;
 	font-weight: 300;
 	font-size: 30px;
 	text-align: center;
@@ -2592,7 +2592,7 @@ nav {
 	height: 30px;
 	padding: 5px;
 	color: white;
-	background-color: #b23b46;
+	background-color: #872d35;
 	font-weight: 300;
 	text-align: center;
 }
@@ -2634,7 +2634,7 @@ nav {
 	height: 50px;
 	padding: 5px;
 	color: white;
-	background-color: #b23b46;
+	background-color: #872d35;
 	font-weight: 300;
 	font-size: 30px;
 	text-align: center;
@@ -2674,7 +2674,7 @@ nav {
 	border-spacing: 0;
 	border: 2px solid black;
 	height: 50px;
-	background-color: #b23b46;
+	background-color: #872d35;
 	padding: 5px;
 	text-align: center;
 	font-weight: 300;
@@ -2684,7 +2684,7 @@ nav {
 
 .list_row_one {
 	height: 40px;
-	background-color: #b23b46;
+	background-color: #872d35;
 	color: white;
 	text-align: center;
 	font-weight: 300;
@@ -2706,7 +2706,7 @@ nav {
 
 .bottom_button {
 	color: white;
-	background-color: #b23b46;
+	background-color: #872d35;
 	font-weight: 100;
 	border: 1px solid white;
 
@@ -2725,5 +2725,5 @@ nav {
 .red-line {
   border: none;
   height: 2px;
-  background-color: #b23b46;
+  background-color: #872d35;
 }
