@@ -63,13 +63,13 @@
                   </c:if>
                 </th>
                 <th class="jungho-center ft-8 fw-5">
-                  ${dto.name}
+                  <a class="text-hover" href="${ctxPath}/product/detailForm.do?num=${dto.num}&pageNum=${currentPage}"><c:out value="${dto.name}"/></a>
                 </th>
                 <th class="jungho-center ft-8 fw-5">
                   <fmt:formatNumber value="${dto.price}" type="currency" currencyCode="KRW" maxFractionDigits="0" />
                 </th>
                 <th class="jungho-center ft-8 fw-5">
-                  ${dto.stock}
+                  <c:out value="${dto.stock}"/>
                 </th>
                 <th class="jungho-center ft-8 fw-5">
                   <fmt:formatDate value="${dto.regDate}" pattern="yyyy-MM-dd" />

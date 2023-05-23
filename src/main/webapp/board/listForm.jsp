@@ -35,7 +35,7 @@
         <table class="table table-striped dataTable table-hover" style="border: 1px solid #dddddd;">
           <thead>
             <tr>
-              <th style="width:100px;">번호</th>
+              <th style="width:30px;">번호</th>
               <th style="width:120px;">이미지</th>
               <th style="width:200px;">제목</th>
               <th style="width:100px;">작성자</th>
