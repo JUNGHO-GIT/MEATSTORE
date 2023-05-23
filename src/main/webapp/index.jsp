@@ -22,6 +22,7 @@
 		<link rel="stylesheet" href="${ctxPath}/res/css/main.css" />
 		<link rel="stylesheet" href="${ctxPath}/res/css/media.css" />
     <link rel="stylesheet" href="${ctxPath}/res/css/jungho.css" />
+    <link rel="shortcut icon" href="${imgsPath}/etc/favicon.ico" type="image/x-icon" />
 		<!-- js -->
 		<script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
