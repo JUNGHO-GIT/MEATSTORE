@@ -91,7 +91,7 @@
               <tr>
                 <th style="width:10px;"></th>
                 <th style="width:200px;">이미지</th>
-                <th style="width:200px;">상품명</th>
+                <th style="width:300px;">상품명</th>
                 <th style="width:100px;">가격</th>
                 <th style="width:100px;">수량</th>
                 <th style="width:100px;">총가격</th>
