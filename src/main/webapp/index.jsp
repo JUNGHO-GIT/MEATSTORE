@@ -72,29 +72,17 @@
 					</div>
           <!-- section -->
 					<div class="col-xl-11 col-lg-11 col-md-11 col-sm-12 col-xs-12 col-12">
-						<a href="${ctxPath}/product/listForm.do">
-							<img src="${imgsPath}/section/productList.png" />
-						</a>
+            <span class="log"><a href="${ctxPath}/product/listForm.do">상품</a></span>
 						&nbsp;&nbsp;
-						<a href="${ctxPath}/cart/listForm.do" onclick="return sessionAlert(event);">
-							<img src="${imgsPath}/section/cartList.png" />
-						</a>
+						<span class="log"><a href="${ctxPath}/cart/listForm.do" onclick="return sessionAlert(event);">장바구니</a></span>
 						&nbsp;&nbsp;
-						<a href="${ctxPath}/orders/listForm.do" onclick="return deprecated(event);">
-							<img src="${imgsPath}/section/orders.png" />
-						</a>
+            <span class="log"><a href="${ctxPath}/orders/listForm.do" onclick="return deprecated(event);">주문내역</a></span>
             &nbsp;&nbsp;
-						<a href="${ctxPath}/board/listForm.do">
-							<img src="${imgsPath}/section/board.png" />
-						</a>
-						&nbsp;&nbsp;
-						<a href="${ctxPath}/notice/listForm.do">
-							<img src="${imgsPath}/section/notice.png" />
-						</a>
-						&nbsp;&nbsp;
-						<a href="${ctxPath}/qna/listForm.do">
-							<img src="${imgsPath}/section/qna.png" />
-						</a>
+            <span class="log"><a href="${ctxPath}/board/listForm.do">게시판</a></span>
+            &nbsp;&nbsp;
+            <span class="log"><a href="${ctxPath}/notice/listForm.do">공지사항</a></span>
+            &nbsp;&nbsp;
+            <span class="log"><a href="${ctxPath}/qna/listForm.do">Q&A</a></span>
 						&nbsp;&nbsp;
             <!-- login x -->
 						<c:if test="${sessionScope.id == null && sessionScope.adminId == null}">
