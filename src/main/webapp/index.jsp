@@ -109,7 +109,7 @@
       </div>
     </header>
 
-    <div class="empty-h150"></div>
+
 
 		<!-- main ------------------------------------------------------------------------------------->
 		<main class="main" id="main">
@@ -121,6 +121,7 @@
 				</div>
 			</c:if>
 			<c:if test="${CONTENT==null}">
+        <div class="empty-h150"></div>
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 						<video autoplay loop muted style="width: -webkit-fill-available;">
@@ -131,7 +132,7 @@
 			</c:if>
 		</main>
 
-    <div class="empty-h150"></div>
+    <div class="empty-h200"></div>
 
 		<!-- bottom ----------------------------------------------------------------------------------->
 		<footer class="footer" style="background-color: #872d35; margin-top: 20px;">
