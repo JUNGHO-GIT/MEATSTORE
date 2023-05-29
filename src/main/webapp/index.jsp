@@ -109,6 +109,8 @@
       </div>
     </header>
 
+    <div class="empty-h150"></div>
+
 		<!-- main ------------------------------------------------------------------------------------->
 		<main class="main" id="main">
 			<c:if test="${CONTENT!=null && CONTENT!='/index.jsp'}">
@@ -129,7 +131,7 @@
 			</c:if>
 		</main>
 
-    <div class="empty-h300"></div>
+    <div class="empty-h150"></div>
 
 		<!-- bottom ----------------------------------------------------------------------------------->
 		<footer class="footer" style="background-color: #872d35; margin-top: 20px;">
