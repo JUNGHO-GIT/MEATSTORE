@@ -4,11 +4,11 @@
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="imgsPath" value="${ctxPath}/res/imgs" />
 <c:set var="uploadPath" value="${ctxPath}/res/upload" />
-<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section pb-5">
+<section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
@@ -23,7 +23,7 @@
 
 <!-- 글 x -->
 <c:if test="${count==0}">
-  <section class="empty-section"></section>
+  <section class="empty-h200"></section>
 </c:if>
 
 <!-- 글 o -->
@@ -31,15 +31,15 @@
   <!-- section -->
   <section class="section">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+      <div class="col-xl-8 col-lg-8 col-md-10 col-sm-10 col-xs-10 col-10 d-flex justify-content-center align-items-center">
         <table class="table table-striped dataTable table-hover" style="border: 1px solid #dddddd;">
           <thead>
             <tr>
-              <th style="width:30px;">번호</th>
+              <th style="width:90px;"></th>
               <th style="width:200px;">제목</th>
-              <th style="width:100px;">작성자</th>
-              <th style="width:100px;">작성일</th>
-              <th style="width:100px;">조회수</th>
+              <th style="width:130px;">작성자</th>
+              <th style="width:130px;">작성일</th>
+              <th style="width:130px;">조회수</th>
             </tr>
           </thead>
           <tbody>
@@ -49,7 +49,7 @@
                   <c:out value="${number}" />
                   <c:set var="number" value="${number-1}" />
                 </th>
-                <th class="fw-6">
+                <th class="fw-5">
                   <c:if test="${dto.re_indent>0}">
                     <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
                     <img src="${imgsPath}/etc/re.gif" />
@@ -60,18 +60,18 @@
                   <c:if test="${dto.views}=10">
                     <img src="${imgsPath}/etc/hot.gif" />
                   </c:if>
-                  <a class="text-hover" href="${ctxPath}/qna/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
+                  <a class="linkHover" href="${ctxPath}/qna/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
                     ${dto.subject}
                   </a>
                 </th>
                 <th class="fw-5">
-                  ${dto.writer}
+                  <c:out value="${dto.writer}" />
                 </th>
                 <th class="fw-5">
-                  <fmt:formatDate value="${dto.regDate}" pattern="yyyy-MM-dd" />
+                  <fmt:formatDate value="${dto.regDate}" pattern="MM-dd" />
                 </th>
                 <th class="fw-5">
-                  ${dto.views}
+                  <c:out value="${dto.views}" />
                 </th>
               </tr>
             </c:forEach>

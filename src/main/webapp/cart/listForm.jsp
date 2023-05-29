@@ -4,7 +4,7 @@
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="imgsPath" value="${ctxPath}/res/imgs" />
 <c:set var="uploadPath" value="${ctxPath}/res/upload" />
-<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- delete script -->
@@ -64,7 +64,7 @@
 </script>
 
 <!-- header -->
-<section class="section pb-5">
+<section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
@@ -76,7 +76,7 @@
 
 <!-- 글 x -->
 <c:if test="${count == 0}">
-  <section class="empty-section"></section>
+  <section class="empty-h200"></section>
 </c:if>
 
 <!-- 글 o -->
@@ -92,18 +92,18 @@
                 <th style="width:10px;"></th>
                 <th style="width:200px;">이미지</th>
                 <th style="width:300px;">상품명</th>
-                <th style="width:100px;">가격</th>
-                <th style="width:100px;">수량</th>
-                <th style="width:100px;">총가격</th>
+                <th style="width:130px;">가격</th>
+                <th style="width:130px;">수량</th>
+                <th style="width:130px;">총가격</th>
               </tr>
             </thead>
             <c:forEach var="dto" items="${list}">
               <tbody>
                 <tr>
-                  <th class="jungho-center ft-8 fw-5">
+                  <th class="jungho-center fw-5">
                     <input class="productCheckbox" type="checkbox" id="code" name="code" value="${dto.code}" />
                   </th>
-                  <th class="jungho-center ft-8 fw-5">
+                  <th class="jungho-center fw-5">
                     <c:if test="${dto.imageFile!=null}">
                       <img src="${uploadPath}/cart/${dto.imageFile}" id="imageFile" name="imageFile"  width="100" height="100" class="sh-7 rd-1"/>
                     </c:if>
@@ -111,16 +111,16 @@
                       <img src="${imgsPath}/etc/noImage.png" id="imageFile" name="imageFile"  width="100" height="100" class="sh-7 rd-1"/>
                     </c:if>
                   </th>
-                  <th class="jungho-center ft-8 fw-5">
+                  <th class="jungho-center fw-5">
                     <c:out value="${dto.name}"/>
                   </th>
-                  <th class="jungho-center ft-8 fw-5">
+                  <th class="jungho-center fw-5">
                     <fmt:formatNumber value="${dto.price}" type="currency" currencySymbol="₩" maxFractionDigits="0" />
                   </th>
-                  <th class="jungho-center ft-8 fw-5">
+                  <th class="jungho-center fw-5">
                     <c:out value="${dto.quantity}"/>
                   </th>
-                  <th class="jungho-center ft-8 fw-5">
+                  <th class="jungho-center fw-5">
                     <fmt:formatNumber value="${dto.price*dto.quantity}" type="currency" currencySymbol="₩" maxFractionDigits="0"/>
                   </th>
                 </tr>
@@ -129,15 +129,15 @@
             </c:forEach>
             <tfoot>
               <tr>
-                <th colspan="2" class="jungho-center ft-8 fw-5">
+                <th colspan="2" class="jungho-center fw-5">
                   <button type="button" id="deleteButton" class="btn btn-jungho" onclick="deleteSelected()">선택삭제</button>
                 </th>
-                <th colspan="1" class="jungho-center ft-8 fw-5">총금액</th>
+                <th colspan="1" class="jungho-center fw-5">총금액</th>
                 <th colspan="2" id="totalPrice" class="jungho-center ft-10 fw-8">
                   <fmt:formatNumber value="${totalPrice}" type="currency" currencySymbol="₩" maxFractionDigits="0"/>
                 </th>
-                <th colspan="2" class="jungho-center ft-8 fw-5">
-                  <button type="button" id="orderButton" class="btn btn-jungho" onclick="return deprecated(event)">주문하기</button>
+                <th colspan="2" class="jungho-center fw-5">
+                  <button type="button" id="orderButton" class="btn btn-jungho" onclick="return deprecated(event)">주문</button>
                 </th>
               </tr>
             </tfoot>

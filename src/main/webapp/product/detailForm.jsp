@@ -4,7 +4,7 @@
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="imgsPath" value="${ctxPath}/res/imgs" />
 <c:set var="uploadPath" value="${ctxPath}/res/upload" />
-<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+<input type="hidden" id="id" value="${sessionScope.id}" />
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
@@ -23,7 +23,7 @@
   <form method="POST" action="${ctxPath}/cart/insertPro.do" enctype="multipart/form-data">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-        <img src="${uploadPath}/product/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
+        <img src="${uploadPath}/product/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1" style="max-width: 330px; max-height: 330px;">
       </div>
     </div>
     <hr class="red-line"/>
@@ -32,7 +32,7 @@
         <table class="table table-borderless">
           <tr>
             <th style="border-top: transparent;" colspan="2">
-              <h2>${dto.name}</h2>
+              <h2 class="detail-h2">${dto.name}</h2>
             </th>
           </tr>
           <tr>

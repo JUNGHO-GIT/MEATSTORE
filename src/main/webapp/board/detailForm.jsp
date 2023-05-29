@@ -4,11 +4,11 @@
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="imgsPath" value="${ctxPath}/res/imgs" />
 <c:set var="uploadPath" value="${ctxPath}/res/upload" />
-<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section pb-5">
+<section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
@@ -22,7 +22,7 @@
 <section class="section">
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
-      <img src="${uploadPath}/board/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1" alt="게시글 이미지" />
+      <img src="${uploadPath}/board/${dto.imageFile}" class="img-fluid mb-5 mt-5 sh-7 rd-1"  style="max-width: 330px; max-height: 330px;">
     </div>
   </div>
   <hr class="red-line"/>
@@ -31,7 +31,7 @@
       <table class="table table-borderless">
         <tr>
           <th style="border-top: transparent;" colspan="2">
-            <h2>${dto.subject}</h2>
+            <h2 class="detail-h2">${dto.subject}</h2>
           </th>
         </tr>
         <tr>
@@ -67,7 +67,7 @@
         <tr>
           <th>글내용</th>
           <th>
-            <textarea class="form-control" name="content" style="height: 200px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
+            <textarea class="form-control" name="content" style="height: 150px; resize: none; background-color:#ffffff;" readonly="readonly">${dto.content}</textarea>
           </th>
         </tr>
       </table>
@@ -87,7 +87,6 @@
         <c:if test="${!empty sessionScope.adminId}">
           <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxPath}/board/insertForm.do?num=${num}&pageNum=${pageNum}&ref=${dto.ref}&re_indent=${dto.re_indent}&re_indent=${dto.re_indent}'">답글 작성</button>
         </c:if>
-        &nbsp;&nbsp;
         <button class="btn btn-jungho" type="button" onclick="window.location.href='${ctxPath}/board/listForm.do?pageNum=${pageNum}'">리스트</button>
         &nbsp;&nbsp;
       </div>

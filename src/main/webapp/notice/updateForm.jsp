@@ -4,11 +4,11 @@
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="imgsPath" value="${ctxPath}/res/imgs" />
 <c:set var="uploadPath" value="${ctxPath}/res/upload" />
-<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section pb-5">
+<section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
@@ -27,7 +27,7 @@
           <input type="hidden" name="num" id="num" value="${dto.num}" />
           <tr>
             <th style="border-top: transparent;" colspan="2">
-              <h2>${dto.subject}</h2>
+              <h2 class="detail-h2">${dto.subject}</h2>
             </th>
           </tr>
           <tr>
@@ -57,7 +57,7 @@
           <tr>
             <th>내용</th>
             <th>
-              <textarea class="form-control" name="content" id="content" rows="10" placeholder="내용을 입력하세요.">${dto.content}</textarea>
+              <textarea class="form-control" name="content" id="content" rows="10" placeholder="내용을 입력하세요." style="height: 150px; resize: none; background-color:#ffffff;" >${dto.content}</textarea>
             </th>
           </tr>
           <tr>

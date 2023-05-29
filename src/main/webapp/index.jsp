@@ -4,7 +4,7 @@
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="imgsPath" value="${ctxPath}/res/imgs" />
 <c:set var="uploadPath" value="${ctxPath}/res/upload" />
-<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!doctype html>
@@ -15,17 +15,18 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- css -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800">
+    <link rel="shortcut icon" href="${imgsPath}/etc/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="${ctxPath}/res/css/main.css" />
 		<link rel="stylesheet" href="${ctxPath}/res/css/media.css" />
     <link rel="stylesheet" href="${ctxPath}/res/css/jungho.css" />
-    <link rel="shortcut icon" href="${imgsPath}/etc/favicon.ico" type="image/x-icon" />
+
 		<!-- js -->
-		<script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
 		</script>
 		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -35,79 +36,78 @@
 		<script defer src="${ctxPath}/res/js/main.js"></script>
 		<script defer src="${ctxPath}/res/js/notice.js"></script>
 		<script defer src="${ctxPath}/res/js/cart.js"></script>
-    <!-- script -->
-    <script>
-      // ------------------------------------------------------------------------------------------>
-      var sessionId = "${sessionScope.id}";
-      function sessionAlert (event)  {
-        if (sessionId == null || sessionId == "") {
-          event.preventDefault();
-          alert("로그인 후 이용해주세요.");
-          window.location.href = "${ctxPath}/member/loginForm.do";
-          return false;
-        }
-        else {
-          return true;
-        }
-      }
-      // ------------------------------------------------------------------------------------------>
-      function deprecated(event) {
-        event.preventDefault();
-        alert("점검중 입니다.");
-        window.location.reload();
-      };
-    </script>
+		<script defer src="${ctxPath}/res/js/product.js"></script>
+		<script defer src="${ctxPath}/res/js/member.js"></script>
 	</head>
 
 	<body>
+
+    <div class="background"><div class="loader"></div></div>
+
 		<!-- top -------------------------------------------------------------------------------------->
 		<header class="header" id="header">
-			<div class="container">
-				<div class="row menu">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <!-- logo -->
-					<div class="col-xl-1 col-lg-1 col-md-1 d-none d-sm-block d-xs-block d-md-block d-lg-block">
-						<a href="${ctxPath}/index.jsp">
-							<img src="${imgsPath}/main/logo.png" width="150px" height="150px" />
-						</a>
-					</div>
-          <!-- section -->
-					<div class="col-xl-11 col-lg-11 col-md-11 col-sm-12 col-xs-12 col-12">
-            <span class="log"><a href="${ctxPath}/product/listForm.do">상품</a></span>
-						&nbsp;&nbsp;
-						<span class="log"><a href="${ctxPath}/cart/listForm.do" onclick="return sessionAlert(event);">장바구니</a></span>
-						&nbsp;&nbsp;
-            <span class="log"><a href="${ctxPath}/orders/listForm.do" onclick="return deprecated(event);">주문내역</a></span>
-            &nbsp;&nbsp;
-            <span class="log"><a href="${ctxPath}/board/listForm.do">게시판</a></span>
-            &nbsp;&nbsp;
-            <span class="log"><a href="${ctxPath}/notice/listForm.do">공지사항</a></span>
-            &nbsp;&nbsp;
-            <span class="log"><a href="${ctxPath}/qna/listForm.do">Q&A</a></span>
-						&nbsp;&nbsp;
-            <!-- login x -->
-						<c:if test="${sessionScope.id == null && sessionScope.adminId == null}">
-              <span class="log"><a href="${ctxPath}/member/loginForm.do">로그인</a></span>
-							&nbsp;
-              <span class="log"><a href="${ctxPath}/member/insertForm.do">회원가입</a></span>
-						</c:if>
-						&nbsp;&nbsp;
-						<!-- login o (일반 회원) -->
-						<c:if test="${sessionScope.id != null}">
-              <span class="log"><a href="${ctxPath}/member/logoutPro.do">로그아웃</a></span>
-              &nbsp;
-              <span class="log"><a href="${ctxPath}/member/updateForm.do">회원정보수정</a></span>
-						</c:if>
-						&nbsp;&nbsp;
-						<!-- login o (관리자) -->
-						<c:if test="${sessionScope.adminId != null}">
-              <span class="log"><a href="${ctxPath}/index.jsp">관리자 모드</a></span>
-              &nbsp;
-              <span class="log"><a href="${ctxPath}/admin/logoutPro.do">로그아웃</a></span>
-						</c:if>
-					</div>
-				</div>
-			</div>
-		</header>
+          <a class="navbar-brand" href="${ctxPath}/index.jsp">
+            <img src="${imgsPath}/main/logo.png" class="img-fluid" style="max-width: 120px; max-height: 120px;"/>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- section -->
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="${ctxPath}/product/listForm.do">상품</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="${ctxPath}/cart/listForm.do" onclick="return sessionAlert(event);">장바구니</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="${ctxPath}/orders/listForm.do" onclick="return deprecated(event);">주문내역</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="${ctxPath}/board/listForm.do">게시판</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="${ctxPath}/notice/listForm.do">공지사항</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="${ctxPath}/qna/listForm.do">Q&A</a>
+              </li>
+              <!-- login x -->
+              <c:if test="${sessionScope.id == null && sessionScope.adminId == null}">
+                <li class="nav-item">
+                  <a class="nav-link" href="${ctxPath}/member/loginForm.do">로그인</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="${ctxPath}/member/insertForm.do">회원가입</a>
+                </li>
+              </c:if>
+              <!-- login o (일반 회원) -->
+              <c:if test="${sessionScope.id != null}">
+                <li class="nav-item">
+                  <a class="nav-link" href="${ctxPath}/member/logoutPro.do">로그아웃</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="${ctxPath}/member/updateForm.do">회원정보수정</a>
+                </li>
+              </c:if>
+              <!-- login o (관리자) -->
+              <c:if test="${sessionScope.adminId != null}">
+                <li class="nav-item">
+                  <a class="nav-link" href="${ctxPath}/index.jsp">관리자 모드</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="${ctxPath}/admin/logoutPro.do">로그아웃</a>
+                </li>
+              </c:if>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
 
 		<!-- main ------------------------------------------------------------------------------------->
 		<main class="main" id="main">

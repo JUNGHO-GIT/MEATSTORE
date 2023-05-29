@@ -4,11 +4,11 @@
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="imgsPath" value="${ctxPath}/res/imgs" />
 <c:set var="uploadPath" value="${ctxPath}/res/upload" />
-<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section pb-5">
+<section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
@@ -38,7 +38,7 @@
           <input class="form-control" type="text" name="price" id="price" placeholder="상품가격" required>
         </div>
         <div class="form-group">
-          <textarea class="form-control" name="content" id="content" placeholder="설명"></textarea>
+          <textarea class="form-control" name="content" id="content" placeholder="설명" style="height: 150px; resize: none; background-color:#ffffff;" ></textarea>
         </div>
         <div class="form-group">
           <input class="form-control" type="text" name="stock" id="stock" placeholder="상품수량 입고" required>

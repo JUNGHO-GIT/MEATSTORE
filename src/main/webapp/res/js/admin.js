@@ -50,11 +50,6 @@ function loginCheck() {
 }
 
 // ------------------------------------------------------------------------------------------------>
-function memberReg() {
-  document.location = "Register.jsp";
-}
-
-// ------------------------------------------------------------------------------------------------>
 function insertCheck() {
   if ($("#mem_id").val() == "") {
     alert("아이디를 입력해 주세요.");
@@ -106,12 +101,12 @@ function insertCheck() {
     $("#mem_passwd").focus();
     return ;
   }
-  var jumin1 = regForm.mem_num1.value;
-  var jumin2 = regForm.mem_num2.value;
-  var jumin = jumin1 + jumin2;
-  var index = "234567892345";
-  var total = 0;
-  for (var i = 0; i < 12; i++) total += parseInt(jumin.charAt(i) * index.charAt(i));
+  let jumin1 = regForm.mem_num1.value;
+  let jumin2 = regForm.mem_num2.value;
+  let jumin = jumin1 + jumin2;
+  let index = "234567892345";
+  let total = 0;
+  for (let i = 0; i < 12; i++) total += parseInt(jumin.charAt(i) * index.charAt(i));
   total = 11 - (total % 11);
   if (total == 10) total = 0;
   else if (total == 11) total = 1;
@@ -127,13 +122,13 @@ function insertCheck() {
     document.regForm.mem_email.focus();
     return ;
   }
-  var str = document.regForm.mem_email.value;
-  var atPos = str.indexOf("@");
-  var atLastPos = str.lastIndexOf ("@");
-  var dotPos = str.indexOf (".");
-  var spacePos = str.indexOf(" ");
-  var commaPos = str.indexOf(",");
-  var eMailSize = str.length;
+  let str = document.regForm.mem_email.value;
+  let atPos = str.indexOf("@");
+  let atLastPos = str.lastIndexOf ("@");
+  let dotPos = str.indexOf (".");
+  let spacePos = str.indexOf(" ");
+  let commaPos = str.indexOf(",");
+  let eMailSize = str.length;
   if (atPos > 1 && atPos == atLastPos && dotPos > 3 && spacePos == -1 && commaPos == -1 && atPos + 1 < dotPos && dotPos + 1 < eMailSize);
   else {
     alert("E-mail주소 형식이 잘못되었습니다.\n\r다시 입력해 주세요!");
@@ -142,60 +137,14 @@ function insertCheck() {
   }
   document.regForm.submit();
 }
-
-// ------------------------------------------------------------------------------------------------>
-function idCheck (id)  {
-  if (id == "") {
-    alert("아이디를 입력해 주세요.");
-    document.regForm.mem_id.focus();
-  }
-  else {
-    url = "IdCheck.jsp?mem_id=" + id;
-    window.open(url, "post", "width=300,height=150");
-  }
-}
-
 // ------------------------------------------------------------------------------------------------>
 function zipCheck() {
   url = "ZipCheck.jsp?check=y";
   window.open(url, "post", "toolbar=no ,width=500 ,height=300 ,directories=no,status=yes,scrollbars=yes,menubar=no");
 }
-
-// ------------------------------------------------------------------------------------------------>
-function productContent (code)  {
-  document.content.code.value = code;
-  document.content.submit();
-}
-
-// ------------------------------------------------------------------------------------------------>
-function productUpdate (num)  {
-  document.updateForm.num.value = num;
-  document.updateForm.submit();
-}
-
-// ------------------------------------------------------------------------------------------------>
-function productDelete (num)  {
-  document.delForm.num.value = num;
-  document.delForm.submit();
-}
-
-/* // ------------------------------------------------------------------------------------------------>
-function cartUpdate (form)  {
-  form.flag.value = "update";
-  form.submit();
-}
-
-// ------------------------------------------------------------------------------------------------>
-function cartDelete (form)  {
-  form.flag.value = "del";
-  form.submit();
-} */
-
-// ------------------------------------------------------------------------------------------------>
-function del (id)  {
-  var tmp;
-  tmp = confirm("탈퇴하시겠습니까?");
-  if (tmp) {
-    document.location = "MemberDelete.jsp?mem_id=" + id;
-  }
-}
+// ------------------------------------------------------------------------------------------>
+function deprecated(event) {
+  event.preventDefault();
+  alert("점검중 입니다.");
+  window.location.reload();
+};

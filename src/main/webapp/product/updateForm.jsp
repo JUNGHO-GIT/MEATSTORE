@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="dao.*" %>
-<%@ page import="dao.*" %>
-<%@ page import="dto.*" %>
+<%@ page import="dao.*" %> <%@ page import="dto.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="imgsPath" value="${ctxPath}/res/imgs" />
 <c:set var="uploadPath" value="${ctxPath}/res/upload" />
-<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section pb-5">
+<section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <div class="container-fluid content">
@@ -39,7 +37,7 @@
           <input class="form-control" type="text" name="price" id="price" value="${dto.price}" placeholder="상품가격" />
         </div>
         <div class="form-group">
-          <textarea class="form-control" name="content" id="content" rows="10" cols="50" placeholder="상품설명">${dto.content}</textarea>
+          <textarea class="form-control" name="content" id="content" rows="10" cols="50" placeholder="상품설명" style="height: 150px; resize: none; background-color:#ffffff;" >${dto.content}</textarea>
         </div>
         <div class="form-group">
           <input class="form-control" type="text" name="stock" id="stock" value="${dto.stock}" placeholder="상품입고 수량" />

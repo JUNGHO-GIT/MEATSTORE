@@ -4,11 +4,11 @@
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <c:set var="imgsPath" value="${ctxPath}/res/imgs" />
 <c:set var="uploadPath" value="${ctxPath}/res/upload" />
-<c:set var="cloudPath" value="https://storage.googleapis.com/jungho-bucket/MEATSTORE" />
+
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!-- header -->
-<section class="section pb-5">
+<section class="section">
   <div class="jumbotron d-flex align-items-center">
     <div class="gradient"></div>
     <c:if test="${sessionScope.adminId != null}">
@@ -20,7 +20,7 @@
     </c:if>
     <c:if test="${sessionScope.adminId == null}">
       <div class="container-fluid content">
-        <h1 data-aos="fade-right" data-aos-delay="300">상품목록</h2>
+        <h1 data-aos="fade-right" data-aos-delay="300">상품목록</h1>
         <h2 data-aos="fade-left" data-aos-delay="300">[최고급 고기를 즐겨보세요.]</h2>
       </div>
     </c:if>
@@ -29,54 +29,72 @@
 
 <!-- 글 x -->
 <c:if test="${count==0}">
-  <section class="empty-section"></section>
+  <section class="empty-h200"></section>
 </c:if>
 
 <!-- 글 o -->
 <c:if test="${count>0}">
-  <!-- section -->
   <section class="section">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
+      <div class="col-xl-8 col-lg-8 col-md-10 col-sm-10 col-xs-10 col-10 d-flex justify-content-center align-items-center">
         <table class="table table-striped dataTable table-hover" style="border: 1px solid #dddddd;">
           <thead>
             <tr>
-              <th style="width:200px;">상품 이미지</th>
-              <th style="width:200px;">상품명</th>
-              <th style="width:100px;">상품 가격</th>
-              <th style="width:100px;">상품 재고</th>
-              <th style="width:100px;">등록일</th>
-              <th style="width:100px;">상세보기</th>
+              <th style="width:90px;"></th>
+              <th style="width:120px;">이미지</th>
+              <th style="width:600px;">내용</th>
             </tr>
           </thead>
           <tbody>
             <c:forEach var="dto" items="${list}">
               <tr>
-                <th>
+                <th class="jungho-center fw-5">
+                  <c:out value="${number}" />
+                  <c:set var="number" value="${number-1}" />
+                </th>
+                <td class="jungho-center fw-5">
                   <c:if test="${dto.imageFile!=null}">
-                    <img src="${uploadPath}/product/${dto.imageFile}" width="100" height="100"
-                    class="sh-7 rd-1"/>
+                    <img src="${uploadPath}/product/${dto.imageFile}" class="product-image sh-7 rd-1"/>
                   </c:if>
                   <c:if test="${dto.imageFile==null}">
-                    <img src="${imgsPath}/etc/etc/noImage.png" width="100" height="100"
-                     class="sh-7 rd-1"/>
+                    <img src="${imgsPath}/etc/noImage.png" class="product-image sh-7 rd-1"/>
                   </c:if>
-                </th>
-                <th class="jungho-center ft-8 fw-5">
-                  <a class="text-hover" href="${ctxPath}/product/detailForm.do?num=${dto.num}&pageNum=${currentPage}"><c:out value="${dto.name}"/></a>
-                </th>
-                <th class="jungho-center ft-8 fw-5">
-                  <fmt:formatNumber value="${dto.price}" type="currency" currencyCode="KRW" maxFractionDigits="0" />
-                </th>
-                <th class="jungho-center ft-8 fw-5">
-                  <c:out value="${dto.stock}"/>
-                </th>
-                <th class="jungho-center ft-8 fw-5">
-                  <fmt:formatDate value="${dto.regDate}" pattern="yyyy-MM-dd" />
-                </th>
-                <th class="jungho-center ft-8 fw-5">
-                  <button class="btn btn-jungho" onclick="window.location.href='${ctxPath}/product/detailForm.do?num=${dto.num}&pageNum=${currentPage}'">상세보기</button>
-                </th>
+                </td>
+                <td class="jungho-center fw-5">
+                  <table style="width:100%;">
+                    <tr style="background-color: transparent;">
+                      <td colspan="3" class="jungho-center fw-9">
+                        <c:if test="${dto.re_indent > 0}">
+                          <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
+                          <img src="${imgsPath}/etc/re.gif" />
+                        </c:if>
+                        <c:if test="${dto.re_indent==0}">
+                          <img src="${imgsPath}/etc/level.gif" width="${5*dto.re_indent}" height="16" />
+                        </c:if>
+                        <c:if test="${dto.views}=10">
+                          <img src="${imgsPath}/etc/hot.gif" />
+                        </c:if>
+                        <a class="linkHover" href="${ctxPath}/product/detailForm.do?num=${dto.num}&pageNum=${currentPage}">
+                          ${dto.name}
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="1" class="jungho-center fw-5">
+                        <span><i class="fas fa-won-sign" style="color: #ffcc00;"></i></span>
+                        <fmt:formatNumber value='${dto.price}' type='number' pattern='#,###'/>
+                      </td>
+                      <td colspan="1" class="jungho-center fw-5">
+                        <span><i class="fas fa-building" style="color: #0066ff;"></i></span>
+                        <c:out value="${dto.comp}" />
+                      </td>
+                      <td colspan="1" class="jungho-center fw-5">
+                        <span><i class="fas fa-calendar-alt" style="color: #888888;"></i></span>
+                        <fmt:formatDate value="${dto.regDate}" pattern="MM-dd" />
+                      </td>
+                    </tr>
+                  </table>
+                </td>
               </tr>
             </c:forEach>
           </tbody>
