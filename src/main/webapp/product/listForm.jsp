@@ -108,7 +108,7 @@
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 d-flex justify-content-center align-items-center">
         <div class="search_page d-flex justify-content-center align-items-center">
-          <form method="GET" name="search_list" action="${ctxPath}/product/listSearch.do" class="form-inline">
+          <form method="GET" name="search_list" action="${ctxPath}/product/listSearch.do" class="form-inline-search">
             <select name="keyword" class="form-control">
               <option value="name">상품명</option>
               <option value="content">상품설명</option>

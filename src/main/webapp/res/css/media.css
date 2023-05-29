@@ -12,8 +12,11 @@
     font-size: 25px;
   }
   .form-control {
-
     font-size: calc(1rem - 0rem) !important;
+  }
+  .form-inline-search {
+    display: inline-flex;
+    flex-flow: nowrap;
   }
   .form-group {
     margin-bottom: 1rem;
@@ -55,6 +58,10 @@
 
     font-size: calc(1rem - 0.08rem) !important;
   }
+  .form-inline-search {
+    display: inline-flex;
+    flex-flow: nowrap;
+  }
   .btn {
     font-size: calc(1rem - 0.08rem) !important;
   }
@@ -90,6 +97,10 @@
   .form-control {
 
     font-size: calc(1rem - 0.16rem) !important;
+  }
+  .form-inline-search {
+    display: inline-flex;
+    flex-flow: nowrap;
   }
   .btn {
     font-size: calc(1rem - 0.16rem) !important;
@@ -127,6 +138,10 @@
 
     font-size: calc(1rem - 0.24rem) !important;
   }
+  .form-inline-search {
+    display: inline-flex;
+    flex-flow: nowrap;
+  }
   .btn {
     font-size: calc(1rem - 0.24rem) !important;
   }
@@ -162,6 +177,10 @@
   .form-control {
 
     font-size: calc(1rem - 0.32rem) !important;
+  }
+  .form-inline-search {
+    display: inline-flex;
+    flex-flow: nowrap;
   }
   .btn {
     font-size: calc(1rem - 0.32rem) !important;
