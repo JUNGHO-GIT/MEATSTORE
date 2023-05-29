@@ -129,13 +129,15 @@
 			</c:if>
 		</main>
 
+    <div class="empty-h300"></div>
+
 		<!-- bottom ----------------------------------------------------------------------------------->
 		<footer class="footer" style="background-color: #872d35; margin-top: 20px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 						<h6>
-              <p class="text-center text-white mb-1 pt-1 ft-7">
+              <p class="text-center text-white mb-1 pt-1 footer-p">
                 © 2023 MTS Corp. All Rights Reserved | Designed & Developed by MTS Corp.
               </p>
 						</<h6>

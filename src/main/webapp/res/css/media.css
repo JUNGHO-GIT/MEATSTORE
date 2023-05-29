@@ -34,6 +34,9 @@
   .detail-h2 {
     font-size: 24px;
   }
+  .footer-p {
+    font-size: 18px;
+  }
 }
 
 /**************************************************************************************************/
@@ -67,6 +70,9 @@
   .detail-h2 {
     font-size: 23px;
   }
+  .footer-p {
+    font-size: 17px;
+  }
 }
 
 /**************************************************************************************************/
@@ -96,6 +102,12 @@
   .product-image {
     height: 80px;
     width: 80px;
+  }
+  .detail-h2 {
+    font-size: 22px;
+  }
+  .footer-p {
+    font-size: 16px;
   }
 }
 
@@ -128,7 +140,10 @@
     width: 70px;
   }
   .detail-h2 {
-    font-size: 22px;
+    font-size: 21px;
+  }
+  .footer-p {
+    font-size: 15px;
   }
 }
 
@@ -163,7 +178,11 @@
   .detail-h2 {
     font-size: 20px;
   }
+  .footer-p {
+    font-size: 14px;
+  }
 }
+
 
 /**************************************************************************************************/
 @media only screen and (min-width: 0px) and (max-width: 479px) {
