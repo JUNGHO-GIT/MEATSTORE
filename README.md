@@ -1,10 +1,6 @@
 ## 1. 📝 정보
 <table style="width:100%">
   <tr>
-    <th style="width:20%"></th>
-    <th style="width:80%"></th>
-  </tr>
-  <tr>
     <td><b>🔹프로젝트명</b></td>
     <td>MEATSTORE</td>
   </tr>
@@ -29,10 +25,6 @@
 ## 2. ⭐ 특징
 <table style="width:100%">
   <tr>
-    <th style="width:30%"></th>
-    <th style="width:70%"></th>
-  </tr>
-  <tr>
     <td><b>🔹Java & MVC Model 2</b></td>
     <td>Java 언어와 MVC Model 2 패턴을 기반으로, 비즈니스 로직을 처리하는 Controller, Model 구성 및 사용자 인터페이스를 담당하는 View 분리하여 유지보수성과 확장성을 높임</td>
   </tr>
@@ -52,10 +44,6 @@
 
 ## 3. 🛠️ 사용 기술
 <table style="width:100%">
-  <tr>
-    <th style="width:20%"></th>
-    <th style="width:80%"></th>
-  </tr>
   <tr>
     <td><b>🔹프론트엔드</b></td>
     <td>JSP, HTML, CSS, Javascript, Bootstrap 4</td>
